@@ -21,6 +21,10 @@ export class HomePage implements OnInit {
     }
   }
 
+  public addPlayer() {
+    this.players.push('');
+  }
+
   public onPlayClick() {
     this.navCtrl.push(GamePage);
   }
