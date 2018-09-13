@@ -1,5 +1,7 @@
 {
   "name": "adultcolo",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

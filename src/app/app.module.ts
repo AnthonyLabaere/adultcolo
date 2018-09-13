@@ -7,7 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
-import { MyApp } from './app.component';
+import { Adultcolo } from './app.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -16,12 +16,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    MyApp,
+    Adultcolo,
     HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(Adultcolo),
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -33,7 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    Adultcolo,
     HomePage
   ],
   providers: [
