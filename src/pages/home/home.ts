@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { GamePage } from '../game/game';
+import { Player } from '../../app/entities';
 
 @Component({
   selector: 'page-home',
@@ -8,7 +9,7 @@ import { GamePage } from '../game/game';
 })
 export class HomePage implements OnInit {
 
-  public players: string[];
+  public players: Player[];
 
   constructor(public navCtrl: NavController) {
 
@@ -17,12 +18,12 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.players = [];
     for (let i = 0; i < 3; i++) {
-      this.players.push('');
+      this.players.push(new Player());
     }
   }
 
   public addPlayer() {
-    this.players.push('');
+    this.players.push(new Player());
   }
 
   public onPlayClick() {
