@@ -7,5 +7,11 @@
 </ion-header>
 
 <ion-content class="home-content">
-    <button ion-button round (click)="onPlayClick()">{{'home.buttons.play' | translate}}</button>
+  <ion-list>
+    <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
+      <ion-input type="text" [ngModel]="player" placeholder="Joueur {{i + 1}}"></ion-input>
+    </ion-item>
+  </ion-list>
+
+    <button ion-button full (click)="onPlayClick()">{{'home.buttons.play' | translate}}</button>
 </ion-content>
