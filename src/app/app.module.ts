@@ -8,6 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
 import { Adultcolo } from './app.component';
+import { GamePage } from '../pages/game/game';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -17,7 +18,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     Adultcolo,
-    HomePage
+    HomePage,
+    GamePage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     Adultcolo,
-    HomePage
+    HomePage,
+    GamePage
   ],
   providers: [
     StatusBar,

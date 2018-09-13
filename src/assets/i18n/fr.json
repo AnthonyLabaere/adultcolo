@@ -1,3 +1,8 @@
 {
-    "title": "Adultcolo"
+    "title": "Adultcolo",
+    "home": {
+        "buttons": {
+            "play": "Jouer"
+        }
+    }
 }
