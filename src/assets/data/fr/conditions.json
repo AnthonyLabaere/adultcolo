@@ -3,186 +3,186 @@
         "theme": 3,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu t'es couché une fois ou plus avant 21h ces 10 derniers jours.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si t'es couché une fois ou plus avant 21h ces 10 derniers jours."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es couché une fois ou plus avant 21h ces 10 derniers jours.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si t'es couché une fois ou plus avant 21h ces 10 derniers jours."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu t'es endormi pendant un film ces 10 derniers jours.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu t'es endormi pendant un film ces 10 derniers jours."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es endormi pendant un film ces 10 derniers jours.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es endormi pendant un film ces 10 derniers jours."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as des pantoufles, et double si tu en portes en ce moment.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as des pantoufles, et double si tu en portes en ce moment."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des pantoufles, et double si tu en portes en ce moment.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des pantoufles, et double si tu en portes en ce moment."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu t'es déjà mis en pyjama directement en rentrant du boulot.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu t'es déjà mis en pyjama directement en rentrant du boulot."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà mis en pyjama directement en rentrant du boulot.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà mis en pyjama directement en rentrant du boulot."
         }
     },
     {
         "theme": 4,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine."
         }
     },
     {
         "theme": 5,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as déjà oublié d'aller chercher ton drive.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si a déjà oublié d'aller chez ton drive."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié d'aller chercher ton drive.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si a déjà oublié d'aller chez ton drive."
         }
     },
     {
         "theme": 6,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as déjà oublié l'anniversaire de ton partenaire actuel ou d'un ex.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as déjà oublié l'anniversaire de ton partenaire actuel ou d'un ex."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié l'anniversaire de ton partenaire actuel ou d'un ex.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié l'anniversaire de ton partenaire actuel ou d'un ex."
         }
     },
     {
         "theme": 6,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu t'es déjà fait larguer deux fois par la même personne.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu t'es déjà fait larguer deux fois par la même personne."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà fait larguer deux fois par la même personne.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà fait larguer deux fois par la même personne."
         }
     },
     {
         "theme": 6,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as déjà remis le couvert avec un ex.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as déjà remis le couvert avec un ex. "
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà remis le couvert avec un ex.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà remis le couvert avec un ex. "
         }
     },
     {
         "theme": 6,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu es en couple grâce à une application de rencontre.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu es en couple grâce à une application de rencontre."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es en couple grâce à une application de rencontre.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es en couple grâce à une application de rencontre."
         }
     },
     {
         "theme": 6,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu ne te rappelles plus complètement de ta soirée de rencontre à cause de l'alcool.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu ne te rappelles plus complètement de ta soirée de rencontre à cause de l'alcool."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu ne te rappelles plus complètement de ta soirée de rencontre à cause de l'alcool.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu ne te rappelles plus complètement de ta soirée de rencontre à cause de l'alcool."
         }
     },
     {
         "theme": 7,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as déjà promis que tu allais arrêter de boire.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as déjà promis que tu allais arrêter de boire. Sinon distribue en une."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà promis que tu allais arrêter de boire.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà promis que tu allais arrêter de boire. Sinon distribue en une."
         }
     },
     {
         "theme": 7,
         "canBeSpecified": false,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as une clope au bec alors que tu étais en train d'arrêter de fumer."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as une clope au bec alors que tu étais en train d'arrêter de fumer."
         }
     },
     {
         "theme": 1,
         "canBeSpecified": false,
         "labels": {
-            "generic": "Le plus vieux <<command>> <<sipNumber>> gorgée(s)."
+            "generic": "Le plus vieux <<command>> <<sipNumber>> gorgée<<sipSuffix>>."
         }
     },
     {
         "theme": 1,
         "canBeSpecified": false,
         "labels": {
-            "generic": " Le plus jeune <<command>> <<sipNumber>> gorgée(s)."
+            "generic": " Le plus jeune <<command>> <<sipNumber>> gorgée<<sipSuffix>>."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as fait une nuit de 10h ou plus ces 15 derniers jours.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as fait une nuit de 10h ou plus ces 15 derniers jours."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as fait une nuit de 10h ou plus ces 15 derniers jours.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as fait une nuit de 10h ou plus ces 15 derniers jours."
         }
     },
     {
         "theme": 5,
         "canBeSpecified": false,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu es celui ou celle ayant lavé ses carreaux le plus récemment."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé ses carreaux le plus récemment."
         }
     },
     {
         "theme": 5,
         "canBeSpecified": false,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu es celui ou celle ayant lavé son frigo le plus récemment."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé son frigo le plus récemment."
         }
     },
     {
         "theme": 5,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.).",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.)."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.).",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.)."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin).",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin)."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin).",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin)."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": true,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si tu es content à chaque fois que tu changes d'éponge.",
-            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée(s) si tu es content à chaque fois que tu changes d'éponge."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es content à chaque fois que tu changes d'éponge.",
+            "specific": "<<player>>, <<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es content à chaque fois que tu changes d'éponge."
         }
     },
     {
         "theme": 2,
         "canBeSpecified": false,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée(s) si on t'appelle encore Mademoiselle."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si on t'appelle encore Mademoiselle."
         }
     }
 ]

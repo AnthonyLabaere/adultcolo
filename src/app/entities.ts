@@ -57,10 +57,13 @@ export class Turn {
     }
 
     public static constructFromCondition(condition: Condition, player?: Player): Turn {
+        const sipNumber = CommonService.getRandomSipNumber()
+
         if (player !== undefined && condition.canBeSpecified) {
             const label = condition.labels.specific
                 .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND)
-                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, CommonService.getRandomSipNumber())
+                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '')
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name);
 
             return new Turn(TurnType.Condition, condition.theme, label);
@@ -68,7 +71,8 @@ export class Turn {
             const label = condition.labels.generic
                 .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? 
                     CommonService.capitalize(CommonService.DRINK_COMMAND) : CommonService.capitalize(CommonService.GIVE_OUT_COMMAND))
-                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, CommonService.getRandomSipNumber())
+                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '');
 
             return new Turn(TurnType.Condition, condition.theme, label);
         }
