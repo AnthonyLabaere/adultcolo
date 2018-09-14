@@ -11,5 +11,10 @@ page-game {
                 padding: 0 15px;
             }
         }
+
+        &.turn-condition {
+            color: white;
+            background-color: darkcyan;
+        }
     }
 }

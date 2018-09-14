@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Turn } from '../../app/entities';
 import { HomePage } from '../home/home';
 import { GameService } from './game.service';
 
@@ -9,21 +10,25 @@ import { GameService } from './game.service';
 })
 export class GamePage {
 
-  public turns: string[] = [];
-  public turnIndex: number = 0;
+  private turns: Turn[] = [];
+  private index: number = 0;
 
   constructor(public navCtrl: NavController, private gameService: GameService) {
-    this.turnIndex = 0;
+    this.index = 0;
     
     this.gameService.getTurns()
-      .then((turns: string[]) => {
+      .then((turns: Turn[]) => {
         this.turns = turns;
       });
   }
 
+  public getCurrentTurn() {
+    return this.turns[this.index];
+  }
+
   public onContentClick() {
-    if (this.turnIndex < this.turns.length - 1) {
-      this.turnIndex++;
+    if (this.index < this.turns.length - 1) {
+      this.index++;
     } else {
       this.navCtrl.push(HomePage);
     }

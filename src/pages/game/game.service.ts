@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Condition } from "../../app/entities";
+import { Condition, Turn, TurnType } from "../../app/entities";
 import { ConditionService } from "../../app/_services/condition.service";
 
 
@@ -10,13 +10,13 @@ export class GameService {
 
     }
 
-    public getTurns(): Promise<string[]> {
-        const turns: string[] = [];
+    public getTurns(): Promise<Turn[]> {
+        const turns: Turn[] = [];
 
         return this.conditionService.getConditions()
             .then((conditions: Condition[]) => {
                 conditions.forEach((condition: Condition) => {
-                    turns.push(condition.labels.general);
+                    turns.push(new Turn(TurnType.Condition, condition.theme, condition.labels.general));
                 });
                 
                 return Promise.resolve(turns);

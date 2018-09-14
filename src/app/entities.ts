@@ -3,7 +3,7 @@
 
 //region "Tour de jeu"
 
-export abstract class Turn {
+export abstract class AbstractTurn {
     theme: string;
 
     constructor(theme: string) {
@@ -11,7 +11,7 @@ export abstract class Turn {
     }
 }
 
-export class Condition extends Turn {
+export class Condition extends AbstractTurn {
     labels: TurnLabel;
 
     constructor(theme: string, labels: TurnLabel) {
@@ -35,6 +35,22 @@ export class TurnLabel {
 
     public static constructFromData(gamingLabelData: TurnLabelData): TurnLabel {
         return new TurnLabel(gamingLabelData.general, gamingLabelData.specific);
+    }
+}
+
+export enum TurnType {
+    Condition = 'condition',
+}
+
+export class Turn {
+    type: TurnType;
+    title: string;
+    label: string;
+
+    constructor(type: TurnType, title: string, label: string) {
+        this.type = type;
+        this.title = title;
+        this.label = label;
     }
 }
 

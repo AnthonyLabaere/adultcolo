@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
 import { Condition, ConditionData, ThemeData } from "../entities";
-import { ThemeService } from "./theme.service";
 import { CommonService } from "./common.service";
+import { ThemeService } from "./theme.service";
 
 
 @Injectable()
