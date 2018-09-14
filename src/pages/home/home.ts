@@ -27,8 +27,6 @@ export class HomePage implements OnInit {
   }
 
   private loadStoredPlayers() {
-
-
     this.playerService.getSavedPlayersOnStorage()
       .then((playersOnStorage: Player[]) => {
         const players: Player[] = playersOnStorage;
@@ -43,8 +41,14 @@ export class HomePage implements OnInit {
       });
   }
 
+  public canAddPlayer() {
+    return this.players.length < PlayerService.PLAYERS_MAX_NUMBER;
+  }
+
   public addPlayer() {
-    this.players.push(new Player());
+    if (this.canAddPlayer()) {
+      this.players.push(new Player());
+    }
   }
 
   public onPlayClick() {
