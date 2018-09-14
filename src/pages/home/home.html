@@ -9,7 +9,7 @@
 <ion-content class="home-content">
   <ion-list>
     <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
-      <ion-input type="text" [ngModel]="player.name" placeholder="Joueur {{i + 1}}" clearInput></ion-input>
+      <ion-input type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}" clearInput></ion-input>
     </ion-item>
   </ion-list>
 

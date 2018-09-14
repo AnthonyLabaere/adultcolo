@@ -12,13 +12,23 @@ export class HomePage implements OnInit {
 
   private static MIN_PLAYERS_ON_DISPLAY = 3;
 
-  public players: Player[];
+  public players: Player[] = [
+    new Player(),
+    new Player(),
+    new Player()
+  ];
 
   constructor(public navCtrl: NavController, private playerService: PlayerService) {
 
   }
   
   ngOnInit() {
+    this.loadStoredPlayers();
+  }
+
+  private loadStoredPlayers() {
+
+
     this.playerService.getSavedPlayersOnStorage()
       .then((playersOnStorage: Player[]) => {
         const players: Player[] = playersOnStorage;
@@ -38,6 +48,7 @@ export class HomePage implements OnInit {
   }
 
   public onPlayClick() {
+    console.log(this.players);
     this.playerService.savePlayersOnStorage(this.players);
 
     this.navCtrl.push(GamePage);

@@ -6,7 +6,7 @@ import { CommonService } from "./common.service";
 @Injectable()
 export class PlayerService {
 
-    private static PLAYERS_MAX_NUMBER = 50;
+    private static PLAYERS_MAX_NUMBER = 20;
 
     private static PLAYER_STORAGE_KEY_PREFIX = CommonService.ADULTCOLO_STORAGE_KEY_PREFIX + 'player-';
 
@@ -25,6 +25,7 @@ export class PlayerService {
     private getSavedPlayerOnStorageRecurrence(index: number, players: Player[]): Promise<Player[]> {
         return this.storage.get(this.getPlayerStorageKey(index))
             .then((playerName: string) => {
+                console.log('get : ' + this.getPlayerStorageKey(index) + ' - ' + playerName);
                 if (!this.commonService.isEmpty(playerName)) {
                     const player = new Player();
                     player.name = playerName;
@@ -47,6 +48,7 @@ export class PlayerService {
     }
 
     private setNewPlayersOnStorageRecurrence(index: number, players: Player[]): Promise<void> {
+        console.log('set : ' + this.getPlayerStorageKey(index) + ' - ' + players[index].name);
         return this.storage.set(this.getPlayerStorageKey(index), players[index].name)
             .then(() => {
                 if (index < players.length - 1) {
