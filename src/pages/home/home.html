@@ -16,8 +16,13 @@
   <button *ngIf="canAddPlayer()" color="dark" clear ion-button icon-only (click)="addPlayer()">
     <ion-icon name="add"></ion-icon>
   </button>
-
-    <button color="dark" ion-button full (click)="onPlayClick()">
-      {{'home.buttons.play' | translate}}
-    </button>
 </ion-content>
+
+<ion-footer style="text-align: center">
+    <ion-toolbar>
+        <button color="dark" ion-button item-end icon-start (click)="onPlayClick()">
+          <ion-icon name="wine"></ion-icon>
+          {{'home.buttons.play' | translate}}
+        </button>
+    </ion-toolbar>
+  </ion-footer>
