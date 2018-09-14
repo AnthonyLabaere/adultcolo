@@ -52,7 +52,6 @@ export class HomePage implements OnInit {
   }
 
   public onPlayClick() {
-    console.log(this.players);
     this.playerService.savePlayersOnStorage(this.players);
 
     this.navCtrl.push(GamePage);

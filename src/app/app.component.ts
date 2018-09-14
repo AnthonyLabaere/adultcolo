@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
-import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class Adultcolo {
   rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, storage: Storage) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
