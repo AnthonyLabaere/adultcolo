@@ -1,4 +1,8 @@
 {
+    "common": {
+        "drink": "bois",
+        "give-out": "distribue"
+    },
     "title": "Adultcolo",
     "home": {
         "buttons": {

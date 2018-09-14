@@ -13,15 +13,17 @@ export abstract class AbstractTurn {
 }
 
 export class Condition extends AbstractTurn {
+    canBeSpecified: boolean;
     labels: TurnLabel;
 
-    constructor(theme: string, labels: TurnLabel) {
+    constructor(theme: string, canBeSpecified: boolean, labels: TurnLabel) {
         super(theme);
+        this.canBeSpecified = canBeSpecified;
         this.labels = labels;
     }
 
     public static constructFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): Condition {
-        return new Condition(themeData.label[locale], TurnLabel.constructFromData(conditionData.labels));
+        return new Condition(themeData.label[locale], conditionData.canBeSpecified, TurnLabel.constructFromData(conditionData.labels));
     }
 }
 
@@ -55,10 +57,18 @@ export class Turn {
     }
 
     public static constructFromCondition(condition: Condition, player?: Player): Turn {
-        if (player !== undefined && !CommonService.isEmpty(condition.labels.specific)) {
-            return new Turn(TurnType.Condition, condition.theme, condition.labels.specific.replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name));
+        if (player !== undefined && condition.canBeSpecified) {
+            const label = condition.labels.specific
+                .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND)
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name);
+
+            return new Turn(TurnType.Condition, condition.theme, label);
         } else {
-            return new Turn(TurnType.Condition, condition.theme, condition.labels.generic);
+            const label = condition.labels.generic
+                .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? 
+                CommonService.capitalize(CommonService.DRINK_COMMAND) : CommonService.capitalize(CommonService.GIVE_OUT_COMMAND))
+
+            return new Turn(TurnType.Condition, condition.theme, label);
         }
     }
 }
@@ -73,8 +83,12 @@ export class Player {
 
 //region data
 
-export class ConditionData {
+export abstract class AbstractTurnData {
     theme: number;
+}
+
+export class ConditionData extends AbstractTurnData {
+    canBeSpecified: boolean;
     labels: TurnLabelData;
 }
 

@@ -1,62 +1,62 @@
 [
     {
-        "code": "1",
+        "code": 1,
         "label": {
             "en": "Various",
             "fr": "Divers"
         }
     },
     {
-        "code": "2",
+        "code": 2,
         "label": {
             "en": "Old age",
             "fr": "Vieillesse"
         }
     },
     {
-        "code": "3",
+        "code": 3,
         "label": {
             "en": "Job",
             "fr": "Boulot"
         }
     },
     {
-        "code": "4",
+        "code": 4,
         "label": {
             "en": "Children",
             "fr": "Enfants"
         }
     },
     {
-        "code": "5",
+        "code": 5,
         "label": {
             "en": "Of chore",
             "fr": "De corvée"
         }
     },
     {
-        "code": "6",
+        "code": 6,
         "label": {
             "en": "Sentimental life",
             "fr": "Vie sentimentale"
         }
     },
     {
-        "code": "7",
+        "code": 7,
         "label": {
             "en": "Personal choice",
             "fr": "Choix personnel"
         }
     },
     {
-        "code": "8",
+        "code": 8,
         "label": {
             "en": "Athletic",
             "fr": "Sportif"
         }
     },
     {
-        "code": "9",
+        "code": 9,
         "label": {
             "en": "Geek",
             "fr": "Geek"

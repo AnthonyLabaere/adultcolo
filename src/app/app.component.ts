@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
+import { CommonService } from './_services/common.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,6 +24,13 @@ export class Adultcolo {
   
       // the lang to use, if the lang isn't available, it will use the current loader to get them
       translate.use('fr');
+
+      translate.get('common.drink').subscribe((drinkCommand: string) => {
+        CommonService.DRINK_COMMAND = drinkCommand;
+      });
+      translate.get('common.give-out').subscribe((giveOutCommand: string) => {
+          CommonService.GIVE_OUT_COMMAND = giveOutCommand;
+      });
     });
   }
 }
