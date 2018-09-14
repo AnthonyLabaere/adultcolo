@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, Turn, Player } from "../../app/entities";
+import { Condition, Turn } from "../../app/entities";
 import { ConditionService } from "../../app/_services/condition.service";
 import { PlayerService } from "../../app/_services/player.service";
 

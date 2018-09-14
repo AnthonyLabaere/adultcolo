@@ -47,5 +47,19 @@
             "en": "Personal choice",
             "fr": "Choix personnel"
         }
+    },
+    {
+        "code": "8",
+        "label": {
+            "en": "Athletic",
+            "fr": "Sportif"
+        }
+    },
+    {
+        "code": "9",
+        "label": {
+            "en": "Geek",
+            "fr": "Geek"
+        }
     }
 ]

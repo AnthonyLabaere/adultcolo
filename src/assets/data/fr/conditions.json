@@ -2,43 +2,43 @@
     {
         "theme": "3",
         "labels": {
-            "generic": "Ceux qui ont déjà travaillé pour leur boîte de chez eux pendant leur temps libre, buvez deux gorgées.",
-            "specific": "<<player>>, si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre, bois deux gorgées."
+            "generic": "Bois deux gorgées si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre.",
+            "specific": "<<player>>, bois une gorgée si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre."
         }
     },
     {
         "theme": "2",
         "labels": {
-            "generic": "Ceux qui se sont couchés une fois ou plus avant 21h ces 10 derniers jours, buvez trois gorgées.",
-            "specific": "<<player>>, si t'es couché une fois ou plus avant 21h ces 10 derniers jours, bois deux gorgées."
+            "generic": "Bois trois gorgées si tu t'es couché une fois ou plus avant 21h ces 10 derniers jours.",
+            "specific": "<<player>>, bois trois gorgées si t'es couché une fois ou plus avant 21h ces 10 derniers jours."
         }
     },
     {
         "theme": "2",
         "labels": {
-            "generic": "Ceux qui se sont endormis pendant un film ces 30 derniers jours, buvez trois gorgées.",
-            "specific": "<<player>>, si t'es endormi pendant un film ces 30 derniers jours, bois trois gorgées."
+            "generic": "Bois trois gorgées si tu t'es endormi pendant un film ces 10 derniers jours.",
+            "specific": "<<player>>, bois trois gorgées si tu t'es endormi pendant un film ces 10 derniers jours."
         }
     },
     {
         "theme": "2",
         "labels": {
-            "generic": "Ceux qui ont des pantoufles, buvez une gorgée.",
-            "specific": "<<player>>, si tu as des pantoufles, bois une gorgée."
+            "generic": "Bois une gorgée si tu as des pantoufles, et double si tu en portes en ce moment.",
+            "specific": "<<player>>, bois une gorgée si tu as des pantoufles, et double si tu en portes en ce moment."
         }
     },
     {
         "theme": "2",
         "labels": {
-            "generic": "Ceux qui se sont déjà mis en pyjama en rentrant du boulot, buvez une gorgée.",
-            "specific": "<<player>>, si tu t'es déjà mis en pyjama en rentrant du boulot, bois une gorgée."
+            "generic": "Bois une gorgée si tu t'es déjà mis en pyjama directement en rentrant du boulot.",
+            "specific": "<<player>>, bois une gorgée si tu t'es déjà mis en pyjama directement en rentrant du boulot."
         }
     },
     {
         "theme": "4",
         "labels": {
-            "generic": "Ceux qui ont déjà laissé le ou leurs enfants chez leurs grand-parents pendant au moins une semaine, buvez une gorgée par enfant.",
-            "specific": "<<player>>, si a déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine, bois une gorgée par enfant."
+            "generic": "Bois une gorgée si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine.",
+            "specific": "<<player>>, bois une gorgée si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine."
         }
     },
     {
@@ -58,15 +58,15 @@
     {
         "theme": "6",
         "labels": {
-            "generic": "Ceux qui se sont déjà fait larguer deux fois par la même personne, buvez trois gorgées.",
-            "specific": "<<player>>, si tu t'es déjà fait larguer deux fois par la même personne, bois trois gorgées."
+            "generic": "Bois trois gorgées si tu t'es déjà fait larguer deux fois par la même personne.",
+            "specific": "<<player>>, bois trois gorgées si tu t'es déjà fait larguer deux fois par la même personne."
         }
     },
     {
         "theme": "6",
         "labels": {
-            "generic": "Ceux qui ont déjà remis le couvert avec un ex, buvez une gorgée.",
-            "specific": "<<player>>, si tu as déjà remis le couvert avec un ex, bois une gorgée. "
+            "generic": "Bois une gorgée si tu as déjà remis le couvert avec un ex.",
+            "specific": "<<player>>, bois une gorgée si tu as déjà remis le couvert avec un ex. "
         }
     },
     {
@@ -86,13 +86,6 @@
     {
         "theme": "7",
         "labels": {
-            "generic": "Ceux qui se disent devoir commencer un régime la semaine prochaine depuis trois mois, buvez trois gorgées.",
-            "specific": "<<player>>, si tu te dis que tu dois commencer un régime la semaine prochaine depuis trois mois, bois trois gorgées."
-        }
-    },
-    {
-        "theme": "7",
-        "labels": {
             "generic": "Bois une gorgée si tu as déjà promis que tu allais arrêter de boire.",
             "specific": "<<player>>, bois une gorgée si tu as déjà promis que tu allais arrêter de boire. Sinon distribue en une."
         }
@@ -100,19 +93,72 @@
     {
         "theme": "7",
         "labels": {
-            "generic": "Ceux qui ont une clope au bec alors qu'ils étaient en train d'arrêter de fumer, buvez trois gorgées."
+            "generic": "Bois trois gorgées si tu as une clope au bec alors que tu étais en train d'arrêter de fumer."
         }
     },
     {
         "theme": "1",
         "labels": {
-            "generic": "Le plus vieux bois une gorgée."
+            "generic": "Le plus vieux bois autour de cette tablée bois une gorgée."
         }
     },
     {
         "theme": "1",
         "labels": {
-            "generic": " Le plus jeune distribue deux gorgées."
+            "generic": " Le plus jeune autour de cette tablée bois deux gorgées."
+        }
+    },
+    {
+        "theme": "2",
+        "labels": {
+            "generic": "Bois une gorgée si tu as fait une nuit de 10h ou plus ces 15 derniers jours.",
+            "specific": "<<player>>, bois une gorgée si tu as fait une nuit de 10h ou plus ces 15 derniers jours."
+        }
+    },
+    {
+        "theme": "5",
+        "labels": {
+            "generic": "Bois une gorgée si tu es celui ou celle ayant lavé ses carreaux le plus récemment."
+        }
+    },
+    {
+        "theme": "5",
+        "labels": {
+            "generic": "Bois une gorgée si tu es celui ou celle ayant lavé son frigo le plus récemment."
+        }
+    },
+    {
+        "theme": "5",
+        "labels": {
+            "generic": "Bois une gorgée si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison.",
+            "specific": "<<player>>, bois une gorgée si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison."
+        }
+    },
+    {
+        "theme": "2",
+        "labels": {
+            "generic": "Bois trois gorgées si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.).",
+            "specific": "<<player>>, bois trois gorgées si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.)."
+        }
+    },
+    {
+        "theme": "2",
+        "labels": {
+            "generic": "Bois une gorgée si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin).",
+            "specific": "<<player>>, bois une gorgée si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin)."
+        }
+    },
+    {
+        "theme": "2",
+        "labels": {
+            "generic": "Bois une gorgée si tu es content à chaque fois que tu changes d'éponge.",
+            "specific": "<<player>>, bois une gorgée si tu es content à chaque fois que tu changes d'éponge."
+        }
+    },
+    {
+        "theme": "2",
+        "labels": {
+            "generic": "Bois une gorgée si on t'appelle encore Mademoiselle."
         }
     }
 ]

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Condition, ConditionData, ThemeData } from "../entities";
+import { ThemeData } from "../entities";
 
 @Injectable()
 export class ThemeService {
