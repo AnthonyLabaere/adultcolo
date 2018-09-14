@@ -1,0 +1,51 @@
+[
+    {
+        "code": "1",
+        "label": {
+            "en": "Various",
+            "fr": "Divers"
+        }
+    },
+    {
+        "code": "2",
+        "label": {
+            "en": "Old age",
+            "fr": "Vieillesse"
+        }
+    },
+    {
+        "code": "3",
+        "label": {
+            "en": "Job",
+            "fr": "Boulot"
+        }
+    },
+    {
+        "code": "4",
+        "label": {
+            "en": "Children",
+            "fr": "Enfants"
+        }
+    },
+    {
+        "code": "5",
+        "label": {
+            "en": "Of chore",
+            "fr": "De corvée"
+        }
+    },
+    {
+        "code": "6",
+        "label": {
+            "en": "Sentimental life",
+            "fr": "Vie sentimentale"
+        }
+    },
+    {
+        "code": "7",
+        "label": {
+            "en": "Personal choice",
+            "fr": "Choix personnel"
+        }
+    }
+]

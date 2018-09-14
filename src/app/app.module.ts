@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
 import { PlayerService } from './_services/player.service';
+import { GameService } from './_services/game.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommonService,
+    GameService,
     PlayerService
   ]
 })
