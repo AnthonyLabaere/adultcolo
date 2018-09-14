@@ -1,5 +1,15 @@
 page-game {
     .game-content {
         text-align: center;
+
+        .scroll-content {
+            display: flex!important;
+            align-content: center!important;
+            align-items: center!important;
+
+            .turn-label {
+                padding: 0 15px;
+            }
+        }
     }
 }
