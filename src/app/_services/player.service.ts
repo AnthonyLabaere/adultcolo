@@ -6,12 +6,29 @@ import { CommonService } from "./common.service";
 @Injectable()
 export class PlayerService {
 
+    private players: Player[];
+
+    public static PLAYERS_MIN_NUMBER = 2;
     public static PLAYERS_MAX_NUMBER = 50;
 
     private static PLAYER_STORAGE_KEY_PREFIX = CommonService.ADULTCOLO_STORAGE_KEY_PREFIX + 'player-';
 
-    constructor(private storage: Storage, private commonService: CommonService) {
+    constructor(private storage: Storage) {
 
+    }
+
+    public hasEnoughtPlayers() {
+        return this.getPlayers().length >= PlayerService.PLAYERS_MIN_NUMBER;
+    }
+
+    public getPlayers() {
+        return this.players.filter((player: Player) => {
+            return !CommonService.isEmpty(player.name);
+        });
+    }
+
+    public setPlayers(players: Player[]) {
+        this.players = players;
     }
 
     private getPlayerStorageKey(index: number) {
@@ -25,7 +42,7 @@ export class PlayerService {
     private getSavedPlayerOnStorageRecurrence(index: number, players: Player[]): Promise<Player[]> {
         return this.storage.get(this.getPlayerStorageKey(index))
             .then((playerName: string) => {
-                if (!this.commonService.isEmpty(playerName)) {
+                if (!CommonService.isEmpty(playerName)) {
                     const player = new Player();
                     player.name = playerName;
                     players.push(player);
@@ -62,7 +79,7 @@ export class PlayerService {
         
         return this.storage.get(playerStorageKey)
             .then((playerName: string) => {
-                if (!this.commonService.isEmpty(playerName)) {
+                if (!CommonService.isEmpty(playerName)) {
                     return this.storage.remove(playerStorageKey)
                         .then(() => {
                             if (index < PlayerService.PLAYERS_MAX_NUMBER - 1) {

@@ -1,3 +1,4 @@
+import { CommonService } from "./_services/common.service";
 
 //region "DTO"
 
@@ -53,8 +54,12 @@ export class Turn {
         this.label = label;
     }
 
-    public static constructFromCondition(condition: Condition): Turn {
-        return new Turn(TurnType.Condition, condition.theme, condition.labels.generic);
+    public static constructFromCondition(condition: Condition, player?: Player): Turn {
+        if (player !== undefined && !CommonService.isEmpty(condition.labels.specific)) {
+            return new Turn(TurnType.Condition, condition.theme, condition.labels.specific.replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name));
+        } else {
+            return new Turn(TurnType.Condition, condition.theme, condition.labels.generic);
+        }
     }
 }
 
