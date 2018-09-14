@@ -30,7 +30,7 @@ export class GamePage {
     if (this.index < this.turns.length - 1) {
       this.index++;
     } else {
-      this.navCtrl.push(HomePage);
+      this.navCtrl.pop();
     }
   }
 }

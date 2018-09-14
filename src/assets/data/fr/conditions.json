@@ -136,7 +136,7 @@
         "theme": 5,
         "canBeSpecified": false,
         "labels": {
-            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé ses carreaux le plus récemment."
+            "generic": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé ses fenêtres le plus récemment."
         }
     },
     {
