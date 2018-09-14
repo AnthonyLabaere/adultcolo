@@ -10,7 +10,7 @@ export class PlayerService {
 
     private static PLAYER_STORAGE_KEY_PREFIX = CommonService.ADULTCOLO_STORAGE_KEY_PREFIX + 'player-';
 
-    constructor(private storage: Storage) {
+    constructor(private storage: Storage, private commonService: CommonService) {
 
     }
 
@@ -25,10 +25,10 @@ export class PlayerService {
     private getSavedPlayerOnStorageRecurrence(index: number, players: Player[]): Promise<Player[]> {
         return this.storage.get(this.getPlayerStorageKey(index))
             .then((playerName: string) => {
-                if (!playerName && playerName != null && playerName.trim() != '') {
+                if (!this.commonService.isEmpty(playerName)) {
                     const player = new Player();
                     player.name = playerName;
-                    players.push(player)
+                    players.push(player);
                 }
 
                 if (index < PlayerService.PLAYERS_MAX_NUMBER - 1) {
@@ -39,8 +39,8 @@ export class PlayerService {
             });
     }
 
-    public savePlayersOnStorage(players: Player[]) {
-        this.setNewPlayersOnStorageRecurrence(0, players)
+    public savePlayersOnStorage(players: Player[]): Promise<void> {
+        return this.setNewPlayersOnStorageRecurrence(0, players)
             .then(() => {
                 return this.removeOldPlayersOnStorageRecurrence(players.length);
             });
@@ -62,7 +62,7 @@ export class PlayerService {
         
         return this.storage.get(playerStorageKey)
             .then((playerName: string) => {
-                if (!playerName && playerName != null && playerName.trim() != '') {
+                if (!this.commonService.isEmpty(playerName)) {
                     return this.storage.remove(playerStorageKey)
                         .then(() => {
                             if (index < PlayerService.PLAYERS_MAX_NUMBER - 1) {
@@ -71,6 +71,12 @@ export class PlayerService {
                                 return Promise.resolve();
                             }
                         });
+                } else {
+                    if (index < PlayerService.PLAYERS_MAX_NUMBER - 1) {
+                        return this.removeOldPlayersOnStorageRecurrence(index + 1);
+                    } else {
+                        return Promise.resolve();
+                    }
                 }
             });
     }
