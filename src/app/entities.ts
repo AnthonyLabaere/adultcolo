@@ -25,16 +25,16 @@ export class Condition extends AbstractTurn {
 }
 
 export class TurnLabel {
-    general: string;
+    generic: string;
     specific: string;
 
-    constructor(general: string, specific: string) {
-        this.general = general;
+    constructor(generic: string, specific: string) {
+        this.generic = generic;
         this.specific = specific;
     }
 
     public static constructFromData(gamingLabelData: TurnLabelData): TurnLabel {
-        return new TurnLabel(gamingLabelData.general, gamingLabelData.specific);
+        return new TurnLabel(gamingLabelData.generic, gamingLabelData.specific);
     }
 }
 
@@ -51,6 +51,10 @@ export class Turn {
         this.type = type;
         this.title = title;
         this.label = label;
+    }
+
+    public static constructFromCondition(condition: Condition): Turn {
+        return new Turn(TurnType.Condition, condition.theme, condition.labels.generic);
     }
 }
 
@@ -70,7 +74,7 @@ export class ConditionData {
 }
 
 export class TurnLabelData {
-    general: string;
+    generic: string;
     specific: string;
 }
 
