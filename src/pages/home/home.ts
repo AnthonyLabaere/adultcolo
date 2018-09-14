@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { GamePage } from '../game/game';
 import { Player } from '../../app/entities';
+import { PlayerService } from '../../app/_services/player.service';
+import { GamePage } from '../game/game';
 
 @Component({
   selector: 'page-home',
@@ -9,17 +10,27 @@ import { Player } from '../../app/entities';
 })
 export class HomePage implements OnInit {
 
+  private static MIN_PLAYERS_ON_DISPLAY = 3;
+
   public players: Player[];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private playerService: PlayerService) {
 
   }
   
   ngOnInit() {
-    this.players = [];
-    for (let i = 0; i < 3; i++) {
-      this.players.push(new Player());
-    }
+    this.playerService.getSavedPlayersOnStorage()
+      .then((playersOnStorage: Player[]) => {
+        const players: Player[] = playersOnStorage;
+        while (players.length < HomePage.MIN_PLAYERS_ON_DISPLAY) {
+          players.push(new Player());
+        }
+
+        this.players = players;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   public addPlayer() {
@@ -27,7 +38,8 @@ export class HomePage implements OnInit {
   }
 
   public onPlayClick() {
+    this.playerService.savePlayersOnStorage(this.players);
+
     this.navCtrl.push(GamePage);
   }
-
 }
