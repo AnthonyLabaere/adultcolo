@@ -1,26 +1,24 @@
-<ion-header>
+<ion-header class="home-header">
   <ion-navbar>
-    <ion-title>
-      {{'title' | translate | uppercase}}
-    </ion-title>
+    <ion-title color="light" class="home-title">{{'title' | translate | uppercase}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="home-content">
-  <ion-list>
+  <ion-list class="players-list">
     <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
-      <ion-input color="dark" type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}" clearInput></ion-input>
+      <ion-input type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}"></ion-input>
     </ion-item>
   </ion-list>
 
-  <button *ngIf="canAddPlayer()" color="dark" clear ion-button large icon-only (click)="addPlayer()">
+  <button *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-content>
 
-<ion-footer style="text-align: center">
+<ion-footer class="home-footer">
     <ion-toolbar>
-        <button color="dark" ion-button large item-end icon-start (click)="onPlayClick()">
+        <button class="play-button" ion-button large item-end icon-start (click)="onPlayClick()">
           <ion-icon name="wine"></ion-icon>
           {{'home.buttons.play' | translate}}
         </button>

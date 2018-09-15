@@ -34,7 +34,8 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  // primary:    #488aff,
+  primary:    #f4f4f4,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -45,20 +46,21 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$toolbar-ios-title-text-color: map-get($colors, light);
 
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$toolbar-md-title-text-color: map-get($colors, light);
 
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
+$toolbar-wp-title-text-color: map-get($colors, light);
 
 
 
@@ -72,6 +74,9 @@ $colors: (
 
 @import "ionic.theme.default";
 
+$text-input-placeholder-color: rgb(193, 193, 193);
+$text-input-highlight-color-valid: #dedede;
+$text-input-highlight-color-invalid: #dedede;
 
 // Ionicons
 // --------------------------------------------------

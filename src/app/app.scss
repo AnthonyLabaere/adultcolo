@@ -18,3 +18,17 @@
 .button-md {
     text-transform: none;
 }
+
+
+.list {
+    .item-input:last-child, .item-input-has-focus:last-child {
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+    > .item-block:last-child ion-label,
+    > .item-block:last-child .item-inner,
+    > .item-wrapper:last-child ion-label,
+    > .item-wrapper:last-child .item-inner{
+        border-bottom: 1px solid #dedede;
+    }
+}

@@ -1,16 +1,7 @@
-<ion-header>
-    <!-- Uniquement utile pour le développement : à retirer par la suite -->
-    <ion-navbar>
-      <ion-title>
-        {{'title' | translate}}
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content class="play-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
-    <div>
-        <h1 *ngIf="getCurrentTurn()?.title !== null">{{getCurrentTurn()?.title}}</h1>
-        <h2 class="turn-label">{{getCurrentTurn()?.label}}</h2>
-    </div>
-  </ion-content>
+<ion-content class="play-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
+  <div>
+      <h1 *ngIf="getCurrentTurn()?.title !== null">{{getCurrentTurn()?.title}}</h1>
+      <h2 class="turn-label">{{getCurrentTurn()?.label}}</h2>
+  </div>
+</ion-content>
   
