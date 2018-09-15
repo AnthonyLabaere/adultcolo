@@ -20,12 +20,6 @@ export class Condition extends TurnEntry {
         this.label = label;
     }
 
-    public static constructFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): Condition {
-        const condition = new Condition();
-        condition.hydrate(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
-        return condition;
-    }
-
     public initFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): void {
         this.hydrate(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
     }
@@ -37,12 +31,6 @@ export class ForOrAgainst extends TurnEntry {
     public hydrate(theme: string, label: string) {
         this.theme = theme;
         this.label = label;
-    }
-
-    public static constructFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): ForOrAgainst {
-        const forOrAgainst = new ForOrAgainst();
-        forOrAgainst.hydrate(themeData.label[locale], forOrAgainstData.label);
-        return forOrAgainst;
     }
 
     public initFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): void {
