@@ -8,14 +8,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
+import { PlayPage } from '../pages/play/play';
+import { PlayService } from '../pages/play/play.service';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
-import { ConditionService } from './_services/condition.service';
 import { PlayerService } from './_services/player.service';
 import { ThemeService } from './_services/theme.service';
-import { PlayService } from '../pages/play/play.service';
-import { PlayPage } from '../pages/play/play';
-import { ForOrAgainstService } from './_services/forOrAgainst.service';
+import { TurnEntryService } from './_services/turnEntry.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -54,11 +53,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommonService,
-    ConditionService,
-    ForOrAgainstService,
     PlayService,
     PlayerService,
-    ThemeService
+    ThemeService,
+    TurnEntryService
   ]
 })
 export class AppModule {}

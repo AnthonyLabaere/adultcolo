@@ -7,36 +7,46 @@ import { CommonService } from "./_services/common.service";
 export abstract class TurnEntry {
     theme: string;
 
-    constructor(theme: string) {
-        this.theme = theme;
-    }
+    public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
 }
 
 export class Condition extends TurnEntry {
     canBeSpecified: boolean;
     label: string;
 
-    constructor(theme: string, canBeSpecified: boolean, label: string) {
-        super(theme);
+    public hydrate(theme: string, canBeSpecified: boolean, label: string) {
+        this.theme = theme;
         this.canBeSpecified = canBeSpecified;
         this.label = label;
     }
 
     public static constructFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): Condition {
-        return new Condition(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
+        const condition = new Condition();
+        condition.hydrate(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
+        return condition;
+    }
+
+    public initFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): void {
+        this.hydrate(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
     }
 }
 
 export class ForOrAgainst extends TurnEntry {
     label: string;
 
-    constructor(theme: string, label: string) {
-        super(theme);
+    public hydrate(theme: string, label: string) {
+        this.theme = theme;
         this.label = label;
     }
 
     public static constructFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): ForOrAgainst {
-        return new ForOrAgainst(themeData.label[locale], forOrAgainstData.label);
+        const forOrAgainst = new ForOrAgainst();
+        forOrAgainst.hydrate(themeData.label[locale], forOrAgainstData.label);
+        return forOrAgainst;
+    }
+
+    public initFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): void {
+        this.hydrate(themeData.label[locale], forOrAgainstData.label);
     }
 }
 

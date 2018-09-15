@@ -1,27 +1,26 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, Turn, ForOrAgainst } from "../../app/entities";
-import { ConditionService } from "../../app/_services/condition.service";
+import { Condition, ForOrAgainst, Turn, TurnType } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
-import { ForOrAgainstService } from "../../app/_services/forOrAgainst.service";
+import { TurnEntryService } from "../../app/_services/turnEntry.service";
 
 
 @Injectable()
 export class PlayService {
 
-    private static CONDITIONS_BY_PLAY:number = 10;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 5;
+    private static CONDITIONS_BY_PLAY:number = 5;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 1;
 
-    constructor(private playerService: PlayerService, private conditionService: ConditionService, private forOrAgainstService: ForOrAgainstService) {
+    constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
     }
 
     public getTurns(): Promise<Turn[]> {
         const turns: Turn[] = [];
 
-        return this.conditionService.getConditions()
+        return this.turnEntryService.getTurnEntries(TurnType.CONDITION)
             .then((conditions: Condition[]) => {
-                _.shuffle(conditions).slice(0, PlayService.CONDITIONS_BY_PLAY - 1).forEach((condition: Condition) => {
+                _.shuffle(conditions).slice(0, PlayService.CONDITIONS_BY_PLAY).forEach((condition: Condition) => {
                     if (this.playerService.hasEnoughtPlayers()) {
                         turns.push(Turn.constructFromCondition(condition, _.shuffle(this.playerService.getPlayers())[0]));
                     } else {
@@ -29,10 +28,10 @@ export class PlayService {
                     }
                 });
                 
-                return this.forOrAgainstService.getForOrAgainsts();
+                return this.turnEntryService.getTurnEntries(TurnType.FOR_OR_AGAINST);
             })
             .then((forOrAgainsts: ForOrAgainst[]) => {
-                _.shuffle(forOrAgainsts).slice(0, PlayService.FOR_OR_AGAINSTS_BY_PLAY - 1).forEach((forOrAgainst: ForOrAgainst) => {
+                _.shuffle(forOrAgainsts).slice(0, PlayService.FOR_OR_AGAINSTS_BY_PLAY).forEach((forOrAgainst: ForOrAgainst) => {
                     turns.push(Turn.constructFromForOrAgainst(forOrAgainst));
                 });
 
