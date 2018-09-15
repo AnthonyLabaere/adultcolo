@@ -14,30 +14,16 @@ export abstract class AbstractTurn {
 
 export class Condition extends AbstractTurn {
     canBeSpecified: boolean;
-    labels: TurnLabel;
+    label: string;
 
-    constructor(theme: string, canBeSpecified: boolean, labels: TurnLabel) {
+    constructor(theme: string, canBeSpecified: boolean, label: string) {
         super(theme);
         this.canBeSpecified = canBeSpecified;
-        this.labels = labels;
+        this.label = label;
     }
 
     public static constructFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): Condition {
-        return new Condition(themeData.label[locale], conditionData.canBeSpecified, TurnLabel.constructFromData(conditionData.labels));
-    }
-}
-
-export class TurnLabel {
-    generic: string;
-    specific: string;
-
-    constructor(generic: string, specific: string) {
-        this.generic = generic;
-        this.specific = specific;
-    }
-
-    public static constructFromData(gamingLabelData: TurnLabelData): TurnLabel {
-        return new TurnLabel(gamingLabelData.generic, gamingLabelData.specific);
+        return new Condition(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
     }
 }
 
@@ -60,19 +46,20 @@ export class Turn {
         const sipNumber = CommonService.getRandomSipNumber()
 
         if (player !== undefined && condition.canBeSpecified) {
-            const label = condition.labels.specific
+            const label = condition.label
                 .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND)
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
                 .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '')
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name);
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + ', ');
 
             return new Turn(TurnType.Condition, condition.theme, label);
         } else {
-            const label = condition.labels.generic
+            const label = condition.label
                 .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? 
                     CommonService.capitalize(CommonService.DRINK_COMMAND) : CommonService.capitalize(CommonService.GIVE_OUT_COMMAND))
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '');
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '')
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '');
 
             return new Turn(TurnType.Condition, condition.theme, label);
         }
@@ -95,12 +82,7 @@ export abstract class AbstractTurnData {
 
 export class ConditionData extends AbstractTurnData {
     canBeSpecified: boolean;
-    labels: TurnLabelData;
-}
-
-export class TurnLabelData {
-    generic: string;
-    specific: string;
+    label: string;
 }
 
 export class ThemeData {
