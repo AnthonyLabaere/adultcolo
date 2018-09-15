@@ -22,6 +22,8 @@ export class CommonService {
 
     public static DATA_PLAYER_KEY_TO_REPLACE = '<<player>>';
     public static DATA_COMMAND_KEY_TO_REPLACE = '<<command>>';
+    public static DATA_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<command>>/;
+    public static DATA_COMMAND_REGEX_TO_REPLACE = /<<command>>/;
     public static DATA_SIP_NUMBER_KEY_TO_REPLACE = '<<sipNumber>>';
     public static DATA_SIP_SUFFIX_KEY_TO_REPLACE = '<<sipSuffix>>';
 

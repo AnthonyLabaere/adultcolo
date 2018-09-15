@@ -44,22 +44,25 @@ export class Turn {
 
     public static constructFromCondition(condition: Condition, player?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber()
+        const command = CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND;
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
         if (player !== undefined && condition.canBeSpecified) {
             const label = condition.label
-                .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND)
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
+                .replace(CommonService.DATA_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(command))
+                .replace(CommonService.DATA_COMMAND_REGEX_TO_REPLACE, command)
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR)
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX);
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
 
             return new Turn(TurnType.Condition, condition.theme, label);
         } else {
             const label = condition.label
-                .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? 
-                    CommonService.capitalize(CommonService.DRINK_COMMAND) : CommonService.capitalize(CommonService.GIVE_OUT_COMMAND))
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '')
+                .replace(CommonService.DATA_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(command))
+                .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, command)
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR)
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '');
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
 
             return new Turn(TurnType.Condition, condition.theme, label);
         }
