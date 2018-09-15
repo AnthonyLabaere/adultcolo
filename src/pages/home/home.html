@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{'title' | translate}}
+      {{'title' | translate | uppercase}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,11 +9,11 @@
 <ion-content class="home-content">
   <ion-list>
     <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
-      <ion-input type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}" clearInput></ion-input>
+      <ion-input color="dark" type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}" clearInput></ion-input>
     </ion-item>
   </ion-list>
 
-  <button *ngIf="canAddPlayer()" color="dark" clear ion-button icon-only (click)="addPlayer()">
+  <button *ngIf="canAddPlayer()" color="dark" clear ion-button large icon-only (click)="addPlayer()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-content>

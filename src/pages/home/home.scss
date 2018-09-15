@@ -1,5 +1,18 @@
 page-home {
+    ion-navbar {
+        ion-title {
+            text-align: center;
+        }
+    }
+
     .home-content {
         text-align: center;
+
+        // Pas de validation de champ
+        .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+            border-bottom: 1px solid #dedede;
+            border-bottom-color: #dedede !important;
+            box-shadow: none !important;
+        }
     }
 }
