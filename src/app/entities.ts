@@ -4,7 +4,7 @@ import { CommonService } from "./_services/common.service";
 
 //region "Tour de jeu"
 
-export abstract class AbstractTurn {
+export abstract class TurnEntry {
     theme: string;
 
     constructor(theme: string) {
@@ -12,7 +12,7 @@ export abstract class AbstractTurn {
     }
 }
 
-export class Condition extends AbstractTurn {
+export class Condition extends TurnEntry {
     canBeSpecified: boolean;
     label: string;
 
@@ -55,7 +55,7 @@ export class Turn {
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
                 .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
 
-            return new Turn(TurnType.Condition, condition.theme, label);
+            return new Turn(TurnType.Condition, null, label);
         } else {
             const label = condition.label
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '')
@@ -64,7 +64,7 @@ export class Turn {
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
                 .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
 
-            return new Turn(TurnType.Condition, condition.theme, label);
+            return new Turn(TurnType.Condition, null, label);
         }
     }
 }
@@ -79,11 +79,11 @@ export class Player {
 
 //region data
 
-export abstract class AbstractTurnData {
+export abstract class TurnEntryData {
     theme: number;
 }
 
-export class ConditionData extends AbstractTurnData {
+export class ConditionData extends TurnEntryData {
     canBeSpecified: boolean;
     label: string;
 }
