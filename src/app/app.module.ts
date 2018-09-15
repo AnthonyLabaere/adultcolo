@@ -7,14 +7,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { GamePage } from '../pages/game/game';
 import { HomePage } from '../pages/home/home';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
 import { ConditionService } from './_services/condition.service';
-import { GameService } from '../pages/game/game.service';
 import { PlayerService } from './_services/player.service';
 import { ThemeService } from './_services/theme.service';
+import { PlayService } from '../pages/play/play.service';
+import { PlayPage } from '../pages/play/play';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     Adultcolo,
     HomePage,
-    GamePage
+    PlayPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [
     Adultcolo,
     HomePage,
-    GamePage
+    PlayPage
   ],
   providers: [
     StatusBar,
@@ -54,7 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommonService,
     ConditionService,
-    GameService,
+    PlayService,
     PlayerService,
     ThemeService
   ]

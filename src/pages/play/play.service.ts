@@ -6,9 +6,9 @@ import { PlayerService } from "../../app/_services/player.service";
 
 
 @Injectable()
-export class GameService {
+export class PlayService {
 
-    private static CONDITIONS_BY_GAME:number = 5;
+    private static CONDITIONS_BY_PLAY:number = 5;
 
     constructor(private playerService: PlayerService, private conditionService: ConditionService) {
         
@@ -19,7 +19,7 @@ export class GameService {
 
         return this.conditionService.getConditions()
             .then((conditions: Condition[]) => {
-                _.shuffle(conditions).slice(0, GameService.CONDITIONS_BY_GAME - 1).forEach((condition: Condition) => {
+                _.shuffle(conditions).slice(0, PlayService.CONDITIONS_BY_PLAY - 1).forEach((condition: Condition) => {
                     if (this.playerService.hasEnoughtPlayers()) {
                         turns.push(Turn.constructFromCondition(condition, _.shuffle(this.playerService.getPlayers())[0]));
                     } else {

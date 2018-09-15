@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Turn } from '../../app/entities';
-import { HomePage } from '../home/home';
-import { GameService } from './game.service';
+import { PlayService } from './play.service';
 
 @Component({
-  selector: 'page-game',
-  templateUrl: 'game.html'
+  selector: 'page-play',
+  templateUrl: 'play.html'
 })
-export class GamePage {
+export class PlayPage {
 
   private turns: Turn[] = [];
   private index: number = 0;
 
-  constructor(public navCtrl: NavController, private gameService: GameService) {
+  constructor(public navCtrl: NavController, private playService: PlayService) {
     this.index = 0;
     
-    this.gameService.getTurns()
+    this.playService.getTurns()
       .then((turns: Turn[]) => {
         this.turns = turns;
       });

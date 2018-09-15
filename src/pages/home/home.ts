@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Player } from '../../app/entities';
 import { PlayerService } from '../../app/_services/player.service';
-import { GamePage } from '../game/game';
+import { PlayPage } from '../play/play';
 
 @Component({
   selector: 'page-home',
@@ -55,6 +55,6 @@ export class HomePage implements OnInit {
     this.playerService.setPlayers(this.players);
     this.playerService.savePlayersOnStorage(this.players);
 
-    this.navCtrl.push(GamePage);
+    this.navCtrl.push(PlayPage);
   }
 }

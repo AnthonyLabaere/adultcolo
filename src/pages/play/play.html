@@ -7,7 +7,7 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content class="game-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
+  <ion-content class="play-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
     <div>
         <h1>{{getCurrentTurn()?.title}}</h1>
         <h2 class="turn-label">{{getCurrentTurn()?.label}}</h2>
