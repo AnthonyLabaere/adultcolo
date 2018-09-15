@@ -2,7 +2,7 @@ import { CommonService } from "./_services/common.service";
 
 //region "DTO"
 
-//region "Tour de jeu"
+//region "Entrée de tour de jeu"
 
 export abstract class TurnEntry {
     theme: string;
@@ -26,6 +26,10 @@ export class Condition extends TurnEntry {
         return new Condition(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
     }
 }
+
+//endregion
+
+//region "Tour de jeu"
 
 export enum TurnType {
     Condition = 'condition',
