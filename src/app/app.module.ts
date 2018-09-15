@@ -28,7 +28,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(Adultcolo),
+    IonicModule.forRoot(Adultcolo, {
+      scrollPadding: false,
+      scrollAssist: false
+    }),
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
