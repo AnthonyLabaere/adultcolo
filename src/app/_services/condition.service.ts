@@ -6,7 +6,7 @@ import { Condition, ConditionData, ThemeData } from "../entities";
 import { CommonService } from "./common.service";
 import { ThemeService } from "./theme.service";
 
-
+//TODO : un seul service générique pour les TurnEntry ?
 @Injectable()
 export class ConditionService {
 

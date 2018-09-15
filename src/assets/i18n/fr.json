@@ -1,4 +1,5 @@
 {
+    "title": "Adultcolo",
     "common": {
         "player": {
             "suffix": ", "
@@ -21,10 +22,17 @@
             }
         }
     },
-    "title": "Adultcolo",
+    "turnEntry": {
+        "condition": {},
+        "for-or-against": {
+            "title": "Pour ou contre",
+            "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}"
+        }
+    },
     "home": {
         "buttons": {
             "play": "Aller, on boit !"
         }
-    }
+    },
+    "play": {}
 }

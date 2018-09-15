@@ -27,23 +27,39 @@ export class Condition extends TurnEntry {
     }
 }
 
+export class ForOrAgainst extends TurnEntry {
+    label: string;
+
+    constructor(theme: string, label: string) {
+        super(theme);
+        this.label = label;
+    }
+
+    public static constructFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): ForOrAgainst {
+        return new ForOrAgainst(themeData.label[locale], forOrAgainstData.label);
+    }
+}
+
 //endregion
 
 //region "Tour de jeu"
 
 export enum TurnType {
-    Condition = 'condition',
+    CONDITION = 'condition',
+    FOR_OR_AGAINST = 'for-or-against',
 }
 
 export class Turn {
     type: TurnType;
-    title: string;
     label: string;
+    sipNumber: string;
+    sipSuffix: string;
 
-    constructor(type: TurnType, title: string, label: string) {
+    constructor(type: TurnType, label: string, sipNumber: string, sipSuffix: string) {
         this.type = type;
-        this.title = title;
         this.label = label;
+        this.sipNumber = sipNumber;
+        this.sipSuffix = sipSuffix;
     }
 
     public static constructFromCondition(condition: Condition, player?: Player): Turn {
@@ -59,7 +75,7 @@ export class Turn {
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
                 .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
 
-            return new Turn(TurnType.Condition, null, label);
+            return new Turn(TurnType.CONDITION, label, sipNumber, sipSuffix);
         } else {
             const label = condition.label
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '')
@@ -68,8 +84,15 @@ export class Turn {
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
                 .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
 
-            return new Turn(TurnType.Condition, null, label);
+            return new Turn(TurnType.CONDITION, label, sipNumber, sipSuffix);
         }
+    }
+
+    public static constructFromForOrAgainst(forOrAgainst: ForOrAgainst): Turn {
+        const sipNumber = CommonService.getRandomSipNumber()
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+
+        return new Turn(TurnType.FOR_OR_AGAINST, forOrAgainst.label, sipNumber, sipSuffix);
     }
 }
 
@@ -89,6 +112,10 @@ export abstract class TurnEntryData {
 
 export class ConditionData extends TurnEntryData {
     canBeSpecified: boolean;
+    label: string;
+}
+
+export class ForOrAgainstData extends TurnEntryData {
     label: string;
 }
 

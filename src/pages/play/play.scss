@@ -1,21 +1,26 @@
 page-play {
     .play-content {
         text-align: center;
-
-        .scroll-content {
-            display: flex!important;
-            align-content: center!important;
-            align-items: center!important;
-
-            .turn-label {
-                padding: 0 15px;
-            }
-        }
+        color: white;
 
         &.turn-condition {
-            color: white;
-            // crimson
             background-color: darkturquoise;
+        }
+        &.turn-for-or-against {
+            background-color: crimson;
+        }
+
+        .scroll-content {
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            -webkit-justify-content: center;
+            align-items: center;
+            -webkit-align-items: center;
+
+            .label-container {
+                padding: 0 15px;
+            }
         }
     }
 }

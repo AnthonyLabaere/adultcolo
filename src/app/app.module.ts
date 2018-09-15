@@ -15,6 +15,7 @@ import { PlayerService } from './_services/player.service';
 import { ThemeService } from './_services/theme.service';
 import { PlayService } from '../pages/play/play.service';
 import { PlayPage } from '../pages/play/play';
+import { ForOrAgainstService } from './_services/forOrAgainst.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommonService,
     ConditionService,
+    ForOrAgainstService,
     PlayService,
     PlayerService,
     ThemeService

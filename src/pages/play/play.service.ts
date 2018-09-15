@@ -1,16 +1,18 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, Turn } from "../../app/entities";
+import { Condition, Turn, ForOrAgainst } from "../../app/entities";
 import { ConditionService } from "../../app/_services/condition.service";
 import { PlayerService } from "../../app/_services/player.service";
+import { ForOrAgainstService } from "../../app/_services/forOrAgainst.service";
 
 
 @Injectable()
 export class PlayService {
 
-    private static CONDITIONS_BY_PLAY:number = 5;
+    private static CONDITIONS_BY_PLAY:number = 10;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 5;
 
-    constructor(private playerService: PlayerService, private conditionService: ConditionService) {
+    constructor(private playerService: PlayerService, private conditionService: ConditionService, private forOrAgainstService: ForOrAgainstService) {
         
     }
 
@@ -27,8 +29,15 @@ export class PlayService {
                     }
                 });
                 
-                return Promise.resolve(turns);
+                return this.forOrAgainstService.getForOrAgainsts();
             })
+            .then((forOrAgainsts: ForOrAgainst[]) => {
+                _.shuffle(forOrAgainsts).slice(0, PlayService.FOR_OR_AGAINSTS_BY_PLAY - 1).forEach((forOrAgainst: ForOrAgainst) => {
+                    turns.push(Turn.constructFromForOrAgainst(forOrAgainst));
+                });
+
+                return Promise.resolve(_.shuffle(turns));
+            });
     }
 
 
