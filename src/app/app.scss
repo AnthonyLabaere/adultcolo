@@ -21,14 +21,25 @@
 
 
 .list {
-    .item-input:last-child, .item-input-has-focus:last-child {
+    .item-input:last-child {
         border-bottom: none !important;
         box-shadow: none !important;
-    }
-    > .item-block:last-child ion-label,
-    > .item-block:last-child .item-inner,
-    > .item-wrapper:last-child ion-label,
-    > .item-wrapper:last-child .item-inner{
-        border-bottom: 1px solid #dedede;
+
+        .item-inner {
+            border-bottom: 1px solid #dedede !important;
+
+        }
+        &.input-has-value.ng-valid {
+            .item-inner {
+                border-bottom-color: $text-input-highlight-color-valid !important;
+                box-shadow: inset 0 -1px 0 0 $text-input-highlight-color-valid !important;
+            }
+        }
+        &.input-has-value.ng-invalid {
+            .item-inner {
+                border-bottom-color: $text-input-highlight-color-invalid !important;
+                box-shadow: inset 0 -1px 0 0 $text-input-highlight-color-invalid !important;
+            }
+        }
     }
 }
