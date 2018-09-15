@@ -23,8 +23,8 @@ page-home {
                 
                 &.item-input.item-input-has-focus .item-inner,
                 &.item-input.input-has-focus .item-inner {
-                    border-bottom-color: crimson !important;
-                    box-shadow: inset 0 -1px 0 0 crimson !important;
+                    border-bottom-color: darkslategray !important;
+                    box-shadow: inset 0 -1px 0 0 darkslategray !important;
                 }
             }
         }
@@ -40,7 +40,7 @@ page-home {
 
         .play-button {
             color: map-get($colors, light);
-            background-color: crimson;
+            background-color: darkslategray;
         }
     }
 }
