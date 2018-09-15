@@ -1,14 +1,25 @@
 {
     "common": {
-        "sipNumber": {
-            "one": "une",
-            "two": "deux",
-            "three": "trois",
-            "four": "quatre",
-            "five": "cinq"
+        "player": {
+            "suffix": ", "
         },
-        "drink": "bois",
-        "give-out": "distribue"
+        "command": {
+            "drink": "bois",
+            "give-out": "distribue"
+        },
+        "sip": {
+            "number": {
+                "one": "une",
+                "two": "deux",
+                "three": "trois",
+                "four": "quatre",
+                "five": "cinq"
+            },
+            "suffix": {
+                "singular": "",
+                "plural": "s"
+            }
+        }
     },
     "title": "Adultcolo",
     "home": {

@@ -5,14 +5,18 @@ import * as _ from 'lodash';
 @Injectable()
 export class CommonService {
 
+    public static PLAYER_SUFFIX: string;
+
+    public static DRINK_COMMAND: string;
+    public static GIVE_OUT_COMMAND: string;
+
     public static ONE_SIP_NUMBER: string;
     public static TWO_SIP_NUMBER: string;
     public static THREE_SIP_NUMBER: string;
     public static FOUR_SIP_NUMBER: string;
     public static FIVE_SIP_NUMBER: string;
-
-    public static DRINK_COMMAND: string;
-    public static GIVE_OUT_COMMAND: string;
+    public static SIP_SUFFIX_SINGULAR: string;
+    public static SIP_SUFFIX_PLURAL: string;
 
     public static DATA_FILE_PATH = '../assets/data/';
 
@@ -23,16 +27,20 @@ export class CommonService {
 
     public static ADULTCOLO_STORAGE_KEY_PREFIX = 'adultcolo-';
 
-    public static isEmpty(s: string): boolean {
-        return s === undefined || s === null || s.trim() === '';
+    constructor(private translate: TranslateService) {
     }
 
-    public static random(): boolean {
-        return _.random(1) === 1 ? true : false;
-    }
-
-    public static capitalize(s: string): string {
-        return s.charAt(0).toUpperCase() + s.substr(1);;
+    public initLocalizedConstants(): void {
+        this.translate.get('common.player.suffix').subscribe((playerSuffix: string) => {CommonService.PLAYER_SUFFIX = playerSuffix;});
+        this.translate.get('common.command.drink').subscribe((drinkCommand: string) => {CommonService.DRINK_COMMAND = drinkCommand;});
+        this.translate.get('common.command.give-out').subscribe((giveOutCommand: string) => {CommonService.GIVE_OUT_COMMAND = giveOutCommand;});
+        this.translate.get('common.sip.number.one').subscribe((oneSipNumber: string) => {CommonService.ONE_SIP_NUMBER = oneSipNumber;});
+        this.translate.get('common.sip.number.two').subscribe((twoSipNumber: string) => {CommonService.TWO_SIP_NUMBER = twoSipNumber;});
+        this.translate.get('common.sip.number.three').subscribe((threeSipNumber: string) => {CommonService.THREE_SIP_NUMBER = threeSipNumber;});
+        this.translate.get('common.sip.number.four').subscribe((fourSipNumber: string) => {CommonService.FOUR_SIP_NUMBER = fourSipNumber;});
+        this.translate.get('common.sip.number.five').subscribe((fiveSipNumber: string) => {CommonService.FIVE_SIP_NUMBER = fiveSipNumber;});
+        this.translate.get('common.sip.suffix.singular').subscribe((sipSuffixSingular: string) => {CommonService.SIP_SUFFIX_SINGULAR = sipSuffixSingular;});
+        this.translate.get('common.sip.suffix.plural').subscribe((sipSuffixPlural: string) => {CommonService.SIP_SUFFIX_PLURAL = sipSuffixPlural;});
     }
 
     public static getRandomSipNumber(): string {
@@ -45,5 +53,17 @@ export class CommonService {
         } else if (randomNumber === 2) {
             return CommonService.THREE_SIP_NUMBER;
         }
+    }
+
+    public static isEmpty(s: string): boolean {
+        return s === undefined || s === null || s.trim() === '';
+    }
+
+    public static random(): boolean {
+        return _.random(1) === 1 ? true : false;
+    }
+
+    public static capitalize(s: string): string {
+        return s.charAt(0).toUpperCase() + s.substr(1);;
     }
 }

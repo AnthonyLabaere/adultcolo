@@ -49,8 +49,8 @@ export class Turn {
             const label = condition.label
                 .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND)
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '')
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + ', ');
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR)
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX);
 
             return new Turn(TurnType.Condition, condition.theme, label);
         } else {
@@ -58,7 +58,7 @@ export class Turn {
                 .replace(CommonService.DATA_COMMAND_KEY_TO_REPLACE, CommonService.random() ? 
                     CommonService.capitalize(CommonService.DRINK_COMMAND) : CommonService.capitalize(CommonService.GIVE_OUT_COMMAND))
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? 's' : '')
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR)
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '');
 
             return new Turn(TurnType.Condition, condition.theme, label);
