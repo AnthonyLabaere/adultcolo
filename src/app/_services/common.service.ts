@@ -7,6 +7,8 @@ import { Player } from "../entities";
 export class CommonService {
 
     public static PLAYER_SUFFIX: string;
+    public static PLAYER_NONE: string;
+    public static PLAYER_USER: string;
 
     public static DRINK_SINGULAR_COMMAND: string;
     public static DRINK_PLURAL_COMMAND: string;
@@ -40,6 +42,8 @@ export class CommonService {
 
     public initLocalizedConstants(): void {
         this.translate.get('common.player.suffix').subscribe((playerSuffix: string) => {CommonService.PLAYER_SUFFIX = playerSuffix;});
+        this.translate.get('common.player.none').subscribe((playerNone: string) => {CommonService.PLAYER_NONE = playerNone;});
+        this.translate.get('common.player.user').subscribe((playerUser: string) => {CommonService.PLAYER_USER = playerUser;});
         this.translate.get('common.command.drink.singular').subscribe((drinkSingularCommand: string) => {CommonService.DRINK_SINGULAR_COMMAND = drinkSingularCommand;});
         this.translate.get('common.command.drink.plural').subscribe((drinkPluralCommand: string) => {CommonService.DRINK_PLURAL_COMMAND = drinkPluralCommand;});
         this.translate.get('common.command.give-out.singular').subscribe((giveOutSingularCommand: string) => {CommonService.GIVE_OUT_SINGULAR_COMMAND = giveOutSingularCommand;});
@@ -74,9 +78,9 @@ export class CommonService {
         }
     }
 
-    public static replaceLabelParameters(label: string, singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, player?: Player) {
+    public static replaceLabelParameters(label: string, singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, noPlayerLabel:string, player?: Player) {
         return label
-            .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : '')
+            .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : noPlayerLabel)
             .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
             .replace(CommonService.DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE, singularCommand)
             .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(pluralCommand))

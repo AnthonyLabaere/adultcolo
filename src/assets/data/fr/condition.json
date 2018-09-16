@@ -117,7 +117,7 @@
     },
     {
         "theme": 1,
-        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as dû abandonner ta voiture en vacances."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si ta voiture est tombé en panne cette année."
     },
     {
         "theme": 1,
@@ -173,7 +173,7 @@
     },
     {
         "theme": 4,
-        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà refourgué tes gosses à ton conjoint entre potes."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà laissé tes enfants à ton conjoint entre potes."
     },
     {
         "theme": 10,
@@ -281,6 +281,6 @@
     },
     {
         "theme": 2,
-        "label": "Ceux qui ont recontré les parents de <<player>> boivent <<sipNumber>> gorgée<<sipSuffix>> (sauf le premier à donner les prénoms)."
+        "label": "Ceux qui ont rencontré les parents de <<player>> boivent <<sipNumber>> gorgée<<sipSuffix>> (sauf le premier à donner les prénoms)."
     }
 ]

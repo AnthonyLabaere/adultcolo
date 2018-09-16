@@ -2,7 +2,9 @@
     "title": "Adultcolo",
     "common": {
         "player": {
-            "suffix": ", "
+            "suffix": ", ",
+            "none": "",
+            "user": "Toi qui tient le téléphone"
         },
         "command": {
             "drink": {
