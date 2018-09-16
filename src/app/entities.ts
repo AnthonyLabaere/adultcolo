@@ -72,36 +72,17 @@ export class Turn {
         this.sipSuffix = sipSuffix;
     }
 
+    // TODO : une seule méthode ? A voir avec les autres types de tour de jeu.
+
     public static constructFromCondition(condition: Condition, player?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber();
         const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        if (player !== undefined) {
-            // TODO : faire une méthode de récupération du libellé avec les paramètres remplacés ?
-            const label = condition.label
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
-                .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
-                .replace(CommonService.DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE, singularCommand)
-                .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(pluralCommand))
-                .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, pluralCommand)
-                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
+        const label = CommonService.replaceLabelParameters(condition.label, singularCommand, pluralCommand, sipNumber, sipSuffix, player);
 
-            return new Turn(TurnType.CONDITION, label, sipNumber, sipSuffix);
-        } else {
-            const label = condition.label
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '')
-                .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
-                .replace(CommonService.DATA_SINGULAR_COMMAND_KEY_TO_REPLACE, singularCommand)
-                .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(pluralCommand))
-                .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, pluralCommand)
-                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
-
-            return new Turn(TurnType.CONDITION, label, sipNumber, sipSuffix);
-        }
+        return new Turn(TurnType.CONDITION, label, sipNumber, sipSuffix);
     }
 
     public static constructFromForOrAgainst(forOrAgainst: ForOrAgainst): Turn {
@@ -112,24 +93,14 @@ export class Turn {
     }
 
     public static constructFromGame(game: Game, player?: Player): Turn {
-        const sipNumber = CommonService.getRandomSipNumber(true);
+        const sipNumber = CommonService.getRandomSipNumber();
+        const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
+        const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        if (player !== undefined) {
-            const label = game.label
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
-                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
+        const label = CommonService.replaceLabelParameters(game.label, singularCommand, pluralCommand, sipNumber, sipSuffix, player);
 
-            return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
-        } else {
-            const label = game.label
-                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '')
-                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
-                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
-
-            return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
-        }
+        return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
     }
 }
 

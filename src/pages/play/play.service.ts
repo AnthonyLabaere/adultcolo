@@ -8,9 +8,9 @@ import { TurnEntryService } from "../../app/_services/turnEntry.service";
 @Injectable()
 export class PlayService {
 
-    private static CONDITIONS_BY_PLAY:number = 15;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 0;
-    private static GAMES_BY_PLAY:number = 0;
+    private static CONDITIONS_BY_PLAY:number = 5;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 3;
+    private static GAMES_BY_PLAY:number = 1;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
@@ -22,7 +22,7 @@ export class PlayService {
         return this.turnEntryService.getTurnEntries(TurnType.CONDITION)
             .then((conditions: Condition[]) => {
                 // Faire une méthode générique pour l'ajout de bidules
-                _.shuffle(conditions)/*.slice(0, PlayService.CONDITIONS_BY_PLAY)*/.forEach((condition: Condition) => {
+                _.shuffle(conditions).slice(0, PlayService.CONDITIONS_BY_PLAY).forEach((condition: Condition) => {
                     if (this.playerService.hasEnoughtPlayers()) {
                         turns.push(Turn.constructFromCondition(condition, _.shuffle(this.playerService.getPlayers())[0]));
                     } else {

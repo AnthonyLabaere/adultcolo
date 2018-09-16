@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
+import { Player } from "../entities";
 
 @Injectable()
 export class CommonService {
@@ -71,6 +72,17 @@ export class CommonService {
         } else if (randomNumber === 4) {
             return CommonService.FIVE_SIP_NUMBER;
         }
+    }
+
+    public static replaceLabelParameters(label: string, singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, player?: Player) {
+        return label
+            .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : '')
+            .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
+            .replace(CommonService.DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE, singularCommand)
+            .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(pluralCommand))
+            .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, pluralCommand)
+            .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
+            .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
     }
     
     public static isEmpty(s: string): boolean {
