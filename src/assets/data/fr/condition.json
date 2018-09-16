@@ -230,5 +230,9 @@
     {
         "theme": 1,
         "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as tout tes points de permis."
+    },
+    {
+        "theme": 1,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà perdu ta valise en vacances."
     }
 ]

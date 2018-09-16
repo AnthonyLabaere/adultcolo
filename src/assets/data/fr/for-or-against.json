@@ -70,5 +70,9 @@
     {
         "theme": 1,
         "label": "Les cadeaux groupés."
+    },
+    {
+        "theme": 1,
+        "label": "Les vacances all inclusive."
     }
 ]

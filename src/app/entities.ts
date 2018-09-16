@@ -37,17 +37,15 @@ export class ForOrAgainst extends TurnEntry {
 }
 
 export class Game extends TurnEntry {
-    canBeSpecified: boolean;
     label: string;
 
-    public hydrate(theme: string, canBeSpecified: boolean, label: string) {
+    public hydrate(theme: string, label: string) {
         this.theme = theme;
-        this.canBeSpecified = canBeSpecified;
         this.label = label;
     }
 
     public initFromData(themeData: ThemeData, gameData: GameData, locale: string): void {
-        this.hydrate(themeData.label[locale], gameData.canBeSpecified, gameData.label);
+        this.hydrate(themeData.label[locale], gameData.label);
     }
 }
 
@@ -117,7 +115,7 @@ export class Turn {
         const sipNumber = CommonService.getRandomSipNumber(true);
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        if (player !== undefined && game.canBeSpecified) {
+        if (player !== undefined) {
             const label = game.label
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
                 .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
@@ -158,7 +156,6 @@ export class ForOrAgainstData extends TurnEntryData {
 }
 
 export class GameData extends TurnEntryData {
-    canBeSpecified: boolean;
     label: string;
 }
 
