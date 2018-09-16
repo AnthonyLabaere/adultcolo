@@ -198,5 +198,115 @@
         "theme": 7,
         "canBeSpecified": false,
         "label": "Celui qui a l'animal de compagnie le plus moche <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 3,
+        "canBeSpecified": false,
+        "label": "Ceux qui n'utilisent jamais la voiture pour aller au boulot <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": false,
+        "label": "Celui qui passe le plus de temps personnel derrière son ordinateur ou son téléphone <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es sorti entre Lundi et Jeudi soir."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as posé un congé après une soirée en semaine ces trois derniers mois."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as posé un congé après une soirée en semaine ces trois derniers mois."
+    },
+    {
+        "theme": 8,
+        "canBeSpecified": false,
+        "label": "Ceux qui n'ont pas du tout rentabilisé leur abonnement à la salle de sport <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 8,
+        "canBeSpecified": false,
+        "label": "Ceux qui utilisent plus de fois leur abonnement à la salle de sport par semaine <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 4,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà refourgué tes gosses ton conjoint entre potes."
+    },
+    {
+        "theme": 10,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà inventé une excuse bidon pour éviter un repas de famille."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": false,
+        "label": "Ceux qui se sont déjà fait offert un aspirateur ou un fer à repasser <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si t'as déjà fait le coup de la carte bleue."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si t'as déjà arrêté plus de trois fois de fumer."
+    },
+    {
+        "theme": 4,
+        "canBeSpecified": false,
+        "label": "Ceux avec le plus d'enfants <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 4,
+        "canBeSpecified": false,
+        "label": "Ceux dont les enfants se lèvent plus de deux fois par nuit <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si t'as arrêté de boire dans des verres en plastique (hors festival)."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu tries le linge."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu connais plus de trois cépages de vin."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as mangé un kebab ces 30 derniers jours."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu envoies régulièrement des snapshots."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": false,
+        "label": "Pour les hommes : ceux dont la copine a (encore...) acheté une paire de chaussures cette semaine <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si ça fait plus d'un mois que tu n'as rien posté sur Facebook."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as tout tes points de permis."
     }
 ]
