@@ -1,0 +1,46 @@
+$background-color: darkcyan;
+
+page-warning {
+    .warning-header {
+        .toolbar-background, .toolbar-content {
+            background-color: $background-color !important;
+        }
+
+        .warning-title {
+            text-align: center;
+        }
+    }
+
+
+    .warning-content {
+        text-align: center;
+        color: map-get($colors, light);
+        background-color: $background-color;
+        
+        .scroll-content {
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            -webkit-justify-content: center;
+            align-items: center;
+            -webkit-align-items: center;
+
+            .warning-container {
+                padding: 0 15px;
+            }
+        }
+    }
+
+    .warning-footer {
+        text-align: center;
+
+        .toolbar-background, .toolbar-content {
+            background-color: $background-color !important;
+        }
+
+        .continue-button {
+            color: map-get($colors, light);
+            background-color: darkslategray;
+        }
+    }
+}

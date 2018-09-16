@@ -1,0 +1,26 @@
+<ion-header class="warning-header">
+    <ion-navbar>
+        <ion-title color="light" class="warning-title">{{'title' | translate | uppercase}}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="warning-content">
+    <h4 color="light" class="warning-container" [translate]="'warning.content'"></h4>
+</ion-content>
+
+<ion-footer class="warning-footer">
+    <ion-toolbar>
+        <ion-row>
+            <ion-col col-6>
+                <button class="close-button" ion-button large full (click)="onCloseClick()">
+                    {{'warning.buttons.close' | translate}}
+                </button>
+            </ion-col>
+            <ion-col col-6>
+                <button class="continue-button" ion-button large full (click)="onContinueClick()">
+                    {{'warning.buttons.continue' | translate}}
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

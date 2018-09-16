@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { Player } from '../../app/entities';
 import { PlayerService } from '../../app/_services/player.service';
 import { PlayPage } from '../play/play';
+import { WarningPage } from '../warning/warning';
 
 @Component({
   selector: 'page-home',
@@ -18,8 +19,8 @@ export class HomePage implements OnInit {
     new Player()
   ];
 
-  constructor(public navCtrl: NavController, private playerService: PlayerService) {
-
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private playerService: PlayerService) {
+    this.modalCtrl.create(WarningPage).present();
   }
   
   ngOnInit() {

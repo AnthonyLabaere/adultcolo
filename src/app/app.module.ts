@@ -15,6 +15,7 @@ import { CommonService } from './_services/common.service';
 import { PlayerService } from './_services/player.service';
 import { ThemeService } from './_services/theme.service';
 import { TurnEntryService } from './_services/turnEntry.service';
+import { WarningPage } from '../pages/warning/warning';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +25,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     Adultcolo,
     HomePage,
-    PlayPage
+    PlayPage,
+    WarningPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [
     Adultcolo,
     HomePage,
-    PlayPage
+    PlayPage,
+    WarningPage
   ],
   providers: [
     StatusBar,

@@ -38,6 +38,13 @@
             "title": "Jeu"
         }
     },
+    "warning": {
+        "content": "L'abus d'alcool est dangereux pour la santé et doit être consommé avec modération. Vous reconnaissez être responsable de vos actes suite à l'utilisation de cette application.",
+        "buttons": {
+            "close": "Fermer",
+            "continue": "Continuer"
+        }
+    },
     "home": {
         "buttons": {
             "play": "Aller, on boit !"
