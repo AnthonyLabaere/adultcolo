@@ -2,121 +2,201 @@
     {
         "theme": 3,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà travaillé pour ta boîte de chez toi pendant ton temps libre."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es couché une fois ou plus avant 21h ces 10 derniers jours."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es couché une fois ou plus avant 21h ces 10 derniers jours."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es endormi pendant un film ces 10 derniers jours."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es endormi pendant un film ces 10 derniers jours."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des pantoufles, et double si tu en portes en ce moment."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des pantoufles, et double si tu en portes en ce moment."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà mis en pyjama directement en rentrant du boulot."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà mis en pyjama directement en rentrant du boulot."
     },
     {
         "theme": 4,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà laissé ton ou tes enfants chez leurs grand-parents pendant au moins une semaine."
     },
     {
         "theme": 5,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié d'aller chercher ton drive."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié d'aller chercher ton drive."
     },
     {
         "theme": 6,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié l'anniversaire de ton partenaire actuel ou d'un ex."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà oublié l'anniversaire de ton partenaire actuel ou d'un ex."
     },
     {
         "theme": 6,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà fait larguer deux fois par la même personne."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà fait larguer deux fois par la même personne."
     },
     {
         "theme": 6,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà remis le couvert avec un ex."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà remis le couvert avec un ex."
     },
     {
         "theme": 6,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es en couple grâce à une application de rencontre."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es en couple grâce à une application de rencontre."
     },
     {
         "theme": 6,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu ne te rappelles plus complètement de ta soirée de rencontre à cause de l'alcool."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu ne te rappelles plus complètement de ta soirée de rencontre à cause de l'alcool."
     },
     {
         "theme": 7,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà promis que tu allais arrêter de boire."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà promis que tu allais arrêter de boire."
     },
     {
         "theme": 7,
         "canBeSpecified": false,
-        "label": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as une clope au bec alors que tu étais en train d'arrêter de fumer."
+        "label": "<<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as une clope au bec alors que tu étais en train d'arrêter de fumer."
     },
     {
         "theme": 1,
         "canBeSpecified": false,
-        "label": "Le plus vieux <<command>> <<sipNumber>> gorgée<<sipSuffix>>."
+        "label": "Le plus vieux <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
     },
     {
         "theme": 1,
         "canBeSpecified": false,
-        "label": "Le plus jeune <<command>> <<sipNumber>> gorgée<<sipSuffix>>."
+        "label": "Le plus jeune <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as fait une nuit de 10h ou plus ces 15 derniers jours."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as fait une nuit de 10h ou plus ces 15 derniers jours."
     },
     {
         "theme": 5,
         "canBeSpecified": false,
-        "label": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé ses fenêtres le plus récemment."
+        "label": "<<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé ses fenêtres le plus récemment."
     },
     {
         "theme": 5,
         "canBeSpecified": false,
-        "label": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé son frigo le plus récemment."
+        "label": "<<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es celui ou celle ayant lavé son frigo le plus récemment."
     },
     {
         "theme": 5,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as eu eu la flemme de faire à manger dans la semaine et que ça s'est terminé en livraison."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.)."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as de l'alcool d'adolescent dans ton verre (Soho, Malibu, Passoa, Manzana, etc.)."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin)."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as des bouteilles à plus de 50€ chez toi (double si ce sont des bouteilles de vin)."
     },
     {
         "theme": 2,
         "canBeSpecified": true,
-        "label": "<<player>><<command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es content à chaque fois que tu changes d'éponge."
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es content à chaque fois que tu changes d'éponge."
     },
     {
         "theme": 2,
         "canBeSpecified": false,
-        "label": "<<command>> <<sipNumber>> gorgée<<sipSuffix>> si on t'appelle encore Mademoiselle."
+        "label": "<<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si on t'appelle encore Mademoiselle."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": false,
+        "label": "<<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si on t'appelle encore Mademoiselle."
+    },
+    {
+        "theme": 2,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si on te vouvoie régulièrement dans un cadre non professionnelle."
+    },
+    {
+        "theme": 3,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as vidé ton solder de congés payés."
+    },
+    {
+        "theme": 10,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu n'as pas été voir tes grands-parents ces six derniers mois."
+    },
+    {
+        "theme": 10,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as oublié la fête des pères ou des mères cette année."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si t'as déjà appelé un serrurier pour ouvrir ta porte, et double si c'était la nuit."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as toujours des réparations à faire de ton dernier contrôle technique."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as dû abandonner ta voiture en vacances."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as subi des problèmes de transport en commun cette semaine."
+    },
+    {
+        "theme": 1,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as subi des problèmes de transport en commun cette semaine."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": false,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es pacsé ou marié cette année."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": false,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as adopté un chien ou un chat cette année, et double si tu as adopté une poule."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": false,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as changé de boulot cette année."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": false,
+        "label": "Ceux qui ont acheté un maison ou un appartement cette année <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": true,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu écoutes de la musique de génération après la tienne, et double si tu as pris un coup de vieux en concert / festival."
+    },
+    {
+        "theme": 7,
+        "canBeSpecified": false,
+        "label": "Celui qui a l'animal de compagnie le plus moche <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
     }
 ]

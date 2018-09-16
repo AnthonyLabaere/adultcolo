@@ -61,5 +61,12 @@
             "en": "Geek",
             "fr": "Geek"
         }
+    },
+    {
+        "code": 10,
+        "label": {
+            "en": "Family",
+            "fr": "Famille"
+        }
     }
 ]

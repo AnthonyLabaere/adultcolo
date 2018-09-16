@@ -5,8 +5,14 @@
             "suffix": ", "
         },
         "command": {
-            "drink": "bois",
-            "give-out": "distribue"
+            "drink": {
+                "singular": "bois",
+                "plural": "boivent"
+            },
+            "give-out": {
+                "singular": "distribue",
+                "plural": "distribuent"
+            }
         },
         "sip": {
             "number": {

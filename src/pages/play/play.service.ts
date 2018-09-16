@@ -8,9 +8,9 @@ import { TurnEntryService } from "../../app/_services/turnEntry.service";
 @Injectable()
 export class PlayService {
 
-    private static CONDITIONS_BY_PLAY:number = 1;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 1;
-    private static GAMES_BY_PLAY:number = 1;
+    private static CONDITIONS_BY_PLAY:number = 15;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 0;
+    private static GAMES_BY_PLAY:number = 0;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
