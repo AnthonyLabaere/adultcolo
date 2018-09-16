@@ -22,7 +22,7 @@ export class PlayService {
         return this.turnEntryService.getTurnEntries(TurnType.CONDITION)
             .then((conditions: Condition[]) => {
                 // Faire une méthode générique pour l'ajout de bidules
-                _.shuffle(conditions).slice(0, PlayService.CONDITIONS_BY_PLAY).forEach((condition: Condition) => {
+                _.shuffle(conditions)/*.slice(0, PlayService.CONDITIONS_BY_PLAY)*/.forEach((condition: Condition) => {
                     if (this.playerService.hasEnoughtPlayers()) {
                         turns.push(Turn.constructFromCondition(condition, _.shuffle(this.playerService.getPlayers())[0]));
                     } else {

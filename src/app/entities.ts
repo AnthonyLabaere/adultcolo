@@ -11,17 +11,15 @@ export abstract class TurnEntry {
 }
 
 export class Condition extends TurnEntry {
-    canBeSpecified: boolean;
     label: string;
 
-    public hydrate(theme: string, canBeSpecified: boolean, label: string) {
+    public hydrate(theme: string, label: string) {
         this.theme = theme;
-        this.canBeSpecified = canBeSpecified;
         this.label = label;
     }
 
     public initFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): void {
-        this.hydrate(themeData.label[locale], conditionData.canBeSpecified, conditionData.label);
+        this.hydrate(themeData.label[locale], conditionData.label);
     }
 }
 
@@ -82,7 +80,7 @@ export class Turn {
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        if (player !== undefined && condition.canBeSpecified) {
+        if (player !== undefined) {
             // TODO : faire une méthode de récupération du libellé avec les paramètres remplacés ?
             const label = condition.label
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
@@ -152,7 +150,6 @@ export abstract class TurnEntryData {
 }
 
 export class ConditionData extends TurnEntryData {
-    canBeSpecified: boolean;
     label: string;
 }
 
