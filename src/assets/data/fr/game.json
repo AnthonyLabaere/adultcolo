@@ -1,6 +1,38 @@
 [
     {
         "theme": 1,
-        "label": "\"Dans ma valise il y a...\" : ajoutez chacun votre tour une affaire dans la valise, tout en récitant à chaque tour l'ensemble des objets déjà présents. Le perdant boit <<sipNumber>> gorgée<<sipSuffix>>."
+        "label": "\"Dans ma valise il y a...\" : ajoutez chacun votre tour une affaire dans la valise, tout en récitant à chaque tour l'ensemble des objets déjà présents. Le premier à oublier un objet boit <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 1,
+        "label": "Chacun votre tour, donner le nom d'un personnage de la série \"Game Of Throne\". Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "<<playerName>>, choisis une série télévisée. Chacun votre tour, donner le nom d'un personnage de cette série. Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "Chacun votre tour, donner le nom d'un cocktail. Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "Chacun votre tour, donner le nom d'un cépage de vin. Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "Chacun votre tour, donner le nom d'un alcool. Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "Chacun votre tour, donner le nom d'une série télévisée. Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "Chacun votre tour, donner le nom d'un objet que vous acheteriez si vous étiez riche. Le premier à avoir un blanc boit <<sipNumber>> gorgée<<sipSuffix>>. <<playerName>>, tu commences."
+    },
+    {
+        "theme": 1,
+        "label": "<<playerName>>, mime un animal, le premier à deviner distribue <<sipNumber>> gorgée<<sipSuffix>>."
     }
 ]

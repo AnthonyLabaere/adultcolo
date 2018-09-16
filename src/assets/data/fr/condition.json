@@ -234,5 +234,53 @@
     {
         "theme": 1,
         "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu as déjà perdu ta valise en vacances."
+    },
+    {
+        "theme": 1,
+        "label": "Tout le monde <<singular-command>> une gorgée."
+    },
+    {
+        "theme": 1,
+        "label": "Le dernier à s'être acheté un jeu vidéo <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 1,
+        "label": "Ceux qui n'ont pas encore distribué distribuent <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 3,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu t'es déjà endormi au boulot."
+    },
+    {
+        "theme": 2,
+        "label": "<<player>><<singular-command>> <<sipNumber>> gorgée<<sipSuffix>> si tu es allé au cinéma ces 30 derniers jours."
+    },
+    {
+        "theme": 2,
+        "label": "Celui ou celle qui a les plus petites mains <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 7,
+        "label": "Le dernier à être parti en vacances <<singular-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 7,
+        "label": "Ceux qui ont un iPhone <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 2,
+        "label": "Ceux qui ont moins de 20 ans <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 2,
+        "label": "Ceux qui ont plus de 30 ans <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 2,
+        "label": "Ceux qui ont plus de 40 ans <<plural-command>> <<sipNumber>> gorgée<<sipSuffix>>."
+    },
+    {
+        "theme": 2,
+        "label": "Ceux qui ont recontré les parents de <<player>> boivent <<sipNumber>> gorgée<<sipSuffix>> (sauf le premier à donner les prénoms)."
     }
 ]
