@@ -1,7 +1,8 @@
 <ion-content class="play-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
   <div class="label-container">
       <h1 style="margin-bottom: 50px">
-        <span *ngIf="getCurrentTurn()?.type === 'for-or-against'" [translate]="'turnEntry.for-or-against.title'"></span>
+        <span *ngIf="getCurrentTurn()?.type === 'for-or-against'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.title'"></span>
+        <span *ngIf="getCurrentTurn()?.type === 'game'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.title'"></span>
       </h1>
       <h2 class="turn-label">{{getCurrentTurn()?.label}}</h2>
       <h5 class="turn-description">

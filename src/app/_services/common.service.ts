@@ -45,8 +45,13 @@ export class CommonService {
         this.translate.get('common.sip.suffix.plural').subscribe((sipSuffixPlural: string) => {CommonService.SIP_SUFFIX_PLURAL = sipSuffixPlural;});
     }
 
-    public static getRandomSipNumber(): string {
-        const randomNumber = _.random(2);
+    public static getRandomSipNumber(bigSip: boolean = false): string {
+        let randomNumber;
+        if (bigSip) {
+            randomNumber = _.random(2, 4);
+        } else {
+            randomNumber = _.random(2);
+        }
 
         if (randomNumber === 0) {
             return CommonService.ONE_SIP_NUMBER;
@@ -54,9 +59,13 @@ export class CommonService {
             return CommonService.TWO_SIP_NUMBER;
         } else if (randomNumber === 2) {
             return CommonService.THREE_SIP_NUMBER;
+        } else if (randomNumber === 3) {
+            return CommonService.FOUR_SIP_NUMBER;
+        } else if (randomNumber === 4) {
+            return CommonService.FIVE_SIP_NUMBER;
         }
     }
-
+    
     public static isEmpty(s: string): boolean {
         return s === undefined || s === null || s.trim() === '';
     }

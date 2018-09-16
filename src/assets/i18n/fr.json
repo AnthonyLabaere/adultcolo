@@ -26,7 +26,10 @@
         "condition": {},
         "for-or-against": {
             "title": "Pour ou contre",
-            "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}"
+            "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+        },
+        "game": {
+            "title": "Jeu"
         }
     },
     "home": {

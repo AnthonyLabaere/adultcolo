@@ -9,6 +9,9 @@ page-play {
         &.turn-for-or-against {
             background-color: crimson;
         }
+        &.turn-game {
+            background-color: darkorange;
+        }
 
         .scroll-content {
             display: flex;

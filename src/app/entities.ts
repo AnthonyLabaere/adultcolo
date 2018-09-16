@@ -38,6 +38,21 @@ export class ForOrAgainst extends TurnEntry {
     }
 }
 
+export class Game extends TurnEntry {
+    canBeSpecified: boolean;
+    label: string;
+
+    public hydrate(theme: string, canBeSpecified: boolean, label: string) {
+        this.theme = theme;
+        this.canBeSpecified = canBeSpecified;
+        this.label = label;
+    }
+
+    public initFromData(themeData: ThemeData, gameData: GameData, locale: string): void {
+        this.hydrate(themeData.label[locale], gameData.canBeSpecified, gameData.label);
+    }
+}
+
 //endregion
 
 //region "Tour de jeu"
@@ -45,6 +60,7 @@ export class ForOrAgainst extends TurnEntry {
 export enum TurnType {
     CONDITION = 'condition',
     FOR_OR_AGAINST = 'for-or-against',
+    GAME = 'game',
 }
 
 export class Turn {
@@ -61,11 +77,12 @@ export class Turn {
     }
 
     public static constructFromCondition(condition: Condition, player?: Player): Turn {
-        const sipNumber = CommonService.getRandomSipNumber()
+        const sipNumber = CommonService.getRandomSipNumber();
         const command = CommonService.random() ? CommonService.DRINK_COMMAND : CommonService.GIVE_OUT_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
         if (player !== undefined && condition.canBeSpecified) {
+            // TODO : faire une méthode de récupération du libellé avec les paramètres remplacés ?
             const label = condition.label
                 .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
                 .replace(CommonService.DATA_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(command))
@@ -92,6 +109,27 @@ export class Turn {
 
         return new Turn(TurnType.FOR_OR_AGAINST, forOrAgainst.label, sipNumber, sipSuffix);
     }
+
+    public static constructFromGame(game: Game, player?: Player): Turn {
+        const sipNumber = CommonService.getRandomSipNumber(true);
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+
+        if (player !== undefined && game.canBeSpecified) {
+            const label = game.label
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player.name + CommonService.PLAYER_SUFFIX)
+                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
+
+            return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
+        } else {
+            const label = game.label
+                .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, '')
+                .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
+                .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
+
+            return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
+        }
+    }
 }
 
 // endRegion
@@ -114,6 +152,11 @@ export class ConditionData extends TurnEntryData {
 }
 
 export class ForOrAgainstData extends TurnEntryData {
+    label: string;
+}
+
+export class GameData extends TurnEntryData {
+    canBeSpecified: boolean;
     label: string;
 }
 
