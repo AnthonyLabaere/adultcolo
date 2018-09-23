@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="hyebalare.adultcolo" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Adultcolo</name>
-    <description>Application mobile du style jeu à boire, avec des questions orientés jeune (ou moins jeune) adultes.</description>
+    <description>Jeu d'alcool pour boire quelques verres entre adultes..</description>
     <author email="hyebalare@gmail.com">Hyebalare</author>
     <content src="index.html" />
     <access origin="*" />
