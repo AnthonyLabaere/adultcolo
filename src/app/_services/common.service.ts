@@ -78,8 +78,9 @@ export class CommonService {
         }
     }
 
-    public static replaceLabelParameters(label: string, singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, noPlayerLabel:string, player?: Player) {
-        return label
+    public static replaceLabelsParameters(labels: string[], singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, noPlayerLabel:string, player?: Player) {
+        return labels.map(label => {
+            return label
             .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : noPlayerLabel)
             .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
             .replace(CommonService.DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE, singularCommand)
@@ -87,6 +88,7 @@ export class CommonService {
             .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, pluralCommand)
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
+        });
     }
     
     public static isEmpty(s: string): boolean {

@@ -17,54 +17,54 @@ export abstract class TurnInMultipleStepsEntry extends TurnEntry {
 }
 
 export class Condition extends TurnEntry {
-    label: string;
+    labels: string[];
 
-    public hydrate(theme: string, label: string) {
+    public hydrate(theme: string, labels: string[]) {
         this.theme = theme;
-        this.label = label;
+        this.labels = labels;
     }
 
     public initFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): void {
-        this.hydrate(themeData.label[locale], conditionData.label);
+        this.hydrate(themeData.label[locale], conditionData.labels);
     }
 }
 
 export class ForOrAgainst extends TurnEntry {
-    label: string;
+    labels: string[];
 
-    public hydrate(theme: string, label: string) {
+    public hydrate(theme: string, labels: string[]) {
         this.theme = theme;
-        this.label = label;
+        this.labels = labels;
     }
 
     public initFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): void {
-        this.hydrate(themeData.label[locale], forOrAgainstData.label);
+        this.hydrate(themeData.label[locale], forOrAgainstData.labels);
     }
 }
 
 export class Game extends TurnEntry {
-    label: string;
+    labels: string[];
 
-    public hydrate(theme: string, label: string) {
+    public hydrate(theme: string, labels: string[]) {
         this.theme = theme;
-        this.label = label;
+        this.labels = labels;
     }
 
     public initFromData(themeData: ThemeData, gameData: GameData, locale: string): void {
-        this.hydrate(themeData.label[locale], gameData.label);
+        this.hydrate(themeData.label[locale], gameData.labels);
     }
 }
 
 export class Instead extends TurnEntry {
-    label: string;
+    labels: string[];
 
-    public hydrate(theme: string, label: string) {
+    public hydrate(theme: string, labels: string[]) {
         this.theme = theme;
-        this.label = label;
+        this.labels = labels;
     }
 
     public initFromData(themeData: ThemeData, insteadData: InsteadData, locale: string): void {
-        this.hydrate(themeData.label[locale], insteadData.label);
+        this.hydrate(themeData.label[locale], insteadData.labels);
     }
 }
 
@@ -112,16 +112,16 @@ export class Turn {
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        const label = CommonService.replaceLabelParameters(condition.label, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_NONE, player);
+        const labels = CommonService.replaceLabelsParameters(condition.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_NONE, player);
 
-        return new Turn(TurnType.CONDITION, [label], sipNumber, sipSuffix);
+        return new Turn(TurnType.CONDITION, labels, sipNumber, sipSuffix);
     }
 
     public static constructFromForOrAgainst(forOrAgainst: ForOrAgainst): Turn {
         const sipNumber = CommonService.getRandomSipNumber()
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        return new Turn(TurnType.FOR_OR_AGAINST, [forOrAgainst.label], sipNumber, sipSuffix);
+        return new Turn(TurnType.FOR_OR_AGAINST, forOrAgainst.labels, sipNumber, sipSuffix);
     }
 
     public static constructFromGame(game: Game, player?: Player): Turn {
@@ -130,16 +130,16 @@ export class Turn {
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        const label = CommonService.replaceLabelParameters(game.label, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX, player);
+        const labels = CommonService.replaceLabelsParameters(game.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX, player);
 
-        return new Turn(TurnType.GAME, [label], sipNumber, sipSuffix);
+        return new Turn(TurnType.GAME, labels, sipNumber, sipSuffix);
     }
 
     public static constructFromInstead(instead: Instead): Turn {
         const sipNumber = CommonService.getRandomSipNumber()
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        return new Turn(TurnType.INSTEAD, [instead.label], sipNumber, sipSuffix);
+        return new Turn(TurnType.INSTEAD, instead.labels, sipNumber, sipSuffix);
     }
 
     public static constructFromSong(song: Song): Turn {
@@ -170,19 +170,19 @@ export abstract class TurnInTwoStepsEntryData extends TurnEntryData {
 }
 
 export class ConditionData extends TurnEntryData {
-    label: string;
+    labels: string[];
 }
 
 export class ForOrAgainstData extends TurnEntryData {
-    label: string;
+    labels: string[];
 }
 
 export class GameData extends TurnEntryData {
-    label: string;
+    labels: string[];
 }
 
 export class InsteadData extends TurnEntryData {
-    label: string;
+    labels: string[];
 }
 
 export class SongData extends TurnInTwoStepsEntryData {}

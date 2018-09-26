@@ -8,11 +8,11 @@ import { TurnEntryService } from "../../app/_services/turnEntry.service";
 @Injectable()
 export class PlayService {
 
-    private static CONDITIONS_BY_PLAY:number = 25;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 51;
-    private static GAMES_BY_PLAY:number = 5;
-    private static INSTEADS_BY_PLAY:number = 5;
-    private static SONGS_BY_PLAY:number = 5;
+    private static CONDITIONS_BY_PLAY:number = 1;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 1;
+    private static GAMES_BY_PLAY:number = 1;
+    private static INSTEADS_BY_PLAY:number = 1;
+    private static SONGS_BY_PLAY:number = 1;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
