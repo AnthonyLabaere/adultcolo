@@ -49,6 +49,19 @@ export class Game extends TurnEntry {
     }
 }
 
+export class Instead extends TurnEntry {
+    label: string;
+
+    public hydrate(theme: string, label: string) {
+        this.theme = theme;
+        this.label = label;
+    }
+
+    public initFromData(themeData: ThemeData, insteadData: InsteadData, locale: string): void {
+        this.hydrate(themeData.label[locale], insteadData.label);
+    }
+}
+
 //endregion
 
 //region "Tour de jeu"
@@ -56,6 +69,7 @@ export class Game extends TurnEntry {
 export enum TurnType {
     CONDITION = 'condition',
     FOR_OR_AGAINST = 'for-or-against',
+    INSTEAD = 'instead',
     GAME = 'game',
 }
 
@@ -102,6 +116,13 @@ export class Turn {
 
         return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
     }
+
+    public static constructFromInstead(instead: Instead): Turn {
+        const sipNumber = CommonService.getRandomSipNumber()
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+
+        return new Turn(TurnType.INSTEAD, instead.label, sipNumber, sipSuffix);
+    }
 }
 
 // endRegion
@@ -127,6 +148,10 @@ export class ForOrAgainstData extends TurnEntryData {
 }
 
 export class GameData extends TurnEntryData {
+    label: string;
+}
+
+export class InsteadData extends TurnEntryData {
     label: string;
 }
 

@@ -3,10 +3,13 @@
       <h1 style="margin-bottom: 50px">
         <span *ngIf="getCurrentTurn()?.type === 'for-or-against'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.title'"></span>
         <span *ngIf="getCurrentTurn()?.type === 'game'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.title'"></span>
+        <span *ngIf="getCurrentTurn()?.type === 'instead'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.title'"></span>
       </h1>
       <h2 class="turn-label">{{getCurrentTurn()?.label}}</h2>
       <h5 class="turn-description">
-          <span *ngIf="getCurrentTurn()?.type === 'for-or-against'" [translate]="'turnEntry.for-or-against.description'"
+          <span *ngIf="getCurrentTurn()?.type === 'for-or-against'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.description'"
+            [translateParams]="{sipNumber: getCurrentTurn()?.sipNumber, sipSuffix: getCurrentTurn()?.sipSuffix}"></span>
+          <span *ngIf="getCurrentTurn()?.type === 'instead'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.description'"
             [translateParams]="{sipNumber: getCurrentTurn()?.sipNumber, sipSuffix: getCurrentTurn()?.sipSuffix}"></span>
       </h5>
   </div>

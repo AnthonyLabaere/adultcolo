@@ -38,6 +38,10 @@
         },
         "game": {
             "title": "Jeu"
+        },
+        "instead": {
+            "title": "Plutôt",
+            "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
         }
     },
     "warning": {

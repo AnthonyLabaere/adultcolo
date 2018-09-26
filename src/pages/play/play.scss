@@ -12,6 +12,9 @@ page-play {
         &.turn-game {
             background-color: darkorange;
         }
+        &.turn-instead {
+            background-color: crimson;
+        }
 
         .scroll-content {
             display: flex;
