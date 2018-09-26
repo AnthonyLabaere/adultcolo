@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Turn, TurnType, Game, Instead } from "../../app/entities";
+import { Condition, ForOrAgainst, Turn, TurnType, Game, Instead, Song } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 
@@ -9,9 +9,10 @@ import { TurnEntryService } from "../../app/_services/turnEntry.service";
 export class PlayService {
 
     private static CONDITIONS_BY_PLAY:number = 25;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 5;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 51;
     private static GAMES_BY_PLAY:number = 5;
     private static INSTEADS_BY_PLAY:number = 5;
+    private static SONGS_BY_PLAY:number = 5;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
@@ -54,6 +55,13 @@ export class PlayService {
             .then((insteads: Instead[]) => {
                 _.shuffle(insteads).slice(0, PlayService.INSTEADS_BY_PLAY).forEach((instead: Instead) => {
                     turns.push(Turn.constructFromInstead(instead));
+                });
+
+                return this.turnEntryService.getTurnEntries(TurnType.SONG);
+            })
+            .then((songs: Song[]) => {
+                _.shuffle(songs).slice(0, PlayService.SONGS_BY_PLAY).forEach((song: Song) => {
+                    turns.push(Turn.constructFromSong(song));
                 });
 
                 return Promise.resolve(_.shuffle(turns));

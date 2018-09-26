@@ -10,6 +10,12 @@ export abstract class TurnEntry {
     public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
 }
 
+export abstract class TurnInMultipleStepsEntry extends TurnEntry {
+    labels: string[];
+
+    public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
+}
+
 export class Condition extends TurnEntry {
     label: string;
 
@@ -62,6 +68,17 @@ export class Instead extends TurnEntry {
     }
 }
 
+export class Song extends TurnInMultipleStepsEntry {
+    public hydrate(theme: string, labels: string[]) {
+        this.theme = theme;
+        this.labels = labels;
+    }
+
+    public initFromData(themeData: ThemeData, songData: SongData, locale: string): void {
+        this.hydrate(themeData.label[locale], songData.labels);
+    }
+}
+
 //endregion
 
 //region "Tour de jeu"
@@ -71,17 +88,18 @@ export enum TurnType {
     FOR_OR_AGAINST = 'for-or-against',
     INSTEAD = 'instead',
     GAME = 'game',
+    SONG = 'song',
 }
 
 export class Turn {
     type: TurnType;
-    label: string;
+    labels: string[];
     sipNumber: string;
     sipSuffix: string;
 
-    constructor(type: TurnType, label: string, sipNumber: string, sipSuffix: string) {
+    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string) {
         this.type = type;
-        this.label = label;
+        this.labels = labels;
         this.sipNumber = sipNumber;
         this.sipSuffix = sipSuffix;
     }
@@ -96,14 +114,14 @@ export class Turn {
 
         const label = CommonService.replaceLabelParameters(condition.label, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_NONE, player);
 
-        return new Turn(TurnType.CONDITION, label, sipNumber, sipSuffix);
+        return new Turn(TurnType.CONDITION, [label], sipNumber, sipSuffix);
     }
 
     public static constructFromForOrAgainst(forOrAgainst: ForOrAgainst): Turn {
         const sipNumber = CommonService.getRandomSipNumber()
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        return new Turn(TurnType.FOR_OR_AGAINST, forOrAgainst.label, sipNumber, sipSuffix);
+        return new Turn(TurnType.FOR_OR_AGAINST, [forOrAgainst.label], sipNumber, sipSuffix);
     }
 
     public static constructFromGame(game: Game, player?: Player): Turn {
@@ -114,14 +132,21 @@ export class Turn {
 
         const label = CommonService.replaceLabelParameters(game.label, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX, player);
 
-        return new Turn(TurnType.GAME, label, sipNumber, sipSuffix);
+        return new Turn(TurnType.GAME, [label], sipNumber, sipSuffix);
     }
 
     public static constructFromInstead(instead: Instead): Turn {
         const sipNumber = CommonService.getRandomSipNumber()
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        return new Turn(TurnType.INSTEAD, instead.label, sipNumber, sipSuffix);
+        return new Turn(TurnType.INSTEAD, [instead.label], sipNumber, sipSuffix);
+    }
+
+    public static constructFromSong(song: Song): Turn {
+        const sipNumber = CommonService.getRandomSipNumber()
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+
+        return new Turn(TurnType.SONG, song.labels, sipNumber, sipSuffix);
     }
 }
 
@@ -136,7 +161,12 @@ export class Player {
 //region data
 
 export abstract class TurnEntryData {
+    // TODO : retirer les thèmes, ça sera probablement toujours inutile 
     theme: number;
+}
+
+export abstract class TurnInTwoStepsEntryData extends TurnEntryData {
+    labels: string[];
 }
 
 export class ConditionData extends TurnEntryData {
@@ -154,6 +184,8 @@ export class GameData extends TurnEntryData {
 export class InsteadData extends TurnEntryData {
     label: string;
 }
+
+export class SongData extends TurnInTwoStepsEntryData {}
 
 export class ThemeData {
     code: number;

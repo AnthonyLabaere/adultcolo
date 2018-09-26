@@ -42,6 +42,10 @@
         "instead": {
             "title": "Plutôt",
             "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+        },
+        "song": {
+            "title": "Chanson",
+            "description": "Le premier à penser avoir trouvé la réponse vérifie sur la slide suivante."
         }
     },
     "warning": {

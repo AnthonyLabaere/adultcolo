@@ -15,6 +15,9 @@ page-play {
         &.turn-instead {
             background-color: crimson;
         }
+        &.turn-song {
+            background-color: darkgreen;
+        }
 
         .scroll-content {
             display: flex;

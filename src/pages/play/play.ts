@@ -9,8 +9,12 @@ import { PlayService } from './play.service';
 })
 export class PlayPage {
 
+  // TODO : mettre en place deux tableaux de booléen permettant de préciser si les titres ou descriptions des différents types de tour doivent être récupéré
+
   private turns: Turn[] = [];
   private index: number = 0;
+
+  public currentTurnLabelIndex: number = 0;
 
   constructor(public navCtrl: NavController, private playService: PlayService) {
     this.index = 0;
@@ -26,10 +30,15 @@ export class PlayPage {
   }
 
   public onContentClick() {
-    if (this.index < this.turns.length - 1) {
-      this.index++;
+    if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
+      this.currentTurnLabelIndex++;
     } else {
-      this.navCtrl.pop();
+      if (this.index < this.turns.length - 1) {
+        this.index++;
+        this.currentTurnLabelIndex = 0;
+      } else {
+        this.navCtrl.pop();
+      }
     }
   }
 }
