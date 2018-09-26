@@ -6,74 +6,41 @@ import { CommonService } from "./_services/common.service";
 
 export abstract class TurnEntry {
     theme: string;
-
-    public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
-}
-
-export abstract class TurnInMultipleStepsEntry extends TurnEntry {
     labels: string[];
+    
+    protected hydrate(theme: string, labels: string[]) {
+        this.theme = theme;
+        this.labels = labels;
+    }
 
     public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
 }
 
 export class Condition extends TurnEntry {
-    labels: string[];
-
-    public hydrate(theme: string, labels: string[]) {
-        this.theme = theme;
-        this.labels = labels;
-    }
-
     public initFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): void {
         this.hydrate(themeData.label[locale], conditionData.labels);
     }
 }
 
 export class ForOrAgainst extends TurnEntry {
-    labels: string[];
-
-    public hydrate(theme: string, labels: string[]) {
-        this.theme = theme;
-        this.labels = labels;
-    }
-
     public initFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): void {
         this.hydrate(themeData.label[locale], forOrAgainstData.labels);
     }
 }
 
 export class Game extends TurnEntry {
-    labels: string[];
-
-    public hydrate(theme: string, labels: string[]) {
-        this.theme = theme;
-        this.labels = labels;
-    }
-
     public initFromData(themeData: ThemeData, gameData: GameData, locale: string): void {
         this.hydrate(themeData.label[locale], gameData.labels);
     }
 }
 
 export class Instead extends TurnEntry {
-    labels: string[];
-
-    public hydrate(theme: string, labels: string[]) {
-        this.theme = theme;
-        this.labels = labels;
-    }
-
     public initFromData(themeData: ThemeData, insteadData: InsteadData, locale: string): void {
         this.hydrate(themeData.label[locale], insteadData.labels);
     }
 }
 
-export class Song extends TurnInMultipleStepsEntry {
-    public hydrate(theme: string, labels: string[]) {
-        this.theme = theme;
-        this.labels = labels;
-    }
-
+export class Song extends TurnEntry {
     public initFromData(themeData: ThemeData, songData: SongData, locale: string): void {
         this.hydrate(themeData.label[locale], songData.labels);
     }
@@ -163,29 +130,18 @@ export class Player {
 export abstract class TurnEntryData {
     // TODO : retirer les thèmes, ça sera probablement toujours inutile 
     theme: number;
-}
-
-export abstract class TurnInTwoStepsEntryData extends TurnEntryData {
     labels: string[];
 }
 
-export class ConditionData extends TurnEntryData {
-    labels: string[];
-}
+export class ConditionData extends TurnEntryData {}
 
-export class ForOrAgainstData extends TurnEntryData {
-    labels: string[];
-}
+export class ForOrAgainstData extends TurnEntryData {}
 
-export class GameData extends TurnEntryData {
-    labels: string[];
-}
+export class GameData extends TurnEntryData {}
 
-export class InsteadData extends TurnEntryData {
-    labels: string[];
-}
+export class InsteadData extends TurnEntryData {}
 
-export class SongData extends TurnInTwoStepsEntryData {}
+export class SongData extends TurnEntryData {}
 
 export class ThemeData {
     code: number;
