@@ -8,7 +8,9 @@
             "younger": "Le plus jeune",
             "older": "Le plus vieux",
             "beardest": "Le plus barbu",
-            "designed": "Désignez quelqu'un, il ou elle"
+            "designed": "Désignez quelqu'un, il ou elle",
+            "first": "Le premier à se motiver",
+            "phoneHolder": "Celui ou celle qui tient le téléphone"
         },
         "command": {
             "drink": {

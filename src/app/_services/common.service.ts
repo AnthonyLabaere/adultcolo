@@ -13,6 +13,8 @@ export class CommonService {
     public static PLAYER_OLDER: string;
     public static PLAYER_BEARDEST: string;
     public static PLAYER_DESIGNED: string;
+    public static PLAYER_FIRST: string;
+    public static PLAYER_PHONE_HOLDER: string;
 
     public static DRINK_SINGULAR_COMMAND: string;
     public static DRINK_PLURAL_COMMAND: string;
@@ -52,6 +54,8 @@ export class CommonService {
         this.translate.get('common.player.older').subscribe((playerOlder: string) => {CommonService.PLAYER_OLDER = playerOlder;});
         this.translate.get('common.player.beardest').subscribe((playerBeardest: string) => {CommonService.PLAYER_BEARDEST = playerBeardest;});
         this.translate.get('common.player.designed').subscribe((playerDesigned: string) => {CommonService.PLAYER_DESIGNED = playerDesigned;});
+        this.translate.get('common.player.first').subscribe((playerFirst: string) => {CommonService.PLAYER_FIRST = playerFirst;});
+        this.translate.get('common.player.phoneHolder').subscribe((playerPhoneHolder: string) => {CommonService.PLAYER_PHONE_HOLDER = playerPhoneHolder;});
 
         this.translate.get('common.command.drink.singular').subscribe((drinkSingularCommand: string) => {CommonService.DRINK_SINGULAR_COMMAND = drinkSingularCommand;});
         this.translate.get('common.command.drink.plural').subscribe((drinkPluralCommand: string) => {CommonService.DRINK_PLURAL_COMMAND = drinkPluralCommand;});
@@ -103,13 +107,17 @@ export class CommonService {
                 playerLabel = CommonService.PLAYER_NONE;
             } else {
                 // TODO : tableau à externaliser ?
-                playerLabel = CommonService.getValueFromShuffledArrayWithWeight([
+                const labels: ValueWithWeight<string>[] = [
                     new ValueWithWeight<string>(CommonService.PLAYER_PHONE_OWNER, 1),
                     new ValueWithWeight<string>(CommonService.PLAYER_YOUNGER, 1),
                     new ValueWithWeight<string>(CommonService.PLAYER_OLDER, 1),
                     new ValueWithWeight<string>(CommonService.PLAYER_BEARDEST, 1),
-                    new ValueWithWeight<string>(CommonService.PLAYER_DESIGNED, 5)
-                ]);
+                    new ValueWithWeight<string>(CommonService.PLAYER_DESIGNED, 4),
+                    new ValueWithWeight<string>(CommonService.PLAYER_FIRST, 4),
+                    new ValueWithWeight<string>(CommonService.PLAYER_PHONE_HOLDER, 2)
+                ];
+
+                return CommonService.getValueFromShuffledArrayWithWeight(labels);
             }
         }
 

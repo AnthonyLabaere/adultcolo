@@ -143,7 +143,7 @@ export class LocalizedString {
 export class Timer {
     // TODO : à mettre ailleurs ?
     private static TIMER_TIME_SECONDS_WITH_PLAYERS = 10; 
-    private static TIMER_TIME_SECONDS_WITHOUT_PLAYERS = 15; 
+    private static TIMER_TIME_SECONDS_WITHOUT_PLAYERS = 20; 
 
     private static INTERVAL_IN_MILLI_SECONDS = 10;
 

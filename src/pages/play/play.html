@@ -22,7 +22,7 @@
 
 <ion-footer class="play-footer turn-{{getCurrentTurn()?.type}}">
   <ion-toolbar>
-      <div *ngIf="this.timer !== undefined">
+      <div *ngIf="timer !== undefined">
         <progress-bar [progress]="timer?.progressPercent()"></progress-bar>
       </div>
   </ion-toolbar>

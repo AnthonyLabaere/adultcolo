@@ -44,8 +44,9 @@ export class PlayPage {
   public onContentClick() {
     if (this.timer !== undefined && this.timer.timeInMilliSecondsLeft > 0) {
       this.timer.stop();
-      this.timer = undefined;
     }
+    
+    this.timer = undefined;
 
     if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
       this.currentTurnLabelIndex++;
