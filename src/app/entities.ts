@@ -141,27 +141,35 @@ export class LocalizedString {
 }
 
 export class Timer {
-    timeInSecondsLeft: number;
+    static INTERVAL_IN_MILLI_SECONDS = 10;
+
+    totalTimeInMilliSeconds: number;
+    timeInMilliSecondsLeft: number;
     interval;
 
-    constructor(timeInSecondsLeft: number) {
-        this.timeInSecondsLeft = timeInSecondsLeft;
+    constructor(totalTimeInSeconds: number) {
+        this.totalTimeInMilliSeconds = 1000 * totalTimeInSeconds;
+        this.timeInMilliSecondsLeft = 1000 * totalTimeInSeconds;
     }
 
     // TODO : promise au lieu de callback ?
     start(callback: Function) {
         this.interval = setInterval(() => {
-            if (this.timeInSecondsLeft > 0) {
-                this.timeInSecondsLeft--;
+            if (this.timeInMilliSecondsLeft > 0) {
+                this.timeInMilliSecondsLeft = this.timeInMilliSecondsLeft - Timer.INTERVAL_IN_MILLI_SECONDS;
             } else {
                 this.pause();
                 callback();
             }
-        }, 1000);
+        }, Timer.INTERVAL_IN_MILLI_SECONDS);
     }
 
     pause() {
         clearInterval(this.interval);
+    }
+
+    progressPercent(): number {
+        return 100 * (this.totalTimeInMilliSeconds - this.timeInMilliSecondsLeft) / this.totalTimeInMilliSeconds;
     }
 }
 

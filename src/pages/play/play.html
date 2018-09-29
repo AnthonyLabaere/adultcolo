@@ -14,9 +14,9 @@
               sipNumber: getCurrentTurn()?.sipNumber, 
               sipSuffix: getCurrentTurn()?.sipSuffix, 
               player: getCurrentTurn()?.playerLabel,
-              timeInSeconds: timer?.timeInSecondsLeft
+              timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
             }"></span>
       </h5>
+      <progress-bar *ngIf="this.timer !== undefined" [progress]="timer?.progressPercent()"></progress-bar>
   </div>
 </ion-content>
-  ²
