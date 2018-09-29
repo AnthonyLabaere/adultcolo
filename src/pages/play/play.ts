@@ -11,11 +11,15 @@ import { PlayerService } from '../../app/_services/player.service';
 })
 export class PlayPage {
 
+  // Liste des tours (= slides) de jeu
   private turns: Turn[] = [];
+  // Index du tour de jeu en cours
   private index: number;
 
+  // Index de la sous-slide dans le tour de jeu en cours (les tours peuvent avoir plusieurs niveaux)
   public currentTurnLabelIndex: number;
 
+  // Dans le cas où un timer est nécessaire (exemple : les chansons)
   public timer: Timer;
 
   constructor(public navCtrl: NavController, private playerService: PlayerService, private playService: PlayService) {
