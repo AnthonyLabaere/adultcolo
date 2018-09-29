@@ -78,60 +78,15 @@ export class Turn {
         this.sipSuffix = sipSuffix;
     }
 
-    // TODO : une seule méthode ? A voir avec les autres types de tour de jeu.
-
-    public static constructFromCondition(condition: Condition, player?: Player): Turn {
+    public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber();
         const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        const labels = CommonService.replaceLabelsParameters(condition.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_NONE, player);
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_NONE, player);
 
-        return new Turn(TurnType.CONDITION, labels, sipNumber, sipSuffix);
-    }
-
-    public static constructFromForOrAgainst(forOrAgainst: ForOrAgainst): Turn {
-        const sipNumber = CommonService.getRandomSipNumber()
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
-
-        return new Turn(TurnType.FOR_OR_AGAINST, forOrAgainst.labels, sipNumber, sipSuffix);
-    }
-
-    public static constructFromGame(game: Game, player?: Player): Turn {
-        const sipNumber = CommonService.getRandomSipNumber();
-        const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
-        const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
-
-        const labels = CommonService.replaceLabelsParameters(game.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX, player);
-
-        return new Turn(TurnType.GAME, labels, sipNumber, sipSuffix);
-    }
-
-    public static constructFromInstead(instead: Instead): Turn {
-        const sipNumber = CommonService.getRandomSipNumber()
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
-
-        return new Turn(TurnType.INSTEAD, instead.labels, sipNumber, sipSuffix);
-    }
-
-    public static constructFromList(list: List, player?: Player): Turn {
-        const sipNumber = CommonService.getRandomSipNumber();
-        const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
-        const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
-
-        const labels = CommonService.replaceLabelsParameters(list.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX, player);
-
-        return new Turn(TurnType.LIST, labels, sipNumber, sipSuffix);
-    }
-
-    public static constructFromSong(song: Song): Turn {
-        const sipNumber = CommonService.getRandomSipNumber()
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
-
-        return new Turn(TurnType.SONG, song.labels, sipNumber, sipSuffix);
+        return new Turn(turnType, labels, sipNumber, sipSuffix);
     }
 }
 
