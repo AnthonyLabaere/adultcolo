@@ -18,8 +18,8 @@ export class PlayPage {
   // Index du tour de jeu en cours
   private index: number;
 
-  // Indexes des tours de longue haleine
-  private longWindedIndexes: number[];
+  // Indexes des tours de longue haleine en cours
+  private longWindedTurnIndexes: number[];
 
   // Index de la sous-slide dans le tour de jeu en cours (les tours peuvent avoir plusieurs niveaux)
   public currentTurnLabelIndex: number;
@@ -52,18 +52,23 @@ export class PlayPage {
 
   public onContentClick() {
     if (this.timer !== undefined && this.timer.timeInMilliSecondsLeft > 0) {
+      // Si un clic est effectué un timer, on considère que l'utilisateur a trouvé la réponse et on arrête le timer
       this.timer.stop();
     }
     
     this.timer = undefined;
 
     if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
+      // Le tour de jeu est en plusieurs slides : passage à la suivante
       this.currentTurnLabelIndex++;
     } else {
       if (this.index < this.turns.length - 1) {
+        // Passage au tour de jeu suivant
         this.index++;
         this.onTurnChange();
       } else {
+        // Fin de la partie : on retourne à l'écran d'accueil
+        // TODO : ajouter ici une page de pub
         this.navCtrl.pop();
       }
     }
