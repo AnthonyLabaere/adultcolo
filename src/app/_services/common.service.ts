@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { TurnType } from "../entities";
+import { TurnType, Player } from "../entities";
 
 @Injectable()
 export class CommonService {
@@ -85,19 +85,28 @@ export class CommonService {
         }
     }
 
-    public static getNoPlayerLabel(turnType: TurnType): string {
-        let noPlayerLabel;
-        if (turnType === TurnType.CONDITION) {
-            noPlayerLabel = CommonService.PLAYER_NONE;
+    public static getPlayerLabel(turnType: TurnType, player?: Player): string {
+        let playerLabel: string = player.name;
+
+        if (player !== undefined) {
+            playerLabel = player.name;
+            if (turnType === TurnType.CONDITION) {
+                playerLabel +=  CommonService.PLAYER_SUFFIX;
+            }
         } else {
-            noPlayerLabel = _.shuffle([
-                CommonService.PLAYER_PHONE_OWNER, 
-                CommonService.PLAYER_YOUNGER, 
-                CommonService.PLAYER_OLDER
-            ])[0];
+            if (turnType === TurnType.CONDITION) {
+                playerLabel = CommonService.PLAYER_NONE;
+            } else {
+                playerLabel = _.shuffle([
+                    CommonService.PLAYER_PHONE_OWNER, 
+                    CommonService.PLAYER_YOUNGER, 
+                    CommonService.PLAYER_OLDER
+                ])[0];
+            }
         }
 
-        return noPlayerLabel;
+
+        return playerLabel;
     }
 
     public static replaceLabelsParameters(labels: string[], singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, playerLabel:string) {

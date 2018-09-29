@@ -85,7 +85,7 @@ export class Turn {
         const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
-        const playerLabel = player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : CommonService.getNoPlayerLabel(turnType);
+        const playerLabel = CommonService.getPlayerLabel(turnType, player);
 
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, playerLabel);
 

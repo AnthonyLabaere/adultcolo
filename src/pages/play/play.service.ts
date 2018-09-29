@@ -14,7 +14,7 @@ export class PlayService {
     private static GAMES_BY_PLAY:number = 0;
     private static INSTEADS_BY_PLAY:number = 0;
     private static LISTS_BY_PLAY:number = 0;
-    private static SONGS_BY_PLAY:number = 1;
+    private static SONGS_BY_PLAY:number = 5;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
