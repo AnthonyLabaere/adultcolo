@@ -8,7 +8,10 @@ export class CommonService {
 
     public static PLAYER_SUFFIX: string;
     public static PLAYER_NONE: string;
-    public static PLAYER_USER: string;
+    public static PLAYER_PHONE_OWNER: string;
+    public static PLAYER_YOUNGER: string;
+    public static PLAYER_OLDER: string;
+
 
     public static DRINK_SINGULAR_COMMAND: string;
     public static DRINK_PLURAL_COMMAND: string;
@@ -43,7 +46,9 @@ export class CommonService {
     public initLocalizedConstants(): void {
         this.translate.get('common.player.suffix').subscribe((playerSuffix: string) => {CommonService.PLAYER_SUFFIX = playerSuffix;});
         this.translate.get('common.player.none').subscribe((playerNone: string) => {CommonService.PLAYER_NONE = playerNone;});
-        this.translate.get('common.player.user').subscribe((playerUser: string) => {CommonService.PLAYER_USER = playerUser;});
+        this.translate.get('common.player.phoneOwner').subscribe((playerPhoneOwner: string) => {CommonService.PLAYER_PHONE_OWNER = playerPhoneOwner;});
+        this.translate.get('common.player.younger').subscribe((playerYounger: string) => {CommonService.PLAYER_YOUNGER = playerYounger;});
+        this.translate.get('common.player.older').subscribe((playerOlder: string) => {CommonService.PLAYER_OLDER = playerOlder;});
         this.translate.get('common.command.drink.singular').subscribe((drinkSingularCommand: string) => {CommonService.DRINK_SINGULAR_COMMAND = drinkSingularCommand;});
         this.translate.get('common.command.drink.plural').subscribe((drinkPluralCommand: string) => {CommonService.DRINK_PLURAL_COMMAND = drinkPluralCommand;});
         this.translate.get('common.command.give-out.singular').subscribe((giveOutSingularCommand: string) => {CommonService.GIVE_OUT_SINGULAR_COMMAND = giveOutSingularCommand;});
@@ -85,7 +90,11 @@ export class CommonService {
         if (turnType === TurnType.CONDITION) {
             noPlayerLabel = CommonService.PLAYER_NONE;
         } else {
-            noPlayerLabel = CommonService.PLAYER_USER;
+            noPlayerLabel = _.shuffle([
+                CommonService.PLAYER_PHONE_OWNER, 
+                CommonService.PLAYER_YOUNGER, 
+                CommonService.PLAYER_OLDER
+            ])[0];
         }
 
         return noPlayerLabel;

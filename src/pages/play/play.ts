@@ -3,14 +3,13 @@ import { NavController } from 'ionic-angular';
 import { Turn, TurnType, Timer } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { PlayService } from './play.service';
+import { PlayerService } from '../../app/_services/player.service';
 
 @Component({
   selector: 'page-play',
   templateUrl: 'play.html'
 })
 export class PlayPage {
-
-  private static TIMER_TIME_SECONDS = 10; 
 
   private turns: Turn[] = [];
   private index: number;
@@ -19,7 +18,7 @@ export class PlayPage {
 
   public timer: Timer;
 
-  constructor(public navCtrl: NavController, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private playerService: PlayerService, private playService: PlayService) {
     
     this.playService.getTurns()
       .then((turns: Turn[]) => {
@@ -64,7 +63,7 @@ export class PlayPage {
     this.currentTurnLabelIndex = 0;
 
     if (CommonService.withTimer(this.getCurrentTurn().type)) {
-      this.timer = new Timer(PlayPage.TIMER_TIME_SECONDS);
+      this.timer = new Timer(this.playerService.hasEnoughtPlayers());
       this.timer.start(this.onContentClick.bind(this));
     }
   }

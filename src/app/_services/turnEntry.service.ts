@@ -64,7 +64,7 @@ export class TurnEntryService {
             });
 
             let turnEntry;
-            switch(turnType){
+            switch(turnType) {
                 case TurnType.CONDITION:
                     turnEntry = new Condition();
                     turnEntry.initFromData(themeData, <ConditionData> turnEntryData, this.translate.getDefaultLang());

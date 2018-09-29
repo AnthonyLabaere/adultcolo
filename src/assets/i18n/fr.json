@@ -4,7 +4,10 @@
         "player": {
             "suffix": ", ",
             "none": "",
-            "user": "Le propriétaire du téléphone"
+            "phoneOwner": "Le propriétaire du téléphone",
+            "younger": "Le plus jeune",
+            "older": "Le plus vieux",
+            "beardest": "Celui (ou celle ?) avec la plus grande barbe"
         },
         "command": {
             "drink": {

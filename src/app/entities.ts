@@ -141,15 +141,25 @@ export class LocalizedString {
 }
 
 export class Timer {
-    static INTERVAL_IN_MILLI_SECONDS = 10;
+    // TODO : à mettre ailleurs ?
+    private static TIMER_TIME_SECONDS_WITH_PLAYERS = 10; 
+    private static TIMER_TIME_SECONDS_WITHOUT_PLAYERS = 15; 
+
+    private static INTERVAL_IN_MILLI_SECONDS = 10;
 
     totalTimeInMilliSeconds: number;
     timeInMilliSecondsLeft: number;
     interval;
 
-    constructor(totalTimeInSeconds: number) {
-        this.totalTimeInMilliSeconds = 1000 * totalTimeInSeconds;
-        this.timeInMilliSecondsLeft = 1000 * totalTimeInSeconds;
+    constructor(withPlayers: boolean) {
+        if (withPlayers) {
+            this.totalTimeInMilliSeconds = 1000 * Timer.TIMER_TIME_SECONDS_WITH_PLAYERS;
+            this.timeInMilliSecondsLeft = 1000 * Timer.TIMER_TIME_SECONDS_WITH_PLAYERS;
+        } else {
+            this.totalTimeInMilliSeconds = 1000 * Timer.TIMER_TIME_SECONDS_WITHOUT_PLAYERS;
+            this.timeInMilliSecondsLeft = 1000 * Timer.TIMER_TIME_SECONDS_WITHOUT_PLAYERS;
+        }
+
     }
 
     // TODO : promise au lieu de callback ?
