@@ -183,4 +183,14 @@ export class Timer {
     }
 }
 
+export class ValueWithWeight<T> {
+    value: T;
+    weight: number;
+
+    constructor(value: T, weight: number) {
+        this.value = value;
+        this.weight = weight;
+    }
+}
+
 // endRegion

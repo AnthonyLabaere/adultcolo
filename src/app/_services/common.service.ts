@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { TurnType, Player } from "../entities";
+import { TurnType, Player, ValueWithWeight } from "../entities";
 
 @Injectable()
 export class CommonService {
@@ -11,7 +11,8 @@ export class CommonService {
     public static PLAYER_PHONE_OWNER: string;
     public static PLAYER_YOUNGER: string;
     public static PLAYER_OLDER: string;
-
+    public static PLAYER_BEARDEST: string;
+    public static PLAYER_DESIGNED: string;
 
     public static DRINK_SINGULAR_COMMAND: string;
     public static DRINK_PLURAL_COMMAND: string;
@@ -49,10 +50,14 @@ export class CommonService {
         this.translate.get('common.player.phoneOwner').subscribe((playerPhoneOwner: string) => {CommonService.PLAYER_PHONE_OWNER = playerPhoneOwner;});
         this.translate.get('common.player.younger').subscribe((playerYounger: string) => {CommonService.PLAYER_YOUNGER = playerYounger;});
         this.translate.get('common.player.older').subscribe((playerOlder: string) => {CommonService.PLAYER_OLDER = playerOlder;});
+        this.translate.get('common.player.beardest').subscribe((playerBeardest: string) => {CommonService.PLAYER_BEARDEST = playerBeardest;});
+        this.translate.get('common.player.designed').subscribe((playerDesigned: string) => {CommonService.PLAYER_DESIGNED = playerDesigned;});
+
         this.translate.get('common.command.drink.singular').subscribe((drinkSingularCommand: string) => {CommonService.DRINK_SINGULAR_COMMAND = drinkSingularCommand;});
         this.translate.get('common.command.drink.plural').subscribe((drinkPluralCommand: string) => {CommonService.DRINK_PLURAL_COMMAND = drinkPluralCommand;});
         this.translate.get('common.command.give-out.singular').subscribe((giveOutSingularCommand: string) => {CommonService.GIVE_OUT_SINGULAR_COMMAND = giveOutSingularCommand;});
         this.translate.get('common.command.give-out.plural').subscribe((giveOutPluralCommand: string) => {CommonService.GIVE_OUT_PLURAL_COMMAND = giveOutPluralCommand;});
+
         this.translate.get('common.sip.number.one').subscribe((oneSipNumber: string) => {CommonService.ONE_SIP_NUMBER = oneSipNumber;});
         this.translate.get('common.sip.number.two').subscribe((twoSipNumber: string) => {CommonService.TWO_SIP_NUMBER = twoSipNumber;});
         this.translate.get('common.sip.number.three').subscribe((threeSipNumber: string) => {CommonService.THREE_SIP_NUMBER = threeSipNumber;});
@@ -86,7 +91,7 @@ export class CommonService {
     }
 
     public static getPlayerLabel(turnType: TurnType, player?: Player): string {
-        let playerLabel: string = player.name;
+        let playerLabel: string;
 
         if (player !== undefined) {
             playerLabel = player.name;
@@ -97,11 +102,14 @@ export class CommonService {
             if (turnType === TurnType.CONDITION) {
                 playerLabel = CommonService.PLAYER_NONE;
             } else {
-                playerLabel = _.shuffle([
-                    CommonService.PLAYER_PHONE_OWNER, 
-                    CommonService.PLAYER_YOUNGER, 
-                    CommonService.PLAYER_OLDER
-                ])[0];
+                // TODO : tableau à externaliser ?
+                playerLabel = CommonService.getValueFromShuffledArrayWithWeight([
+                    new ValueWithWeight<string>(CommonService.PLAYER_PHONE_OWNER, 1),
+                    new ValueWithWeight<string>(CommonService.PLAYER_YOUNGER, 1),
+                    new ValueWithWeight<string>(CommonService.PLAYER_OLDER, 1),
+                    new ValueWithWeight<string>(CommonService.PLAYER_BEARDEST, 1),
+                    new ValueWithWeight<string>(CommonService.PLAYER_DESIGNED, 5)
+                ]);
             }
         }
 
@@ -189,6 +197,16 @@ export class CommonService {
     // endRegion
 
     //region Utilitaires
+
+    public static getValueFromShuffledArrayWithWeight<T>(arrayWithWeight: ValueWithWeight<T>[]): T {
+        const array: T[] = [];
+        arrayWithWeight.forEach((element: ValueWithWeight<T>) => {
+            for (let i = 0; i < element.weight; i++) {
+                array.push(element.value);
+            }
+        });
+        return _.shuffle(array)[0];
+    }
     
     public static isEmpty(s: string): boolean {
         return s === undefined || s === null || s.trim() === '';
