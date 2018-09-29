@@ -58,7 +58,7 @@
         "song": {
             "0": {
                 "title": "Chanson",
-                "description": "Le premier à penser avoir trouvé la réponse vérifie sur la slide suivante."
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la réponse."
             },
             "1": {
                 "title": "Chanson",

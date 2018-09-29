@@ -140,4 +140,29 @@ export class LocalizedString {
     }
 }
 
+export class Timer {
+    timeInSecondsLeft: number;
+    interval;
+
+    constructor(timeInSecondsLeft: number) {
+        this.timeInSecondsLeft = timeInSecondsLeft;
+    }
+
+    // TODO : promise au lieu de callback ?
+    start(callback: Function) {
+        this.interval = setInterval(() => {
+            if (this.timeInSecondsLeft > 0) {
+                this.timeInSecondsLeft--;
+            } else {
+                this.pause();
+                callback();
+            }
+        }, 1000);
+    }
+
+    pause() {
+        clearInterval(this.interval);
+    }
+}
+
 // endRegion

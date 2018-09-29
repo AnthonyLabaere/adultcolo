@@ -57,6 +57,8 @@ export class CommonService {
         this.translate.get('common.sip.suffix.plural').subscribe((sipSuffixPlural: string) => {CommonService.SIP_SUFFIX_PLURAL = sipSuffixPlural;});
     }
 
+    // Region fonctionnelle
+
     public static getRandomSipNumber(bigSip: boolean = false): string {
         let randomNumber;
         if (bigSip) {
@@ -102,6 +104,7 @@ export class CommonService {
         });
     }
     
+    // Un seul object pour réprensenter toutes les propriétés ? Et en ajoutant le nombre d'éléments à insérer dans un jeu
     private static SHOW_TITLE_MAP: any;
     
     private static getShowTitleMap(): any {
@@ -144,6 +147,31 @@ export class CommonService {
         return CommonService.getShowDescriptionMap()[turnType];
     }
     
+    private static WITH_TIMER_MAP: any;
+    
+    private static getWithTimerMap(): any {
+      if (CommonService.WITH_TIMER_MAP === undefined) {
+        CommonService.WITH_TIMER_MAP = {};
+  
+        CommonService.WITH_TIMER_MAP[TurnType.CONDITION] = false;
+        CommonService.WITH_TIMER_MAP[TurnType.FOR_OR_AGAINST] = false;
+        CommonService.WITH_TIMER_MAP[TurnType.GAME] = false;
+        CommonService.WITH_TIMER_MAP[TurnType.INSTEAD] = false;
+        CommonService.WITH_TIMER_MAP[TurnType.LIST] = false;
+        CommonService.WITH_TIMER_MAP[TurnType.SONG] = true;
+      }
+      
+      return CommonService.WITH_TIMER_MAP;
+    }
+
+    public static withTimer(turnType: TurnType): boolean {
+        return CommonService.getWithTimerMap()[turnType];
+    }
+
+    // endRegion
+
+    //region Utilitaires
+    
     public static isEmpty(s: string): boolean {
         return s === undefined || s === null || s.trim() === '';
     }
@@ -155,4 +183,6 @@ export class CommonService {
     public static capitalize(s: string): string {
         return s.charAt(0).toUpperCase() + s.substr(1);;
     }
+
+    // endRegion
 }

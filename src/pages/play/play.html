@@ -10,7 +10,12 @@
       </h2>
       <h5 class="turn-description">
           <span *ngIf="showDescription(getCurrentTurn()?.type)" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
-            [translateParams]="{sipNumber: getCurrentTurn()?.sipNumber, sipSuffix: getCurrentTurn()?.sipSuffix, player: getCurrentTurn()?.playerLabel}"></span>
+            [translateParams]="{
+              sipNumber: getCurrentTurn()?.sipNumber, 
+              sipSuffix: getCurrentTurn()?.sipSuffix, 
+              player: getCurrentTurn()?.playerLabel,
+              timeInSeconds: timer?.timeInSecondsLeft
+            }"></span>
       </h5>
   </div>
 </ion-content>
