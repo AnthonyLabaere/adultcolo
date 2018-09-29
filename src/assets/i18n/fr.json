@@ -33,15 +33,21 @@
     "turnEntry": {
         "condition": {},
         "for-or-against": {
-            "title": "Pour ou contre",
-            "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+            "0": {
+                "title": "Pour ou contre",
+                "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+            }
         },
         "game": {
-            "title": "Jeu"
+            "0": {
+                "title": "Jeu"
+            }
         },
         "instead": {
-            "title": "Plutôt",
-            "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+            "0": {
+                "title": "Plutôt",
+                "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+            }
         },
         "song": {
             "0": {

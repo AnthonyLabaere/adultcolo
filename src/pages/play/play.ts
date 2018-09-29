@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Turn } from '../../app/entities';
+import { Turn, TurnType } from '../../app/entities';
 import { PlayService } from './play.service';
+import { CommonService } from '../../app/_services/common.service';
 
 @Component({
   selector: 'page-play',
@@ -16,13 +17,17 @@ export class PlayPage {
 
   public currentTurnLabelIndex: number = 0;
 
-  constructor(public navCtrl: NavController, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private commonService: CommonService, private playService: PlayService) {
     this.index = 0;
     
     this.playService.getTurns()
       .then((turns: Turn[]) => {
         this.turns = turns;
       });
+  }
+
+  public showTitle(turnType: TurnType): boolean {
+    return this.commonService.showTitle(turnType);
   }
 
   public getCurrentTurn() {

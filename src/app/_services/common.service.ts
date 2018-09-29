@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { Player } from "../entities";
+import { Player, TurnType } from "../entities";
 
 @Injectable()
 export class CommonService {
@@ -89,6 +89,46 @@ export class CommonService {
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
         });
+    }
+    
+    private showTitleMap: any;
+    
+    private getShowTitleMap(): any {
+      if (this.showTitleMap === undefined) {
+        this.showTitleMap = {};
+  
+        this.showTitleMap[TurnType.CONDITION] = false;
+        this.showTitleMap[TurnType.FOR_OR_AGAINST] = true;
+        this.showTitleMap[TurnType.GAME] = true;
+        this.showTitleMap[TurnType.INSTEAD] = true;
+        this.showTitleMap[TurnType.SONG] = true;
+      }
+      
+      return this.showTitleMap;
+    }
+
+    public showTitle(turnType: TurnType): boolean {
+        return this.getShowTitleMap()[turnType];
+    }
+    
+    private showDescriptionMap: any;
+    
+    private getShowDescriptionMap(): any {
+      if (this.showDescriptionMap === undefined) {
+        this.showDescriptionMap = {};
+  
+        this.showDescriptionMap[TurnType.CONDITION] = false;
+        this.showDescriptionMap[TurnType.FOR_OR_AGAINST] = true;
+        this.showDescriptionMap[TurnType.GAME] = false;
+        this.showDescriptionMap[TurnType.INSTEAD] = true;
+        this.showDescriptionMap[TurnType.SONG] = true;
+      }
+      
+      return this.showDescriptionMap;
+    }
+
+    public showDescription(turnType: TurnType): boolean {
+        return this.getShowDescriptionMap()[turnType];
     }
     
     public static isEmpty(s: string): boolean {
