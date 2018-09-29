@@ -30,6 +30,10 @@ export class PlayPage {
     return this.commonService.showTitle(turnType);
   }
 
+  public showDescription(turnType: TurnType): boolean {
+    return this.commonService.showDescription(turnType);
+  }
+
   public getCurrentTurn() {
     return this.turns[this.index];
   }

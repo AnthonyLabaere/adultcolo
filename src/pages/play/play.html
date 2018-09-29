@@ -7,7 +7,7 @@
         {{getCurrentTurn()?.labels[currentTurnLabelIndex]}}
       </h2>
       <h5 class="turn-description">
-          <span *ngIf="getCurrentTurn()?.type === 'song'" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
+          <span *ngIf="showDescription(getCurrentTurn()?.type)" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
             [translateParams]="{sipNumber: getCurrentTurn()?.sipNumber, sipSuffix: getCurrentTurn()?.sipSuffix}"></span>
       </h5>
   </div>
