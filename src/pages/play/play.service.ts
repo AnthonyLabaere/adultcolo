@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Turn, TurnType, Game, Instead, Song, List, TurnEntry } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, Instead, List, Song, Turn, TurnEntry, TurnType } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 
@@ -10,11 +10,11 @@ export class PlayService {
 
     // TODO : à mettre dans des paramètres
     private static CONDITIONS_BY_PLAY:number = 1;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 1;
-    private static GAMES_BY_PLAY:number = 2;
-    private static INSTEADS_BY_PLAY:number = 1;
-    private static LISTS_BY_PLAY:number = 1;
-    private static SONGS_BY_PLAY:number = 1;
+    private static FOR_OR_AGAINSTS_BY_PLAY:number = 0;
+    private static GAMES_BY_PLAY:number = 0;
+    private static INSTEADS_BY_PLAY:number = 0;
+    private static LISTS_BY_PLAY:number = 0;
+    private static SONGS_BY_PLAY:number = 0;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         

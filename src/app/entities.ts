@@ -70,12 +70,14 @@ export class Turn {
     labels: string[];
     sipNumber: string;
     sipSuffix: string;
+    playerLabel: string;
 
-    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string) {
+    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string, playerLabel: string) {
         this.type = type;
         this.labels = labels;
         this.sipNumber = sipNumber;
         this.sipSuffix = sipSuffix;
+        this.playerLabel = playerLabel;
     }
 
     public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player): Turn {
@@ -83,17 +85,11 @@ export class Turn {
         const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+        const playerLabel = player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : CommonService.getNoPlayerLabel(turnType);
 
-        let noPlayerLabel;
-        if (turnType === TurnType.CONDITION) {
-            noPlayerLabel = CommonService.PLAYER_NONE;
-        } else {
-            noPlayerLabel = CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX;
-        }
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, playerLabel);
 
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, noPlayerLabel, player);
-
-        return new Turn(turnType, labels, sipNumber, sipSuffix);
+        return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel);
     }
 }
 

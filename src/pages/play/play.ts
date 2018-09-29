@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Turn, TurnType } from '../../app/entities';
-import { PlayService } from './play.service';
 import { CommonService } from '../../app/_services/common.service';
+import { PlayService } from './play.service';
 
 @Component({
   selector: 'page-play',
   templateUrl: 'play.html'
 })
 export class PlayPage {
-
-  // TODO : mettre en place deux tableaux de booléen permettant de préciser si les titres ou descriptions des différents types de tour doivent être récupéré
 
   private turns: Turn[] = [];
   private index: number = 0;

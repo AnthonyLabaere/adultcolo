@@ -4,7 +4,7 @@
         "player": {
             "suffix": ", ",
             "none": "",
-            "user": "Toi qui tient le téléphone"
+            "user": "Le propriétaire du téléphone"
         },
         "command": {
             "drink": {
@@ -52,7 +52,7 @@
         "list": {
             "0": {
                 "title": "Liste",
-                "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumber}} gorgée{{sipSuffix}}. {{player}}tu commences."
+                "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumber}} gorgée{{sipSuffix}}. {{player}} commence."
             }
         },
         "song": {

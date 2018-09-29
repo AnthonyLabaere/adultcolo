@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { Player, TurnType } from "../entities";
+import { TurnType } from "../entities";
 
 @Injectable()
 export class CommonService {
@@ -78,10 +78,21 @@ export class CommonService {
         }
     }
 
-    public static replaceLabelsParameters(labels: string[], singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, noPlayerLabel:string, player?: Player) {
+    public static getNoPlayerLabel(turnType: TurnType): string {
+        let noPlayerLabel;
+        if (turnType === TurnType.CONDITION) {
+            noPlayerLabel = CommonService.PLAYER_NONE;
+        } else {
+            noPlayerLabel = CommonService.PLAYER_USER;
+        }
+
+        return noPlayerLabel;
+    }
+
+    public static replaceLabelsParameters(labels: string[], singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, playerLabel:string) {
         return labels.map(label => {
             return label
-            .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, player !== undefined ? player.name + CommonService.PLAYER_SUFFIX : noPlayerLabel)
+            .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, playerLabel)
             .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
             .replace(CommonService.DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE, singularCommand)
             .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(pluralCommand))
