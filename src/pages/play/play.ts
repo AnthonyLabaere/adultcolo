@@ -17,7 +17,7 @@ export class PlayPage {
 
   public currentTurnLabelIndex: number = 0;
 
-  constructor(public navCtrl: NavController, private commonService: CommonService, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private playService: PlayService) {
     this.index = 0;
     
     this.playService.getTurns()
@@ -27,11 +27,11 @@ export class PlayPage {
   }
 
   public showTitle(turnType: TurnType): boolean {
-    return this.commonService.showTitle(turnType);
+    return CommonService.showTitle(turnType);
   }
 
   public showDescription(turnType: TurnType): boolean {
-    return this.commonService.showDescription(turnType);
+    return CommonService.showDescription(turnType);
   }
 
   public getCurrentTurn() {

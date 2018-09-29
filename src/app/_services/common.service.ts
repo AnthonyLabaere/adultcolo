@@ -91,46 +91,46 @@ export class CommonService {
         });
     }
     
-    private showTitleMap: any;
+    private static SHOW_TITLE_MAP: any;
     
-    private getShowTitleMap(): any {
-      if (this.showTitleMap === undefined) {
-        this.showTitleMap = {};
+    private static getShowTitleMap(): any {
+      if (CommonService.SHOW_TITLE_MAP === undefined) {
+        CommonService.SHOW_TITLE_MAP = {};
   
-        this.showTitleMap[TurnType.CONDITION] = false;
-        this.showTitleMap[TurnType.FOR_OR_AGAINST] = true;
-        this.showTitleMap[TurnType.GAME] = true;
-        this.showTitleMap[TurnType.INSTEAD] = true;
-        this.showTitleMap[TurnType.LIST] = true;
-        this.showTitleMap[TurnType.SONG] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.CONDITION] = false;
+        CommonService.SHOW_TITLE_MAP[TurnType.FOR_OR_AGAINST] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.GAME] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.INSTEAD] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.LIST] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.SONG] = true;
       }
       
-      return this.showTitleMap;
+      return CommonService.SHOW_TITLE_MAP;
     }
 
-    public showTitle(turnType: TurnType): boolean {
-        return this.getShowTitleMap()[turnType];
+    public static showTitle(turnType: TurnType): boolean {
+        return CommonService.getShowTitleMap()[turnType];
     }
     
-    private showDescriptionMap: any;
+    private static SHOW_DESCRIPTION_MAP: any;
     
-    private getShowDescriptionMap(): any {
-      if (this.showDescriptionMap === undefined) {
-        this.showDescriptionMap = {};
+    private static getShowDescriptionMap(): any {
+      if (CommonService.SHOW_DESCRIPTION_MAP === undefined) {
+        CommonService.SHOW_DESCRIPTION_MAP = {};
   
-        this.showDescriptionMap[TurnType.CONDITION] = false;
-        this.showDescriptionMap[TurnType.FOR_OR_AGAINST] = true;
-        this.showDescriptionMap[TurnType.GAME] = false;
-        this.showDescriptionMap[TurnType.INSTEAD] = true;
-        this.showDescriptionMap[TurnType.LIST] = true;
-        this.showDescriptionMap[TurnType.SONG] = true;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.CONDITION] = false;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.FOR_OR_AGAINST] = true;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.GAME] = false;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.INSTEAD] = true;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.LIST] = true;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.SONG] = true;
       }
       
-      return this.showDescriptionMap;
+      return CommonService.SHOW_DESCRIPTION_MAP;
     }
 
-    public showDescription(turnType: TurnType): boolean {
-        return this.getShowDescriptionMap()[turnType];
+    public static showDescription(turnType: TurnType): boolean {
+        return CommonService.getShowDescriptionMap()[turnType];
     }
     
     public static isEmpty(s: string): boolean {
