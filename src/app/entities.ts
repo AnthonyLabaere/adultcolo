@@ -13,6 +13,7 @@ export abstract class TurnEntry {
         this.labels = labels;
     }
 
+    // TODO : initFromData peut être implémenté ici pour l'instant !
     public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
 }
 
@@ -46,6 +47,12 @@ export class List extends TurnEntry {
     }
 }
 
+export class LongWinded extends TurnEntry {
+    public initFromData(themeData: ThemeData, longWindedData: LongWindedData, locale: string): void {
+        this.hydrate(themeData.label[locale], longWindedData.labels);
+    }
+}
+
 export class Song extends TurnEntry {
     public initFromData(themeData: ThemeData, songData: SongData, locale: string): void {
         this.hydrate(themeData.label[locale], songData.labels);
@@ -59,9 +66,10 @@ export class Song extends TurnEntry {
 export enum TurnType {
     CONDITION = 'condition',
     FOR_OR_AGAINST = 'for-or-against',
-    INSTEAD = 'instead',
     GAME = 'game',
+    INSTEAD = 'instead',
     LIST = 'list',
+    LONG_WINDED = 'long-winded',
     SONG = 'song',
 }
 
@@ -118,6 +126,8 @@ export class GameData extends TurnEntryData {}
 export class InsteadData extends TurnEntryData {}
 
 export class ListData extends TurnEntryData {}
+
+export class LongWindedData extends TurnEntryData {}
 
 export class SongData extends TurnEntryData {}
 

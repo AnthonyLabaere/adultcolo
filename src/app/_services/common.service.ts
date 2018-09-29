@@ -150,6 +150,7 @@ export class CommonService {
         CommonService.SHOW_TITLE_MAP[TurnType.GAME] = true;
         CommonService.SHOW_TITLE_MAP[TurnType.INSTEAD] = true;
         CommonService.SHOW_TITLE_MAP[TurnType.LIST] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.LONG_WINDED] = true;
         CommonService.SHOW_TITLE_MAP[TurnType.SONG] = true;
       }
       
@@ -171,6 +172,7 @@ export class CommonService {
         CommonService.SHOW_DESCRIPTION_MAP[TurnType.GAME] = false;
         CommonService.SHOW_DESCRIPTION_MAP[TurnType.INSTEAD] = true;
         CommonService.SHOW_DESCRIPTION_MAP[TurnType.LIST] = true;
+        CommonService.SHOW_DESCRIPTION_MAP[TurnType.LONG_WINDED] = false;
         CommonService.SHOW_DESCRIPTION_MAP[TurnType.SONG] = true;
       }
       

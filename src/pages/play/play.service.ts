@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, Instead, List, Song, Turn, TurnEntry, TurnType } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, Instead, List, Song, Turn, TurnEntry, TurnType, LongWinded } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 
@@ -9,12 +9,13 @@ import { TurnEntryService } from "../../app/_services/turnEntry.service";
 export class PlayService {
 
     // TODO : à mettre dans des paramètres
-    private static CONDITIONS_BY_PLAY:number = 0;
+    private static CONDITIONS_BY_PLAY:number = 1;
     private static FOR_OR_AGAINSTS_BY_PLAY:number = 0;
     private static GAMES_BY_PLAY:number = 0;
     private static INSTEADS_BY_PLAY:number = 0;
     private static LISTS_BY_PLAY:number = 0;
-    private static SONGS_BY_PLAY:number = 5;
+    private static LONG_WINDEDS_BY_PLAY:number = 5;
+    private static SONGS_BY_PLAY:number = 0;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
         
@@ -53,6 +54,17 @@ export class PlayService {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.SONG, songs, PlayService.SONGS_BY_PLAY));
 
                 return Promise.resolve(_.shuffle(turns));
+            });
+    }
+
+    public getLongWindedTurns(): Promise<Turn[]> {
+        let turnsLongWinded: Turn[] = [];
+
+        return this.turnEntryService.getTurnEntries(TurnType.LONG_WINDED)
+            .then((longWindeds: LongWinded[]) => {
+                turnsLongWinded = this.getTurnFormTurnEntries(TurnType.LONG_WINDED, longWindeds, PlayService.LONG_WINDEDS_BY_PLAY);
+
+                return Promise.resolve(_.shuffle(turnsLongWinded));
             });
     }
 

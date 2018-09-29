@@ -5,6 +5,7 @@ page-play {
     $turn-game-color: darkorange;
     $turn-instead-color: crimson;
     $turn-list-color: darkorange;
+    $turn-long-winded-color: goldenrod;
     $turn-song-color: darkgreen;
 
     .play-content {
@@ -25,6 +26,9 @@ page-play {
         }
         &.turn-list {
             background-color: $turn-list-color;
+        }
+        &.turn-long-winded {
+            background-color: $turn-long-winded-color;
         }
         &.turn-song {
             background-color: $turn-song-color;
@@ -67,6 +71,9 @@ page-play {
         }
         &.turn-list .toolbar-background, &.turn-list .toolbar-content {
             background-color: $turn-list-color;
+        }
+        &.turn-long-winded .toolbar-background, &.turn-long-winded .toolbar-content {
+            background-color: $turn-long-winded-color;
         }
         &.turn-song .toolbar-background, &.turn-song .toolbar-content {
             background-color: $turn-song-color;
