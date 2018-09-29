@@ -13,51 +13,24 @@ export abstract class TurnEntry {
         this.labels = labels;
     }
 
-    // TODO : initFromData peut être implémenté ici pour l'instant !
-    public abstract initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string);
-}
-
-export class Condition extends TurnEntry {
-    public initFromData(themeData: ThemeData, conditionData: ConditionData, locale: string): void {
-        this.hydrate(themeData.label[locale], conditionData.labels);
+    public initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string): void {
+        this.hydrate(themeData.label[locale], turnEntryData.labels);
     }
 }
 
-export class ForOrAgainst extends TurnEntry {
-    public initFromData(themeData: ThemeData, forOrAgainstData: ForOrAgainstData, locale: string): void {
-        this.hydrate(themeData.label[locale], forOrAgainstData.labels);
-    }
-}
+export class Condition extends TurnEntry {}
 
-export class Game extends TurnEntry {
-    public initFromData(themeData: ThemeData, gameData: GameData, locale: string): void {
-        this.hydrate(themeData.label[locale], gameData.labels);
-    }
-}
+export class ForOrAgainst extends TurnEntry {}
 
-export class Instead extends TurnEntry {
-    public initFromData(themeData: ThemeData, insteadData: InsteadData, locale: string): void {
-        this.hydrate(themeData.label[locale], insteadData.labels);
-    }
-}
+export class Game extends TurnEntry {}
 
-export class List extends TurnEntry {
-    public initFromData(themeData: ThemeData, listData: ListData, locale: string): void {
-        this.hydrate(themeData.label[locale], listData.labels);
-    }
-}
+export class Instead extends TurnEntry {}
 
-export class LongWinded extends TurnEntry {
-    public initFromData(themeData: ThemeData, longWindedData: LongWindedData, locale: string): void {
-        this.hydrate(themeData.label[locale], longWindedData.labels);
-    }
-}
+export class List extends TurnEntry {}
 
-export class Song extends TurnEntry {
-    public initFromData(themeData: ThemeData, songData: SongData, locale: string): void {
-        this.hydrate(themeData.label[locale], songData.labels);
-    }
-}
+export class LongWinded extends TurnEntry {}
+
+export class Song extends TurnEntry {}
 
 //endregion
 
