@@ -1,26 +1,33 @@
 page-play {
 
+    $turn-condition-color: darkturquoise;
+    $turn-for-or-against-color: crimson;
+    $turn-game-color: darkorange;
+    $turn-instead-color: crimson;
+    $turn-list-color: darkorange;
+    $turn-song-color: darkgreen;
+
     .play-content {
         text-align: center;
         color: white;
 
         &.turn-condition {
-            background-color: darkturquoise;
+            background-color: $turn-condition-color;
         }
         &.turn-for-or-against {
-            background-color: crimson;
+            background-color: $turn-for-or-against-color;
         }
         &.turn-game {
-            background-color: darkorange;
+            background-color: $turn-game-color;
         }
         &.turn-instead {
-            background-color: crimson;
+            background-color: $turn-instead-color;
         }
         &.turn-list {
-            background-color: darkorange;
+            background-color: $turn-list-color;
         }
         &.turn-song {
-            background-color: darkgreen;
+            background-color: $turn-song-color;
         }
 
         .scroll-content {
@@ -47,22 +54,22 @@ page-play {
     
     .play-footer {
         &.turn-condition .toolbar-background,  &.turn-condition .toolbar-content {
-            background-color: darkturquoise;
+            background-color: $turn-condition-color;
         }
         &.turn-for-or-against .toolbar-background, &.turn-for-or-against .toolbar-content {
-            background-color: crimson;
+            background-color: $turn-for-or-against-color;
         }
         &.turn-game .toolbar-background, &.turn-game .toolbar-content {
-            background-color: darkorange;
+            background-color: $turn-game-color;
         }
         &.turn-instead .toolbar-background, &.turn-instead .toolbar-content {
-            background-color: crimson;
+            background-color: $turn-instead-color;
         }
         &.turn-list .toolbar-background, &.turn-list .toolbar-content {
-            background-color: darkorange;
+            background-color: $turn-list-color;
         }
         &.turn-song .toolbar-background, &.turn-song .toolbar-content {
-            background-color: darkgreen;
+            background-color: $turn-song-color;
         }
     }
 }
