@@ -158,13 +158,13 @@ export class Timer {
             if (this.timeInMilliSecondsLeft > 0) {
                 this.timeInMilliSecondsLeft = this.timeInMilliSecondsLeft - Timer.INTERVAL_IN_MILLI_SECONDS;
             } else {
-                this.pause();
+                this.stop();
                 callback();
             }
         }, Timer.INTERVAL_IN_MILLI_SECONDS);
     }
 
-    pause() {
+    stop() {
         clearInterval(this.interval);
     }
 

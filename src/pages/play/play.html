@@ -17,6 +17,13 @@
               timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
             }"></span>
       </h5>
-      <progress-bar *ngIf="this.timer !== undefined" [progress]="timer?.progressPercent()"></progress-bar>
   </div>
 </ion-content>
+
+<ion-footer class="play-footer turn-{{getCurrentTurn()?.type}}">
+  <ion-toolbar>
+      <div *ngIf="this.timer !== undefined">
+        <progress-bar [progress]="timer?.progressPercent()"></progress-bar>
+      </div>
+  </ion-toolbar>
+</ion-footer>

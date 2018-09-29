@@ -10,7 +10,7 @@ import { PlayService } from './play.service';
 })
 export class PlayPage {
 
-  private static TIMER_TIME_SECONDS = 15; 
+  private static TIMER_TIME_SECONDS = 10; 
 
   private turns: Turn[] = [];
   private index: number;
@@ -43,18 +43,19 @@ export class PlayPage {
   }
 
   public onContentClick() {
-    if (this.timer === undefined || this.timer.timeInMilliSecondsLeft === 0) {
+    if (this.timer !== undefined && this.timer.timeInMilliSecondsLeft > 0) {
+      this.timer.stop();
       this.timer = undefined;
+    }
 
-      if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
-        this.currentTurnLabelIndex++;
+    if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
+      this.currentTurnLabelIndex++;
+    } else {
+      if (this.index < this.turns.length - 1) {
+        this.index++;
+        this.onTurnChange();
       } else {
-        if (this.index < this.turns.length - 1) {
-          this.index++;
-          this.onTurnChange();
-        } else {
-          this.navCtrl.pop();
-        }
+        this.navCtrl.pop();
       }
     }
   }

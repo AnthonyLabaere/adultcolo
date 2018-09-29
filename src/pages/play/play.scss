@@ -1,4 +1,5 @@
 page-play {
+
     .play-content {
         text-align: center;
         color: white;
@@ -41,6 +42,27 @@ page-play {
                     margin-top: 50px;
                 }
             }
+        }
+    }
+    
+    .play-footer {
+        &.turn-condition .toolbar-background,  &.turn-condition .toolbar-content {
+            background-color: darkturquoise;
+        }
+        &.turn-for-or-against .toolbar-background, &.turn-for-or-against .toolbar-content {
+            background-color: crimson;
+        }
+        &.turn-game .toolbar-background, &.turn-game .toolbar-content {
+            background-color: darkorange;
+        }
+        &.turn-instead .toolbar-background, &.turn-instead .toolbar-content {
+            background-color: crimson;
+        }
+        &.turn-list .toolbar-background, &.turn-list .toolbar-content {
+            background-color: darkorange;
+        }
+        &.turn-song .toolbar-background, &.turn-song .toolbar-content {
+            background-color: darkgreen;
         }
     }
 }
