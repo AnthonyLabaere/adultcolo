@@ -101,6 +101,7 @@ export class CommonService {
         this.showTitleMap[TurnType.FOR_OR_AGAINST] = true;
         this.showTitleMap[TurnType.GAME] = true;
         this.showTitleMap[TurnType.INSTEAD] = true;
+        this.showTitleMap[TurnType.LIST] = true;
         this.showTitleMap[TurnType.SONG] = true;
       }
       
@@ -121,6 +122,7 @@ export class CommonService {
         this.showDescriptionMap[TurnType.FOR_OR_AGAINST] = true;
         this.showDescriptionMap[TurnType.GAME] = false;
         this.showDescriptionMap[TurnType.INSTEAD] = true;
+        this.showDescriptionMap[TurnType.LIST] = true;
         this.showDescriptionMap[TurnType.SONG] = true;
       }
       

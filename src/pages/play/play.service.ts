@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Turn, TurnType, Game, Instead, Song } from "../../app/entities";
+import { Condition, ForOrAgainst, Turn, TurnType, Game, Instead, Song, List } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 
@@ -12,6 +12,7 @@ export class PlayService {
     private static FOR_OR_AGAINSTS_BY_PLAY:number = 1;
     private static GAMES_BY_PLAY:number = 1;
     private static INSTEADS_BY_PLAY:number = 1;
+    private static LISTS_BY_PLAY:number = 1;
     private static SONGS_BY_PLAY:number = 1;
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
@@ -55,6 +56,17 @@ export class PlayService {
             .then((insteads: Instead[]) => {
                 _.shuffle(insteads).slice(0, PlayService.INSTEADS_BY_PLAY).forEach((instead: Instead) => {
                     turns.push(Turn.constructFromInstead(instead));
+                });
+
+                return this.turnEntryService.getTurnEntries(TurnType.LIST);
+            })
+            .then((lists: List[]) => {
+                _.shuffle(lists).slice(0, PlayService.LISTS_BY_PLAY).forEach((list: List) => {
+                    if (this.playerService.hasEnoughtPlayers()) {
+                        turns.push(Turn.constructFromList(list, _.shuffle(this.playerService.getPlayers())[0]));
+                    } else {
+                        turns.push(Turn.constructFromList(list));
+                    }
                 });
 
                 return this.turnEntryService.getTurnEntries(TurnType.SONG);

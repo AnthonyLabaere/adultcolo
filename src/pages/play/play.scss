@@ -15,6 +15,9 @@ page-play {
         &.turn-instead {
             background-color: crimson;
         }
+        &.turn-list {
+            background-color: darkorange;
+        }
         &.turn-song {
             background-color: darkgreen;
         }

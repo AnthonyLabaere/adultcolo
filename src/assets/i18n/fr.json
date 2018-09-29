@@ -49,6 +49,12 @@
                 "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
             }
         },
+        "list": {
+            "0": {
+                "title": "Liste",
+                "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumber}} gorgée{{sipSuffix}}. {{player}}tu commences."
+            }
+        },
         "song": {
             "0": {
                 "title": "Chanson",

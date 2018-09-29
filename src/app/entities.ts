@@ -40,6 +40,12 @@ export class Instead extends TurnEntry {
     }
 }
 
+export class List extends TurnEntry {
+    public initFromData(themeData: ThemeData, listData: ListData, locale: string): void {
+        this.hydrate(themeData.label[locale], listData.labels);
+    }
+}
+
 export class Song extends TurnEntry {
     public initFromData(themeData: ThemeData, songData: SongData, locale: string): void {
         this.hydrate(themeData.label[locale], songData.labels);
@@ -55,6 +61,7 @@ export enum TurnType {
     FOR_OR_AGAINST = 'for-or-against',
     INSTEAD = 'instead',
     GAME = 'game',
+    LIST = 'list',
     SONG = 'song',
 }
 
@@ -109,6 +116,17 @@ export class Turn {
         return new Turn(TurnType.INSTEAD, instead.labels, sipNumber, sipSuffix);
     }
 
+    public static constructFromList(list: List, player?: Player): Turn {
+        const sipNumber = CommonService.getRandomSipNumber();
+        const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
+        const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+
+        const labels = CommonService.replaceLabelsParameters(list.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX, player);
+
+        return new Turn(TurnType.LIST, labels, sipNumber, sipSuffix);
+    }
+
     public static constructFromSong(song: Song): Turn {
         const sipNumber = CommonService.getRandomSipNumber()
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
@@ -140,6 +158,8 @@ export class ForOrAgainstData extends TurnEntryData {}
 export class GameData extends TurnEntryData {}
 
 export class InsteadData extends TurnEntryData {}
+
+export class ListData extends TurnEntryData {}
 
 export class SongData extends TurnEntryData {}
 
