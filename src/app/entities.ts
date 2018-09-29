@@ -84,7 +84,14 @@ export class Turn {
         const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
 
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, CommonService.PLAYER_NONE, player);
+        let noPlayerLabel;
+        if (turnType === TurnType.CONDITION) {
+            noPlayerLabel = CommonService.PLAYER_NONE;
+        } else {
+            noPlayerLabel = CommonService.PLAYER_USER + CommonService.PLAYER_SUFFIX;
+        }
+
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, noPlayerLabel, player);
 
         return new Turn(turnType, labels, sipNumber, sipSuffix);
     }
