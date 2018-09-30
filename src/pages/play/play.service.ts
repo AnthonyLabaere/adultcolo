@@ -8,13 +8,14 @@ import { TurnEntryService } from "../../app/_services/turnEntry.service";
 export class PlayService {
 
     // TODO : à mettre dans des paramètres
-    private static CONDITIONS_BY_PLAY:number = 10;
-    private static FOR_OR_AGAINSTS_BY_PLAY:number = 0;
-    private static GAMES_BY_PLAY:number = 0;
-    private static INSTEADS_BY_PLAY:number = 0;
-    private static LISTS_BY_PLAY:number = 0;
-    private static LONG_WINDEDS_BY_PLAY:number = 1;
-    private static SONGS_BY_PLAY:number = 1;
+    private static TURN_NUMBER_TOTAL = 40;
+
+    private static FOR_OR_AGAINSTS_BY_PLAY:number[] = [1, 3]; // Entre 1 et 3
+    private static GAMES_BY_PLAY:number[] = [2, 4]; // Entre 2 et 4
+    private static INSTEADS_BY_PLAY:number[] = [1, 3]; // Entre 1 et 3
+    private static LISTS_BY_PLAY:number[] = [1, 3]; // Entre 1 et 3
+    private static LONG_WINDEDS_BY_PLAY:number[] = [2, 4]; // Entre 2 et 4
+    private static SONGS_BY_PLAY:number[] = [2, 3]; // Entre 2 et 3
 
     private static MIN_TURNS_AFTER_LONG_WINDED_END = 5;
     private static MAX_PERCENT_TURNS_BEFORE_ANY_LONG_WINDED_TURN = 0.75;
@@ -27,40 +28,48 @@ export class PlayService {
         let turns: Turn[] = [];
         let longWindedTurns: Turn[][];
 
-        return this.turnEntryService.getTurnEntries(TurnType.CONDITION)
-            .then((conditions: Condition[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CONDITION, conditions, PlayService.CONDITIONS_BY_PLAY));
-                
-                return this.turnEntryService.getTurnEntries(TurnType.FOR_OR_AGAINST);
-            })
+        return this.turnEntryService.getTurnEntries(TurnType.FOR_OR_AGAINST)
             .then((forOrAgainsts: ForOrAgainst[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.FOR_OR_AGAINST, forOrAgainsts, PlayService.FOR_OR_AGAINSTS_BY_PLAY));
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.FOR_OR_AGAINST, forOrAgainsts, 
+                    _.random(PlayService.FOR_OR_AGAINSTS_BY_PLAY[0], PlayService.FOR_OR_AGAINSTS_BY_PLAY[1])));
 
                 return this.turnEntryService.getTurnEntries(TurnType.GAME);
             })
             .then((games: Game[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.GAME, games, PlayService.GAMES_BY_PLAY));
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.GAME, games,
+                    _.random(PlayService.GAMES_BY_PLAY[0], PlayService.GAMES_BY_PLAY[1])));
 
                 return this.turnEntryService.getTurnEntries(TurnType.INSTEAD);
             })
             .then((insteads: Instead[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.INSTEAD, insteads, PlayService.INSTEADS_BY_PLAY));
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.INSTEAD, insteads, 
+                    _.random(PlayService.INSTEADS_BY_PLAY[0], PlayService.INSTEADS_BY_PLAY[1])));
 
                 return this.turnEntryService.getTurnEntries(TurnType.LIST);
             })
             .then((lists: List[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.LIST, lists, PlayService.LISTS_BY_PLAY));
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.LIST, lists, 
+                    _.random(PlayService.LISTS_BY_PLAY[0], PlayService.LISTS_BY_PLAY[1])));
 
                 return this.turnEntryService.getTurnEntries(TurnType.LONG_WINDED);
             })
             .then((longWindeds: LongWinded[]) => {
-                longWindedTurns = this.getDecoupledTurnsFormTurnEntries(TurnType.LONG_WINDED, longWindeds, PlayService.LONG_WINDEDS_BY_PLAY);
+                longWindedTurns = this.getDecoupledTurnsFormTurnEntries(TurnType.LONG_WINDED, longWindeds, 
+                    _.random(PlayService.LONG_WINDEDS_BY_PLAY[0], PlayService.LONG_WINDEDS_BY_PLAY[1]));
 
                 return this.turnEntryService.getTurnEntries(TurnType.SONG);
             })
             .then((songs: Song[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.SONG, songs, PlayService.SONGS_BY_PLAY));
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.SONG, songs, 
+                    _.random(PlayService.SONGS_BY_PLAY[0], PlayService.SONGS_BY_PLAY[1])));
  
+                return this.turnEntryService.getTurnEntries(TurnType.CONDITION);
+            })
+            .then((conditions: Condition[]) => {
+                // Complétion jusqu'à "TURN_NUMBER_TOTAL" avec des conditions
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CONDITION, conditions, 
+                    PlayService.TURN_NUMBER_TOTAL - (turns.length + longWindedTurns.length)));
+                
                 return Promise.resolve(_.shuffle(turns));
             })
             .then((turns: Turn[]) => {
