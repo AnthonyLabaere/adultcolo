@@ -14,11 +14,23 @@
         },
         "command": {
             "drink": {
-                "singular": "bois",
+                "singular": {
+                    "indicative" : {
+                        "second-person": "bois",
+                        "third-person": "boit"
+                    },
+                    "imperative": "bois"
+                },
                 "plural": "boivent"
             },
             "give-out": {
-                "singular": "distribue",
+                "singular": {
+                    "indicative" : {
+                        "second-person": "distribues",
+                        "third-person": "distribue"
+                    },
+                    "imperative": "distribue"
+                },
                 "plural": "distribuent"
             }
         },

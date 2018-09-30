@@ -16,9 +16,13 @@ export class CommonService {
     public static PLAYER_FIRST: string;
     public static PLAYER_PHONE_HOLDER: string;
 
-    public static DRINK_SINGULAR_COMMAND: string;
+    public static DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND: string;
+    public static DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND: string;
+    public static DRINK_SINGULAR_IMPERATIVE_COMMAND: string;
     public static DRINK_PLURAL_COMMAND: string;
-    public static GIVE_OUT_SINGULAR_COMMAND: string;
+    public static GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND: string;
+    public static GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND: string;
+    public static GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND: string;
     public static GIVE_OUT_PLURAL_COMMAND: string;
 
     public static ONE_SIP_NUMBER: string;
@@ -32,12 +36,21 @@ export class CommonService {
     public static DATA_FILE_PATH = '../assets/data/';
 
     public static DATA_PLAYER_KEY_TO_REPLACE = '<<player>>';
-    public static DATA_SINGULAR_COMMAND_KEY_TO_REPLACE = '<<singular-command>>';
-    public static DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-command>>/;
-    public static DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE = /<<singular-command>>/;
+
+    // TODO utiliser les key to replace dans les regexes
+    public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-second-person-command>>';
+    public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-indicative-second-person-command>>/;
+    public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_REGEX_TO_REPLACE = /<<singular-indicative-second-person-command>>/;
+    public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-third-person-command>>';
+    public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-indicative-third-person-command>>/;
+    public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_REGEX_TO_REPLACE = /<<singular-indicative-third-person-command>>/;
+    public static DATA_SINGULAR_IMPERATIVE_COMMAND_KEY_TO_REPLACE = '<<singular-imperative-command>>';
+    public static DATA_SINGULAR_IMPERATIVE_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-imperative-command>>/;
+    public static DATA_SINGULAR_IMPERATIVE_COMMAND_REGEX_TO_REPLACE = /<<singular-imperative-command>>/;
     public static DATA_PLURAL_COMMAND_KEY_TO_REPLACE = '<<plural-command>>';
     public static DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<plural-command>>/;
     public static DATA_PLURAL_COMMAND_REGEX_TO_REPLACE = /<<plural-command>>/;
+
     public static DATA_SIP_NUMBER_KEY_TO_REPLACE = '<<sipNumber>>';
     public static DATA_SIP_SUFFIX_KEY_TO_REPLACE = '<<sipSuffix>>';
 
@@ -47,28 +60,32 @@ export class CommonService {
     }
 
     public initLocalizedConstants(): void {
-        this.translate.get('common.player.suffix').subscribe((playerSuffix: string) => {CommonService.PLAYER_SUFFIX = playerSuffix;});
-        this.translate.get('common.player.none').subscribe((playerNone: string) => {CommonService.PLAYER_NONE = playerNone;});
-        this.translate.get('common.player.phoneOwner').subscribe((playerPhoneOwner: string) => {CommonService.PLAYER_PHONE_OWNER = playerPhoneOwner;});
-        this.translate.get('common.player.younger').subscribe((playerYounger: string) => {CommonService.PLAYER_YOUNGER = playerYounger;});
-        this.translate.get('common.player.older').subscribe((playerOlder: string) => {CommonService.PLAYER_OLDER = playerOlder;});
-        this.translate.get('common.player.beardest').subscribe((playerBeardest: string) => {CommonService.PLAYER_BEARDEST = playerBeardest;});
-        this.translate.get('common.player.designed').subscribe((playerDesigned: string) => {CommonService.PLAYER_DESIGNED = playerDesigned;});
-        this.translate.get('common.player.first').subscribe((playerFirst: string) => {CommonService.PLAYER_FIRST = playerFirst;});
-        this.translate.get('common.player.phoneHolder').subscribe((playerPhoneHolder: string) => {CommonService.PLAYER_PHONE_HOLDER = playerPhoneHolder;});
+        this.translate.get('common.player.suffix').subscribe((str: string) => {CommonService.PLAYER_SUFFIX = str;});
+        this.translate.get('common.player.none').subscribe((str: string) => {CommonService.PLAYER_NONE = str;});
+        this.translate.get('common.player.phoneOwner').subscribe((str: string) => {CommonService.PLAYER_PHONE_OWNER = str;});
+        this.translate.get('common.player.younger').subscribe((str: string) => {CommonService.PLAYER_YOUNGER = str;});
+        this.translate.get('common.player.older').subscribe((str: string) => {CommonService.PLAYER_OLDER = str;});
+        this.translate.get('common.player.beardest').subscribe((str: string) => {CommonService.PLAYER_BEARDEST = str;});
+        this.translate.get('common.player.designed').subscribe((str: string) => {CommonService.PLAYER_DESIGNED = str;});
+        this.translate.get('common.player.first').subscribe((str: string) => {CommonService.PLAYER_FIRST = str;});
+        this.translate.get('common.player.phoneHolder').subscribe((str: string) => {CommonService.PLAYER_PHONE_HOLDER = str;});
 
-        this.translate.get('common.command.drink.singular').subscribe((drinkSingularCommand: string) => {CommonService.DRINK_SINGULAR_COMMAND = drinkSingularCommand;});
-        this.translate.get('common.command.drink.plural').subscribe((drinkPluralCommand: string) => {CommonService.DRINK_PLURAL_COMMAND = drinkPluralCommand;});
-        this.translate.get('common.command.give-out.singular').subscribe((giveOutSingularCommand: string) => {CommonService.GIVE_OUT_SINGULAR_COMMAND = giveOutSingularCommand;});
-        this.translate.get('common.command.give-out.plural').subscribe((giveOutPluralCommand: string) => {CommonService.GIVE_OUT_PLURAL_COMMAND = giveOutPluralCommand;});
+        this.translate.get('common.command.drink.singular.indicative.second-person').subscribe((str: string) => {CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND = str;});
+        this.translate.get('common.command.drink.singular.indicative.third-person').subscribe((str: string) => {CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND = str;});
+        this.translate.get('common.command.drink.singular.imperative').subscribe((str: string) => {CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND = str;});
+        this.translate.get('common.command.drink.plural').subscribe((str: string) => {CommonService.DRINK_PLURAL_COMMAND = str;});
+        this.translate.get('common.command.give-out.singular.indicative.second-person').subscribe((str: string) => {CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND = str;});
+        this.translate.get('common.command.give-out.singular.indicative.third-person').subscribe((str: string) => {CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND = str;});
+        this.translate.get('common.command.give-out.singular.imperative').subscribe((str: string) => {CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND = str;});
+        this.translate.get('common.command.give-out.plural').subscribe((str: string) => {CommonService.GIVE_OUT_PLURAL_COMMAND = str;});
 
-        this.translate.get('common.sip.number.one').subscribe((oneSipNumber: string) => {CommonService.ONE_SIP_NUMBER = oneSipNumber;});
-        this.translate.get('common.sip.number.two').subscribe((twoSipNumber: string) => {CommonService.TWO_SIP_NUMBER = twoSipNumber;});
-        this.translate.get('common.sip.number.three').subscribe((threeSipNumber: string) => {CommonService.THREE_SIP_NUMBER = threeSipNumber;});
-        this.translate.get('common.sip.number.four').subscribe((fourSipNumber: string) => {CommonService.FOUR_SIP_NUMBER = fourSipNumber;});
-        this.translate.get('common.sip.number.five').subscribe((fiveSipNumber: string) => {CommonService.FIVE_SIP_NUMBER = fiveSipNumber;});
-        this.translate.get('common.sip.suffix.singular').subscribe((sipSuffixSingular: string) => {CommonService.SIP_SUFFIX_SINGULAR = sipSuffixSingular;});
-        this.translate.get('common.sip.suffix.plural').subscribe((sipSuffixPlural: string) => {CommonService.SIP_SUFFIX_PLURAL = sipSuffixPlural;});
+        this.translate.get('common.sip.number.one').subscribe((str: string) => {CommonService.ONE_SIP_NUMBER = str;});
+        this.translate.get('common.sip.number.two').subscribe((str: string) => {CommonService.TWO_SIP_NUMBER = str;});
+        this.translate.get('common.sip.number.three').subscribe((str: string) => {CommonService.THREE_SIP_NUMBER = str;});
+        this.translate.get('common.sip.number.four').subscribe((str: string) => {CommonService.FOUR_SIP_NUMBER = str;});
+        this.translate.get('common.sip.number.five').subscribe((str: string) => {CommonService.FIVE_SIP_NUMBER = str;});
+        this.translate.get('common.sip.suffix.singular').subscribe((str: string) => {CommonService.SIP_SUFFIX_SINGULAR = str;});
+        this.translate.get('common.sip.suffix.plural').subscribe((str: string) => {CommonService.SIP_SUFFIX_PLURAL = str;});
     }
 
     // Region fonctionnelle
@@ -128,14 +145,18 @@ export class CommonService {
         return playerLabel;
     }
 
-    public static replaceLabelsParameters(labels: string[], singularCommand:string, pluralCommand:string, sipNumber: string, sipSuffix:string, playerLabel:string) {
+    public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: string, sipSuffix:string, playerLabel:string) {
         return labels.map(label => {
             return label
             .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, playerLabel)
-            .replace(CommonService.DATA_SINGULAR_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(singularCommand))
-            .replace(CommonService.DATA_SINGULAR_COMMAND_REGEX_TO_REPLACE, singularCommand)
-            .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(pluralCommand))
-            .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, pluralCommand)
+            .replace(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND))
+            .replace(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND)
+            .replace(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND))
+            .replace(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND)
+            .replace(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND))
+            .replace(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND)
+            .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND))
+            .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND)
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
         });
