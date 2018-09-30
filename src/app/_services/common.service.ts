@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { TurnType, Player, ValueWithWeight } from "../entities";
+import { TurnType, Player, ValueWithWeight, TurnTypeParameters } from "../entities";
 
 @Injectable()
 export class CommonService {
@@ -110,7 +110,6 @@ export class CommonService {
                 playerLabel = CommonService.PLAYER_NONE;
             } else {
                 // Sinon : construction d'un tableau de libellé possible avec un poids attribué à chaque libellé
-                // TODO : tableau à externaliser ?
                 const labels: ValueWithWeight<string>[] = [
                     new ValueWithWeight<string>(CommonService.PLAYER_PHONE_OWNER, 1),
                     new ValueWithWeight<string>(CommonService.PLAYER_YOUNGER, 1),
@@ -141,71 +140,17 @@ export class CommonService {
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
         });
     }
-    
-    // Un seul object pour réprensenter toutes les propriétés ? Et en ajoutant le nombre d'éléments à insérer dans un jeu
-    private static SHOW_TITLE_MAP: any;
-    
-    private static getShowTitleMap(): any {
-      if (CommonService.SHOW_TITLE_MAP === undefined) {
-        CommonService.SHOW_TITLE_MAP = {};
-  
-        CommonService.SHOW_TITLE_MAP[TurnType.CONDITION] = false;
-        CommonService.SHOW_TITLE_MAP[TurnType.FOR_OR_AGAINST] = true;
-        CommonService.SHOW_TITLE_MAP[TurnType.GAME] = true;
-        CommonService.SHOW_TITLE_MAP[TurnType.INSTEAD] = true;
-        CommonService.SHOW_TITLE_MAP[TurnType.LIST] = true;
-        CommonService.SHOW_TITLE_MAP[TurnType.LONG_WINDED] = false;
-        CommonService.SHOW_TITLE_MAP[TurnType.SONG] = true;
-      }
-      
-      return CommonService.SHOW_TITLE_MAP;
-    }
 
     public static showTitle(turnType: TurnType): boolean {
-        return CommonService.getShowTitleMap()[turnType];
-    }
-    
-    private static SHOW_DESCRIPTION_MAP: any;
-    
-    private static getShowDescriptionMap(): any {
-      if (CommonService.SHOW_DESCRIPTION_MAP === undefined) {
-        CommonService.SHOW_DESCRIPTION_MAP = {};
-  
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.CONDITION] = false;
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.FOR_OR_AGAINST] = true;
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.GAME] = false;
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.INSTEAD] = true;
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.LIST] = true;
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.LONG_WINDED] = false;
-        CommonService.SHOW_DESCRIPTION_MAP[TurnType.SONG] = true;
-      }
-      
-      return CommonService.SHOW_DESCRIPTION_MAP;
+        return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withTitle;
     }
 
     public static showDescription(turnType: TurnType): boolean {
-        return CommonService.getShowDescriptionMap()[turnType];
-    }
-    
-    private static WITH_TIMER_MAP: any;
-    
-    private static getWithTimerMap(): any {
-      if (CommonService.WITH_TIMER_MAP === undefined) {
-        CommonService.WITH_TIMER_MAP = {};
-  
-        CommonService.WITH_TIMER_MAP[TurnType.CONDITION] = false;
-        CommonService.WITH_TIMER_MAP[TurnType.FOR_OR_AGAINST] = false;
-        CommonService.WITH_TIMER_MAP[TurnType.GAME] = false;
-        CommonService.WITH_TIMER_MAP[TurnType.INSTEAD] = false;
-        CommonService.WITH_TIMER_MAP[TurnType.LIST] = false;
-        CommonService.WITH_TIMER_MAP[TurnType.SONG] = true;
-      }
-      
-      return CommonService.WITH_TIMER_MAP;
+        return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withDescription;
     }
 
-    public static withTimer(turnType: TurnType): boolean {
-        return CommonService.getWithTimerMap()[turnType];
+    public static showTimer(turnType: TurnType): boolean {
+        return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withTimer;
     }
 
     // endRegion

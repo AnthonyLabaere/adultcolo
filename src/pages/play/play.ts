@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Timer, Turn, TurnType } from '../../app/entities';
+import { Timer, Turn, TurnType, TurnTypeParameters } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { PlayerService } from '../../app/_services/player.service';
 import { PlayService } from './play.service';
@@ -66,18 +66,26 @@ export class PlayPage {
   private onTurnChange() {
     this.currentTurnLabelIndex = 0;
 
-    if (CommonService.withTimer(this.getCurrentTurn().type)) {
+    if (CommonService.showTimer(this.getCurrentTurn().type)) {
       this.timer = new Timer(this.playerService.hasEnoughtPlayers());
       this.timer.start(this.onContentClick.bind(this));
     }
   }
 
   public showTitle(turnType: TurnType): boolean {
-    return CommonService.showTitle(turnType);
+    if (turnType !== undefined && turnType !== null) {
+      return CommonService.showTitle(turnType);
+    } else {
+      return false;
+    }
   }
 
   public showDescription(turnType: TurnType): boolean {
-    return CommonService.showDescription(turnType);
+    if (turnType !== undefined && turnType !== null) {
+      return CommonService.showDescription(turnType);
+    } else {
+      return false;
+    }
   }
 
 }

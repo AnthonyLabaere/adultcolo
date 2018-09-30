@@ -46,6 +46,28 @@ export enum TurnType {
     SONG = 'song',
 }
 
+export class TurnTypeParameters {
+    withTitle: boolean;
+    withDescription: boolean;
+    withTimer: boolean;
+
+    constructor(withTitle: boolean, withDescription: boolean, withTimer: boolean) {
+        this.withTitle = withTitle;
+        this.withDescription = withDescription;
+        this.withTimer = withTimer;
+    }
+
+    static TURN_TYPE_PARAMETERS:any = {
+        [TurnType.CONDITION]: new TurnTypeParameters(false, false, false),
+        [TurnType.FOR_OR_AGAINST]: new TurnTypeParameters(true, true, false),
+        [TurnType.GAME]: new TurnTypeParameters(true, false, false),
+        [TurnType.INSTEAD]: new TurnTypeParameters(true, true, false),
+        [TurnType.LIST]: new TurnTypeParameters(true, true, false),
+        [TurnType.LONG_WINDED]: new TurnTypeParameters(false, false, false),
+        [TurnType.SONG]: new TurnTypeParameters(true, true, true)
+    };
+}
+
 export class Turn {
     type: TurnType;
     labels: string[];

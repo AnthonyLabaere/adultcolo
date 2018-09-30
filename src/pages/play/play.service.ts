@@ -71,7 +71,6 @@ export class PlayService {
                     // Les tours de jeu de longue haleine doivent être tous atteint avant d'avoir effectué les 3/4 des tours
                     // TODO : le 3/4 doit être dans un fichier properties ou autre
                     const random:number = _.random(Math.round((3/4) * turns.length - (turnsIndex + 1)));
-                    console.log(turnsIndex + " : " + random);
                     if (random <= 0) {
                         // Insertion de la première slide d'un tour de longue haleine
                         turns.splice(turnsIndex, 0, longWindedTurns[longWindedTurnsIndex][0]);
