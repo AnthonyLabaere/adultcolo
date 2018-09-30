@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Timer, Turn, TurnType, TurnTypeParameters } from '../../app/entities';
+import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { PlayerService } from '../../app/_services/player.service';
 import { PlayService } from './play.service';

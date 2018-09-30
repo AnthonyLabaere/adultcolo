@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { TurnType, Player, ValueWithWeight, TurnTypeParameters } from "../entities";
+import { Player, TurnType, TurnTypeParameters, ValueWithWeight } from "../entities";
 
 @Injectable()
 export class CommonService {
