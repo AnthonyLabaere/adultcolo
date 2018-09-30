@@ -61,14 +61,7 @@
                 "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumber}} gorgée{{sipSuffix}}. {{player}} commence."
             }
         },
-        "long-winded": {
-            "0": {
-                "title": "Longue haleine"
-            },
-            "1": {
-                "title": "Libéré !"
-            }
-        },
+        "long-winded": {},
         "song": {
             "0": {
                 "title": "Chanson",

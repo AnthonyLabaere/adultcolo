@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Turn, TurnType, Timer } from '../../app/entities';
+import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
-import { PlayService } from './play.service';
 import { PlayerService } from '../../app/_services/player.service';
+import { PlayService } from './play.service';
 
 @Component({
   selector: 'page-play',
@@ -13,13 +13,8 @@ export class PlayPage {
 
   // Liste des tours (= slides) de jeu
   private turns: Turn[] = [];
-  // Liste des tours (de type longue haleine) de jeu
-  private longWindedTurns: Turn[] = [];
   // Index du tour de jeu en cours
   private index: number;
-
-  // Indexes des tours de longue haleine en cours
-  private longWindedTurnIndexes: number[];
 
   // Index de la sous-slide dans le tour de jeu en cours (les tours peuvent avoir plusieurs niveaux)
   public currentTurnLabelIndex: number;
@@ -31,17 +26,11 @@ export class PlayPage {
     this.playService.getTurns()
       .then((turns: Turn[]) => {
         this.turns = turns;
-
-        return this.playService.getLongWindedTurns();
-      })
-      .then((longWindedTurns: Turn[]) => {
-        this.longWindedTurns = longWindedTurns;
-
         this.startPlay();
       });
   }
 
-  public startPlay() {
+  private startPlay() {
     this.index = 0;
     this.onTurnChange();
   }

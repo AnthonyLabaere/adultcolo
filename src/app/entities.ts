@@ -8,7 +8,7 @@ export abstract class TurnEntry {
     theme: string;
     labels: string[];
     
-    protected hydrate(theme: string, labels: string[]) {
+    public hydrate(theme: string, labels: string[]) {
         this.theme = theme;
         this.labels = labels;
     }
@@ -61,6 +61,9 @@ export class Turn {
         this.playerLabel = playerLabel;
     }
 
+    /**
+     * Construction d'un tour contenant tous les libellés
+     */
     public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber();
         const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
@@ -71,6 +74,26 @@ export class Turn {
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, playerLabel);
 
         return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel);
+    }
+
+    /**
+     * Construction d'un tableau de tours contenant chacun un des libellés
+     */
+    public static constructDecoupledFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player): Turn[] {
+        const sipNumber = CommonService.getRandomSipNumber();
+        const singularCommand = CommonService.random() ? CommonService.DRINK_SINGULAR_COMMAND : CommonService.GIVE_OUT_SINGULAR_COMMAND;
+        const pluralCommand = CommonService.random() ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND;
+        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+        const playerLabel = CommonService.getPlayerLabel(turnType, player);
+
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, singularCommand, pluralCommand, sipNumber, sipSuffix, playerLabel);
+
+        const turns: Turn[] = [];
+        labels.forEach((label: string) => {
+            turns.push(new Turn(turnType, [label], sipNumber, sipSuffix, playerLabel));
+        });
+
+        return turns;
     }
 }
 

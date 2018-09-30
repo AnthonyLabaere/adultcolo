@@ -98,14 +98,18 @@ export class CommonService {
         let playerLabel: string;
 
         if (player !== undefined) {
+            // Le joueur est renseigné donc son nom est pris comme libellé de joueur
             playerLabel = player.name;
             if (turnType === TurnType.CONDITION) {
                 playerLabel +=  CommonService.PLAYER_SUFFIX;
             }
         } else {
+            // Pas de joueur renseigné
             if (turnType === TurnType.CONDITION) {
+                // Si condition: pas de libellé
                 playerLabel = CommonService.PLAYER_NONE;
             } else {
+                // Sinon : construction d'un tableau de libellé possible avec un poids attribué à chaque libellé
                 // TODO : tableau à externaliser ?
                 const labels: ValueWithWeight<string>[] = [
                     new ValueWithWeight<string>(CommonService.PLAYER_PHONE_OWNER, 1),
@@ -150,7 +154,7 @@ export class CommonService {
         CommonService.SHOW_TITLE_MAP[TurnType.GAME] = true;
         CommonService.SHOW_TITLE_MAP[TurnType.INSTEAD] = true;
         CommonService.SHOW_TITLE_MAP[TurnType.LIST] = true;
-        CommonService.SHOW_TITLE_MAP[TurnType.LONG_WINDED] = true;
+        CommonService.SHOW_TITLE_MAP[TurnType.LONG_WINDED] = false;
         CommonService.SHOW_TITLE_MAP[TurnType.SONG] = true;
       }
       
