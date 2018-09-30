@@ -37,7 +37,6 @@ export class CommonService {
 
     public static DATA_PLAYER_KEY_TO_REPLACE = '<<player>>';
  
-    // TODO utiliser les key to replace dans les regexes
     public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-second-person-command>>';
     public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-third-person-command>>';
     public static DATA_SINGULAR_IMPERATIVE_COMMAND_KEY_TO_REPLACE = '<<singular-imperative-command>>';
