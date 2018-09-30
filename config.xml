@@ -83,5 +83,9 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
+    <plugin name="cordova-plugin-admob-free" spec="^0.19.0" />
+    <plugin name="cordova-admob-sdk" spec="^0.19.0">
+        <variable name="PLAY_SERVICES_VERSION" value="11.6.0" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
 </widget>

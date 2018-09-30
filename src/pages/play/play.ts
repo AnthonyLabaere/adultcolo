@@ -4,6 +4,8 @@ import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { PlayerService } from '../../app/_services/player.service';
 import { PlayService } from './play.service';
+import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+import { environment as ENV } from '../../environments/environment';
 
 @Component({
   selector: 'page-play',
@@ -22,7 +24,21 @@ export class PlayPage {
   // Dans le cas où un timer est nécessaire (exemple : les chansons)
   public timer: Timer;
 
-  constructor(public navCtrl: NavController, private playerService: PlayerService, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private admobFree: AdMobFree, private playerService: PlayerService, private playService: PlayService) {
+
+    if (!ENV.DEV) {
+      const interstitialConfig: AdMobFreeInterstitialConfig = {
+        isTesting: ENV.DEV,
+        autoShow: false
+      };
+      if (!ENV.DEV) {
+        interstitialConfig.id = ENV.ADMOB_INTERSTITIAL_KEY;
+      }
+      this.admobFree.interstitial.config(interstitialConfig);
+      // On considère qu'il est inutile de retourner la promesse : l'action sera terminée lorsque la pub devra être affichée
+      this.admobFree.interstitial.prepare();
+    }
+
     this.playService.getTurns()
       .then((turns: Turn[]) => {
         this.turns = turns;
@@ -30,6 +46,9 @@ export class PlayPage {
       });
   }
 
+  /**
+   * Lancement de la partie
+   */
   private startPlay() {
     this.index = 0;
     this.onTurnChange();
@@ -56,9 +75,16 @@ export class PlayPage {
         this.index++;
         this.onTurnChange();
       } else {
-        // Fin de la partie : on retourne à l'écran d'accueil
-        // TODO : ajouter ici une page de pub
-        this.navCtrl.pop();
+        // Fin de la partie : petite publicité
+        if (ENV.DEV) {
+          this.navCtrl.pop();
+        } else {
+          this.admobFree.interstitial.show()
+            .then(() => {
+              // Puis on retourne à l'écran d'accueil
+              this.navCtrl.pop();
+            });
+        }
       }
     }
   }

@@ -1,5 +1,7 @@
 export const environment = {
-    TURN_NUMBER_TOTAL: 40,
+    DEV: true,
+
+    TURN_NUMBER_TOTAL: 5,
     FOR_OR_AGAINSTS_BY_PLAY: [0, 0],
     GAMES_BY_PLAY: [0, 0],
     INSTEADS_BY_PLAY: [0, 0],
@@ -11,5 +13,7 @@ export const environment = {
 
     TIMER_TIME_SECONDS_WITH_PLAYERS: 10,
     TIMER_TIME_SECONDS_WITHOUT_PLAYERS: 20,
-    TIMER_INTERVAL_IN_MILLI_SECONDS: 10
+    TIMER_INTERVAL_IN_MILLI_SECONDS: 10,
+
+    ADMOB_INTERSTITIAL_KEY: ''
 }
