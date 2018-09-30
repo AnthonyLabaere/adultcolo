@@ -36,20 +36,12 @@ export class CommonService {
     public static DATA_FILE_PATH = '../assets/data/';
 
     public static DATA_PLAYER_KEY_TO_REPLACE = '<<player>>';
-
+ 
     // TODO utiliser les key to replace dans les regexes
     public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-second-person-command>>';
-    public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-indicative-second-person-command>>/;
-    public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_REGEX_TO_REPLACE = /<<singular-indicative-second-person-command>>/;
     public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-third-person-command>>';
-    public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-indicative-third-person-command>>/;
-    public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_REGEX_TO_REPLACE = /<<singular-indicative-third-person-command>>/;
     public static DATA_SINGULAR_IMPERATIVE_COMMAND_KEY_TO_REPLACE = '<<singular-imperative-command>>';
-    public static DATA_SINGULAR_IMPERATIVE_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<singular-imperative-command>>/;
-    public static DATA_SINGULAR_IMPERATIVE_COMMAND_REGEX_TO_REPLACE = /<<singular-imperative-command>>/;
     public static DATA_PLURAL_COMMAND_KEY_TO_REPLACE = '<<plural-command>>';
-    public static DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE = /^<<plural-command>>/;
-    public static DATA_PLURAL_COMMAND_REGEX_TO_REPLACE = /<<plural-command>>/;
 
     public static DATA_SIP_NUMBER_KEY_TO_REPLACE = '<<sipNumber>>';
     public static DATA_SIP_SUFFIX_KEY_TO_REPLACE = '<<sipSuffix>>';
@@ -149,14 +141,14 @@ export class CommonService {
         return labels.map(label => {
             return label
             .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, playerLabel)
-            .replace(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND))
-            .replace(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND)
-            .replace(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND))
-            .replace(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND)
-            .replace(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND))
-            .replace(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND)
-            .replace(CommonService.DATA_PLURAL_COMMAND_AT_START_REGEX_TO_REPLACE, CommonService.capitalize(drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND))
-            .replace(CommonService.DATA_PLURAL_COMMAND_REGEX_TO_REPLACE, drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND)
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND))
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND)
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND))
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND)
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND))
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND)
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_PLURAL_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND))
+            .replace(CommonService.getRegexFromKey(CommonService.DATA_PLURAL_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND)
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix);
         });
@@ -186,6 +178,10 @@ export class CommonService {
             }
         });
         return _.shuffle(array)[0];
+    }
+
+    public static getRegexFromKey(key: string, atFirst?: boolean) {
+        return new RegExp((atFirst ? "^" : "") + key);
     }
     
     public static isEmpty(s: string): boolean {
