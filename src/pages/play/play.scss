@@ -6,6 +6,7 @@ page-play {
     $turn-instead-color: crimson;
     $turn-list-color: darkorange;
     $turn-long-winded-color: gold;
+    $turn-movie-color: darkgreen;
     $turn-song-color: darkgreen;
 
     .play-content {
@@ -29,6 +30,9 @@ page-play {
         }
         &.turn-long-winded {
             background-color: $turn-long-winded-color;
+        }
+        &.turn-movie {
+            background-color: $turn-movie-color;
         }
         &.turn-song {
             background-color: $turn-song-color;

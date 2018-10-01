@@ -33,6 +33,8 @@ export class List extends TurnEntry {}
 
 export class LongWinded extends TurnEntry {}
 
+export class Movie extends TurnEntry {}
+
 export class Song extends TurnEntry {}
 
 //endregion
@@ -46,6 +48,7 @@ export enum TurnType {
     INSTEAD = 'instead',
     LIST = 'list',
     LONG_WINDED = 'long-winded',
+    MOVIE = 'movie',
     SONG = 'song',
 }
 
@@ -67,6 +70,7 @@ export class TurnTypeParameters {
         [TurnType.INSTEAD]: new TurnTypeParameters(true, true, false),
         [TurnType.LIST]: new TurnTypeParameters(true, true, false),
         [TurnType.LONG_WINDED]: new TurnTypeParameters(false, false, false),
+        [TurnType.MOVIE]: new TurnTypeParameters(true, true, true),
         [TurnType.SONG]: new TurnTypeParameters(true, true, true)
     };
 }
@@ -147,6 +151,8 @@ export class InsteadData extends TurnEntryData {}
 export class ListData extends TurnEntryData {}
 
 export class LongWindedData extends TurnEntryData {}
+
+export class MovieData extends TurnEntryData {}
 
 export class SongData extends TurnEntryData {}
 

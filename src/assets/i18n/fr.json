@@ -75,6 +75,16 @@
             }
         },
         "long-winded": {},
+        "movie": {
+            "0": {
+                "title": "Film",
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la réponse."
+            },
+            "1": {
+                "title": "Film",
+                "description": "Distribue {{sipNumber}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu les bois !"
+            }
+        },
         "song": {
             "0": {
                 "title": "Chanson",

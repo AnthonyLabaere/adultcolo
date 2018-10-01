@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, Instead, List, LongWinded, Song, Turn, TurnEntry, TurnType } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, Instead, List, LongWinded, Song, Turn, TurnEntry, TurnType, Movie } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { environment as ENV } from '../../environments/environment';
@@ -44,7 +44,13 @@ export class PlayService {
                 longWindedTurns = this.getDecoupledTurnsFormTurnEntries(TurnType.LONG_WINDED, longWindeds, 
                     _.random(ENV.LONG_WINDEDS_BY_PLAY[0], ENV.LONG_WINDEDS_BY_PLAY[1]));
 
-                return this.turnEntryService.getTurnEntries(TurnType.SONG);
+                return this.turnEntryService.getTurnEntries(TurnType.MOVIE);
+            })
+            .then((movies: Movie[]) => {
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.MOVIE, movies, 
+                    _.random(ENV.MOVIES_BY_PLAY[0], ENV.MOVIES_BY_PLAY[1])));
+
+                    return this.turnEntryService.getTurnEntries(TurnType.SONG);
             })
             .then((songs: Song[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.SONG, songs, 
