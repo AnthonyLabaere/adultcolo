@@ -7,15 +7,17 @@ import { environment as ENV } from '../environments/environment';
 
 export abstract class TurnEntry {
     theme: string;
+    mandatoryPlayer: boolean;
     labels: string[];
     
-    public hydrate(theme: string, labels: string[]) {
+    public hydrate(theme: string, mandatoryPlayer:boolean, labels: string[]) {
         this.theme = theme;
+        this.mandatoryPlayer = mandatoryPlayer;
         this.labels = labels;
     }
 
     public initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string): void {
-        this.hydrate(themeData.label[locale], turnEntryData.labels);
+        this.hydrate(themeData.label[locale], turnEntryData.mandatoryPlayer, turnEntryData.labels);
     }
 }
 
@@ -130,6 +132,7 @@ export class Player {
 
 export abstract class TurnEntryData {
     theme: number;
+    mandatoryPlayer: boolean;
     labels: string[];
 }
 

@@ -1,7 +1,7 @@
 export const environment = {
     DEV: true,
 
-    TURN_NUMBER_TOTAL: 5,
+    TURN_NUMBER_TOTAL: 20,
     FOR_OR_AGAINSTS_BY_PLAY: [0, 0],
     GAMES_BY_PLAY: [0, 0],
     INSTEADS_BY_PLAY: [0, 0],
