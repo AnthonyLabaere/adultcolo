@@ -78,7 +78,7 @@
         "movie": {
             "0": {
                 "title": "Film",
-                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la réponse."
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la film correspondant à l'indice."
             },
             "1": {
                 "title": "Film",
@@ -88,7 +88,7 @@
         "song": {
             "0": {
                 "title": "Chanson",
-                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la réponse."
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la chanson correspondant à l'indice."
             },
             "1": {
                 "title": "Chanson",
