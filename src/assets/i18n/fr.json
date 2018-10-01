@@ -10,7 +10,8 @@
             "beardest": "Le plus barbu",
             "designed": "Désignez quelqu'un, il ou elle",
             "first": "Le premier à se motiver",
-            "phoneHolder": "Celui ou celle qui tient le téléphone"
+            "phoneHolder": "Celui ou celle qui tient le téléphone",
+            "houseOwner": "Le propriétaire des lieux"
         },
         "command": {
             "drink": {
@@ -69,7 +70,7 @@
         },
         "list": {
             "0": {
-                "title": "Liste",
+                "title": "Thèmes",
                 "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumber}} gorgée{{sipSuffix}}. {{player}} commence."
             }
         },

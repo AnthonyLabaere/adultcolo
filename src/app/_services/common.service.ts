@@ -15,6 +15,7 @@ export class CommonService {
     public static PLAYER_DESIGNED: string;
     public static PLAYER_FIRST: string;
     public static PLAYER_PHONE_HOLDER: string;
+    public static PLAYER_HOUSE_OWNER: string;
 
     public static DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND: string;
     public static DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND: string;
@@ -60,6 +61,7 @@ export class CommonService {
         this.translate.get('common.player.designed').subscribe((str: string) => {CommonService.PLAYER_DESIGNED = str;});
         this.translate.get('common.player.first').subscribe((str: string) => {CommonService.PLAYER_FIRST = str;});
         this.translate.get('common.player.phoneHolder').subscribe((str: string) => {CommonService.PLAYER_PHONE_HOLDER = str;});
+        this.translate.get('common.player.houseOwner').subscribe((str: string) => {CommonService.PLAYER_HOUSE_OWNER = str;});
 
         this.translate.get('common.command.drink.singular.indicative.second-person').subscribe((str: string) => {CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND = str;});
         this.translate.get('common.command.drink.singular.indicative.third-person').subscribe((str: string) => {CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND = str;});
@@ -125,7 +127,8 @@ export class CommonService {
                     new ValueWithWeight<string>(CommonService.PLAYER_BEARDEST, 1),
                     new ValueWithWeight<string>(CommonService.PLAYER_DESIGNED, 4),
                     new ValueWithWeight<string>(CommonService.PLAYER_FIRST, 4),
-                    new ValueWithWeight<string>(CommonService.PLAYER_PHONE_HOLDER, 2)
+                    new ValueWithWeight<string>(CommonService.PLAYER_PHONE_HOLDER, 2),
+                    new ValueWithWeight<string>(CommonService.PLAYER_HOUSE_OWNER, 1)
                 ];
 
                 return CommonService.getValueFromShuffledArrayWithWeight(labels);
