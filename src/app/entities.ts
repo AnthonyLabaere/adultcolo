@@ -181,23 +181,20 @@ export class LocalizedString {
 }
 
 export class Timer {
+    started: boolean = false;
     totalTimeInMilliSeconds: number;
     timeInMilliSecondsLeft: number;
     interval;
 
-    constructor(withPlayers: boolean) {
-        if (withPlayers) {
-            this.totalTimeInMilliSeconds = 1000 * ENV.TIMER_TIME_SECONDS_WITH_PLAYERS;
-            this.timeInMilliSecondsLeft = 1000 * ENV.TIMER_TIME_SECONDS_WITH_PLAYERS;
-        } else {
-            this.totalTimeInMilliSeconds = 1000 * ENV.TIMER_TIME_SECONDS_WITHOUT_PLAYERS;
-            this.timeInMilliSecondsLeft = 1000 * ENV.TIMER_TIME_SECONDS_WITHOUT_PLAYERS;
-        }
-
+    constructor() {
+        this.totalTimeInMilliSeconds = 1000 * ENV.TIMER_TIME;
+        this.timeInMilliSecondsLeft = 1000 * ENV.TIMER_TIME;
     }
 
     // TODO : promise au lieu de callback ?
     start(callback: Function) {
+        this.started = true;
+
         this.interval = setInterval(() => {
             if (this.timeInMilliSecondsLeft > 0) {
                 this.timeInMilliSecondsLeft = this.timeInMilliSecondsLeft - ENV.TIMER_INTERVAL_IN_MILLI_SECONDS;

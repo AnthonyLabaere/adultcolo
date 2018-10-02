@@ -111,5 +111,9 @@
             "play": "Aller, on boit !"
         }
     },
-    "play": {}
+    "play": {
+        "timer": {
+            "clickMessage": "Cliquez sur l'écran lorsque vous êtes prêts."
+        }
+    }
 }

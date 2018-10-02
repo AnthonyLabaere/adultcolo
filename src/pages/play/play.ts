@@ -24,7 +24,7 @@ export class PlayPage {
   // Dans le cas où un timer est nécessaire (exemple : les chansons)
   public timer: Timer;
 
-  constructor(public navCtrl: NavController, private admobFree: AdMobFree, private playerService: PlayerService, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private admobFree: AdMobFree, private playService: PlayService) {
 
     if (!ENV.DEV) {
       const interstitialConfig: AdMobFreeInterstitialConfig = {
@@ -59,31 +59,36 @@ export class PlayPage {
   }
 
   public onContentClick() {
-    if (this.timer !== undefined && this.timer.timeInMilliSecondsLeft > 0) {
-      // Si un clic est effectué un timer, on considère que l'utilisateur a trouvé la réponse et on arrête le timer
-      this.timer.stop();
-    }
-    
-    this.timer = undefined;
-
-    if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
-      // Le tour de jeu est en plusieurs slides : passage à la suivante
-      this.currentTurnLabelIndex++;
+    if (this.timer !== undefined && this.timer.timeInMilliSecondsLeft > 0 && !this.timer.started) {
+      // Clic effectué sur le timer en attente : démarrage du timer
+      this.timer.start(this.onContentClick.bind(this));
     } else {
-      if (this.index < this.turns.length - 1) {
-        // Passage au tour de jeu suivant
-        this.index++;
-        this.onTurnChange();
+      if (this.timer !== undefined && this.timer.timeInMilliSecondsLeft > 0) {
+        // Clic effectué avec un timer en cours (= réponse trouvée) : arrêt du timer
+        this.timer.stop();
+      }
+
+      this.timer = undefined;
+
+      if (this.currentTurnLabelIndex < this.getCurrentTurn().labels.length - 1) {
+        // Le tour de jeu est en plusieurs slides : passage à la suivante
+        this.currentTurnLabelIndex++;
       } else {
-        // Fin de la partie : petite publicité
-        if (ENV.DEV) {
-          this.navCtrl.pop();
+        if (this.index < this.turns.length - 1) {
+          // Passage au tour de jeu suivant
+          this.index++;
+          this.onTurnChange();
         } else {
-          this.admobFree.interstitial.show()
-            .then(() => {
-              // Puis on retourne à l'écran d'accueil
-              this.navCtrl.pop();
-            });
+          // Fin de la partie : petite publicité
+          if (ENV.DEV) {
+            this.navCtrl.pop();
+          } else {
+            this.admobFree.interstitial.show()
+              .then(() => {
+                // Puis on retourne à l'écran d'accueil
+                this.navCtrl.pop();
+              });
+          }
         }
       }
     }
@@ -93,8 +98,7 @@ export class PlayPage {
     this.currentTurnLabelIndex = 0;
 
     if (CommonService.showTimer(this.getCurrentTurn().type) || this.getCurrentTurn().withTimer) {
-      this.timer = new Timer(this.playerService.hasEnoughtPlayers());
-      this.timer.start(this.onContentClick.bind(this));
+      this.timer = new Timer();
     }
   }
 

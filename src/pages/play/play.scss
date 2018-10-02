@@ -53,6 +53,12 @@ page-play {
                     margin-bottom: 50px;
                 }
 
+                .turn-label {
+                    .timer-click-message {
+                        font-style: italic;
+                    }
+                }
+
                 .turn-description {
                     margin-top: 50px;
                 }
@@ -78,6 +84,9 @@ page-play {
         }
         &.turn-long-winded .toolbar-background, &.turn-long-winded .toolbar-content {
             background-color: $turn-long-winded-color;
+        }
+        &.turn-movie .toolbar-background, &.turn-movie .toolbar-content {
+            background-color: $turn-song-color;
         }
         &.turn-song .toolbar-background, &.turn-song .toolbar-content {
             background-color: $turn-song-color;
