@@ -92,7 +92,7 @@ export class PlayPage {
   private onTurnChange() {
     this.currentTurnLabelIndex = 0;
 
-    if (CommonService.showTimer(this.getCurrentTurn().type)) {
+    if (CommonService.showTimer(this.getCurrentTurn().type) || this.getCurrentTurn().withTimer) {
       this.timer = new Timer(this.playerService.hasEnoughtPlayers());
       this.timer.start(this.onContentClick.bind(this));
     }

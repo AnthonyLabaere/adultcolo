@@ -8,16 +8,18 @@ import { environment as ENV } from '../environments/environment';
 export abstract class TurnEntry {
     theme: string;
     mandatoryPlayer: boolean;
+    withTimer: boolean;
     labels: string[];
     
-    public hydrate(theme: string, mandatoryPlayer:boolean, labels: string[]) {
+    public hydrate(theme: string, mandatoryPlayer:boolean, withTimer:boolean, labels: string[]) {
         this.theme = theme;
         this.mandatoryPlayer = mandatoryPlayer;
+        this.withTimer = withTimer;
         this.labels = labels;
     }
 
     public initFromData(themeData: ThemeData, turnEntryData: TurnEntryData, locale: string): void {
-        this.hydrate(themeData.label[locale], turnEntryData.mandatoryPlayer, turnEntryData.labels);
+        this.hydrate(themeData.label[locale], turnEntryData.mandatoryPlayer, turnEntryData.withTimer, turnEntryData.labels);
     }
 }
 
@@ -81,13 +83,15 @@ export class Turn {
     sipNumber: string;
     sipSuffix: string;
     playerLabel: string;
+    withTimer: boolean;
 
-    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string, playerLabel: string) {
+    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string, playerLabel: string, withTimer: boolean) {
         this.type = type;
         this.labels = labels;
         this.sipNumber = sipNumber;
         this.sipSuffix = sipSuffix;
         this.playerLabel = playerLabel;
+        this.withTimer = withTimer;
     }
 
     /**
@@ -101,7 +105,7 @@ export class Turn {
 
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel);
 
-        return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel);
+        return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel, turnEntry.withTimer);
     }
 
     /**
@@ -117,7 +121,7 @@ export class Turn {
 
         const turns: Turn[] = [];
         labels.forEach((label: string) => {
-            turns.push(new Turn(turnType, [label], sipNumber, sipSuffix, playerLabel));
+            turns.push(new Turn(turnType, [label], sipNumber, sipSuffix, playerLabel, turnEntry.withTimer));
         });
 
         return turns;
@@ -137,6 +141,7 @@ export class Player {
 export abstract class TurnEntryData {
     theme: number;
     mandatoryPlayer: boolean;
+    withTimer: boolean;
     labels: string[];
 }
 

@@ -60,6 +60,9 @@
         "game": {
             "0": {
                 "title": "Jeu"
+            },
+            "1": {
+                "title": "Jeu"
             }
         },
         "instead": {
