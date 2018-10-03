@@ -38,7 +38,7 @@ page-play {
             background-color: $turn-song-color;
         }
 
-        .scroll-content {
+        .turn-row {
             display: flex;
             display: -webkit-flex;
             justify-content: center;
@@ -46,22 +46,25 @@ page-play {
             align-items: center;
             -webkit-align-items: center;
 
-            .label-container {
-                padding: 0 15px;
+            padding: 0 15px;
 
-                .turn-title {
-                    margin-bottom: 50px;
+            &.turn-header {
+                height: 10%;
+            }
+            &.turn-title {
+                height: 20%;
+            }
+            &.turn-label {
+                height: 40%;
+                .timer-click-message {
+                    font-style: italic;
                 }
-
-                .turn-label {
-                    .timer-click-message {
-                        font-style: italic;
-                    }
-                }
-
-                .turn-description {
-                    margin-top: 50px;
-                }
+            }
+            &.turn-description {
+                height: 20%;
+            }
+            &.turn-timer {
+                height: 20%;
             }
         }
     }

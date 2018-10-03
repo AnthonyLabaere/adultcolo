@@ -1,27 +1,26 @@
 <ion-content class="play-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
-  <div class="label-container">
-      <h1 class="turn-title">
-        <span *ngIf="showTitle(getCurrentTurn()?.type)">
-          {{'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.title' | translate | uppercase}}
-        </span>
-      </h1>
-      <h2 class="turn-label">
-        <div class="timer-click-message" *ngIf="timer !== undefined && !timer.started" [translate]="'play.timer.clickMessage'"></div>
-        <div *ngIf="timer === undefined || timer.started">{{getCurrentTurn()?.labels[currentTurnLabelIndex]}}</div>
-      </h2>
-      <h5 class="turn-description">
-          <span *ngIf="showDescription(getCurrentTurn()?.type)" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
-            [translateParams]="{
-              sipNumber: getCurrentTurn()?.sipNumber, 
-              sipSuffix: getCurrentTurn()?.sipSuffix, 
-              player: getCurrentTurn()?.playerLabel,
-              timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
-            }"></span>
-      </h5>
-  </div>
+  <div class="turn-row turn-header"></div>
+  <h1 class="turn-row turn-title">
+    <span *ngIf="showTitle(getCurrentTurn()?.type)">
+      {{'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.title' | translate | uppercase}}
+    </span>
+  </h1>
+  <h2 class="turn-row turn-label">
+    <div class="timer-click-message" *ngIf="timer !== undefined && !timer.started" [translate]="'play.timer.clickMessage'"></div>
+    <div *ngIf="timer === undefined || timer.started">{{getCurrentTurn()?.labels[currentTurnLabelIndex]}}</div>
+  </h2>
+  <h5 class="turn-row turn-description">
+      <span *ngIf="showDescription(getCurrentTurn()?.type)" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
+        [translateParams]="{
+          sipNumber: getCurrentTurn()?.sipNumber, 
+          sipSuffix: getCurrentTurn()?.sipSuffix, 
+          player: getCurrentTurn()?.playerLabel,
+          timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
+        }"></span>
+  </h5>
 </ion-content>
 
-<ion-footer *ngIf="timer !== undefined" class="play-footer turn-{{getCurrentTurn()?.type}}">
+<ion-footer *ngIf="timer !== undefined && timer.started" class="play-footer turn-{{getCurrentTurn()?.type}}">
   <ion-toolbar>
       <progress-bar [progress]="timer?.progressPercent()"></progress-bar>
   </ion-toolbar>
