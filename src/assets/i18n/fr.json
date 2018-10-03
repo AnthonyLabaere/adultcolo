@@ -1,6 +1,11 @@
 {
     "title": "Adultcolo",
     "common": {
+        "alphabet": {
+            "complete": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+            "firstname": ["a", "b", "c", "d", "e", "f", "g", "h", "j", "l", "m", "n", "p", "r", "s", "t", "v"],
+            "city": ["b", "c", "d", "l", "m", "n", "p", "r", "s", "t", "v"]
+        },
         "player": {
             "suffix": ", ",
             "none": "",
@@ -113,7 +118,7 @@
     },
     "play": {
         "timer": {
-            "clickMessage": "Cliquez sur l'écran lorsque vous êtes prêts."
+            "clickMessage": "Attention chronomètre : cliquez sur l'écran lorsque vous êtes prêts."
         }
     }
 }

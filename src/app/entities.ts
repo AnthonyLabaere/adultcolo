@@ -186,9 +186,16 @@ export class Timer {
     timeInMilliSecondsLeft: number;
     interval;
 
-    constructor() {
-        this.totalTimeInMilliSeconds = 1000 * ENV.TIMER_TIME;
-        this.timeInMilliSecondsLeft = 1000 * ENV.TIMER_TIME;
+    constructor(type: TurnType) {
+        let time: number;
+        if (type === TurnType.GAME) {
+            time = ENV.TIMER_GAME_TIME;
+        } else {
+            time = ENV.TIMER_DEFAULT_TIME;
+        }
+
+        this.totalTimeInMilliSeconds = 1000 * time;
+        this.timeInMilliSecondsLeft = 1000 * time;
     }
 
     // TODO : promise au lieu de callback ?

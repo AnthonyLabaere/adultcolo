@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
-import { PlayerService } from '../../app/_services/player.service';
 import { PlayService } from './play.service';
 import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { environment as ENV } from '../../environments/environment';
@@ -98,7 +97,7 @@ export class PlayPage {
     this.currentTurnLabelIndex = 0;
 
     if (CommonService.showTimer(this.getCurrentTurn().type) || this.getCurrentTurn().withTimer) {
-      this.timer = new Timer();
+      this.timer = new Timer(this.getCurrentTurn().type);
     }
   }
 
