@@ -6,18 +6,6 @@
             "firstname": ["a", "b", "c", "d", "e", "f", "g", "h", "j", "l", "m", "n", "p", "r", "s", "t", "v"],
             "city": ["b", "c", "d", "l", "m", "n", "p", "r", "s", "t", "v"]
         },
-        "player": {
-            "suffix": ", ",
-            "none": "",
-            "phoneOwner": "Le propriétaire du téléphone",
-            "younger": "Le plus jeune",
-            "older": "Le plus vieux",
-            "beardest": "Le plus barbu",
-            "designed": "Désignez quelqu'un, il ou elle",
-            "first": "Le premier à se motiver",
-            "phoneHolder": "Celui ou celle qui tient le téléphone",
-            "houseOwner": "Le propriétaire des lieux"
-        },
         "command": {
             "drink": {
                 "singular": {
@@ -40,6 +28,22 @@
                 "plural": "distribuent"
             }
         },
+        "player": {
+            "suffix": ", ",
+            "none": "",
+            "phoneOwner": "Le propriétaire du téléphone",
+            "younger": "Le plus jeune",
+            "older": "Le plus vieux",
+            "beardest": "Le plus barbu",
+            "designed": "Désignez quelqu'un, il ou elle",
+            "first": "Le premier à se motiver",
+            "phoneHolder": "Celui ou celle qui tient le téléphone",
+            "houseOwner": "Le propriétaire des lieux"
+        },
+        "singers": [
+            "Johnny Hallyday", "Dany Brillant", "Orelsan", "Michael Jackson", "Jean-Jacques Goldman", "Céline Dion", "Patrick Bruel", "Fatals Picards", 
+            "Garou"
+        ],
         "sip": {
             "number": {
                 "one": "une",
@@ -52,7 +56,13 @@
                 "singular": "",
                 "plural": "s"
             }
-        }
+        },
+        "sounds": [
+            "mol", "ach"
+        ],
+        "synonymes": [
+            "argent", "saoul"
+        ]
     },
     "turnEntry": {
         "condition": {},

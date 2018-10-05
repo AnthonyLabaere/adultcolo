@@ -6,8 +6,11 @@ import { Player, TurnType, TurnTypeParameters, ValueWithWeight } from "../entiti
 @Injectable()
 export class CommonService {
 
-    public static ALPHABET_FIRSTNAME: string;
-    public static ALPHABET_CITY: string;
+    public static ALPHABET_FIRSTNAME: string[];
+    public static ALPHABET_CITY: string[];
+    public static SINGERS: string[];
+    public static SOUNDS: string[];
+    public static SYNONYMES: string[];
 
     public static PLAYER_SUFFIX: string;
     public static PLAYER_NONE: string;
@@ -52,6 +55,9 @@ export class CommonService {
 
     public static DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE = '<<random-letter-firstname>>';
     public static DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE = '<<random-letter-city>>';
+    public static DATA_RANDOM_SINGER_KEY_TO_REPLACE = '<<random-singer>>';
+    public static DATA_RANDOM_SOUND_KEY_TO_REPLACE = '<<random-sound>>';
+    public static DATA_RANDOM_SYNONYME_KEY_TO_REPLACE = '<<random-synonyme>>';
 
     public static ADULTCOLO_STORAGE_KEY_PREFIX = 'adultcolo-';
 
@@ -59,8 +65,11 @@ export class CommonService {
     }
 
     public initLocalizedConstants(): void {
-        this.translate.get('common.alphabet.firstname').subscribe((str: string) => {CommonService.ALPHABET_FIRSTNAME = str});
-        this.translate.get('common.alphabet.city').subscribe((str: string) => {CommonService.ALPHABET_CITY = str});
+        this.translate.get('common.alphabet.firstname').subscribe((str: string[]) => {CommonService.ALPHABET_FIRSTNAME = str});
+        this.translate.get('common.alphabet.city').subscribe((str: string[]) => {CommonService.ALPHABET_CITY = str});
+        this.translate.get('common.singers').subscribe((str: string[]) => {CommonService.SINGERS = str});
+        this.translate.get('common.sounds').subscribe((str: string[]) => {CommonService.SOUNDS = str});
+        this.translate.get('common.synonymes').subscribe((str: string[]) => {CommonService.SYNONYMES = str});
 
         this.translate.get('common.player.suffix').subscribe((str: string) => {CommonService.PLAYER_SUFFIX = str;});
         this.translate.get('common.player.none').subscribe((str: string) => {CommonService.PLAYER_NONE = str;});
@@ -165,7 +174,10 @@ export class CommonService {
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix)
             .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0].toUpperCase())
-            .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_CITY)[0].toUpperCase());
+            .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_CITY)[0].toUpperCase())
+            .replace(CommonService.DATA_RANDOM_SINGER_KEY_TO_REPLACE, _.shuffle(CommonService.SINGERS)[0])
+            .replace(CommonService.DATA_RANDOM_SOUND_KEY_TO_REPLACE, _.shuffle(CommonService.SOUNDS)[0])
+            .replace(CommonService.DATA_RANDOM_SYNONYME_KEY_TO_REPLACE, _.shuffle(CommonService.SYNONYMES)[0]);
         });
     }
 
