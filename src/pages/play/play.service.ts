@@ -101,7 +101,7 @@ export class PlayService {
         _.shuffle(turnEntries).slice(0, numberToAdd).forEach((turnEntry: TurnEntry) => {
             if (this.playerService.hasEnoughtPlayers()) {
                 turns.push(Turn.constructFromTurnEntry(turnEntry, turnType, _.shuffle(this.playerService.getPlayers())[0]));
-            } else if (!turnEntry.mandatoryPlayer) {
+            } else if (!turnEntry.mandatoryPlayers) {
                 turns.push(Turn.constructFromTurnEntry(turnEntry, turnType));
             }
         });

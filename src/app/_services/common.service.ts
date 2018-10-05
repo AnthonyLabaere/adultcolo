@@ -162,8 +162,8 @@ export class CommonService {
             .replace(CommonService.getRegexFromKey(CommonService.DATA_PLURAL_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND)
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix)
-            .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0])
-            .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_CITY)[0]);
+            .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0].toUpperCase())
+            .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_CITY)[0].toUpperCase());
         });
     }
 

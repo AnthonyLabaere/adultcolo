@@ -6,18 +6,18 @@ import { environment as ENV } from '../environments/environment';
 //region "Entrée de tour de jeu"
 
 export abstract class TurnEntry {
-    mandatoryPlayer: boolean;
+    mandatoryPlayers: boolean;
     withTimer: boolean;
     labels: string[];
     
-    public hydrate(mandatoryPlayer:boolean, withTimer:boolean, labels: string[]) {
-        this.mandatoryPlayer = mandatoryPlayer;
+    public hydrate(mandatoryPlayers:boolean, withTimer:boolean, labels: string[]) {
+        this.mandatoryPlayers = mandatoryPlayers;
         this.withTimer = withTimer;
         this.labels = labels;
     }
 
     public initFromData(turnEntryData: TurnEntryData, locale: string): void {
-        this.hydrate(turnEntryData.mandatoryPlayer, turnEntryData.withTimer, turnEntryData.labels);
+        this.hydrate(turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.labels);
     }
 }
 
@@ -137,7 +137,7 @@ export class Player {
 //region data
 
 export abstract class TurnEntryData {
-    mandatoryPlayer: boolean;
+    mandatoryPlayers: boolean;
     withTimer: boolean;
     labels: string[];
 }
@@ -157,11 +157,6 @@ export class LongWindedData extends TurnEntryData {}
 export class MovieData extends TurnEntryData {}
 
 export class SongData extends TurnEntryData {}
-
-export class ThemeData {
-    code: number;
-    label: LocalizedString;
-}
 
 // endRegion
 
