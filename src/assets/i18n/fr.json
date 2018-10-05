@@ -28,6 +28,9 @@
                 "plural": "distribuent"
             }
         },
+        "forbidden": {
+            "verbs": ["être", "avoir", "boire"]
+        },
         "player": {
             "suffix": ", ",
             "none": "",

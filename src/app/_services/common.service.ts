@@ -8,6 +8,7 @@ export class CommonService {
 
     public static ALPHABET_FIRSTNAME: string[];
     public static ALPHABET_CITY: string[];
+    public static FORBIDDEN_VERBS: string[];
     public static SINGERS: string[];
     public static SOUNDS: string[];
     public static SYNONYMES: string[];
@@ -55,6 +56,7 @@ export class CommonService {
 
     public static DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE = '<<random-letter-firstname>>';
     public static DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE = '<<random-letter-city>>';
+    public static DATA_RANDOM_FORBIDDEN_VERBS_KEY_TO_REPLACE = '<<random-forbidden-verb>>';
     public static DATA_RANDOM_SINGER_KEY_TO_REPLACE = '<<random-singer>>';
     public static DATA_RANDOM_SOUND_KEY_TO_REPLACE = '<<random-sound>>';
     public static DATA_RANDOM_SYNONYME_KEY_TO_REPLACE = '<<random-synonyme>>';
@@ -67,6 +69,7 @@ export class CommonService {
     public initLocalizedConstants(): void {
         this.translate.get('common.alphabet.firstname').subscribe((str: string[]) => {CommonService.ALPHABET_FIRSTNAME = str});
         this.translate.get('common.alphabet.city').subscribe((str: string[]) => {CommonService.ALPHABET_CITY = str});
+        this.translate.get('common.forbidden.verbs').subscribe((str: string[]) => {CommonService.FORBIDDEN_VERBS = str});
         this.translate.get('common.singers').subscribe((str: string[]) => {CommonService.SINGERS = str});
         this.translate.get('common.sounds').subscribe((str: string[]) => {CommonService.SOUNDS = str});
         this.translate.get('common.synonymes').subscribe((str: string[]) => {CommonService.SYNONYMES = str});
@@ -159,6 +162,13 @@ export class CommonService {
     }
 
     public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: string, sipSuffix:string, playerLabel:string, secondPlayerLabel:string) {
+        const randomLetterFirstname = _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0];
+        const randomLetterCity = _.shuffle(CommonService.ALPHABET_CITY)[0];
+        const randomForbiddenVerb = _.shuffle(CommonService.FORBIDDEN_VERBS)[0];
+        const randomSinger = _.shuffle(CommonService.SINGERS)[0];
+        const randomSound = _.shuffle(CommonService.SOUNDS)[0];
+        const randomSynonyme = _.shuffle(CommonService.SYNONYMES)[0];
+
         return labels.map(label => {
             return label
             .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, playerLabel)
@@ -173,11 +183,12 @@ export class CommonService {
             .replace(CommonService.getRegexFromKey(CommonService.DATA_PLURAL_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND)
             .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix)
-            .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0].toUpperCase())
-            .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, _.shuffle(CommonService.ALPHABET_CITY)[0].toUpperCase())
-            .replace(CommonService.DATA_RANDOM_SINGER_KEY_TO_REPLACE, _.shuffle(CommonService.SINGERS)[0])
-            .replace(CommonService.DATA_RANDOM_SOUND_KEY_TO_REPLACE, _.shuffle(CommonService.SOUNDS)[0])
-            .replace(CommonService.DATA_RANDOM_SYNONYME_KEY_TO_REPLACE, _.shuffle(CommonService.SYNONYMES)[0]);
+            .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, randomLetterFirstname.toUpperCase())
+            .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, randomLetterCity.toUpperCase())
+            .replace(CommonService.DATA_RANDOM_FORBIDDEN_VERBS_KEY_TO_REPLACE, randomForbiddenVerb)
+            .replace(CommonService.DATA_RANDOM_SINGER_KEY_TO_REPLACE, randomSinger)
+            .replace(CommonService.DATA_RANDOM_SOUND_KEY_TO_REPLACE, randomSound)
+            .replace(CommonService.DATA_RANDOM_SYNONYME_KEY_TO_REPLACE, randomSynonyme);
         });
     }
 
