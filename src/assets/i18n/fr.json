@@ -6,6 +6,9 @@
             "firstname": ["a", "b", "c", "d", "e", "f", "g", "h", "j", "l", "m", "n", "p", "r", "s", "t", "v"],
             "city": ["b", "c", "d", "l", "m", "n", "p", "r", "s", "t", "v"]
         },
+        "cards": {
+            "color": ["rouge", "noir"]
+        },
         "command": {
             "drink": {
                 "singular": {
@@ -31,6 +34,7 @@
         "forbidden": {
             "verbs": ["être", "avoir", "boire"]
         },
+        "headsOrTails": ["pile", "face"],
         "player": {
             "suffix": ", ",
             "none": "",
