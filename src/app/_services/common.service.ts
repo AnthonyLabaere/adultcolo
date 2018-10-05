@@ -40,6 +40,7 @@ export class CommonService {
     public static DATA_FILE_PATH = '../assets/data/';
 
     public static DATA_PLAYER_KEY_TO_REPLACE = '<<player>>';
+    public static DATA_SECOND_PLAYER_KEY_TO_REPLACE = '<<second-player>>';
  
     public static DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-second-person-command>>';
     public static DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE = '<<singular-indicative-third-person-command>>';
@@ -148,10 +149,11 @@ export class CommonService {
         return playerLabel;
     }
 
-    public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: string, sipSuffix:string, playerLabel:string) {
+    public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: string, sipSuffix:string, playerLabel:string, secondPlayerLabel:string) {
         return labels.map(label => {
             return label
             .replace(CommonService.DATA_PLAYER_KEY_TO_REPLACE, playerLabel)
+            .replace(CommonService.DATA_SECOND_PLAYER_KEY_TO_REPLACE, secondPlayerLabel)
             .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND))
             .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_SECOND_PERSON_COMMAND)
             .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND : CommonService.GIVE_OUT_SINGULAR_INDICATIVE_THIRD_PERSON_COMMAND))

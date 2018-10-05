@@ -100,7 +100,9 @@ export class PlayService {
 
         _.shuffle(turnEntries).slice(0, numberToAdd).forEach((turnEntry: TurnEntry) => {
             if (this.playerService.hasEnoughtPlayers()) {
-                turns.push(Turn.constructFromTurnEntry(turnEntry, turnType, _.shuffle(this.playerService.getPlayers())[0]));
+                const players = _.shuffle(this.playerService.getPlayers());
+
+                turns.push(Turn.constructFromTurnEntry(turnEntry, turnType, players[0], players[1]));
             } else if (!turnEntry.mandatoryPlayers) {
                 turns.push(Turn.constructFromTurnEntry(turnEntry, turnType));
             }
@@ -114,7 +116,9 @@ export class PlayService {
 
         _.shuffle(turnEntries).slice(0, numberToAdd).forEach((turnEntry: TurnEntry) => {
             if (this.playerService.hasEnoughtPlayers()) {
-                turns.push(Turn.constructDecoupledFromTurnEntry(turnEntry, turnType, _.shuffle(this.playerService.getPlayers())[0]));
+                const players = _.shuffle(this.playerService.getPlayers());
+
+                turns.push(Turn.constructDecoupledFromTurnEntry(turnEntry, turnType, players[0], players[1]));
             } else {
                 turns.push(Turn.constructDecoupledFromTurnEntry(turnEntry, turnType));
             }

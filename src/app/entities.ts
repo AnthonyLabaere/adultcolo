@@ -81,45 +81,49 @@ export class Turn {
     sipNumber: string;
     sipSuffix: string;
     playerLabel: string;
+    secondPlayerLabel: string;
     withTimer: boolean;
 
-    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string, playerLabel: string, withTimer: boolean) {
+    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
         this.type = type;
         this.labels = labels;
         this.sipNumber = sipNumber;
         this.sipSuffix = sipSuffix;
         this.playerLabel = playerLabel;
+        this.secondPlayerLabel = secondPlayerLabel;
         this.withTimer = withTimer;
     }
 
     /**
      * Construction d'un tour contenant tous les libellés
      */
-    public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player): Turn {
+    public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber();
         const drink = CommonService.random();
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
+        const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel);
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
 
-        return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel, turnEntry.withTimer);
+        return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer);
     }
 
     /**
      * Construction d'un tableau de tours contenant chacun un des libellés
      */
-    public static constructDecoupledFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player): Turn[] {
+    public static constructDecoupledFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn[] {
         const sipNumber = CommonService.getRandomSipNumber();
         const drink = CommonService.random();
         const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
+        const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel);
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
 
         const turns: Turn[] = [];
         labels.forEach((label: string) => {
-            turns.push(new Turn(turnType, [label], sipNumber, sipSuffix, playerLabel, turnEntry.withTimer));
+            turns.push(new Turn(turnType, [label], sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer));
         });
 
         return turns;
