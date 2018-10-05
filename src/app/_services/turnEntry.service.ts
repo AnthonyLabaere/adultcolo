@@ -4,7 +4,6 @@ import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
 import { Condition, ConditionData, ForOrAgainst, ForOrAgainstData, Game, GameData, ThemeData, TurnEntry, TurnEntryData, TurnType, Instead, InsteadData, Song, SongData, ListData, List, LongWinded, LongWindedData, Movie, MovieData } from "../entities";
 import { CommonService } from "./common.service";
-import { ThemeService } from "./theme.service";
 
 @Injectable()
 export class TurnEntryService {
@@ -12,7 +11,7 @@ export class TurnEntryService {
     private turnEntriesDataMap: Map<TurnType, TurnEntryData[]> = new Map();
     private turnEntriesMap: Map<TurnType, TurnEntry[]> = new Map();
 
-    constructor(private http: HttpClient, private translate: TranslateService, private themeService: ThemeService) {
+    constructor(private http: HttpClient, private translate: TranslateService) {
 
     }
 
@@ -25,14 +24,9 @@ export class TurnEntryService {
         if (this.turnEntriesMap.get(turnType)) {
             return Promise.resolve(this.turnEntriesMap.get(turnType));
         } else {
-            let themesData;
-            return this.themeService.getThemesData()
-                .then((themesDataTmp: ThemeData[]) => {
-                    themesData = themesDataTmp;
-                    return this.getTurnEntriesData(turnType);
-                })
+            return this.getTurnEntriesData(turnType)
                 .then((turnEntriesData: TurnEntryData[]) => {
-                    return Promise.resolve(this.buildTurnEntries(turnType, themesData, turnEntriesData));
+                    return Promise.resolve(this.buildTurnEntries(turnType, turnEntriesData));
                 });
         }
     }
@@ -55,47 +49,43 @@ export class TurnEntryService {
         }
     }
     
-    private buildTurnEntries(turnType: TurnType, themesData: ThemeData[], turnEntriesData: TurnEntryData[]): TurnEntry[] {
+    private buildTurnEntries(turnType: TurnType, turnEntriesData: TurnEntryData[]): TurnEntry[] {
         const turnEntries: TurnEntry[] = [];
 
         turnEntriesData.forEach((turnEntryData: TurnEntryData) => {
-            const themeData = _.find(themesData, (themeData: ThemeData) => { 
-                return themeData.code === turnEntryData.theme
-            });
-
             let turnEntry;
             switch(turnType) {
                 case TurnType.CONDITION:
                     turnEntry = new Condition();
-                    turnEntry.initFromData(themeData, <ConditionData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<ConditionData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.FOR_OR_AGAINST:
                     turnEntry = new ForOrAgainst();
-                    turnEntry.initFromData(themeData, <ForOrAgainstData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<ForOrAgainstData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.GAME:
                     turnEntry = new Game();
-                    turnEntry.initFromData(themeData, <GameData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<GameData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.INSTEAD:
                     turnEntry = new Instead();
-                    turnEntry.initFromData(themeData, <InsteadData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<InsteadData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.LIST:
                     turnEntry = new List();
-                    turnEntry.initFromData(themeData, <ListData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<ListData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.LONG_WINDED:
                     turnEntry = new LongWinded();
-                    turnEntry.initFromData(themeData, <LongWindedData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<LongWindedData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.MOVIE:
                     turnEntry = new Movie();
-                    turnEntry.initFromData(themeData, <MovieData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<MovieData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 case TurnType.SONG:
                     turnEntry = new Song();
-                    turnEntry.initFromData(themeData, <SongData> turnEntryData, this.translate.getDefaultLang());
+                    turnEntry.initFromData(<SongData> turnEntryData, this.translate.getDefaultLang());
                     break;
                 default:
                     break;

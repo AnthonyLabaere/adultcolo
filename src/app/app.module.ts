@@ -13,7 +13,6 @@ import { PlayService } from '../pages/play/play.service';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
 import { PlayerService } from './_services/player.service';
-import { ThemeService } from './_services/theme.service';
 import { TurnEntryService } from './_services/turnEntry.service';
 import { WarningPage } from '../pages/warning/warning';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
@@ -62,7 +61,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonService,
     PlayService,
     PlayerService,
-    ThemeService,
     TurnEntryService
   ]
 })
