@@ -27,6 +27,8 @@ export class ForOrAgainst extends TurnEntry {}
 
 export class Game extends TurnEntry {}
 
+export class General extends TurnEntry {}
+
 export class Instead extends TurnEntry {}
 
 export class List extends TurnEntry {}
@@ -41,20 +43,11 @@ export class Song extends TurnEntry {}
 
 //region "Tour de jeu"
 
-export class TurnTypeClass {
-    value: string;
-    subTypes: string[];
-
-    constructor(value: string, subTypes?: string[]) {
-        this.value = value;
-        this.subTypes = subTypes;
-    }
-}
-
 export enum TurnType {
     CONDITION = 'condition',
     FOR_OR_AGAINST = 'for-or-against',
     GAME = 'game',
+    GENERAL = 'general',
     INSTEAD = 'instead',
     LIST = 'list',
     LONG_WINDED = 'long-winded',
@@ -77,6 +70,7 @@ export class TurnTypeParameters {
         [TurnType.CONDITION]: new TurnTypeParameters(false, false, false),
         [TurnType.FOR_OR_AGAINST]: new TurnTypeParameters(true, true, false),
         [TurnType.GAME]: new TurnTypeParameters(true, false, false),
+        [TurnType.GENERAL]: new TurnTypeParameters(false, false, false),
         [TurnType.INSTEAD]: new TurnTypeParameters(true, true, false),
         [TurnType.LIST]: new TurnTypeParameters(true, true, false),
         [TurnType.LONG_WINDED]: new TurnTypeParameters(false, false, false),
@@ -161,6 +155,8 @@ export class ConditionData extends TurnEntryData {}
 export class ForOrAgainstData extends TurnEntryData {}
 
 export class GameData extends TurnEntryData {}
+
+export class GeneralData extends TurnEntryData {}
 
 export class InsteadData extends TurnEntryData {}
 

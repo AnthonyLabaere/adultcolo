@@ -138,7 +138,7 @@ export class CommonService {
         if (player !== undefined) {
             // Le joueur est renseigné donc son nom est pris comme libellé de joueur
             playerLabel = player.name;
-            if (turnType === TurnType.CONDITION) {
+            if (turnType === TurnType.CONDITION || turnType === TurnType.GENERAL) {
                 playerLabel +=  CommonService.PLAYER_SUFFIX;
             }
         } else {

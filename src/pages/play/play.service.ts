@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, Instead, List, LongWinded, Song, Turn, TurnEntry, TurnType, Movie } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, Instead, List, LongWinded, Song, Turn, TurnEntry, TurnType, Movie, General } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { environment as ENV } from '../../environments/environment';
@@ -15,6 +15,7 @@ export class PlayService {
         let turns: Turn[] = [];
         let longWindedTurns: Turn[][];
 
+        // TODO : une seule promesse avec un flatten au bout ?
         return this.turnEntryService.getTurnEntries(TurnType.FOR_OR_AGAINST)
             .then((forOrAgainsts: ForOrAgainst[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.FOR_OR_AGAINST, forOrAgainsts, 
@@ -25,6 +26,12 @@ export class PlayService {
             .then((games: Game[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.GAME, games,
                     _.random(ENV.GAMES_BY_PLAY[0], ENV.GAMES_BY_PLAY[1])));
+
+                return this.turnEntryService.getTurnEntries(TurnType.GENERAL);
+            })
+            .then((generals: General[]) => {
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.GENERAL, generals,
+                    _.random(ENV.GENERALS_BY_PLAY[0], ENV.GENERALS_BY_PLAY[1])));
 
                 return this.turnEntryService.getTurnEntries(TurnType.INSTEAD);
             })

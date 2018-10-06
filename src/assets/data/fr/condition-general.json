@@ -1,24 +1,2 @@
 [
-    {
-        "labels": [
-            "Tout le monde <<singular-indicative-third-person-command>> une gorgée."
-        ]
-    },
-    {
-        "labels": [
-            "Ceux qui n'ont pas encore distribué distribuent <<sipNumber>> gorgée<<sipSuffix>>."
-        ]
-    },
-    {
-        "mandatoryPlayers": true,
-        "labels": [
-            "<<player>>bois <<sipNumber>> gorgée<<sipSuffix>>."
-        ]
-    },
-    {
-        "mandatoryPlayers": true,
-        "labels": [
-            "<<player>>distribue <<sipNumber>> gorgée<<sipSuffix>> au joueur que tu aimes le plus."
-        ]
-    }
 ]

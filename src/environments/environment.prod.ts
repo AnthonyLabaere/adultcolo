@@ -4,6 +4,7 @@ export const environment = {
     TURN_NUMBER_TOTAL: 40,
     FOR_OR_AGAINSTS_BY_PLAY: [1, 3],
     GAMES_BY_PLAY: [5, 7],
+    GENERALS_BY_PLAY: [2, 4],
     INSTEADS_BY_PLAY: [1, 3],
     LISTS_BY_PLAY: [1, 3],
     LONG_WINDEDS_BY_PLAY: [2, 4],

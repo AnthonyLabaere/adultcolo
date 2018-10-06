@@ -3,6 +3,7 @@ page-play {
     $turn-condition-color: darkturquoise;
     $turn-for-or-against-color: crimson;
     $turn-game-color: darkorange;
+    $turn-general-color: darkturquoise;
     $turn-instead-color: crimson;
     $turn-list-color: darkorange;
     $turn-long-winded-color: gold;
@@ -21,6 +22,9 @@ page-play {
         }
         &.turn-game {
             background-color: $turn-game-color;
+        }
+        &.turn-general {
+            background-color: $turn-general-color;
         }
         &.turn-instead {
             background-color: $turn-instead-color;
@@ -78,6 +82,9 @@ page-play {
         }
         &.turn-game .toolbar-background, &.turn-game .toolbar-content {
             background-color: $turn-game-color;
+        }
+        &.turn-general .toolbar-background, &.turn-general .toolbar-content {
+            background-color: $turn-general-color;
         }
         &.turn-instead .toolbar-background, &.turn-instead .toolbar-content {
             background-color: $turn-instead-color;
