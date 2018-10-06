@@ -1,7 +1,7 @@
 <ion-content class="play-content turn-{{getCurrentTurn()?.type}}" (click)="onContentClick()">
   <div class="turn-row turn-header"></div>
   <h1 class="turn-row turn-title">
-    <span *ngIf="showTitle(getCurrentTurn()?.type)" class="turn-title-content">
+    <span *ngIf="!turnTransition && showTitle(getCurrentTurn()?.type)" class="turn-title-content">
       {{'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.title' | translate}}
     </span>
   </h1>

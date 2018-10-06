@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
+import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+import { Insomnia } from '@ionic-native/insomnia';
 import { NavController } from 'ionic-angular';
 import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
-import { PlayService } from './play.service';
-import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { environment as ENV } from '../../environments/environment';
-import { Insomnia } from '@ionic-native/insomnia';
+import { PlayService } from './play.service';
 
 @Component({
   selector: 'page-play',
   templateUrl: 'play.html'
 })
 export class PlayPage {
+
+  public turnTransition: boolean = false;
 
   // Liste des tours (= slides) de jeu
   private turns: Turn[] = [];
@@ -83,8 +85,12 @@ export class PlayPage {
       } else {
         if (this.index < this.turns.length - 1) {
           // Passage au tour de jeu suivant
+          this.turnTransition = true;
           this.index++;
           this.onTurnChange();
+
+          // C'est dégueu mais ça permet de gérer les animations
+          setTimeout(() => {this.turnTransition = false;}, 1);
         } else {
           // Fin de la partie : petite publicité
           if (ENV.DEV) {
