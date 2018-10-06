@@ -75,7 +75,7 @@ export class CommonService {
         this.translate.get('common.alphabet.city').subscribe((str: string[]) => {CommonService.ALPHABET_CITY = str});
         this.translate.get('common.cards.color').subscribe((str: string[]) => {CommonService.CARDS_COLOR = str});
         this.translate.get('common.forbidden.verbs').subscribe((str: string[]) => {CommonService.FORBIDDEN_VERBS = str});
-        this.translate.get('common.headsrTails').subscribe((str: string[]) => {CommonService.HEADS_OR_TAILS = str});
+        this.translate.get('common.headsorTails').subscribe((str: string[]) => {CommonService.HEADS_OR_TAILS = str});
         this.translate.get('common.singers').subscribe((str: string[]) => {CommonService.SINGERS = str});
         this.translate.get('common.sounds').subscribe((str: string[]) => {CommonService.SOUNDS = str});
         this.translate.get('common.synonymes').subscribe((str: string[]) => {CommonService.SYNONYMES = str});
@@ -172,7 +172,7 @@ export class CommonService {
         const randomLetterCity = _.shuffle(CommonService.ALPHABET_CITY)[0];
         const randomCardColor = _.shuffle(CommonService.CARDS_COLOR)[0];
         const randomForbiddenVerb = _.shuffle(CommonService.FORBIDDEN_VERBS)[0];
-        const randomHeadsOrTailsVerb = _.shuffle(CommonService.HEADS_OR_TAILS)[0];
+        const randomHeadsOrTails = _.shuffle(CommonService.HEADS_OR_TAILS)[0];
         const randomSinger = _.shuffle(CommonService.SINGERS)[0];
         const randomSound = _.shuffle(CommonService.SOUNDS)[0];
         const randomSynonyme = _.shuffle(CommonService.SYNONYMES)[0];
@@ -195,7 +195,7 @@ export class CommonService {
             .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, randomLetterCity.toUpperCase())
             .replace(CommonService.DATA_RANDOM_CARD_COLOR_KEY_TO_REPLACE, randomCardColor)
             .replace(CommonService.DATA_RANDOM_FORBIDDEN_VERBS_KEY_TO_REPLACE, randomForbiddenVerb)
-            .replace(CommonService.DATA_RANDOM_HEADS_OR_TAILS_VERBS_KEY_TO_REPLACE, randomHeadsOrTailsVerb)
+            .replace(CommonService.DATA_RANDOM_HEADS_OR_TAILS_VERBS_KEY_TO_REPLACE, randomHeadsOrTails)
             .replace(CommonService.DATA_RANDOM_SINGER_KEY_TO_REPLACE, randomSinger)
             .replace(CommonService.DATA_RANDOM_SOUND_KEY_TO_REPLACE, randomSound)
             .replace(CommonService.DATA_RANDOM_SYNONYME_KEY_TO_REPLACE, randomSynonyme);
