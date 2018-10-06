@@ -9,15 +9,14 @@
     </ion-item>
   </ion-list>
 
-  <button *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
+  <button class="add-button" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-content>
 
 <ion-footer class="home-footer">
   <ion-toolbar>
-      <button class="play-button" ion-button large item-end icon-start (click)="onPlayClick()">
-        <ion-icon name="wine"></ion-icon>
+      <button class="play-button" ion-button large (click)="onPlayClick()">
         {{'home.buttons.play' | translate}}
       </button>
   </ion-toolbar>

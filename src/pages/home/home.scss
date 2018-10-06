@@ -39,6 +39,7 @@ page-home {
         .play-button {
             color: map-get($colors, light);
             background-color: darkslategray;
+            font-family: 'Atma-Bold' !important;
         }
     }
 }
