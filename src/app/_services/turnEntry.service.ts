@@ -56,9 +56,11 @@ export class TurnEntryService {
             }
 
             return Promise.all(promises)
-                .then((turnEntriesData: TurnEntryData[][]) => {
+                .then((turnEntriesDatas: TurnEntryData[][]) => {
                     // Mise à plat des résultats
-                    return Promise.resolve(_.flatten(turnEntriesData));
+                    const turnEntriesData = _.flatten(turnEntriesDatas)
+                    this.turnEntriesDataMap.set(turnType, turnEntriesData);
+                    return Promise.resolve(turnEntriesData);
                 });
         }
     }
@@ -68,8 +70,6 @@ export class TurnEntryService {
             this.http.get(this.getTurnEntryDataFilePath(turnType, subTurnType))
             .subscribe(
                 (turnEntriesData: TurnEntryData[]) => {
-                    this.turnEntriesDataMap.set(turnType, turnEntriesData);
-
                     resolve(turnEntriesData);
                 },
                 error => {}
