@@ -49,7 +49,7 @@
         },
         "singers": [
             "Johnny Hallyday", "Dany Brillant", "Orelsan", "Michael Jackson", "Jean-Jacques Goldman", "Céline Dion", "Patrick Bruel", "Fatals Picards", 
-            "Garou"
+            "Garou", "U2", ""
         ],
         "sip": {
             "number": {
@@ -65,10 +65,10 @@
             }
         },
         "sounds": [
-            "mol", "ach"
+            "mol", "ach", ""
         ],
         "synonymes": [
-            "argent", "saoul"
+            "argent", "saoul", "boire"
         ]
     },
     "turnEntry": {

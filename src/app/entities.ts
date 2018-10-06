@@ -41,6 +41,16 @@ export class Song extends TurnEntry {}
 
 //region "Tour de jeu"
 
+export class TurnTypeClass {
+    value: string;
+    subTypes: string[];
+
+    constructor(value: string, subTypes?: string[]) {
+        this.value = value;
+        this.subTypes = subTypes;
+    }
+}
+
 export enum TurnType {
     CONDITION = 'condition',
     FOR_OR_AGAINST = 'for-or-against',

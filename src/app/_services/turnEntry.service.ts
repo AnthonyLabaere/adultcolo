@@ -8,6 +8,10 @@ import { CommonService } from "./common.service";
 @Injectable()
 export class TurnEntryService {
 
+    private static TURN_SUB_TYPES = {
+        [TurnType.CONDITION]: ['general']
+    }
+
     private turnEntriesDataMap: Map<TurnType, TurnEntryData[]> = new Map();
     private turnEntriesMap: Map<TurnType, TurnEntry[]> = new Map();
 
@@ -15,9 +19,14 @@ export class TurnEntryService {
 
     }
 
-    private getTurnEntryDataFilePath(turnType: TurnType) {
+    private getTurnEntryDataFilePath(turnType: TurnType, subTurnType?: string) {
         // TODO : vérifier que le fichier est bien rechargé après un changement de langue
-        return CommonService.DATA_FILE_PATH + this.translate.getDefaultLang() + '/' + turnType.toString() + '.json';
+        let turnEntryDataFilePath = CommonService.DATA_FILE_PATH + this.translate.getDefaultLang() + '/' + turnType.toString();
+        if (subTurnType !== undefined) {
+            turnEntryDataFilePath += '-' + subTurnType;
+        }
+        turnEntryDataFilePath += '.json';
+        return turnEntryDataFilePath;
     }
 
     public getTurnEntries(turnType: TurnType): Promise<TurnEntry[]> {
@@ -35,18 +44,37 @@ export class TurnEntryService {
         if (this.turnEntriesDataMap.get(turnType)) {
             return Promise.resolve(this.turnEntriesDataMap.get(turnType));
         } else {
-            return new Promise(resolve => {
-                this.http.get(this.getTurnEntryDataFilePath(turnType))
-                .subscribe(
-                    (turnEntriesData: TurnEntryData[]) => {
-                        this.turnEntriesDataMap.set(turnType, turnEntriesData);
-    
-                        resolve(turnEntriesData);
-                    },
-                    error => {}
-                );
-            });
+            const promises: Promise<TurnEntryData[]>[] = []
+            // Chargement du fichier principal (exemple : conditions.json)
+            promises.push(this.loadTurnEntriesData(turnType));
+            if (TurnEntryService.TURN_SUB_TYPES[turnType] !== undefined) {
+                // Si des autres fichiers du même sont présents (cette information est dans TURN_SUB_TYPES)
+                // Alors ils sont aussi ajoutés (exemple : condition-general.json)
+                TurnEntryService.TURN_SUB_TYPES[turnType].forEach(subType => {
+                    promises.push(this.loadTurnEntriesData(turnType, subType));
+                });
+            }
+
+            return Promise.all(promises)
+                .then((turnEntriesData: TurnEntryData[][]) => {
+                    // Mise à plat des résultats
+                    return Promise.resolve(_.flatten(turnEntriesData));
+                });
         }
+    }
+
+    private loadTurnEntriesData(turnType: TurnType, subTurnType?: string): Promise<TurnEntryData[]> {
+        return new Promise(resolve => {
+            this.http.get(this.getTurnEntryDataFilePath(turnType, subTurnType))
+            .subscribe(
+                (turnEntriesData: TurnEntryData[]) => {
+                    this.turnEntriesDataMap.set(turnType, turnEntriesData);
+
+                    resolve(turnEntriesData);
+                },
+                error => {}
+            );
+        });
     }
     
     private buildTurnEntries(turnType: TurnType, turnEntriesData: TurnEntryData[]): TurnEntry[] {
