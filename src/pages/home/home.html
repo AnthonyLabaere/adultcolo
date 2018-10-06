@@ -2,7 +2,7 @@
   <div class="home-title-container">
       <div class="home-title">{{'title' | translate}}</div>
   </div>
-
+  
   <ion-list class="players-list">
     <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
       <ion-input type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}"></ion-input>
