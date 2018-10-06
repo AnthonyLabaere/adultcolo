@@ -58,7 +58,7 @@ page-play {
             &.turn-title {
                 height: 20%;
                 font-family: 'Atma-Bold' !important;
-                $title-font-size: 50px;
+                $title-font-size: 40px;
                 font-size: $title-font-size;
 
                 .turn-title-content {
@@ -78,8 +78,24 @@ page-play {
             }
             &.turn-label {
                 height: 40%;
-                .timer-click-message {
-                    font-style: italic;
+
+                .turn-label-content {
+                    animation: slide-label 0.5s ease;
+
+                    @keyframes slide-label {
+                        0% {
+                            opacity: 0;
+                            transform: translateX(200px);
+                        }
+                        100% {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                    }
+
+                    .timer-click-message {
+                        font-style: italic;
+                    }
                 }
             }
             &.turn-description {

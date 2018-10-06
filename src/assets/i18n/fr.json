@@ -7,7 +7,7 @@
             "city": ["b", "c", "d", "l", "m", "n", "p", "r", "s", "t", "v"]
         },
         "cards": {
-            "color": ["rouge", "noir"]
+            "color": ["Rouge", "Noir"]
         },
         "command": {
             "drink": {
@@ -34,7 +34,7 @@
         "forbidden": {
             "verbs": ["être", "avoir", "boire"]
         },
-        "headsOrTails": ["pile", "face"],
+        "headsOrTails": ["Pile", "Face"],
         "player": {
             "suffix": ", ",
             "none": "",

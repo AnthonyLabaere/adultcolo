@@ -75,7 +75,7 @@ export class CommonService {
         this.translate.get('common.alphabet.city').subscribe((str: string[]) => {CommonService.ALPHABET_CITY = str});
         this.translate.get('common.cards.color').subscribe((str: string[]) => {CommonService.CARDS_COLOR = str});
         this.translate.get('common.forbidden.verbs').subscribe((str: string[]) => {CommonService.FORBIDDEN_VERBS = str});
-        this.translate.get('common.headsorTails').subscribe((str: string[]) => {CommonService.HEADS_OR_TAILS = str});
+        this.translate.get('common.headsOrTails').subscribe((str: string[]) => {CommonService.HEADS_OR_TAILS = str});
         this.translate.get('common.singers').subscribe((str: string[]) => {CommonService.SINGERS = str});
         this.translate.get('common.sounds').subscribe((str: string[]) => {CommonService.SOUNDS = str});
         this.translate.get('common.synonymes').subscribe((str: string[]) => {CommonService.SYNONYMES = str});

@@ -6,8 +6,10 @@
     </span>
   </h1>
   <h2 class="turn-row turn-label">
-    <div class="timer-click-message" *ngIf="timer !== undefined && !timer.started" [translate]="'play.timer.clickMessage'"></div>
-    <div *ngIf="timer === undefined || timer.started">{{getCurrentTurn()?.labels[currentTurnLabelIndex]}}</div>
+    <div *ngIf="!turnTransition" class="turn-label-content">
+        <div class="timer-click-message" *ngIf="timer !== undefined && !timer.started" [translate]="'play.timer.clickMessage'"></div>
+        <div *ngIf="timer === undefined || timer.started">{{getCurrentTurn()?.labels[currentTurnLabelIndex]}}</div>
+    </div>
   </h2>
   <h5 class="turn-row turn-description">
       <span *ngIf="showDescription(getCurrentTurn()?.type)" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
