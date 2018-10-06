@@ -3,8 +3,8 @@ export const environment = {
 
     TURN_NUMBER_TOTAL: 10,
     FOR_OR_AGAINSTS_BY_PLAY: [0, 0],
-    GAMES_BY_PLAY: [0, 0],
-    GENERALS_BY_PLAY: [4, 4],
+    GAMES_BY_PLAY: [2, 2],
+    GENERALS_BY_PLAY: [0, 0],
     INSTEADS_BY_PLAY: [0, 0],
     LISTS_BY_PLAY: [0, 0],
     LONG_WINDEDS_BY_PLAY: [0, 0],

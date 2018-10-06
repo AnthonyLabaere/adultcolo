@@ -1,20 +1,18 @@
 $background-color: darkcyan;
 
 page-home {
-    .home-header {
-        .toolbar-background, .toolbar-content {
-            background-color: $background-color !important;
-        }
-
-        .home-title {
-            text-align: center;
-        }
-    }
-
-
     .home-content {
         text-align: center;
         background-color: $background-color;
+
+        .home-title-container {
+            color: map-get($colors, light);
+            margin-bottom: 20px;
+            .home-title {
+                font-family: 'Atma-Bold' !important;
+                font-size: 55px;
+            }
+        }
 
         .players-list {
             ion-item {

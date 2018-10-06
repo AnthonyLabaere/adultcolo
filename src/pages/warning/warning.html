@@ -1,11 +1,12 @@
-<ion-header class="warning-header">
-    <ion-navbar>
-        <ion-title color="light" class="warning-title">{{'title' | translate | uppercase}}</ion-title>
-    </ion-navbar>
-  </ion-header>
-
 <ion-content class="warning-content">
-    <h4 color="light" class="warning-container" [translate]="'warning.content'"></h4>
+    <div class="warning-title-container">
+        <div class="warning-title">{{'title' | translate}}</div>
+    </div>
+
+    <div class="warning-content-container">
+        <h4 color="light" class="warning-content" [translate]="'warning.content'"></h4>
+    </div>
+    
 </ion-content>
 
 <ion-footer class="warning-footer">

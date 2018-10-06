@@ -15,10 +15,22 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@font-face {
+    font-family: 'Atma-Bold';
+    src: url(../assets/fonts/atma/Atma-Bold.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Atma-Light';
+    src: url(../assets/fonts/atma/Atma-Light.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 .button-md {
     text-transform: none;
 }
-
 
 .list {
     .item-input:last-child {

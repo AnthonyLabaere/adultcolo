@@ -2,7 +2,7 @@
   <div class="turn-row turn-header"></div>
   <h1 class="turn-row turn-title">
     <span *ngIf="showTitle(getCurrentTurn()?.type)">
-      {{'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.title' | translate | uppercase}}
+      {{'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.title' | translate}}
     </span>
   </h1>
   <h2 class="turn-row turn-label">
