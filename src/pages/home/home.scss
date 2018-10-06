@@ -24,9 +24,10 @@ page-home {
                     border-bottom-color: darkslategray !important;
                     box-shadow: inset 0 -1px 0 0 darkslategray !important;
                 }
+
+                animation: slide-up 0.4s ease;
             }
         }
-
     }
 
     .home-footer {

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { animate, Component, OnInit, state, style, transition, trigger } from '@angular/core';
+import { ModalController, NavController } from 'ionic-angular';
 import { Player } from '../../app/entities';
 import { PlayerService } from '../../app/_services/player.service';
 import { PlayPage } from '../play/play';
@@ -7,9 +7,20 @@ import { WarningPage } from '../warning/warning';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  animations: [
+          // Each unique animation requires its own trigger. The first argument of the trigger function is the name
+          trigger('rotatedState', [
+            state('default', style({ transform: 'rotate(0deg)' })),
+            state('rotated', style({ transform: 'rotate(90deg)' })),
+            transition('* => *', animate('0.4s ease-out')),
+        ])
+    ]
 })
 export class HomePage implements OnInit {
+
+  public addButtonRotatedPosition: number = 0;
+  public rotated = ['default', 'rotated'];
 
   private static MIN_PLAYERS_ON_DISPLAY = 3;
 
@@ -48,6 +59,8 @@ export class HomePage implements OnInit {
 
   public addPlayer() {
     if (this.canAddPlayer()) {
+      this.addButtonRotatedPosition = (this.addButtonRotatedPosition + 1) % this.rotated.length;
+
       this.players.push(new Player());
     }
   }

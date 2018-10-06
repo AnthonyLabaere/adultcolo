@@ -9,7 +9,7 @@
     </ion-item>
   </ion-list>
 
-  <button class="add-button" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
+  <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-content>

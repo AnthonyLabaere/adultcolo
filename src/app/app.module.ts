@@ -1,23 +1,24 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdMobFree } from '@ionic-native/admob-free';
+import { Insomnia } from '@ionic-native/insomnia';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Insomnia } from '@ionic-native/insomnia';
 import { IonicStorageModule } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { HomePage } from '../pages/home/home';
 import { PlayPage } from '../pages/play/play';
 import { PlayService } from '../pages/play/play.service';
+import { WarningPage } from '../pages/warning/warning';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
 import { PlayerService } from './_services/player.service';
 import { TurnEntryService } from './_services/turnEntry.service';
-import { WarningPage } from '../pages/warning/warning';
-import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
-import { AdMobFree } from '@ionic-native/admob-free';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(Adultcolo, {
       scrollPadding: false,
       scrollAssist: false
