@@ -5,6 +5,7 @@ import { CommonService } from '../../app/_services/common.service';
 import { PlayService } from './play.service';
 import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { environment as ENV } from '../../environments/environment';
+import { Insomnia } from '@ionic-native/insomnia';
 
 @Component({
   selector: 'page-play',
@@ -23,7 +24,7 @@ export class PlayPage {
   // Dans le cas où un timer est nécessaire (exemple : les chansons)
   public timer: Timer;
 
-  constructor(public navCtrl: NavController, private admobFree: AdMobFree, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, private playService: PlayService) {
 
     if (!ENV.DEV) {
       const interstitialConfig: AdMobFreeInterstitialConfig = {
@@ -49,6 +50,13 @@ export class PlayPage {
    * Lancement de la partie
    */
   private startPlay() {
+    // Interdiction de passer en mode veille
+    this.insomnia.keepAwake()
+      .then(
+        () => {},
+        () => {}
+      );
+
     this.index = 0;
     this.onTurnChange();
   }
@@ -84,6 +92,12 @@ export class PlayPage {
           } else {
             this.admobFree.interstitial.show()
               .then(() => {
+                // La mise en veille est de nouveau rendu possible
+                this.insomnia.allowSleepAgain()
+                  .then(
+                    () => {},
+                    () => {}
+                  );  
                 // Puis on retourne à l'écran d'accueil
                 this.navCtrl.pop();
               });

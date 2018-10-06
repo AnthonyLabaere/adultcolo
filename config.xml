@@ -87,5 +87,6 @@
     <plugin name="cordova-admob-sdk" spec="^0.19.0">
         <variable name="PLAY_SERVICES_VERSION" value="11.6.0" />
     </plugin>
+    <plugin name="cordova-plugin-insomnia" spec="^4.3.0" />
     <engine name="android" spec="7.0.0" />
 </widget>
