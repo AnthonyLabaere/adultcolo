@@ -32,7 +32,7 @@
             }
         },
         "forbidden": {
-            "verbs": ["être", "avoir", "boire"]
+            "verbs": ["boire"]
         },
         "headsOrTails": ["Pile", "Face"],
         "player": {
