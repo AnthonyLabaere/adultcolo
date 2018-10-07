@@ -9,7 +9,7 @@ import { CommonService } from "./common.service";
 export class TurnEntryService {
 
     private static TURN_SUB_TYPES = {
-        [TurnType.CONDITION]: ['enfant', 'alcool']
+        [TurnType.CONDITION]: ['child', 'alcool']
     }
 
     private turnEntriesDataMap: Map<TurnType, TurnEntryData[]> = new Map();
