@@ -151,4 +151,28 @@ export class PlayPage {
     }
   }
 
+  public getSipNumberLabel(): string {
+    if (this.getCurrentTurn()) {
+      return CommonService.getSipNumberLabel(this.getCurrentTurn().sipNumber);
+    } else {
+      return '';
+    }
+  }
+
+  public getSipSuffix(): string {
+    if (this.getCurrentTurn()) {
+      return CommonService.getSipSuffix(this.getCurrentTurn().sipNumber);
+    } else {
+      return '';
+    }
+  }
+
+  public getSipPronoun(): string {
+    if (this.getCurrentTurn()) {
+      return CommonService.getSipPronoun(this.getCurrentTurn().sipNumber);
+    } else {
+      return '';
+    }
+  }
+
 }

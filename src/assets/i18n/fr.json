@@ -62,6 +62,10 @@
             "suffix": {
                 "singular": "",
                 "plural": "s"
+            },
+            "pronoun": {
+                "singular": "la",
+                "plural": "les"
             }
         },
         "sounds": [
@@ -76,7 +80,7 @@
         "for-or-against": {
             "0": {
                 "title": "Pour ou contre",
-                "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+                "description": "Votez en même temps, les minoritaires boivent {{sipNumberLabel}} gorgée{{sipSuffix}}."
             }
         },
         "game": {
@@ -90,13 +94,13 @@
         "instead": {
             "0": {
                 "title": "Plutôt",
-                "description": "Votez en même temps, les minoritaires boivent {{sipNumber}} gorgée{{sipSuffix}}."
+                "description": "Votez en même temps, les minoritaires boivent {{sipNumberLabel}} gorgée{{sipSuffix}}."
             }
         },
         "list": {
             "0": {
                 "title": "Thèmes",
-                "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumber}} gorgée{{sipSuffix}}. {{player}} commence."
+                "description": "Chacun votre tour, citez un élément respectant le thème affiché. Le premier à avoir un blanc boit {{sipNumberLabel}} gorgée{{sipSuffix}}. {{player}} commence."
             }
         },
         "long-winded": {},
@@ -107,7 +111,7 @@
             },
             "1": {
                 "title": "Film",
-                "description": "Distribue {{sipNumber}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu les bois !"
+                "description": "Distribue {{sipNumberLabel}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu {{sipPronoun}} bois !"
             }
         },
         "song": {
@@ -117,7 +121,7 @@
             },
             "1": {
                 "title": "Chanson",
-                "description": "Distribue {{sipNumber}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu les bois !"
+                "description": "Distribue {{sipNumberLabel}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu {{sipPronoun}} bois !"
             }
         }
     },

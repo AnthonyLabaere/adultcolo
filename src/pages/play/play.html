@@ -15,8 +15,9 @@
     <span *ngIf="showSpecificDescription()">{{getCurrentTurn()?.descriptions[currentTurnLabelIndex]}}</span>
     <span *ngIf="showGlobalDescription(getCurrentTurn()?.type) && !showSpecificDescription()" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
       [translateParams]="{
-        sipNumber: getCurrentTurn()?.sipNumber, 
-        sipSuffix: getCurrentTurn()?.sipSuffix, 
+        sipNumberLabel: getSipNumberLabel(), 
+        sipSuffix: getSipSuffix(),
+        sipPronoun: getSipPronoun(),
         player: getCurrentTurn()?.playerLabel,
         timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
       }"></span>

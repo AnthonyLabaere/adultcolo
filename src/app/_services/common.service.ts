@@ -42,6 +42,8 @@ export class CommonService {
     public static FIVE_SIP_NUMBER: string;
     public static SIP_SUFFIX_SINGULAR: string;
     public static SIP_SUFFIX_PLURAL: string;
+    public static SIP_PRONOUN_SINGULAR: string;
+    public static SIP_PRONOUN_PLURAL: string;
 
     public static DATA_FILE_PATH = '../assets/data/';
 
@@ -55,6 +57,7 @@ export class CommonService {
 
     public static DATA_SIP_NUMBER_KEY_TO_REPLACE = '<<sipNumber>>';
     public static DATA_SIP_SUFFIX_KEY_TO_REPLACE = '<<sipSuffix>>';
+    public static DATA_SIP_PRONOUN_KEY_TO_REPLACE = '<<sipPronoun>>';
 
     public static DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE = '<<random-letter-firstname>>';
     public static DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE = '<<random-letter-city>>';
@@ -107,30 +110,11 @@ export class CommonService {
         this.translate.get('common.sip.number.five').subscribe((str: string) => {CommonService.FIVE_SIP_NUMBER = str;});
         this.translate.get('common.sip.suffix.singular').subscribe((str: string) => {CommonService.SIP_SUFFIX_SINGULAR = str;});
         this.translate.get('common.sip.suffix.plural').subscribe((str: string) => {CommonService.SIP_SUFFIX_PLURAL = str;});
+        this.translate.get('common.sip.pronoun.singular').subscribe((str: string) => {CommonService.SIP_PRONOUN_SINGULAR = str;});
+        this.translate.get('common.sip.pronoun.plural').subscribe((str: string) => {CommonService.SIP_PRONOUN_PLURAL = str;});
     }
 
     // Region fonctionnelle
-
-    public static getRandomSipNumber(bigSip: boolean = false): string {
-        let randomNumber;
-        if (bigSip) {
-            randomNumber = _.random(2, 4);
-        } else {
-            randomNumber = _.random(2);
-        }
-
-        if (randomNumber === 0) {
-            return CommonService.ONE_SIP_NUMBER;
-        } else if (randomNumber === 1) {
-            return CommonService.TWO_SIP_NUMBER;
-        } else if (randomNumber === 2) {
-            return CommonService.THREE_SIP_NUMBER;
-        } else if (randomNumber === 3) {
-            return CommonService.FOUR_SIP_NUMBER;
-        } else if (randomNumber === 4) {
-            return CommonService.FIVE_SIP_NUMBER;
-        }
-    }
 
     public static getPlayerLabel(turnType: TurnType, player?: Player): string {
         let playerLabel: string;
@@ -167,7 +151,42 @@ export class CommonService {
         return playerLabel;
     }
 
-    public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: string, sipSuffix:string, playerLabel:string, secondPlayerLabel:string) {
+    public static getRandomSipNumber(bigSip: boolean = false): number {
+        let randomNumber;
+        if (bigSip) {
+            randomNumber = _.random(2, 4);
+        } else {
+            randomNumber = _.random(2);
+        }
+        return randomNumber;
+    }
+
+    public static getSipNumberLabel(sipNumber: number): string {
+        if (sipNumber === 0) {
+            return CommonService.ONE_SIP_NUMBER;
+        } else if (sipNumber === 1) {
+            return CommonService.TWO_SIP_NUMBER;
+        } else if (sipNumber === 2) {
+            return CommonService.THREE_SIP_NUMBER;
+        } else if (sipNumber === 3) {
+            return CommonService.FOUR_SIP_NUMBER;
+        } else if (sipNumber === 4) {
+            return CommonService.FIVE_SIP_NUMBER;
+        }
+    }
+
+    public static getSipSuffix(sipNumber: number): string {
+        return sipNumber > 1 ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
+    }
+
+    public static getSipPronoun(sipNumber: number): string {
+        return sipNumber > 1 ? CommonService.SIP_PRONOUN_PLURAL : CommonService.SIP_PRONOUN_SINGULAR;
+    }
+
+    public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: number, playerLabel:string, secondPlayerLabel:string) {
+        const sipNumberLabel = CommonService.getSipNumberLabel(sipNumber);
+        const sipSuffix = CommonService.getSipSuffix(sipNumber);
+        const sipPronoun = CommonService.getSipPronoun(sipNumber);
         const randomLetterFirstname = _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0];
         const randomLetterCity = _.shuffle(CommonService.ALPHABET_CITY)[0];
         const randomCardColor = _.shuffle(CommonService.CARDS_COLOR)[0];
@@ -189,8 +208,9 @@ export class CommonService {
             .replace(CommonService.getRegexFromKey(CommonService.DATA_SINGULAR_IMPERATIVE_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_SINGULAR_IMPERATIVE_COMMAND : CommonService.GIVE_OUT_SINGULAR_IMPERATIVE_COMMAND)
             .replace(CommonService.getRegexFromKey(CommonService.DATA_PLURAL_COMMAND_KEY_TO_REPLACE, true), CommonService.capitalize(drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND))
             .replace(CommonService.getRegexFromKey(CommonService.DATA_PLURAL_COMMAND_KEY_TO_REPLACE), drink ? CommonService.DRINK_PLURAL_COMMAND : CommonService.GIVE_OUT_PLURAL_COMMAND)
-            .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumber)
+            .replace(CommonService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumberLabel)
             .replace(CommonService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix)
+            .replace(CommonService.DATA_SIP_PRONOUN_KEY_TO_REPLACE, sipPronoun)
             .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, randomLetterFirstname.toUpperCase())
             .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, randomLetterCity.toUpperCase())
             .replace(CommonService.DATA_RANDOM_CARD_COLOR_KEY_TO_REPLACE, randomCardColor)

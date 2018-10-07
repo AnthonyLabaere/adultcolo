@@ -85,18 +85,16 @@ export class Turn {
     type: TurnType;
     labels: string[];
     descriptions: string[];
-    sipNumber: string;
-    sipSuffix: string;
+    sipNumber: number;
     playerLabel: string;
     secondPlayerLabel: string;
     withTimer: boolean;
 
-    constructor(type: TurnType, labels: string[], descriptions: string[], sipNumber: string, sipSuffix: string, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
+    constructor(type: TurnType, labels: string[], descriptions: string[], sipNumber: number, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
         this.type = type;
         this.labels = labels;
         this.descriptions = descriptions;
         this.sipNumber = sipNumber;
-        this.sipSuffix = sipSuffix;
         this.playerLabel = playerLabel;
         this.secondPlayerLabel = secondPlayerLabel;
         this.withTimer = withTimer;
@@ -108,17 +106,16 @@ export class Turn {
     public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber();
         const drink = CommonService.random();
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         let descriptions: string[];
         if (turnEntry.descriptions) {
-            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
-        return new Turn(turnType, labels, descriptions, sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer);
+        return new Turn(turnType, labels, descriptions, sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer);
     }
 
     /**
@@ -127,14 +124,13 @@ export class Turn {
     public static constructDecoupledFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn[] {
         const sipNumber = CommonService.getRandomSipNumber();
         const drink = CommonService.random();
-        const sipSuffix = sipNumber !== CommonService.ONE_SIP_NUMBER ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         let descriptions: string[];
         if (turnEntry.descriptions) {
-            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
         const turns: Turn[] = [];
@@ -145,7 +141,7 @@ export class Turn {
                 description = descriptions[i];
             }
 
-            turns.push(new Turn(turnType, [labels[i]], [description], sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer));
+            turns.push(new Turn(turnType, [labels[i]], [description], sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer));
         }
 
         return turns;
