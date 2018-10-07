@@ -9,7 +9,7 @@ import { CommonService } from "./common.service";
 export class TurnEntryService {
 
     private static TURN_SUB_TYPES = {
-        [TurnType.CONDITION]: ['general']
+        [TurnType.CONDITION]: ['enfant', 'alcool']
     }
 
     private turnEntriesDataMap: Map<TurnType, TurnEntryData[]> = new Map();
@@ -49,7 +49,7 @@ export class TurnEntryService {
             promises.push(this.loadTurnEntriesData(turnType));
             if (TurnEntryService.TURN_SUB_TYPES[turnType] !== undefined) {
                 // Si des autres fichiers du même sont présents (cette information est dans TURN_SUB_TYPES)
-                // Alors ils sont aussi ajoutés (exemple : condition-general.json)
+                // Alors ils sont aussi ajoutés (exemple : condition-alcool.json)
                 TurnEntryService.TURN_SUB_TYPES[turnType].forEach(subType => {
                     promises.push(this.loadTurnEntriesData(turnType, subType));
                 });
@@ -59,6 +59,7 @@ export class TurnEntryService {
                 .then((turnEntriesDatas: TurnEntryData[][]) => {
                     // Mise à plat des résultats
                     const turnEntriesData = _.flatten(turnEntriesDatas)
+                    console.log(turnEntriesData);
                     this.turnEntriesDataMap.set(turnType, turnEntriesData);
                     return Promise.resolve(turnEntriesData);
                 });
