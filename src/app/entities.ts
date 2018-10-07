@@ -9,19 +9,21 @@ export abstract class TurnEntry {
     bigSip: boolean;
     mandatoryPlayers: boolean;
     withTimer: boolean;
+    titles: string[];
     labels: string[];
     descriptions: string[];
     
-    public hydrate(bigSip: boolean, mandatoryPlayers:boolean, withTimer:boolean, labels: string[], descriptions: string[]) {
+    public hydrate(bigSip: boolean, mandatoryPlayers:boolean, withTimer:boolean, titles:string[], labels: string[], descriptions: string[]) {
         this.bigSip = bigSip;
         this.mandatoryPlayers = mandatoryPlayers;
         this.withTimer = withTimer;
+        this.titles = titles;
         this.labels = labels;
         this.descriptions = descriptions;
     }
 
     public initFromData(turnEntryData: TurnEntryData, locale: string): void {
-        this.hydrate(turnEntryData.bigSip, turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.labels, turnEntryData.descriptions);
+        this.hydrate(turnEntryData.bigSip, turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.titles, turnEntryData.labels, turnEntryData.descriptions);
     }
 }
 
@@ -85,6 +87,7 @@ export class TurnTypeParameters {
 
 export class Turn {
     type: TurnType;
+    titles: string[];
     labels: string[];
     descriptions: string[];
     sipNumber: number;
@@ -92,8 +95,9 @@ export class Turn {
     secondPlayerLabel: string;
     withTimer: boolean;
 
-    constructor(type: TurnType, labels: string[], descriptions: string[], sipNumber: number, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
+    constructor(type: TurnType, titles:string[], labels: string[], descriptions: string[], sipNumber: number, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
         this.type = type;
+        this.titles = titles;
         this.labels = labels;
         this.descriptions = descriptions;
         this.sipNumber = sipNumber;
@@ -111,13 +115,17 @@ export class Turn {
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
+        let titles: string[];
+        if (turnEntry.titles) {
+            titles = CommonService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
+        }
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         let descriptions: string[];
         if (turnEntry.descriptions) {
             descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
-        return new Turn(turnType, labels, descriptions, sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer);
+        return new Turn(turnType, titles, labels, descriptions, sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer);
     }
 
     /**
@@ -129,6 +137,10 @@ export class Turn {
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
+        let titles: string[];
+        if (turnEntry.titles) {
+            titles = CommonService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
+        }
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         let descriptions: string[];
         if (turnEntry.descriptions) {
@@ -138,12 +150,16 @@ export class Turn {
         const turns: Turn[] = [];
         const length = labels.length;
         for (let i = 0; i < length; i++) {
+            let title: string;
+            if (titles && titles.length === length){
+                title = titles[i];
+            }
             let description: string;
             if (descriptions && descriptions.length === length){
                 description = descriptions[i];
             }
 
-            turns.push(new Turn(turnType, [labels[i]], [description], sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer));
+            turns.push(new Turn(turnType, [title], [labels[i]], [description], sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer));
         }
 
         return turns;
@@ -164,6 +180,7 @@ export abstract class TurnEntryData {
     bigSip: boolean;
     mandatoryPlayers: boolean;
     withTimer: boolean;
+    titles: string[]
     labels: string[];
     descriptions: string[];
 }
