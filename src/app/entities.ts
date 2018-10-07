@@ -6,12 +6,14 @@ import { environment as ENV } from '../environments/environment';
 //region "Entrée de tour de jeu"
 
 export abstract class TurnEntry {
+    bigSip: boolean;
     mandatoryPlayers: boolean;
     withTimer: boolean;
     labels: string[];
     descriptions: string[];
     
-    public hydrate(mandatoryPlayers:boolean, withTimer:boolean, labels: string[], descriptions: string[]) {
+    public hydrate(bigSip: boolean, mandatoryPlayers:boolean, withTimer:boolean, labels: string[], descriptions: string[]) {
+        this.bigSip = bigSip;
         this.mandatoryPlayers = mandatoryPlayers;
         this.withTimer = withTimer;
         this.labels = labels;
@@ -19,7 +21,7 @@ export abstract class TurnEntry {
     }
 
     public initFromData(turnEntryData: TurnEntryData, locale: string): void {
-        this.hydrate(turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.labels, turnEntryData.descriptions);
+        this.hydrate(turnEntryData.bigSip, turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.labels, turnEntryData.descriptions);
     }
 }
 
@@ -104,7 +106,7 @@ export class Turn {
      * Construction d'un tour contenant tous les libellés
      */
     public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn {
-        const sipNumber = CommonService.getRandomSipNumber();
+        const sipNumber = CommonService.getRandomSipNumber(turnEntry.bigSip);
         const drink = CommonService.random();
         const playerLabel = CommonService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
@@ -159,6 +161,7 @@ export class Player {
 //region data
 
 export abstract class TurnEntryData {
+    bigSip: boolean;
     mandatoryPlayers: boolean;
     withTimer: boolean;
     labels: string[];

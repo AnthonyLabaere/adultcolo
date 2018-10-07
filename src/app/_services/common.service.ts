@@ -154,8 +154,10 @@ export class CommonService {
     public static getRandomSipNumber(bigSip: boolean = false): number {
         let randomNumber;
         if (bigSip) {
+            //  3 à 5 gorgées
             randomNumber = _.random(2, 4);
         } else {
+            // 1 à 3 gorgées
             randomNumber = _.random(2);
         }
         return randomNumber;
