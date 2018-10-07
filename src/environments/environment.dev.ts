@@ -2,7 +2,8 @@ export const environment = {
     DEV: true,
 
     TURN_NUMBER_TOTAL: 10,
-    CARTOONS_BY_PLAY: [1, 1],
+    ADS_BY_PLAY: [20, 20],
+    CARTOONS_BY_PLAY: [0, 0],
     FOR_OR_AGAINSTS_BY_PLAY: [0, 0],
     GAMES_BY_PLAY: [0, 0],
     GENERALS_BY_PLAY: [0, 0],

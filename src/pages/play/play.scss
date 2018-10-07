@@ -1,6 +1,7 @@
 page-play {
 
-    $turn-cartoon-color: darkgreen;
+    $turn-ad-color: darkgreen;
+    $turn-cartoon-color: purple;
     $turn-condition-color: darkturquoise;
     $turn-for-or-against-color: crimson;
     $turn-game-color: darkorange;
@@ -8,13 +9,16 @@ page-play {
     $turn-instead-color: crimson;
     $turn-list-color: darkorange;
     $turn-long-winded-color: gold;
-    $turn-movie-color: darkgreen;
+    $turn-movie-color: purple;
     $turn-song-color: darkgreen;
 
     .play-content {
         text-align: center;
         color: white;
 
+        &.turn-ad {
+            background-color: $turn-ad-color;
+        }
         &.turn-cartoon {
             background-color: $turn-cartoon-color;
         }
@@ -112,6 +116,9 @@ page-play {
     }
     
     .play-footer {
+        &.turn-ad .toolbar-background,  &.turn-ad .toolbar-content {
+            background-color: $turn-ad-color;
+        }
         &.turn-cartoon .toolbar-background,  &.turn-cartoon .toolbar-content {
             background-color: $turn-cartoon-color;
         }

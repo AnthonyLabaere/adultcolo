@@ -27,6 +27,8 @@ export abstract class TurnEntry {
     }
 }
 
+export class Ad extends TurnEntry {}
+
 export class Cartoon extends TurnEntry {}
 
 export class Condition extends TurnEntry {}
@@ -52,6 +54,7 @@ export class Song extends TurnEntry {}
 //region "Tour de jeu"
 
 export enum TurnType {
+    AD = 'ad',
     CARTOON = 'cartoon',
     CONDITION = 'condition',
     FOR_OR_AGAINST = 'for-or-against',
@@ -76,6 +79,7 @@ export class TurnTypeParameters {
     }
 
     static TURN_TYPE_PARAMETERS:any = {
+        [TurnType.AD]: new TurnTypeParameters(true, true, true),
         [TurnType.CARTOON]: new TurnTypeParameters(true, true, true),
         [TurnType.CONDITION]: new TurnTypeParameters(false, false, false),
         [TurnType.FOR_OR_AGAINST]: new TurnTypeParameters(true, true, false),
@@ -188,6 +192,8 @@ export abstract class TurnEntryData {
     labels: string[];
     descriptions: string[];
 }
+
+export class AdData extends TurnEntryData {}
 
 export class CartoonData extends TurnEntryData {}
 

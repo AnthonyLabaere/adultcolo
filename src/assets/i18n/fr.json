@@ -76,6 +76,16 @@
         ]
     },
     "turnEntry": {
+        "ad": {
+            "0": {
+                "title": "Publicité",
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la publicité correspondant à l'indice."
+            },
+            "1": {
+                "title": "Publicité",
+                "description": "Distribue {{sipNumberLabel}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu {{sipPronoun}} bois !"
+            }
+        },
         "cartoon": {
             "0": {
                 "title": "Dessin animé",

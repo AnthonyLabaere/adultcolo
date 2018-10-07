@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, Instead, List, LongWinded, Song, Turn, TurnEntry, TurnType, Movie, General, Cartoon } from "../../app/entities";
+import { Cartoon, Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Movie, Song, Turn, TurnEntry, TurnType, Ad } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { environment as ENV } from '../../environments/environment';
@@ -16,7 +16,13 @@ export class PlayService {
         let longWindedTurns: Turn[][];
 
         // TODO : une seule promesse avec un flatten au bout ?
-        return this.turnEntryService.getTurnEntries(TurnType.CARTOON)
+        return this.turnEntryService.getTurnEntries(TurnType.AD)
+            .then((ads: Ad[]) => {
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.AD, ads, 
+                    _.random(ENV.ADS_BY_PLAY[0], ENV.ADS_BY_PLAY[1])));
+
+                return this.turnEntryService.getTurnEntries(TurnType.CARTOON);
+            })
             .then((cartoons: Cartoon[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CARTOON, cartoons, 
                     _.random(ENV.CARTOONS_BY_PLAY[0], ENV.CARTOONS_BY_PLAY[1])));
