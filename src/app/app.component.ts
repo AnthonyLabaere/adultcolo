@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { AppRate } from '@ionic-native/app-rate';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
+import { environment as ENV } from '../environments/environment';
 import { HomePage } from '../pages/home/home';
 import { CommonService } from './_services/common.service';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +15,7 @@ import { CommonService } from './_services/common.service';
 export class Adultcolo {
   rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, commonService: CommonService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, appRate: AppRate, commonService: CommonService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -25,7 +28,15 @@ export class Adultcolo {
       // the lang to use, if the lang isn't available, it will use the current loader to get them
       translate.use('fr');
 
-      commonService.initLocalizedConstants();
+      if (!ENV.DEV) {
+        appRate.preferences.storeAppURL = {
+          // ios: '<app_id>',
+          android: 'market://details?id=' + ENV.PACKAGE_NAME/*,
+          windows: 'ms-windows-store://review/?ProductId=<store_id>'*/
+        };
+      }
+
+      commonService.initLocalizedConstants();      
     });
   }
 }

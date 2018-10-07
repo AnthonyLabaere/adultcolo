@@ -52,12 +52,14 @@ export class PlayPage {
    * Lancement de la partie
    */
   private startPlay() {
-    // Interdiction de passer en mode veille
-    this.insomnia.keepAwake()
-      .then(
-        () => {},
-        () => {}
-      );
+    if (!ENV.DEV) {
+      // Interdiction de passer en mode veille
+      this.insomnia.keepAwake()
+        .then(
+          () => {},
+          () => {}
+        );
+    }
 
     this.index = 0;
     this.onTurnChange();
@@ -98,12 +100,14 @@ export class PlayPage {
           } else {
             this.admobFree.interstitial.show()
               .then(() => {
-                // La mise en veille est de nouveau rendu possible
-                this.insomnia.allowSleepAgain()
-                  .then(
-                    () => {},
-                    () => {}
-                  );  
+                if (!ENV.DEV) {
+                  // La mise en veille est de nouveau rendu possible
+                  this.insomnia.allowSleepAgain()
+                    .then(
+                      () => {},
+                      () => {}
+                    );
+                }
                 // Puis on retourne à l'écran d'accueil
                 this.navCtrl.pop();
               });

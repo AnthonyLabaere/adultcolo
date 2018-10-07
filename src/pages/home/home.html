@@ -1,23 +1,38 @@
-<ion-content class="home-content">
+<ion-content class="home-content" scrollY="false">
   <div class="home-title-container">
-      <div class="home-title">{{'title' | translate}}</div>
+    <div class="home-title">{{'title' | translate}}</div>
+  </div>
+
+  <ion-scroll #playersListContainer scrollY="true" class="players-list-container">
+    <ion-list class="players-list">
+      <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
+        <ion-input type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}"></ion-input>
+      </ion-item>
+    </ion-list>
+  
+    <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-scroll>
+  
+  <div class="play-button-container">
+    <button class="play-button" ion-button large (click)="onPlayClick()">
+      {{'home.buttons.play' | translate}}
+    </button>
   </div>
   
-  <ion-list class="players-list">
-    <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
-      <ion-input type="text" [(ngModel)]="player.name" placeholder="Joueur {{i + 1}}"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
-    <ion-icon name="add"></ion-icon>
-  </button>
 </ion-content>
 
 <ion-footer class="home-footer">
   <ion-toolbar>
-      <button class="play-button" ion-button large (click)="onPlayClick()">
-        {{'home.buttons.play' | translate}}
-      </button>
+      <ion-row>
+        <ion-col col-4></ion-col>
+        <ion-col col-4>
+            <button color="light" clear ion-button large icon-only (click)="onRatingClick()">
+              <ion-icon name="star"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
   </ion-toolbar>
 </ion-footer>

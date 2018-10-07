@@ -17,5 +17,6 @@ export const environment = {
     TIMER_GAME_TIME: 10,
     TIMER_INTERVAL_IN_MILLI_SECONDS: 10,
 
+    PACKAGE_NAME: '',
     ADMOB_INTERSTITIAL_KEY: ''
 }

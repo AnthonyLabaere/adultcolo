@@ -7,26 +7,47 @@ page-home {
         background-color: $background-color;
 
         .home-title-container {
+            height: 20%;
             color: map-get($colors, light);
             margin-bottom: 20px;
+
             .home-title {
                 font-family: 'Atma-Bold' !important;
                 font-size: 55px;
             }
         }
 
-        .players-list {
-            ion-item {
-                color: map-get($colors, light);
-                background-color: $background-color;
-                
-                &.item-input.item-input-has-focus .item-inner,
-                &.item-input.input-has-focus .item-inner {
-                    border-bottom-color: darkslategray !important;
-                    box-shadow: inset 0 -1px 0 0 darkslategray !important;
-                }
+        .players-list-container {
+            height: 60%;
+            white-space: nowrap;
 
-                animation: slide-up 0.4s ease;
+            .scroll-content {
+                padding: 0 25px 50px 25px;
+
+                .players-list {
+                    ion-item {
+                        color: map-get($colors, light);
+                        background-color: $background-color;
+                        
+                        &.item-input.item-input-has-focus .item-inner,
+                        &.item-input.input-has-focus .item-inner {
+                            border-bottom-color: darkslategray !important;
+                            box-shadow: inset 0 -1px 0 0 darkslategray !important;
+                        }
+        
+                        animation: slide-up 0.4s ease;
+                    }
+                }
+            }
+        }
+
+        .play-button-container {
+            // margin-top: 20px;
+
+            .play-button {
+                color: map-get($colors, light);
+                background-color: darkslategray;
+                font-family: 'Atma-Bold' !important;
             }
         }
     }
@@ -36,12 +57,6 @@ page-home {
 
         .toolbar-background, .toolbar-content {
             background-color: $background-color !important;
-        }
-
-        .play-button {
-            color: map-get($colors, light);
-            background-color: darkslategray;
-            font-family: 'Atma-Bold' !important;
         }
     }
 }

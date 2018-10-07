@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRate } from '@ionic-native/app-rate';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { Insomnia } from '@ionic-native/insomnia';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -59,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     StatusBar,
     Insomnia,
+    AppRate,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AdMobFree,

@@ -17,5 +17,6 @@ export const environment = {
     TIMER_GAME_TIME: 10,
     TIMER_INTERVAL_IN_MILLI_SECONDS: 10,
 
+    PACKAGE_NAME: 'hyebalare.adultcolo',
     ADMOB_INTERSTITIAL_KEY: 'ca-app-pub-7597539153364224/4220385927'
 }
