@@ -68,7 +68,7 @@ export class PlayService {
             .then((conditions: Condition[]) => {
                 // Complétion jusqu'à "TURN_NUMBER_TOTAL" avec des conditions
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CONDITION, conditions, 
-                    ENV.TURN_NUMBER_TOTAL - (turns.length + longWindedTurns.length)));
+                    Math.max(ENV.TURN_NUMBER_TOTAL - (turns.length + longWindedTurns.length), 0)));
                 
                 return Promise.resolve(_.shuffle(turns));
             })

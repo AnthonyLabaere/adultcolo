@@ -12,13 +12,14 @@
     </div>
   </h2>
   <h5 class="turn-row turn-description">
-      <span *ngIf="showDescription(getCurrentTurn()?.type)" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
-        [translateParams]="{
-          sipNumber: getCurrentTurn()?.sipNumber, 
-          sipSuffix: getCurrentTurn()?.sipSuffix, 
-          player: getCurrentTurn()?.playerLabel,
-          timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
-        }"></span>
+    <span *ngIf="showSpecificDescription()">{{getCurrentTurn()?.descriptions[currentTurnLabelIndex]}}</span>
+    <span *ngIf="showGlobalDescription(getCurrentTurn()?.type) && !showSpecificDescription()" [translate]="'turnEntry.' + getCurrentTurn()?.type + '.' + currentTurnLabelIndex + '.description'"
+      [translateParams]="{
+        sipNumber: getCurrentTurn()?.sipNumber, 
+        sipSuffix: getCurrentTurn()?.sipSuffix, 
+        player: getCurrentTurn()?.playerLabel,
+        timeInSeconds: timer?.totalTimeInMilliSeconds / 1000
+      }"></span>
   </h5>
 </ion-content>
 

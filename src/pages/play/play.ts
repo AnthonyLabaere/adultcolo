@@ -129,9 +129,19 @@ export class PlayPage {
     }
   }
 
-  public showDescription(turnType: TurnType): boolean {
+  public showGlobalDescription(turnType: TurnType): boolean {
     if (turnType !== undefined && turnType !== null) {
       return CommonService.showDescription(turnType);
+    } else {
+      return false;
+    }
+  }
+
+  public showSpecificDescription(): boolean {
+    if (this.getCurrentTurn() !== undefined 
+          && this.getCurrentTurn().descriptions !== undefined 
+          && (this.getCurrentTurn().descriptions.length - 1) >= this.currentTurnLabelIndex) {
+      return true;
     } else {
       return false;
     }

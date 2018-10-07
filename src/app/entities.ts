@@ -9,15 +9,17 @@ export abstract class TurnEntry {
     mandatoryPlayers: boolean;
     withTimer: boolean;
     labels: string[];
+    descriptions: string[];
     
-    public hydrate(mandatoryPlayers:boolean, withTimer:boolean, labels: string[]) {
+    public hydrate(mandatoryPlayers:boolean, withTimer:boolean, labels: string[], descriptions: string[]) {
         this.mandatoryPlayers = mandatoryPlayers;
         this.withTimer = withTimer;
         this.labels = labels;
+        this.descriptions = descriptions;
     }
 
     public initFromData(turnEntryData: TurnEntryData, locale: string): void {
-        this.hydrate(turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.labels);
+        this.hydrate(turnEntryData.mandatoryPlayers, turnEntryData.withTimer, turnEntryData.labels, turnEntryData.descriptions);
     }
 }
 
@@ -82,15 +84,17 @@ export class TurnTypeParameters {
 export class Turn {
     type: TurnType;
     labels: string[];
+    descriptions: string[];
     sipNumber: string;
     sipSuffix: string;
     playerLabel: string;
     secondPlayerLabel: string;
     withTimer: boolean;
 
-    constructor(type: TurnType, labels: string[], sipNumber: string, sipSuffix: string, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
+    constructor(type: TurnType, labels: string[], descriptions: string[], sipNumber: string, sipSuffix: string, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
         this.type = type;
         this.labels = labels;
+        this.descriptions = descriptions;
         this.sipNumber = sipNumber;
         this.sipSuffix = sipSuffix;
         this.playerLabel = playerLabel;
@@ -109,8 +113,12 @@ export class Turn {
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+        let descriptions: string[];
+        if (turnEntry.descriptions) {
+            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+        }
 
-        return new Turn(turnType, labels, sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer);
+        return new Turn(turnType, labels, descriptions, sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer);
     }
 
     /**
@@ -124,11 +132,21 @@ export class Turn {
         const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
 
         const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+        let descriptions: string[];
+        if (turnEntry.descriptions) {
+            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, sipSuffix, playerLabel, secondPlayerLabel);
+        }
 
         const turns: Turn[] = [];
-        labels.forEach((label: string) => {
-            turns.push(new Turn(turnType, [label], sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer));
-        });
+        const length = labels.length;
+        for (let i = 0; i < length; i++) {
+            let description: string;
+            if (descriptions && descriptions.length === length){
+                description = descriptions[i];
+            }
+
+            turns.push(new Turn(turnType, [labels[i]], [description], sipNumber, sipSuffix, playerLabel, secondPlayerLabel, turnEntry.withTimer));
+        }
 
         return turns;
     }
@@ -148,6 +166,7 @@ export abstract class TurnEntryData {
     mandatoryPlayers: boolean;
     withTimer: boolean;
     labels: string[];
+    descriptions: string[];
 }
 
 export class ConditionData extends TurnEntryData {}
