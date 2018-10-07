@@ -1,5 +1,6 @@
 page-play {
 
+    $turn-cartoon-color: darkgreen;
     $turn-condition-color: darkturquoise;
     $turn-for-or-against-color: crimson;
     $turn-game-color: darkorange;
@@ -14,6 +15,9 @@ page-play {
         text-align: center;
         color: white;
 
+        &.turn-cartoon {
+            background-color: $turn-cartoon-color;
+        }
         &.turn-condition {
             background-color: $turn-condition-color;
         }
@@ -108,6 +112,9 @@ page-play {
     }
     
     .play-footer {
+        &.turn-cartoon .toolbar-background,  &.turn-cartoon .toolbar-content {
+            background-color: $turn-cartoon-color;
+        }
         &.turn-condition .toolbar-background,  &.turn-condition .toolbar-content {
             background-color: $turn-condition-color;
         }

@@ -49,7 +49,7 @@
         },
         "singers": [
             "Johnny Hallyday", "Dany Brillant", "Orelsan", "Michael Jackson", "Jean-Jacques Goldman", "Céline Dion", "Patrick Bruel", "Fatals Picards", 
-            "Garou", "U2", ""
+            "Garou", "U2", "Queen"
         ],
         "sip": {
             "number": {
@@ -72,10 +72,20 @@
             "mol", "ach", ""
         ],
         "synonymes": [
-            "argent", "saoul", "boire"
+            "argent", "saoul", "boire", "travailler"
         ]
     },
     "turnEntry": {
+        "cartoon": {
+            "0": {
+                "title": "Dessin animé",
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver le dessin animé correspondant à l'indice."
+            },
+            "1": {
+                "title": "Dessin animé",
+                "description": "Distribue {{sipNumberLabel}} gorgée{{sipSuffix}} si la réponse est correcte, et si t'es trompé tu {{sipPronoun}} bois !"
+            }
+        },
         "condition": {},
         "for-or-against": {
             "0": {

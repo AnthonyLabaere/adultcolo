@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
-import { Condition, ConditionData, ForOrAgainst, ForOrAgainstData, Game, GameData, TurnEntry, TurnEntryData, TurnType, Instead, InsteadData, Song, SongData, ListData, List, LongWinded, LongWindedData, Movie, MovieData, GeneralData } from "../entities";
+import { Condition, ConditionData, ForOrAgainst, ForOrAgainstData, Game, GameData, TurnEntry, TurnEntryData, TurnType, Instead, InsteadData, Song, SongData, ListData, List, LongWinded, LongWindedData, Movie, MovieData, GeneralData, Cartoon, CartoonData } from "../entities";
 import { CommonService } from "./common.service";
 
 @Injectable()
@@ -83,6 +83,10 @@ export class TurnEntryService {
         turnEntriesData.forEach((turnEntryData: TurnEntryData) => {
             let turnEntry;
             switch(turnType) {
+                case TurnType.CARTOON:
+                    turnEntry = new Cartoon();
+                    turnEntry.initFromData(<CartoonData> turnEntryData, this.translate.getDefaultLang());
+                    break;
                 case TurnType.CONDITION:
                     turnEntry = new Condition();
                     turnEntry.initFromData(<ConditionData> turnEntryData, this.translate.getDefaultLang());
