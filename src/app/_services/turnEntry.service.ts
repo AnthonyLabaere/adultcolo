@@ -23,7 +23,7 @@ export class TurnEntryService {
 
     private getTurnEntryDataFilePath(turnType: TurnType, subTurnType?: string) {
         // TODO : vérifier que le fichier est bien rechargé après un changement de langue
-        let turnEntryDataFilePath = CommonService.DATA_FILE_PATH + this.translate.getDefaultLang() + '/' + turnType.toString();
+        let turnEntryDataFilePath = CommonService.DATA_FILE_PATH + this.translate.getDefaultLang() + '/' + turnType.toString() + '/' + turnType.toString();
         if (subTurnType !== undefined) {
             turnEntryDataFilePath += '-' + subTurnType;
         }
