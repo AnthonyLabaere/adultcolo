@@ -70,36 +70,14 @@ page-play {
                 font-size: $title-font-size;
 
                 .turn-title-content {
-                    animation: font-title 0.75s ease;
-
-                    @keyframes font-title {
-                        0% {
-                            opacity: 0;
-                            font-size: 0px;
-                        }
-                        100% {
-                            opacity: 1;
-                            font-size: $title-font-size;
-                        }
-                    }
+                    animation: slide-right 0.5s ease;
                 }
             }
             &.turn-label {
                 height: 40%;
 
                 .turn-label-content {
-                    animation: slide-label 0.5s ease;
-
-                    @keyframes slide-label {
-                        0% {
-                            opacity: 0;
-                            transform: translateX(200px);
-                        }
-                        100% {
-                            opacity: 1;
-                            transform: translateX(0);
-                        }
-                    }
+                    animation: slide-right 0.5s ease;
 
                     .timer-click-message {
                         font-style: italic;
@@ -108,9 +86,21 @@ page-play {
             }
             &.turn-description {
                 height: 20%;
+                animation: slide-right 0.5s ease;
             }
             &.turn-timer {
                 height: 20%;
+            }
+
+            @keyframes slide-right {
+                0% {
+                    opacity: 0;
+                    transform: translateX(200px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             }
         }
     }
