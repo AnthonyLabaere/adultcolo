@@ -31,6 +31,13 @@
                 "plural": "distribuent"
             }
         },
+        "dishes": {
+            "salted": [
+                "burger", "pizza",  "tartiflette", "raclette", "fondue bourguignonne", "fondue savoyarde", "wok", "sushis", "poulet tikka massala",
+                "barbecue", "maki", "salade", "tacos", "fajitas", "crêpes", "choucroute", "pâte en croûte", "fish'n chips", "kebab", "hot dog", 
+                "couscous", "tajine", "carottes râpées", "nems", "samoussas", "croque monsieur", "quiche", "rôti de boeuf"
+            ]
+        },
         "forbidden": {
             "verbs": ["boire"]
         },

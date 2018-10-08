@@ -9,6 +9,7 @@ export class CommonService {
     public static ALPHABET_FIRSTNAME: string[];
     public static ALPHABET_CITY: string[];
     public static CARDS_COLOR: string[];
+    public static DISHES_SALTED: string[];
     public static FORBIDDEN_VERBS: string[];
     public static HEADS_OR_TAILS: string[];
     public static SINGERS: string[];
@@ -62,6 +63,8 @@ export class CommonService {
     public static DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE = '<<random-letter-firstname>>';
     public static DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE = '<<random-letter-city>>';
     public static DATA_RANDOM_CARD_COLOR_KEY_TO_REPLACE = '<<random-card-color>>';
+    public static DATA_RANDOM_FIRST_DISH_SALTED_KEY_TO_REPLACE = '<<random-first-dish-salted>>';
+    public static DATA_RANDOM_SECOND_DISH_SALTED_KEY_TO_REPLACE = '<<random-second-dish-salted>>';
     public static DATA_RANDOM_FORBIDDEN_VERBS_KEY_TO_REPLACE = '<<random-forbidden-verb>>';
     public static DATA_RANDOM_HEADS_OR_TAILS_VERBS_KEY_TO_REPLACE = '<<random-heads-or-tails>>';
     public static DATA_RANDOM_SINGER_KEY_TO_REPLACE = '<<random-singer>>';
@@ -77,6 +80,7 @@ export class CommonService {
         this.translate.get('common.alphabet.firstname').subscribe((str: string[]) => {CommonService.ALPHABET_FIRSTNAME = str});
         this.translate.get('common.alphabet.city').subscribe((str: string[]) => {CommonService.ALPHABET_CITY = str});
         this.translate.get('common.cards.color').subscribe((str: string[]) => {CommonService.CARDS_COLOR = str});
+        this.translate.get('common.dishes.salted').subscribe((str: string[]) => {CommonService.DISHES_SALTED = str});
         this.translate.get('common.forbidden.verbs').subscribe((str: string[]) => {CommonService.FORBIDDEN_VERBS = str});
         this.translate.get('common.headsOrTails').subscribe((str: string[]) => {CommonService.HEADS_OR_TAILS = str});
         this.translate.get('common.singers').subscribe((str: string[]) => {CommonService.SINGERS = str});
@@ -192,6 +196,9 @@ export class CommonService {
         const randomLetterFirstname = _.shuffle(CommonService.ALPHABET_FIRSTNAME)[0];
         const randomLetterCity = _.shuffle(CommonService.ALPHABET_CITY)[0];
         const randomCardColor = _.shuffle(CommonService.CARDS_COLOR)[0];
+        const randomDishes = _.shuffle(CommonService.DISHES_SALTED);
+        const randomFirstSaltedDish = CommonService.capitalize(randomDishes[0]);
+        const randomSecondSaltedDish = randomDishes[1];
         const randomForbiddenVerb = _.shuffle(CommonService.FORBIDDEN_VERBS)[0];
         const randomHeadsOrTails = _.shuffle(CommonService.HEADS_OR_TAILS)[0];
         const randomSinger = _.shuffle(CommonService.SINGERS)[0];
@@ -216,6 +223,8 @@ export class CommonService {
             .replace(CommonService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, randomLetterFirstname.toUpperCase())
             .replace(CommonService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, randomLetterCity.toUpperCase())
             .replace(CommonService.DATA_RANDOM_CARD_COLOR_KEY_TO_REPLACE, randomCardColor)
+            .replace(CommonService.DATA_RANDOM_FIRST_DISH_SALTED_KEY_TO_REPLACE, randomFirstSaltedDish)
+            .replace(CommonService.DATA_RANDOM_SECOND_DISH_SALTED_KEY_TO_REPLACE, randomSecondSaltedDish)
             .replace(CommonService.DATA_RANDOM_FORBIDDEN_VERBS_KEY_TO_REPLACE, randomForbiddenVerb)
             .replace(CommonService.DATA_RANDOM_HEADS_OR_TAILS_VERBS_KEY_TO_REPLACE, randomHeadsOrTails)
             .replace(CommonService.DATA_RANDOM_SINGER_KEY_TO_REPLACE, randomSinger)
