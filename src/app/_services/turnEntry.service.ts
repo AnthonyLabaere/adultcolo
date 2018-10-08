@@ -9,6 +9,7 @@ import { CommonService } from "./common.service";
 export class TurnEntryService {
 
     private static TURN_SUB_TYPES = {
+        [TurnType.AD]: ['alcool', 'drink', 'food', 'restaurant', 'shop', 'transport'],
         [TurnType.CONDITION]: ['child', 'alcool'],
         [TurnType.CARTOON]: ['disney']
     }
