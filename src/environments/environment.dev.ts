@@ -1,6 +1,13 @@
 export const environment = {
     DEV: true,
 
+    ADULTCOLO_STORAGE_KEY_PREFIX: 'adultcolo-',
+    PLAYER_STORAGE_KEY_PREFIX: 'adultcolo-player',
+
+    MIN_PLAYERS_ON_DISPLAY: 3,
+    PLAYERS_MIN_NUMBER: 2,
+    PLAYERS_MAX_NUMBER: 50,
+
     TURN_NUMBER_TOTAL: 1,
     ADS_BY_PLAY: [0, 0],
     CARTOONS_BY_PLAY: [0, 0],

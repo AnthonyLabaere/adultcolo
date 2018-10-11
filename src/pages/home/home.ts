@@ -7,11 +7,13 @@ import { environment as ENV } from '../../environments/environment';
 import { PlayPage } from '../play/play';
 import { WarningPage } from '../warning/warning';
 
+/**
+ * Page d'accueil
+ */
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   animations: [
-          // Each unique animation requires its own trigger. The first argument of the trigger function is the name
           trigger('rotatedState', [
             state('default', style({ transform: 'rotate(0deg)' })),
             state('rotated', style({ transform: 'rotate(90deg)' })),
@@ -21,13 +23,14 @@ import { WarningPage } from '../warning/warning';
 })
 export class HomePage implements OnInit {
 
+  /** Element graphique des joueurs */
   @ViewChild('playersListContainer')
   playersListContainer: ElementRef;
 
+  /** Position de la rotation du bouton d'ajout d'un joueur */
   public addButtonRotatedPosition: number = 0;
+  /** Tableau des états de rotations possibles pour le bouton d'ajout d'un joueur */
   public rotated = ['default', 'rotated'];
-
-  private static MIN_PLAYERS_ON_DISPLAY = 3;
 
   public players: Player[] = [
     new Player(),
@@ -36,6 +39,7 @@ export class HomePage implements OnInit {
   ];
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private appRate: AppRate, private playerService: PlayerService) {
+    // Construction de la page d'avertissement et affichage
     this.modalCtrl.create(WarningPage).present();
   }
   
@@ -43,11 +47,14 @@ export class HomePage implements OnInit {
     this.loadStoredPlayers();
   }
 
+  /**
+   * Chargement des joueurs stockés en cache
+   */
   private loadStoredPlayers() {
     this.playerService.getSavedPlayersOnStorage()
       .then((playersOnStorage: Player[]) => {
         const players: Player[] = playersOnStorage;
-        while (players.length < HomePage.MIN_PLAYERS_ON_DISPLAY) {
+        while (players.length < ENV.MIN_PLAYERS_ON_DISPLAY) {
           players.push(new Player());
         }
 
@@ -59,10 +66,12 @@ export class HomePage implements OnInit {
   }
 
   /**
-   * Booléen indiquant si un joueur peut encore être ajouté
+   * Vérifie si un joueur peut encore être ajouté
+   * 
+   * @return un booléen indiquant si un joueur peut encore être ajouté
    */
-  public canAddPlayer() {
-    return this.players.length < PlayerService.PLAYERS_MAX_NUMBER;
+  public canAddPlayer(): boolean {
+    return this.players.length < ENV.PLAYERS_MAX_NUMBER;
   }
 
   /**
