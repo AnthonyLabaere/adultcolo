@@ -8,11 +8,14 @@ import { CommonService } from "./common.service";
 @Injectable()
 export class TurnEntryService {
 
+    /**
+     * Liste des sous-fichiers de chaque type de tour de jeu
+     */
     private static TURN_SUB_TYPES = {
         [TurnType.AD]: ['alcool', 'drink', 'food', 'restaurant', 'shop', 'transport'],
         [TurnType.CONDITION]: ['alcool', 'child', 'family', 'general', 'old', 'sentimental', 'work'],
         [TurnType.CARTOON]: ['disney'],
-        [TurnType.MOVIE]: ['local']
+        [TurnType.MOVIE]: ['local', 'nanar']
     }
 
     private turnEntriesDataMap: Map<TurnType, TurnEntryData[]> = new Map();
