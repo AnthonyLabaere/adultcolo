@@ -74,8 +74,6 @@ export class CommonService {
     public static DATA_RANDOM_SOUND_KEY_TO_REPLACE = '<<random-sound>>';
     public static DATA_RANDOM_SYNONYME_KEY_TO_REPLACE = '<<random-synonyme>>';
 
-    public static ADULTCOLO_STORAGE_KEY_PREFIX = 'adultcolo-';
-
     constructor(private translate: TranslateService) {
     }
 
