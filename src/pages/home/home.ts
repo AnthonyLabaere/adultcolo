@@ -6,6 +6,7 @@ import { PlayerService } from '../../app/_services/player.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayPage } from '../play/play';
 import { WarningPage } from '../warning/warning';
+import { TurnEntryService } from '../../app/_services/turnEntry.service';
 
 /**
  * Page d'accueil
@@ -32,13 +33,18 @@ export class HomePage implements OnInit {
   /** Tableau des états de rotations possibles pour le bouton d'ajout d'un joueur */
   public rotated = ['default', 'rotated'];
 
+  /** Tableau des joueurs */
   public players: Player[] = [
     new Player(),
     new Player(),
     new Player()
   ];
 
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private appRate: AppRate, private playerService: PlayerService) {
+  /** Booléen indiquant si une partie est en cours de lancement */
+  public playIsLoading: boolean = false;
+
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private appRate: AppRate, 
+                private turnEntryService: TurnEntryService, private playerService: PlayerService) {
     // Construction de la page d'avertissement et affichage
     this.modalCtrl.create(WarningPage).present();
   }
@@ -89,13 +95,28 @@ export class HomePage implements OnInit {
   }
 
   /**
+   * Indique si un jeu peut être lancé
+   * 
+   * @return un booléen indiquant si un jeu peut être lancé
+   */
+  public canLaunchPlay(): boolean {
+    return this.turnEntryService.dataLoaded && !this.playIsLoading;
+  }
+
+  /**
    * Ouverture de la page d'un jeu
    */
-  public onPlayClick() {
-    this.playerService.setPlayers(this.players);
-    this.playerService.savePlayersOnStorage(this.players);
+  public onPlayClick(): void {
+    if (!this.playIsLoading) {
+      this.playIsLoading = true;
 
-    this.navCtrl.push(PlayPage);
+      this.playerService.setPlayers(this.players);
+      this.playerService.savePlayersOnStorage(this.players);
+  
+      this.navCtrl.push(PlayPage);
+
+      this.playIsLoading = false;
+    }
   }
 
   /**

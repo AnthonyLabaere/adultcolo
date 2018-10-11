@@ -16,7 +16,7 @@
   </ion-scroll>
   
   <div class="play-button-container">
-    <button class="play-button" ion-button large (click)="onPlayClick()">
+    <button class="play-button" ion-button large (click)="onPlayClick()" [disabled]="!canLaunchPlay()">
       {{'home.buttons.play' | translate}}
     </button>
   </div>

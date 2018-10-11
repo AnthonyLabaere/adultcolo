@@ -30,6 +30,22 @@ export class TurnEntryService {
 
     }
 
+    public dataLoaded: boolean = false;
+
+    /**
+     * Chargement de toutes les données sur les tours de jeu
+     */
+    public loadAllTurnEntries(): void {
+        const allTurnTypes: TurnType[] = Object.keys(TurnType).map(k => TurnType[k as any]).map(v => v as TurnType);
+        const promises: Promise<TurnEntry[]>[] = allTurnTypes.map(turnType => {
+            return this.getTurnEntries(turnType);
+        });
+        Promise.all(promises)
+            .then(() => {
+                this.dataLoaded = true;
+            });
+    }
+
     /**
      * Construit le chemin du fichier de données correspondant aux paramètres
      * 
