@@ -20,6 +20,7 @@ import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
 import { PlayerService } from './_services/player.service';
 import { TurnEntryService } from './_services/turnEntry.service';
+import { LocalizedService } from './_services/localized.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AdMobFree,
     CommonService,
+    LocalizedService,
     PlayService,
     PlayerService,
     TurnEntryService

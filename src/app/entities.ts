@@ -1,5 +1,6 @@
-import { CommonService } from "./_services/common.service";
 import { environment as ENV } from '../environments/environment';
+import { CommonService } from "./_services/common.service";
+import { LocalizedService } from "./_services/localized.service";
 
 //region "DTO"
 
@@ -120,17 +121,17 @@ export class Turn {
     public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber(turnEntry.bigSip);
         const drink = CommonService.random();
-        const playerLabel = CommonService.getPlayerLabel(turnType, player);
-        const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
+        const playerLabel = LocalizedService.getPlayerLabel(turnType, player);
+        const secondPlayerLabel = LocalizedService.getPlayerLabel(turnType, secondPlayer);
 
         let titles: string[];
         if (turnEntry.titles) {
-            titles = CommonService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
+            titles = LocalizedService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
+        const labels = LocalizedService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         let descriptions: string[];
         if (turnEntry.descriptions) {
-            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
+            descriptions = LocalizedService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
         return new Turn(turnType, titles, labels, descriptions, sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer);
@@ -142,17 +143,17 @@ export class Turn {
     public static constructDecoupledFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn[] {
         const sipNumber = CommonService.getRandomSipNumber();
         const drink = CommonService.random();
-        const playerLabel = CommonService.getPlayerLabel(turnType, player);
-        const secondPlayerLabel = CommonService.getPlayerLabel(turnType, secondPlayer);
+        const playerLabel = LocalizedService.getPlayerLabel(turnType, player);
+        const secondPlayerLabel = LocalizedService.getPlayerLabel(turnType, secondPlayer);
 
         let titles: string[];
         if (turnEntry.titles) {
-            titles = CommonService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
+            titles = LocalizedService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
-        const labels = CommonService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
+        const labels = LocalizedService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         let descriptions: string[];
         if (turnEntry.descriptions) {
-            descriptions = CommonService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
+            descriptions = LocalizedService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
         const turns: Turn[] = [];

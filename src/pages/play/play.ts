@@ -4,9 +4,13 @@ import { Insomnia } from '@ionic-native/insomnia';
 import { NavController } from 'ionic-angular';
 import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
+import { LocalizedService } from '../../app/_services/localized.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayService } from './play.service';
 
+/**
+ * Page d'une partie de jeu
+ */
 @Component({
   selector: 'page-play',
   templateUrl: 'play.html'
@@ -15,19 +19,18 @@ export class PlayPage {
 
   public turnTransition: boolean = false;
 
-  // Liste des tours (= slides) de jeu
+  /** Liste des tours (= slides) de jeu */
   private turns: Turn[] = [];
-  // Index du tour de jeu en cours
+  /** Index du tour de jeu en cours */
   private index: number;
 
-  // Index de la sous-slide dans le tour de jeu en cours (les tours peuvent avoir plusieurs niveaux)
+  /** Index de la sous-slide dans le tour de jeu en cours (les tours peuvent avoir plusieurs niveaux) */
   public currentTurnLabelIndex: number;
 
-  // Dans le cas où un timer est nécessaire (exemple : les chansons)
+  /** Dans le cas où un timer est nécessaire (exemple : les chansons) */
   public timer: Timer;
 
   constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, private playService: PlayService) {
-
     if (!ENV.DEV) {
       const interstitialConfig: AdMobFreeInterstitialConfig = {
         isTesting: ENV.DEV,
@@ -163,7 +166,7 @@ export class PlayPage {
 
   public getSipNumberLabel(): string {
     if (this.getCurrentTurn()) {
-      return CommonService.getSipNumberLabel(this.getCurrentTurn().sipNumber);
+      return LocalizedService.getSipNumberLabel(this.getCurrentTurn().sipNumber);
     } else {
       return '';
     }
@@ -171,7 +174,7 @@ export class PlayPage {
 
   public getSipSuffix(): string {
     if (this.getCurrentTurn()) {
-      return CommonService.getSipSuffix(this.getCurrentTurn().sipNumber);
+      return LocalizedService.getSipSuffix(this.getCurrentTurn().sipNumber);
     } else {
       return '';
     }
@@ -179,7 +182,7 @@ export class PlayPage {
 
   public getSipPronoun(): string {
     if (this.getCurrentTurn()) {
-      return CommonService.getSipPronoun(this.getCurrentTurn().sipNumber);
+      return LocalizedService.getSipPronoun(this.getCurrentTurn().sipNumber);
     } else {
       return '';
     }

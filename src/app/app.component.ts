@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { environment as ENV } from '../environments/environment';
 import { HomePage } from '../pages/home/home';
-import { CommonService } from './_services/common.service';
+import { LocalizedService } from './_services/localized.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { CommonService } from './_services/common.service';
 export class Adultcolo {
   rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, appRate: AppRate, commonService: CommonService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, appRate: AppRate, localizedService: LocalizedService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -36,7 +36,7 @@ export class Adultcolo {
         };
       }
 
-      commonService.initLocalizedConstants();      
+      localizedService.initLocalizedConstants();      
     });
   }
 }
