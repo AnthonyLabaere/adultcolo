@@ -5,6 +5,9 @@ import * as _ from 'lodash';
 import { Ad, AdData, Cartoon, CartoonData, Condition, ConditionData, ForOrAgainst, ForOrAgainstData, Game, GameData, GeneralData, Instead, InsteadData, List, ListData, LongWinded, LongWindedData, Movie, MovieData, Song, SongData, TurnEntry, TurnEntryData, TurnType } from "../entities";
 import { CommonService } from "./common.service";
 
+/**
+ * Service de récupération des données sur les tours de jeu à provenant des fichiers json
+ */
 @Injectable()
 export class TurnEntryService {
 
@@ -18,14 +21,24 @@ export class TurnEntryService {
         [TurnType.MOVIE]: ['local', 'nanar']
     }
 
+    /** Map des données brutes pour chaque type de tour */
     private turnEntriesDataMap: Map<TurnType, TurnEntryData[]> = new Map();
+    /** Map des données retravaillées pour chaque type de tour */
     private turnEntriesMap: Map<TurnType, TurnEntry[]> = new Map();
 
     constructor(private http: HttpClient, private translate: TranslateService) {
 
     }
 
-    private getTurnEntryDataFilePath(turnType: TurnType, subTurnType?: string) {
+    /**
+     * Construit le chemin du fichier de données correspondant aux paramètres
+     * 
+     * @param turnType le type de tour
+     * @param subTurnType le sous-type de tour
+     * 
+     * @return le chemin du fichier de données 
+     */
+    private getTurnEntryDataFilePath(turnType: TurnType, subTurnType?: string): string {
         // TODO : vérifier que le fichier est bien rechargé après un changement de langue
         let turnEntryDataFilePath = CommonService.DATA_FILE_PATH + this.translate.getDefaultLang() + '/' + turnType.toString() + '/' + turnType.toString();
         if (subTurnType !== undefined) {
@@ -35,6 +48,13 @@ export class TurnEntryService {
         return turnEntryDataFilePath;
     }
 
+    /**
+     * Récupère les données retravaillées correspondant à un type de tour
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return une promesse contenant les données retravaillées
+     */
     public getTurnEntries(turnType: TurnType): Promise<TurnEntry[]> {
         if (this.turnEntriesMap.get(turnType)) {
             return Promise.resolve(this.turnEntriesMap.get(turnType));
@@ -46,6 +66,13 @@ export class TurnEntryService {
         }
     }
 
+    /**
+     * Récupère les données brutes correspondant à un type de tour
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return une promesse contenant les données brutes
+     */
     private getTurnEntriesData(turnType: TurnType): Promise<TurnEntryData[]> {
         if (this.turnEntriesDataMap.get(turnType)) {
             return Promise.resolve(this.turnEntriesDataMap.get(turnType));
@@ -71,6 +98,14 @@ export class TurnEntryService {
         }
     }
 
+    /**
+     * Charge les données brutes d'un sous-type de tour 
+     * 
+     * @param turnType le type de tour
+     * @param subTurnType le sous-type de tour
+     * 
+     * @return une promesse contenant les données brutes
+     */
     private loadTurnEntriesData(turnType: TurnType, subTurnType?: string): Promise<TurnEntryData[]> {
         return new Promise(resolve => {
             this.http.get(this.getTurnEntryDataFilePath(turnType, subTurnType))
@@ -83,6 +118,14 @@ export class TurnEntryService {
         });
     }
     
+    /**
+     * Retravaille les données brutes d'un type de tour
+     * 
+     * @param turnType le type de tour
+     * @param turnEntriesData les données brutes
+     * 
+     * @return les données retravaillées
+     */
     private buildTurnEntries(turnType: TurnType, turnEntriesData: TurnEntryData[]): TurnEntry[] {
         const turnEntries: TurnEntry[] = [];
 
