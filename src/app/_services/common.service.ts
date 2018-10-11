@@ -3,6 +3,9 @@ import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
 import { Player, TurnType, TurnTypeParameters, ValueWithWeight } from "../entities";
 
+/**
+ * Service englobant des méthodes communes
+ */
 @Injectable()
 export class CommonService {
 
@@ -76,6 +79,9 @@ export class CommonService {
     constructor(private translate: TranslateService) {
     }
 
+    /**
+     * Initialisation des constantes dépendants de la langue
+     */
     public initLocalizedConstants(): void {
         this.translate.get('common.alphabet.firstname').subscribe((str: string[]) => {CommonService.ALPHABET_FIRSTNAME = str});
         this.translate.get('common.alphabet.city').subscribe((str: string[]) => {CommonService.ALPHABET_CITY = str});
@@ -120,6 +126,14 @@ export class CommonService {
 
     // Region fonctionnelle
 
+    /**
+     * Récupération du libellé d'un joueur
+     * 
+     * @param turnType 
+     * @param player le joueur choisit au hasard (présent uniquement si des joueurs ont été renseignés)
+     * 
+     * @return le libellé d'un joueur
+     */
     public static getPlayerLabel(turnType: TurnType, player?: Player): string {
         let playerLabel: string;
 
@@ -155,6 +169,13 @@ export class CommonService {
         return playerLabel;
     }
 
+    /**
+     * Génération d'un nombre de gorgées
+     * 
+     * @param bigSip Indique si un grand nombre de gorgées doit être retournés
+     * 
+     * @return le nombre de gorgées 
+     */
     public static getRandomSipNumber(bigSip: boolean = false): number {
         let randomNumber;
         if (bigSip) {
@@ -167,6 +188,13 @@ export class CommonService {
         return randomNumber;
     }
 
+    /**
+     * Récupération du libellé d'un nombre de gorgées
+     * 
+     * @param sipNumber le nombre de gorgées
+     * 
+     * @return le libellé d'un nombre de gorgées
+     */
     public static getSipNumberLabel(sipNumber: number): string {
         if (sipNumber === 0) {
             return CommonService.ONE_SIP_NUMBER;
@@ -181,15 +209,36 @@ export class CommonService {
         }
     }
 
+    /**
+     * Récupère le suffixe de "gorgée"
+     * 
+     * @return le suffixe de "gorgée"
+     */
     public static getSipSuffix(sipNumber: number): string {
         return sipNumber > 1 ? CommonService.SIP_SUFFIX_PLURAL : CommonService.SIP_SUFFIX_SINGULAR;
     }
 
+    /**
+     * Récupère le pronom correspondant au nombre de gorgées (= la ou les)
+     * 
+     * @param sipNumber le nombre de gorgée
+     * 
+     * @return le pronom correspondant au nombre de gorgées
+     */
     public static getSipPronoun(sipNumber: number): string {
         return sipNumber > 1 ? CommonService.SIP_PRONOUN_PLURAL : CommonService.SIP_PRONOUN_SINGULAR;
     }
 
-    public static replaceLabelsParameters(labels: string[], drink:boolean, sipNumber: number, playerLabel:string, secondPlayerLabel:string) {
+    /**
+     * Construit une copie des libellés donnés et y remplace les paramètres par des valeurs en relation avec le jeu
+     * 
+     * @param labels les libellés présentant des paramètres à remplacer
+     * @param drink indique si l'action est de boire ou de distribuer
+     * @param sipNumber le nombre de gorgées
+     * @param playerLabel le libellé du joueur
+     * @param secondPlayerLabel le libellé du joueur secondaire
+     */
+    public static replaceLabelsParameters(labels: string[], drink: boolean, sipNumber: number, playerLabel: string, secondPlayerLabel: string): string[] {
         const sipNumberLabel = CommonService.getSipNumberLabel(sipNumber);
         const sipSuffix = CommonService.getSipSuffix(sipNumber);
         const sipPronoun = CommonService.getSipPronoun(sipNumber);
@@ -233,14 +282,35 @@ export class CommonService {
         });
     }
 
+    /**
+     * Indique si un titre général doit être affiché pour un type de tour donné
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return un booléen indiquant si un titre général doit être affiché
+     */
     public static showTitle(turnType: TurnType): boolean {
         return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withTitle;
     }
 
+    /**
+     * Indique si une description générale doit être affichée pour un type de tour donné
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return un booléen indiquant si une description générale doit être affichée
+     */
     public static showDescription(turnType: TurnType): boolean {
         return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withDescription;
     }
 
+    /**
+     * Indique si un timer doit être affiché pour un type de tour donné
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return un booléen indiquant si un timer général doit être affiché
+     */
     public static showTimer(turnType: TurnType): boolean {
         return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withTimer;
     }
@@ -249,6 +319,13 @@ export class CommonService {
 
     // region Utilitaires
 
+    /**
+     * Récupère un élément d'un tableau d'élement avec poids
+     * 
+     * @param arrayWithWeight le tableau d'élement avec poids
+     * 
+     * @return l'élément sélectionné
+     */
     public static getValueFromShuffledArrayWithWeight<T>(arrayWithWeight: ValueWithWeight<T>[]): T {
         const array: T[] = [];
         arrayWithWeight.forEach((element: ValueWithWeight<T>) => {
@@ -259,18 +336,45 @@ export class CommonService {
         return _.shuffle(array)[0];
     }
 
+    /**
+     * Construit une regex avec une chaîne de caractère donné
+     * 
+     * @param key la chaîne de caractère
+     * @param atFirst un booléen indiquant si la chaîne de caractère doit être trouvé au début d'une autre
+     * 
+     * @return la regex correspondant à la chaîne de caractère donnée
+     */
     public static getRegexFromKey(key: string, atFirst?: boolean) {
         return new RegExp((atFirst ? "^" : "") + key);
     }
     
+    /**
+     * Vérifie si une chaîne de caractère est vide
+     * 
+     * @param s la chaîne de caractère
+     * 
+     * @return un booléen indiquant si la chaîne de caractère est vide
+     */
     public static isEmpty(s: string): boolean {
         return s === undefined || s === null || s.trim() === '';
     }
 
+    /**
+     * Génération d'un booléen aléatoire
+     * 
+     * @return un booléen aléatoire
+     */
     public static random(): boolean {
         return _.random(1) === 1 ? true : false;
     }
 
+    /**
+     * Retourne une chaîne de caractère similaire à celle donnée en paramètre avec la première lettre en majuscule
+     * 
+     * @param s la chaîne de caractère à "capitaliser"
+     * 
+     * @return une chaîne de caractère similaire à celle donnée en paramètre avec la première lettre en majuscule
+     */
     public static capitalize(s: string): string {
         return s.charAt(0).toUpperCase() + s.substr(1);;
     }

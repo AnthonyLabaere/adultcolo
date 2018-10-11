@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Cartoon, Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Movie, Song, Turn, TurnEntry, TurnType, Ad } from "../../app/entities";
+import { Ad, Cartoon, Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Movie, Song, Turn, TurnEntry, TurnType } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { environment as ENV } from '../../environments/environment';
@@ -15,7 +15,7 @@ export class PlayService {
     }
 
     /**
-     * Construit un tableau de tour correspondant à une partie de jeu
+     * Construit un tableau de tours correspondant à une partie de jeu
      * 
      * @return une promesse contenant les tours de jeu
      */
