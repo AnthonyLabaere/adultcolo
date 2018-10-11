@@ -5,14 +5,24 @@ import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { environment as ENV } from '../../environments/environment';
 
+/**
+ * Service de construction d'une partie de jeu
+ */
 @Injectable()
 export class PlayService {
 
     constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
     }
 
+    /**
+     * Construit un tableau de tour correspondant à une partie de jeu
+     * 
+     * @return une promesse contenant les tours de jeu
+     */
     public getTurns(): Promise<Turn[]> {
+        // Les tours classiques
         let turns: Turn[] = [];
+        // Les tours dîts "De longue haleine" dont les slides sont décalés dans le temps
         let longWindedTurns: Turn[][];
 
         // TODO : une seule promesse avec un flatten au bout ?
@@ -114,6 +124,15 @@ export class PlayService {
             });
     }
 
+    /**
+     * Construction de tours de jeu à partir de données retravaillées
+     * 
+     * @param turnType le type de tour
+     * @param turnEntries les données retravaillées sur les types de tour
+     * @param numberToAdd le nombre de tours à récupérer
+     * 
+     * @return les tours de jeu
+     */
     private getTurnFormTurnEntries(turnType: TurnType, turnEntries: TurnEntry[], numberToAdd: number): Turn[] {
         const turns: Turn[] = [];
 
@@ -130,6 +149,15 @@ export class PlayService {
         return turns;
     }
 
+    /**
+     * Construction de tours de jeu découplés (= un tour par trio titre / libellé / description) à partir de données retravaillées
+     * 
+     * @param turnType le type de tour
+     * @param turnEntries les données retravaillées sur les types de tour
+     * @param numberToAdd le nombre de tours à récupérer
+     * 
+     * @return les tours de jeu découplés
+     */
     private getDecoupledTurnsFormTurnEntries(turnType: TurnType, turnEntries: TurnEntry[], numberToAdd: number): Turn[][] {
         const turns: Turn[][] = [];
 
