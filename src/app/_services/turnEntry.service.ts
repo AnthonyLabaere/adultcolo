@@ -30,6 +30,7 @@ export class TurnEntryService {
 
     }
 
+    /** Booléen indiquant si les données brutes et retravaillées sont chargées */
     public dataLoaded: boolean = false;
 
     /**

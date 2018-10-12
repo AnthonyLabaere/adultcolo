@@ -6,6 +6,9 @@ import { LocalizedService } from "./_services/localized.service";
 
 //region "Entrée de tour de jeu"
 
+/** 
+ * Class abstraite d'une donnée de tour retravaillé dont doivent hériter les tours retravaillés
+ */
 export abstract class TurnEntry {
     bigSip: boolean;
     mandatoryPlayers: boolean;
@@ -28,32 +31,68 @@ export abstract class TurnEntry {
     }
 }
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Publicité"
+ */
 export class Ad extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Dessin animé"
+ */
 export class Cartoon extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Condition"
+ */
 export class Condition extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Pour ou contre"
+ */
 export class ForOrAgainst extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Jeu"
+ */
 export class Game extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Généralité"
+ */
 export class General extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Plutôt"
+ */
 export class Instead extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Thème"
+ */
 export class List extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "De longue haleine"
+ */
 export class LongWinded extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Film"
+ */
 export class Movie extends TurnEntry {}
 
+/**
+ * Donnée retravaillée d'un tour de jeu de type "Chanson"
+ */
 export class Song extends TurnEntry {}
 
 //endregion
 
 //region "Tour de jeu"
 
+/**
+ * Type de tour de jeu
+ */
 export enum TurnType {
     AD = 'ad',
     CARTOON = 'cartoon',
@@ -68,6 +107,9 @@ export enum TurnType {
     SONG = 'song',
 }
 
+/**
+ * Liste différents paramètres d'un type de tour de jeu
+ */
 export class TurnTypeParameters {
     withTitle: boolean;
     withDescription: boolean;
@@ -79,6 +121,7 @@ export class TurnTypeParameters {
         this.withTimer = withTimer;
     }
 
+    //TODO : à mettre dans ENV
     static TURN_TYPE_PARAMETERS:any = {
         [TurnType.AD]: new TurnTypeParameters(true, true, true),
         [TurnType.CARTOON]: new TurnTypeParameters(true, true, true),
@@ -94,6 +137,9 @@ export class TurnTypeParameters {
     };
 }
 
+/**
+ * Tour de jeu d'une partie
+ */
 export class Turn {
     type: TurnType;
     titles: string[];
@@ -177,6 +223,9 @@ export class Turn {
 
 // endRegion
 
+/**
+ * Joueur
+ */
 export class Player {
     name: string;
 }
@@ -185,6 +234,9 @@ export class Player {
 
 //region data
 
+/**
+ * Classe abstraite d'une donnée brute de tour dont doivent hériter les données brutes
+ */
 export abstract class TurnEntryData {
     bigSip: boolean;
     mandatoryPlayers: boolean;
@@ -194,32 +246,68 @@ export abstract class TurnEntryData {
     descriptions: string[];
 }
 
+/**
+ * Donnée brute d'un tour de jeu de type "Publicité" 
+ */
 export class AdData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Dessin animé" 
+ */
 export class CartoonData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Condition" 
+ */
 export class ConditionData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Pour ou contre" 
+ */
 export class ForOrAgainstData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Jeu" 
+ */
 export class GameData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Généralité" 
+ */
 export class GeneralData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Plutôt" 
+ */
 export class InsteadData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Thème" 
+ */
 export class ListData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "De longue haleine" 
+ */
 export class LongWindedData extends TurnEntryData {}
 
+/**
+ * Donnée brute d'un tour de jeu de type "Film" 
+ */
 export class MovieData extends TurnEntryData {}
 
+/** 
+ * Donnée brute d'un tour de jeu de type "Chanson" 
+ */
 export class SongData extends TurnEntryData {}
 
 // endRegion
 
 //region Utilitaires
 
+/**
+ * Classe d'une chaîne de caractère internationalisée
+ */
 export class LocalizedString {
     fr: string;
     en: string;
@@ -230,6 +318,9 @@ export class LocalizedString {
     }
 }
 
+/**
+ * Classe d'un minuteur de l'application
+ */
 export class Timer {
     started: boolean = false;
     totalTimeInMilliSeconds: number;
@@ -271,6 +362,9 @@ export class Timer {
     }
 }
 
+/**
+ * Classe d'une valeur pondérée
+ */
 export class ValueWithWeight<T> {
     value: T;
     weight: number;
