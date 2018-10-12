@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ViewController, Platform } from 'ionic-angular';
 import { LocalizedService } from '../../app/_services/localized.service';
 
+/**
+ * Modale d'avertissement sur l'alcool
+ */
 @Component({
   selector: 'page-warning',
   templateUrl: 'warning.html'
@@ -20,10 +23,16 @@ export class WarningPage {
     return this.localizedService.areTranslationsLoaded();
   }
 
+  /**
+   * Méthode de fermeture de l'application
+   */
   onCloseClick() {
     this.platform.exitApp();
   }
 
+  /**
+   * Méthode de fermeture de la modale
+   */
   onContinueClick() {
     this.viewCtrl.dismiss();
   }
