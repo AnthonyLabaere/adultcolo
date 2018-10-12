@@ -2,11 +2,12 @@ import { animate, Component, ElementRef, OnInit, state, style, transition, trigg
 import { AppRate } from '@ionic-native/app-rate';
 import { ModalController, NavController } from 'ionic-angular';
 import { Player } from '../../app/entities';
+import { LocalizedService } from '../../app/_services/localized.service';
 import { PlayerService } from '../../app/_services/player.service';
+import { TurnEntryService } from '../../app/_services/turnEntry.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayPage } from '../play/play';
 import { WarningPage } from '../warning/warning';
-import { TurnEntryService } from '../../app/_services/turnEntry.service';
 
 /**
  * Page d'accueil
@@ -44,13 +45,22 @@ export class HomePage implements OnInit {
   public playIsLoading: boolean = false;
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private appRate: AppRate, 
-                private turnEntryService: TurnEntryService, private playerService: PlayerService) {
+                private localizedService: LocalizedService, private turnEntryService: TurnEntryService, private playerService: PlayerService) {
     // Construction de la page d'avertissement et affichage
     this.modalCtrl.create(WarningPage).present();
   }
   
   ngOnInit() {
     this.loadStoredPlayers();
+  }
+
+  /**
+   * Vérifie si les traductions sont chargées
+   * 
+   * @return un booléen indiquant si les traductions sont chargées
+   */
+  public areTranslationsLoaded(): boolean {
+    return this.localizedService.areTranslationsLoaded();
   }
 
   /**

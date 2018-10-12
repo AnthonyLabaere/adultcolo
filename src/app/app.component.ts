@@ -16,6 +16,8 @@ import { TurnEntryService } from './_services/turnEntry.service';
   templateUrl: 'app.html'
 })
 export class Adultcolo {
+
+  /** Page racine de l'application */
   rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, appRate: AppRate, 
@@ -30,7 +32,12 @@ export class Adultcolo {
       translate.setDefaultLang('fr');
   
       // the lang to use, if the lang isn't available, it will use the current loader to get them
-      translate.use('fr');
+      translate
+        .use('fr')
+        .subscribe(() => {
+            // In here you can put the code you want. At this point the lang will be loaded
+            localizedService.setTranslationsLoaded(true);
+        });;
 
       if (!ENV.DEV) {
         appRate.preferences.storeAppURL = {

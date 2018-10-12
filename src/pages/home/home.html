@@ -1,6 +1,6 @@
 <ion-content class="home-content" scrollY="false">
   <div class="home-title-container">
-    <div class="home-title">{{'title' | translate}}</div>
+    <div class="home-title"><span *ngIf="areTranslationsLoaded()">{{'title' | translate}}</span></div>
   </div>
 
   <ion-scroll #playersListContainer scrollY="true" class="players-list-container">
@@ -17,7 +17,7 @@
   
   <div class="play-button-container">
     <button class="play-button" ion-button large (click)="onPlayClick()" [disabled]="!canLaunchPlay()">
-      {{'home.buttons.play' | translate}}
+      <span *ngIf="areTranslationsLoaded()">{{'home.buttons.play' | translate}}</span>
     </button>
   </div>
   

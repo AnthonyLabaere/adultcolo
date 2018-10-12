@@ -78,6 +78,17 @@ export class LocalizedService {
     constructor(private translate: TranslateService) {
     }
 
+    /** Booléen indiquant que les langues sont chargées */
+    private translationsLoaded: boolean;
+
+    public areTranslationsLoaded(): boolean {
+        return this.translationsLoaded;
+    }
+
+    public setTranslationsLoaded(translationsLoaded: boolean): void {
+        this.translationsLoaded = translationsLoaded;
+    }
+
     /**
      * Initialisation des constantes dépendants de la langue
      */

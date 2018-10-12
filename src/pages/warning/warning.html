@@ -1,10 +1,12 @@
 <ion-content class="warning-content">
     <div class="warning-title-container">
-        <div class="warning-title">{{'title' | translate}}</div>
+        <div class="warning-title"><span *ngIf="areTranslationsLoaded()">{{'title' | translate}}</span></div>
     </div>
 
     <div class="warning-content-container">
-        <h4 color="light" class="warning-content" [translate]="'warning.content'"></h4>
+        <h4 color="light" class="warning-content">
+            <span *ngIf="areTranslationsLoaded()">{{'warning.content' | translate}}</span>
+        </h4>
     </div>
     
 </ion-content>
@@ -14,12 +16,12 @@
         <ion-row>
             <ion-col col-6>
                 <button class="close-button" ion-button large full (click)="onCloseClick()">
-                    {{'warning.buttons.close' | translate}}
+                    <span *ngIf="areTranslationsLoaded()">{{'warning.buttons.close' | translate}}</span>
                 </button>
             </ion-col>
             <ion-col col-6>
                 <button class="continue-button" ion-button large full (click)="onContinueClick()">
-                    {{'warning.buttons.continue' | translate}}
+                    <span *ngIf="areTranslationsLoaded()">{{'warning.buttons.continue' | translate}}</span>
                 </button>
             </ion-col>
         </ion-row>
