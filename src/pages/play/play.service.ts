@@ -25,7 +25,6 @@ export class PlayService {
         // Les tours dîts "De longue haleine" dont les slides sont décalés dans le temps
         let longWindedTurns: Turn[][];
 
-        // TODO : une seule promesse avec un flatten au bout ?
         return this.turnEntryService.getTurnEntries(TurnType.AD)
             .then((ads: Ad[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.AD, ads, 

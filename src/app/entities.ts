@@ -338,7 +338,6 @@ export class Timer {
         this.timeInMilliSecondsLeft = 1000 * time;
     }
 
-    // TODO : promise au lieu de callback ?
     start(callback: Function) {
         this.started = true;
 
