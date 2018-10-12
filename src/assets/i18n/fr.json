@@ -160,6 +160,9 @@
         }
     },
     "home": {
+        "player": {
+            "prefix": "Joueur "
+        },
         "buttons": {
             "play": "Aller, on boit !"
         }
