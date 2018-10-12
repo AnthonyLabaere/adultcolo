@@ -19,8 +19,21 @@ export const environment = {
     LONG_WINDEDS_BY_PLAY: [0, 0],
     MOVIES_BY_PLAY: [0, 0],
     SONGS_BY_PLAY: [0, 0],
+
     MIN_TURNS_AFTER_LONG_WINDED_END:  5,
     MAX_PERCENT_TURNS_BEFORE_ANY_LONG_WINDED_TURN:  0.75,
+    
+    AD_PARAMETERS: [true, true, true],
+    CARTOON_PARAMETERS: [true, true, true],
+    CONDITION_PARAMETERS: [false, false, false],
+    FOR_OR_AGAINST_PARAMETERS: [true, true, false],
+    GAME_PARAMETERS: [true, false, false],
+    GENERAL_PARAMETERS: [false, false, false],
+    INSTEAD_PARAMETERS: [true, true, false],
+    LIST_PARAMETERS: [true, true, false],
+    LONG_WINDED_PARAMETERS: [false, false, false],
+    MOVIE_PARAMETERS: [true, true, true],
+    SONG_PARAMETERS: [true, true, true],
 
     TIMER_DEFAULT_TIME: 10,
     TIMER_GAME_TIME: 10,

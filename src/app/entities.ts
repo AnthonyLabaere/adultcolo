@@ -121,19 +121,18 @@ export class TurnTypeParameters {
         this.withTimer = withTimer;
     }
 
-    //TODO : à mettre dans ENV
     static TURN_TYPE_PARAMETERS:any = {
-        [TurnType.AD]: new TurnTypeParameters(true, true, true),
-        [TurnType.CARTOON]: new TurnTypeParameters(true, true, true),
-        [TurnType.CONDITION]: new TurnTypeParameters(false, false, false),
-        [TurnType.FOR_OR_AGAINST]: new TurnTypeParameters(true, true, false),
-        [TurnType.GAME]: new TurnTypeParameters(true, false, false),
-        [TurnType.GENERAL]: new TurnTypeParameters(false, false, false),
-        [TurnType.INSTEAD]: new TurnTypeParameters(true, true, false),
-        [TurnType.LIST]: new TurnTypeParameters(true, true, false),
-        [TurnType.LONG_WINDED]: new TurnTypeParameters(false, false, false),
-        [TurnType.MOVIE]: new TurnTypeParameters(true, true, true),
-        [TurnType.SONG]: new TurnTypeParameters(true, true, true)
+        [TurnType.AD]: new TurnTypeParameters(ENV.AD_PARAMETERS[0], ENV.AD_PARAMETERS[1], ENV.AD_PARAMETERS[2]),
+        [TurnType.CARTOON]: new TurnTypeParameters(ENV.CARTOON_PARAMETERS[0], ENV.CARTOON_PARAMETERS[1], ENV.CARTOON_PARAMETERS[2]),
+        [TurnType.CONDITION]: new TurnTypeParameters(ENV.CONDITION_PARAMETERS[0], ENV.CONDITION_PARAMETERS[1], ENV.CONDITION_PARAMETERS[2]),
+        [TurnType.FOR_OR_AGAINST]: new TurnTypeParameters(ENV.FOR_OR_AGAINST_PARAMETERS[0], ENV.FOR_OR_AGAINST_PARAMETERS[1], ENV.FOR_OR_AGAINST_PARAMETERS[2]),
+        [TurnType.GAME]: new TurnTypeParameters(ENV.GAME_PARAMETERS[0], ENV.GAME_PARAMETERS[1], ENV.GAME_PARAMETERS[2]),
+        [TurnType.GENERAL]: new TurnTypeParameters(ENV.GENERAL_PARAMETERS[0], ENV.GENERAL_PARAMETERS[1], ENV.GENERAL_PARAMETERS[2]),
+        [TurnType.INSTEAD]: new TurnTypeParameters(ENV.INSTEAD_PARAMETERS[0], ENV.INSTEAD_PARAMETERS[1], ENV.INSTEAD_PARAMETERS[2]),
+        [TurnType.LIST]: new TurnTypeParameters(ENV.LIST_PARAMETERS[0], ENV.LIST_PARAMETERS[1], ENV.LIST_PARAMETERS[2]),
+        [TurnType.LONG_WINDED]: new TurnTypeParameters(ENV.LONG_WINDED_PARAMETERS[0], ENV.LONG_WINDED_PARAMETERS[1], ENV.LONG_WINDED_PARAMETERS[2]),
+        [TurnType.MOVIE]: new TurnTypeParameters(ENV.MOVIE_PARAMETERS[0], ENV.MOVIE_PARAMETERS[1], ENV.MOVIE_PARAMETERS[2]),
+        [TurnType.SONG]: new TurnTypeParameters(ENV.SONG_PARAMETERS[0], ENV.SONG_PARAMETERS[1], ENV.SONG_PARAMETERS[2])
     };
 }
 
