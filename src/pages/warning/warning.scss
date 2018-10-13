@@ -1,10 +1,8 @@
-$background-color: darkcyan;
-
 page-warning {
     .warning-content {
         text-align: center;
         color: map-get($colors, light);
-        background-color: $background-color;
+        background-color: $background-home-color;
         
         .scroll-content {
 
@@ -36,12 +34,12 @@ page-warning {
         text-align: center;
 
         .toolbar-background, .toolbar-content {
-            background-color: $background-color !important;
+            background-color: $background-home-color !important;
         }
 
         .continue-button {
             color: map-get($colors, light);
-            background-color: darkslategray;
+            background-color: $button-home-color;
         }
     }
 }

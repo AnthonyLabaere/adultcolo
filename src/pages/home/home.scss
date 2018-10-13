@@ -1,10 +1,8 @@
-$background-color: darkcyan;
-
 page-home {
 
     .home-content {
         text-align: center;
-        background-color: $background-color;
+        background-color: $background-home-color;
 
         .home-title-container {
             height: 20%;
@@ -27,12 +25,12 @@ page-home {
                 .players-list {
                     ion-item {
                         color: map-get($colors, light);
-                        background-color: $background-color;
+                        background-color: $background-home-color;
                         
                         &.item-input.item-input-has-focus .item-inner,
                         &.item-input.input-has-focus .item-inner {
-                            border-bottom-color: darkslategray !important;
-                            box-shadow: inset 0 -1px 0 0 darkslategray !important;
+                            border-bottom-color: $button-home-color !important;
+                            box-shadow: inset 0 -1px 0 0 $button-home-color !important;
                         }
         
                         animation: slide-up 0.4s ease;
@@ -46,7 +44,7 @@ page-home {
 
             .play-button {
                 color: map-get($colors, light);
-                background-color: darkslategray;
+                background-color: $button-home-color;
                 font-family: 'Atma-Bold' !important;
             }
         }
@@ -56,7 +54,7 @@ page-home {
         text-align: center;
 
         .toolbar-background, .toolbar-content {
-            background-color: $background-color !important;
+            background-color: $background-home-color !important;
         }
     }
 }

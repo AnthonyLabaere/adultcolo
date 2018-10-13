@@ -15,6 +15,9 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+$background-home-color: darkcyan;
+$button-home-color: darkslategray;
+
 @font-face {
     font-family: 'Atma-Bold';
     src: url(../assets/fonts/atma/Atma-Bold.ttf) format("truetype");
