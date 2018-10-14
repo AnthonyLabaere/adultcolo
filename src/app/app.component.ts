@@ -40,11 +40,24 @@ export class Adultcolo {
         });;
 
       if (!ENV.DEV) {
+        appRate.preferences.useLanguage = translate.getDefaultLang();
+        translate.get('title').subscribe((str: string) => {appRate.preferences.displayAppName = str});
+        appRate.preferences.simpleMode = true;
+
+        appRate.preferences.customLocale = {};
+        translate.get('rating.title').subscribe((str: string) => {appRate.preferences.customLocale.title = str});
+        translate.get('rating.message').subscribe((str: string) => {appRate.preferences.customLocale.message = str});
+        translate.get('rating.cancelButtonLabel').subscribe((str: string) => {appRate.preferences.customLocale.cancelButtonLabel = str});
+        translate.get('rating.rateButtonLabel').subscribe((str: string) => {appRate.preferences.customLocale.rateButtonLabel = str});
+        translate.get('rating.laterButtonLabel').subscribe((str: string) => {appRate.preferences.customLocale.laterButtonLabel = str});
+        
         appRate.preferences.storeAppURL = {
           // ios: '<app_id>',
           android: 'market://details?id=' + ENV.PACKAGE_NAME/*,
           windows: 'ms-windows-store://review/?ProductId=<store_id>'*/
         };
+
+        appRate.promptForRating(false);
       }
 
       // Chargement des chaînes de caractères internationalisées

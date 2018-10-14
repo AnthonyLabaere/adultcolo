@@ -86,6 +86,13 @@
             "argent", "saoul", "boire", "travailler"
         ]
     },
+    "rating": {
+        "title": "Coup de pouce",
+        "message": "Noter l'application si vous l'aimez ;)",
+        "cancelButtonLabel": "Je passe mon tour",
+        "rateButtonLabel": "Je note l'application",
+        "laterButtonLabel": "Je bois un coup d'abord"
+    },
     "turnEntry": {
         "ad": {
             "0": {

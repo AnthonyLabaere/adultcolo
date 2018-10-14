@@ -14,8 +14,8 @@ export const environment = {
     PLAYERS_MAX_NUMBER: 50,
 
     // Nombre [min, max] de gorgées à boire
-    SIP_NUMBER: [0, 2],
-    BIG_SIP_NUMBER: [1, 3],
+    SIP_NUMBER: [1, 3],
+    BIG_SIP_NUMBER: [2, 4],
 
     // Nombre total de tour de jeu (utilisé pour alimenter en "Condition")
     TURN_NUMBER_TOTAL: 40,

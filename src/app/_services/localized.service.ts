@@ -187,15 +187,15 @@ export class LocalizedService {
      * @return le libellé d'un nombre de gorgées
      */
     public static getSipNumberLabel(sipNumber: number): string {
-        if (sipNumber === 0) {
+        if (sipNumber === 1) {
             return LocalizedService.ONE_SIP_NUMBER;
-        } else if (sipNumber === 1) {
-            return LocalizedService.TWO_SIP_NUMBER;
         } else if (sipNumber === 2) {
-            return LocalizedService.THREE_SIP_NUMBER;
+            return LocalizedService.TWO_SIP_NUMBER;
         } else if (sipNumber === 3) {
-            return LocalizedService.FOUR_SIP_NUMBER;
+            return LocalizedService.THREE_SIP_NUMBER;
         } else if (sipNumber === 4) {
+            return LocalizedService.FOUR_SIP_NUMBER;
+        } else if (sipNumber === 5) {
             return LocalizedService.FIVE_SIP_NUMBER;
         }
     }

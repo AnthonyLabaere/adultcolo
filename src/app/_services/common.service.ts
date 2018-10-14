@@ -28,7 +28,6 @@ export class CommonService {
         if (bigSip) {
             randomNumber = _.random(ENV.BIG_SIP_NUMBER[0], ENV.BIG_SIP_NUMBER[1]);
         } else {
-            // 1 à 3 gorgées
             randomNumber = _.random(ENV.SIP_NUMBER[0], ENV.SIP_NUMBER[1]);
         }
         return randomNumber;
