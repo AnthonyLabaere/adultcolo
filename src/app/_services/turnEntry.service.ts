@@ -18,7 +18,8 @@ export class TurnEntryService {
         [TurnType.AD]: ['alcool', 'drink', 'food', 'restaurant', 'shop', 'transport'],
         [TurnType.CONDITION]: ['alcool', 'child', 'family', 'food', 'general', 'old', 'sentimental', 'sport', 'travel', 'video-game', 'work'],
         [TurnType.CARTOON]: ['disney'],
-        [TurnType.MOVIE]: ['local', 'nanar']
+        [TurnType.MOVIE]: ['local', 'nanar'],
+        [TurnType.SONG]: ['local']
     }
 
     /** Map des données brutes pour chaque type de tour */
