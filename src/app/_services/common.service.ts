@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
 import { TurnType, TurnTypeParameters, ValueWithWeight } from "../entities";
+import { environment as ENV } from '../../environments/environment';
 
 /**
  * Service englobant des méthodes communes
@@ -25,11 +26,10 @@ export class CommonService {
     public static getRandomSipNumber(bigSip: boolean = false): number {
         let randomNumber;
         if (bigSip) {
-            //  3 à 5 gorgées
-            randomNumber = _.random(2, 4);
+            randomNumber = _.random(ENV.BIG_SIP_NUMBER[0], ENV.BIG_SIP_NUMBER[1]);
         } else {
             // 1 à 3 gorgées
-            randomNumber = _.random(2);
+            randomNumber = _.random(ENV.SIP_NUMBER[0], ENV.SIP_NUMBER[1]);
         }
         return randomNumber;
     }

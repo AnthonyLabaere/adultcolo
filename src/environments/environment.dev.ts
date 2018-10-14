@@ -8,6 +8,9 @@ export const environment = {
     PLAYERS_MIN_NUMBER: 2,
     PLAYERS_MAX_NUMBER: 50,
 
+    SIP_NUMBER: [0, 2],
+    BIG_SIP_NUMBER: [1, 3],
+
     TURN_NUMBER_TOTAL: 10,
     ADS_BY_PLAY: [0, 0],
     CARTOONS_BY_PLAY: [0, 0],
