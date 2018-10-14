@@ -16,7 +16,8 @@ export class TurnEntryService {
      */
     private static TURN_SUB_TYPES = {
         [TurnType.AD]: ['alcool', 'drink', 'food', 'restaurant', 'shop', 'transport'],
-        [TurnType.CONDITION]: ['alcool', 'child', 'family', 'food', 'general', 'old', 'sentimental', 'sport', 'travel', 'video-game', 'work'],
+        [TurnType.CONDITION]: ['alcool'],
+        // [TurnType.CONDITION]: ['alcool', 'child', 'family', 'food', 'general', 'old', 'sentimental', 'sport', 'travel', 'video-game', 'work'],
         [TurnType.CARTOON]: ['disney'],
         [TurnType.MOVIE]: ['local', 'nanar'],
         [TurnType.SONG]: ['local']

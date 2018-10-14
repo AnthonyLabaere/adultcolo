@@ -11,6 +11,7 @@ import { CommonService } from "./common.service";
 export class LocalizedService {
 
     // Chaînes de caractères localizés
+    public static ALCOOLS_WITH_PREPOSITION: string[];
     public static ALPHABET_FIRSTNAME: string[];
     public static ALPHABET_CITY: string[];
     public static CARDS_COLOR: string[];
@@ -64,6 +65,7 @@ export class LocalizedService {
     public static DATA_SIP_SUFFIX_KEY_TO_REPLACE = '<<sipSuffix>>';
     public static DATA_SIP_PRONOUN_KEY_TO_REPLACE = '<<sipPronoun>>';
 
+    public static DATA_RANDOM_ALCOOL_KEY_TO_REPLACE = '<<random-alcool>>';
     public static DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE = '<<random-letter-firstname>>';
     public static DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE = '<<random-letter-city>>';
     public static DATA_RANDOM_CARD_COLOR_KEY_TO_REPLACE = '<<random-card-color>>';
@@ -93,6 +95,7 @@ export class LocalizedService {
      * Initialisation des constantes dépendants de la langue
      */
     public initLocalizedConstants(): void {
+        this.translate.get('common.alcools.withPreposition').subscribe((str: string[]) => {LocalizedService.ALCOOLS_WITH_PREPOSITION = str});
         this.translate.get('common.alphabet.firstname').subscribe((str: string[]) => {LocalizedService.ALPHABET_FIRSTNAME = str});
         this.translate.get('common.alphabet.city').subscribe((str: string[]) => {LocalizedService.ALPHABET_CITY = str});
         this.translate.get('common.cards.color').subscribe((str: string[]) => {LocalizedService.CARDS_COLOR = str});
@@ -230,6 +233,8 @@ export class LocalizedService {
         const sipNumberLabel = LocalizedService.getSipNumberLabel(sipNumber);
         const sipSuffix = LocalizedService.getSipSuffix(sipNumber);
         const sipPronoun = LocalizedService.getSipPronoun(sipNumber);
+        
+        const randomAlcool = _.shuffle(LocalizedService.ALCOOLS_WITH_PREPOSITION)[0];
         const randomLetterFirstname = _.shuffle(LocalizedService.ALPHABET_FIRSTNAME)[0];
         const randomLetterCity = _.shuffle(LocalizedService.ALPHABET_CITY)[0];
         const randomCardColor = _.shuffle(LocalizedService.CARDS_COLOR)[0];
@@ -257,6 +262,7 @@ export class LocalizedService {
             .replace(LocalizedService.DATA_SIP_NUMBER_KEY_TO_REPLACE, sipNumberLabel)
             .replace(LocalizedService.DATA_SIP_SUFFIX_KEY_TO_REPLACE, sipSuffix)
             .replace(LocalizedService.DATA_SIP_PRONOUN_KEY_TO_REPLACE, sipPronoun)
+            .replace(LocalizedService.DATA_RANDOM_ALCOOL_KEY_TO_REPLACE, randomAlcool)
             .replace(LocalizedService.DATA_RANDOM_LETTER_FIRSTNAME_KEY_TO_REPLACE, randomLetterFirstname.toUpperCase())
             .replace(LocalizedService.DATA_RANDOM_LETTER_CITY_KEY_TO_REPLACE, randomLetterCity.toUpperCase())
             .replace(LocalizedService.DATA_RANDOM_CARD_COLOR_KEY_TO_REPLACE, randomCardColor)

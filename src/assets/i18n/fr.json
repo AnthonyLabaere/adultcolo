@@ -1,6 +1,10 @@
 {
     "title": "Adultcolo",
     "common": {
+        "alcools": {
+            "default": ["bière", "cidre", "rhum", "tequila", "vin", "vodka", "whisky"],
+            "withPreposition": ["de la bière", "du cidre", "du rhum", "de la tequila", "du vin", "de la vodka", "du whisky"]
+        },
         "alphabet": {
             "complete": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
             "firstname": ["a", "b", "c", "d", "e", "f", "g", "h", "j", "l", "m", "n", "p", "r", "s", "t", "v"],
@@ -35,7 +39,7 @@
             "salted": [
                 "burger", "pizza",  "tartiflette", "raclette", "fondue bourguignonne", "fondue savoyarde", "wok", "sushis", "poulet tikka massala",
                 "barbecue", "maki", "salade", "tacos", "fajitas", "crêpes", "choucroute", "pâte en croûte", "fish'n chips", "kebab", "hot dog", 
-                "couscous", "tajine", "carottes râpées", "nems", "samoussas", "croque monsieur", "quiche", "rôti de boeuf", "soupe"
+                "couscous", "tajine", "nems", "samoussas", "croque monsieur", "quiche", "rôti de boeuf", "soupe"
             ]
         },
         "forbidden": {
