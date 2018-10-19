@@ -1,5 +1,9 @@
 export const environment = {
+    // Indique si la version est une version de dev
     DEV: false,
+
+    // Indique si les publicités doivent être affichées
+    DISPLAY_AD: false,
 
     // Préfixe de clé de sauvegarde dans le cache pour l'application
     ADULTCOLO_STORAGE_KEY_PREFIX: 'adultcolo-',

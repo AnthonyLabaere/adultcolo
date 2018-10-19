@@ -101,7 +101,14 @@ export class PlayPage {
           if (ENV.DEV) {
             this.navCtrl.pop();
           } else {
-            this.admobFree.interstitial.show()
+            let showAdPromise;
+            if (ENV.DISPLAY_AD) {
+              showAdPromise = this.admobFree.interstitial.show();
+            } else {
+              showAdPromise = Promise.resolve();
+            }
+
+            showAdPromise
               .then(() => {
                 if (!ENV.DEV) {
                   // La mise en veille est de nouveau rendu possible
