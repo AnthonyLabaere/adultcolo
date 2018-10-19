@@ -155,7 +155,7 @@
         "song": {
             "0": {
                 "title": "Chanson",
-                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la chanson correspondant à l'indice."
+                "description": "{{player}} a {{timeInSeconds}} secondes pour répondre à la question."
             },
             "1": {
                 "title": "Chanson",
