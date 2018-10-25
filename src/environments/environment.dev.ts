@@ -40,18 +40,18 @@ export const environment = {
     // Pourcentage max de calcul dans les tours de jeu (0.5 = la moitié des tours) avant lequel tout les tours du type "De longue haleine" doivent avoir commencés
     MAX_PERCENT_TURNS_BEFORE_ANY_LONG_WINDED_TURN:  0.75,
     
-    // Paramètres [withTitle, withDescription, withTimer] des tours de jeu par type
-    AD_PARAMETERS: [true, true, true],
-    CARTOON_PARAMETERS: [true, true, true],
-    CONDITION_PARAMETERS: [false, false, false],
-    FOR_OR_AGAINST_PARAMETERS: [true, true, false],
-    GAME_PARAMETERS: [true, false, false],
-    GENERAL_PARAMETERS: [false, false, false],
-    INSTEAD_PARAMETERS: [true, true, false],
-    LIST_PARAMETERS: [true, true, false],
-    LONG_WINDED_PARAMETERS: [false, false, false],
-    MOVIE_PARAMETERS: [true, true, true],
-    SONG_PARAMETERS: [true, true, true],
+    // Paramètres [isQuestion, withTitle, withDescription, withTimer] des tours de jeu par type
+    AD_PARAMETERS:             [true, true, true, true],
+    CARTOON_PARAMETERS:        [true, true, true, true],
+    CONDITION_PARAMETERS:      [false, false, false, false],
+    FOR_OR_AGAINST_PARAMETERS: [false, true, true, false],
+    GAME_PARAMETERS:           [false, true, false, false],
+    GENERAL_PARAMETERS:        [false, false, false, false],
+    INSTEAD_PARAMETERS:        [false, true, true, false],
+    LIST_PARAMETERS:           [false, true, true, false],
+    LONG_WINDED_PARAMETERS:    [false, false, false, false],
+    MOVIE_PARAMETERS:          [true, true, true, true],
+    SONG_PARAMETERS:           [true, true, true, true],
 
     // Temps par défaut du minuteur
     TIMER_DEFAULT_TIME: 10,
@@ -59,6 +59,9 @@ export const environment = {
     TIMER_GAME_TIME: 10,
     // Interval technique de rafraîchissement graphique du minuteur
     TIMER_INTERVAL_IN_MILLI_SECONDS: 10,
+
+    // Types de tour paramétrables
+    PARAMETERIZED_TURN_TYPES: ['AD', 'CARTOON', 'MOVIE', 'SONG'],
 
     // Nom du package Android de l'application
     PACKAGE_NAME: '',

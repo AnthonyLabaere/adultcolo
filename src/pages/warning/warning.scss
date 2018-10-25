@@ -40,7 +40,6 @@ page-warning {
         .continue-button {
             color: map-get($colors, light);
             background-color: map-get($colors, dark);
-            // background-color: $button-home-color;
         }
     }
 }

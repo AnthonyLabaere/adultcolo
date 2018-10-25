@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
 import { TurnType, TurnTypeParameters, ValueWithWeight } from "../entities";
 import { environment as ENV } from '../../environments/environment';
+import { TurnTypeService } from "./turnType.service";
 
 /**
  * Service englobant des méthodes communes
@@ -11,7 +12,7 @@ export class CommonService {
 
     public static DATA_FILE_PATH = '../assets/data/';
 
-    constructor() {
+    constructor(private turnTypeService: TurnTypeService) {
     }
 
     // Region fonctionnelle
@@ -40,8 +41,8 @@ export class CommonService {
      * 
      * @return un booléen indiquant si un titre général doit être affiché
      */
-    public static showTitle(turnType: TurnType): boolean {
-        return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withTitle;
+    public showTitle(turnType: TurnType): boolean {
+        return (<TurnTypeParameters> this.turnTypeService.getTurnTypeParameters(turnType)).withTitle;
     }
 
     /**
@@ -51,8 +52,8 @@ export class CommonService {
      * 
      * @return un booléen indiquant si une description générale doit être affichée
      */
-    public static showDescription(turnType: TurnType): boolean {
-        return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withDescription;
+    public showDescription(turnType: TurnType): boolean {
+        return (<TurnTypeParameters> this.turnTypeService.getTurnTypeParameters(turnType)).withDescription;
     }
 
     /**
@@ -62,8 +63,8 @@ export class CommonService {
      * 
      * @return un booléen indiquant si un timer général doit être affiché
      */
-    public static showTimer(turnType: TurnType): boolean {
-        return (<TurnTypeParameters> TurnTypeParameters.TURN_TYPE_PARAMETERS[turnType]).withTimer;
+    public showTimer(turnType: TurnType): boolean {
+        return (<TurnTypeParameters> this.turnTypeService.getTurnTypeParameters(turnType)).withTimer;
     }
 
     // endRegion

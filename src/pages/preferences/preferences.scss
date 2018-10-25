@@ -1,0 +1,91 @@
+page-preferences {
+    .preferences-content {
+        text-align: center;
+        color: map-get($colors, light);
+        background-color: $background-home-color;
+        
+        .scroll-content {
+
+            .preferences-title-container {
+                color: map-get($colors, light);
+                margin-bottom: 20px;
+                .preferences-title {
+                    font-family: 'Atma-Bold' !important;
+                    font-size: 55px;
+                }
+            }
+
+            .preferences-content-container {
+                height: 70%;
+
+                .scroll-content {
+                    padding: 0 5px;
+
+                    .preferences-item-container {
+                        margin-bottom: 15px;
+
+                        .preferences-item-title {
+                            color: map-get($colors, light);
+                            font-size: 18px;
+                            margin-bottom: 5px;
+                        }
+                    }
+
+                    ion-item {
+                        background-color: $background-home-color;
+                        color: map-get($colors, light);
+
+                        &.ad .toggle.toggle-checked .toggle-icon {
+                            background-color: lighten($ad-color, 5%)
+                        }
+                        &.ad .toggle.toggle-checked .toggle-inner {
+                            background-color: $ad-color;
+                        }
+                        &.cartoon .toggle.toggle-checked .toggle-icon {
+                            background-color: lighten($cartoon-color, 5%)
+                        }
+                        &.cartoon .toggle.toggle-checked .toggle-inner {
+                            background-color: $cartoon-color;
+                        }
+                        &.movie .toggle.toggle-checked .toggle-icon {
+                            background-color: lighten($movie-color, 5%)
+                        }
+                        &.movie .toggle.toggle-checked .toggle-inner {
+                            background-color: $movie-color;
+                        }
+                        &.song .toggle.toggle-checked .toggle-icon {
+                            background-color: lighten($song-color, 5%)
+                        }
+                        &.song .toggle.toggle-checked .toggle-inner {
+                            background-color: $song-color;
+                        }
+
+                        // .item-inner {
+                            // border: none;
+                            // ion-label {
+                            //     color: map-get($colors, light);
+                                // margin: 0;
+                            // }
+                            // ion-range {
+                                // padding-top: 0;
+                            // }
+                        // }
+                    }
+                }
+            }
+        }
+    }
+
+    .preferences-footer {
+        text-align: center;
+
+        .toolbar-background, .toolbar-content {
+            background-color: $background-home-color !important;
+        }
+
+        .validate-button {
+            color: map-get($colors, light);
+            background-color: map-get($colors, dark);
+        }
+    }
+}

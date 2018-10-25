@@ -2,7 +2,19 @@ import { environment as ENV } from '../environments/environment';
 import { CommonService } from "./_services/common.service";
 import { LocalizedService } from "./_services/localized.service";
 
-//region "DTO"
+//region Object d'IHM
+
+export class Preference {
+    code: string;
+    value: boolean;
+
+    constructor(code: string, value: boolean) {
+        this.code = code;
+        this.value = value;
+    }
+}
+
+// endRegion
 
 //region "Entrée de tour de jeu"
 
@@ -111,29 +123,28 @@ export enum TurnType {
  * Liste différents paramètres d'un type de tour de jeu
  */
 export class TurnTypeParameters {
+    isQuestion: boolean;
     withTitle: boolean;
     withDescription: boolean;
     withTimer: boolean;
 
-    constructor(withTitle: boolean, withDescription: boolean, withTimer: boolean) {
+    constructor(isQuestion: boolean, withTitle: boolean, withDescription: boolean, withTimer: boolean) {
+        this.isQuestion = isQuestion;
         this.withTitle = withTitle;
         this.withDescription = withDescription;
         this.withTimer = withTimer;
     }
 
-    static TURN_TYPE_PARAMETERS:any = {
-        [TurnType.AD]: new TurnTypeParameters(ENV.AD_PARAMETERS[0], ENV.AD_PARAMETERS[1], ENV.AD_PARAMETERS[2]),
-        [TurnType.CARTOON]: new TurnTypeParameters(ENV.CARTOON_PARAMETERS[0], ENV.CARTOON_PARAMETERS[1], ENV.CARTOON_PARAMETERS[2]),
-        [TurnType.CONDITION]: new TurnTypeParameters(ENV.CONDITION_PARAMETERS[0], ENV.CONDITION_PARAMETERS[1], ENV.CONDITION_PARAMETERS[2]),
-        [TurnType.FOR_OR_AGAINST]: new TurnTypeParameters(ENV.FOR_OR_AGAINST_PARAMETERS[0], ENV.FOR_OR_AGAINST_PARAMETERS[1], ENV.FOR_OR_AGAINST_PARAMETERS[2]),
-        [TurnType.GAME]: new TurnTypeParameters(ENV.GAME_PARAMETERS[0], ENV.GAME_PARAMETERS[1], ENV.GAME_PARAMETERS[2]),
-        [TurnType.GENERAL]: new TurnTypeParameters(ENV.GENERAL_PARAMETERS[0], ENV.GENERAL_PARAMETERS[1], ENV.GENERAL_PARAMETERS[2]),
-        [TurnType.INSTEAD]: new TurnTypeParameters(ENV.INSTEAD_PARAMETERS[0], ENV.INSTEAD_PARAMETERS[1], ENV.INSTEAD_PARAMETERS[2]),
-        [TurnType.LIST]: new TurnTypeParameters(ENV.LIST_PARAMETERS[0], ENV.LIST_PARAMETERS[1], ENV.LIST_PARAMETERS[2]),
-        [TurnType.LONG_WINDED]: new TurnTypeParameters(ENV.LONG_WINDED_PARAMETERS[0], ENV.LONG_WINDED_PARAMETERS[1], ENV.LONG_WINDED_PARAMETERS[2]),
-        [TurnType.MOVIE]: new TurnTypeParameters(ENV.MOVIE_PARAMETERS[0], ENV.MOVIE_PARAMETERS[1], ENV.MOVIE_PARAMETERS[2]),
-        [TurnType.SONG]: new TurnTypeParameters(ENV.SONG_PARAMETERS[0], ENV.SONG_PARAMETERS[1], ENV.SONG_PARAMETERS[2])
-    };
+    /**
+     * Construction d'un TurnTypeParameters à partir d'un tableau de booléens
+     * 
+     * @param array tableau de booléens
+     * 
+     * @return l'objet construit
+     */
+    public static buildFromArray(array: boolean[]) : TurnTypeParameters {
+        return new TurnTypeParameters(array[0], array[1], array[2], array[3]);
+    }
 }
 
 /**

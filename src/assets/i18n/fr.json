@@ -163,6 +163,20 @@
             }
         }
     },
+    "preference": {
+        "ad": {
+            "title": "Jeux sur les publicités"
+        },
+        "cartoon": {
+            "title": "Jeux sur les dessins animés"
+        },
+        "movie": {
+            "title": "Jeux sur les films"
+        },
+        "song": {
+            "title": "Jeux sur les chansons"
+        }
+    },
     "warning": {
         "content": "L'abus d'alcool est dangereux pour la santé et doit être consommé avec modération. Vous reconnaissez être responsable de vos actes suite à l'utilisation de cette application.",
         "buttons": {
@@ -181,6 +195,12 @@
     "play": {
         "timer": {
             "clickMessage": "Attention chronomètre : cliquez sur l'écran lorsque vous êtes prêts."
+        }
+    },
+    "preferences": {
+        "buttons": {
+            "close": "Fermer",
+            "validate": "Valider"
         }
     }
 }

@@ -7,6 +7,7 @@ import { PlayerService } from '../../app/_services/player.service';
 import { TurnEntryService } from '../../app/_services/turnEntry.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayPage } from '../play/play';
+import { PreferencesPage } from '../preferences/preferences';
 import { WarningPage } from '../warning/warning';
 
 /**
@@ -50,6 +51,9 @@ export class HomePage implements OnInit {
     this.modalCtrl.create(WarningPage).present();
   }
   
+  /**
+   * Méthode appelée après initialisation du composant
+   */
   ngOnInit() {
     this.loadStoredPlayers();
   }
@@ -127,6 +131,14 @@ export class HomePage implements OnInit {
 
       this.playIsLoading = false;
     }
+  }
+
+  /**
+   * Ouverture de la page de gestion des préférences
+   */
+  public onPreferencesClick() {
+    // Affichage de la page des préférences
+    this.navCtrl.push(PreferencesPage);
   }
 
   /**

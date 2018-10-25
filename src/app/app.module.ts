@@ -2,8 +2,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRate } from '@ionic-native/app-rate';
 import { AdMobFree } from '@ionic-native/admob-free';
+import { AppRate } from '@ionic-native/app-rate';
 import { Insomnia } from '@ionic-native/insomnia';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,12 +15,14 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { HomePage } from '../pages/home/home';
 import { PlayPage } from '../pages/play/play';
 import { PlayService } from '../pages/play/play.service';
+import { PreferencesPage } from '../pages/preferences/preferences';
 import { WarningPage } from '../pages/warning/warning';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
+import { LocalizedService } from './_services/localized.service';
 import { PlayerService } from './_services/player.service';
 import { TurnEntryService } from './_services/turnEntry.service';
-import { LocalizedService } from './_services/localized.service';
+import { TurnTypeService } from './_services/turnType.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomePage,
     PlayPage,
     WarningPage,
+    PreferencesPage,
     ProgressBarComponent
   ],
   imports: [
@@ -56,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     Adultcolo,
     HomePage,
     PlayPage,
+    PreferencesPage,
     WarningPage
   ],
   providers: [
@@ -69,7 +73,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LocalizedService,
     PlayService,
     PlayerService,
-    TurnEntryService
+    TurnEntryService,
+    TurnTypeService
   ]
 })
 export class AppModule {}

@@ -26,7 +26,11 @@
 <ion-footer class="home-footer">
   <ion-toolbar>
       <ion-row>
-        <ion-col col-4></ion-col>
+        <ion-col col-4>
+          <button color="light" clear ion-button large icon-only (click)="onPreferencesClick()">
+            <ion-icon name="settings"></ion-icon>
+          </button>
+        </ion-col>
         <ion-col col-4>
             <button color="light" clear ion-button large icon-only (click)="onRatingClick()">
               <ion-icon name="star"></ion-icon>

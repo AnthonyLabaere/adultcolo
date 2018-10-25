@@ -30,7 +30,8 @@ export class PlayPage {
   /** Dans le cas où un timer est nécessaire (exemple : les chansons) */
   public timer: Timer;
 
-  constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, private playService: PlayService) {
+  constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, private commonService: CommonService,
+     private playService: PlayService) {
     if (!ENV.DEV) {
       const interstitialConfig: AdMobFreeInterstitialConfig = {
         isTesting: ENV.DEV,
@@ -130,14 +131,14 @@ export class PlayPage {
   private onTurnChange() {
     this.currentTurnLabelIndex = 0;
 
-    if (CommonService.showTimer(this.getCurrentTurn().type) || this.getCurrentTurn().withTimer) {
+    if (this.commonService.showTimer(this.getCurrentTurn().type) || this.getCurrentTurn().withTimer) {
       this.timer = new Timer(this.getCurrentTurn().type);
     }
   }
 
   public showGlobalTitle(turnType: TurnType): boolean {
     if (turnType !== undefined && turnType !== null) {
-      return CommonService.showTitle(turnType);
+      return this.commonService.showTitle(turnType);
     } else {
       return false;
     }
@@ -155,7 +156,7 @@ export class PlayPage {
 
   public showGlobalDescription(turnType: TurnType): boolean {
     if (turnType !== undefined && turnType !== null) {
-      return CommonService.showDescription(turnType);
+      return this.commonService.showDescription(turnType);
     } else {
       return false;
     }

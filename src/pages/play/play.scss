@@ -1,53 +1,41 @@
 page-play {
 
-    $turn-ad-color: darkgreen;
-    $turn-cartoon-color: purple;
-    $turn-condition-color: darkturquoise;
-    $turn-for-or-against-color: crimson;
-    $turn-game-color: steelblue;
-    $turn-general-color: darkturquoise;
-    $turn-instead-color: crimson;
-    $turn-list-color: darkorange;
-    $turn-long-winded-color: gold;
-    $turn-movie-color: slateblue;
-    $turn-song-color: tomato;
-
     .play-content {
         text-align: center;
         color: white;
 
         &.turn-ad {
-            background-color: $turn-ad-color;
+            background-color: $ad-color;
         }
         &.turn-cartoon {
-            background-color: $turn-cartoon-color;
+            background-color: $cartoon-color;
         }
         &.turn-condition {
-            background-color: $turn-condition-color;
+            background-color: $condition-color;
         }
         &.turn-for-or-against {
-            background-color: $turn-for-or-against-color;
+            background-color: $for-or-against-color;
         }
         &.turn-game {
-            background-color: $turn-game-color;
+            background-color: $game-color;
         }
         &.turn-general {
-            background-color: $turn-general-color;
+            background-color: $general-color;
         }
         &.turn-instead {
-            background-color: $turn-instead-color;
+            background-color: $instead-color;
         }
         &.turn-list {
-            background-color: $turn-list-color;
+            background-color: $list-color;
         }
         &.turn-long-winded {
-            background-color: $turn-long-winded-color;
+            background-color: $long-winded-color;
         }
         &.turn-movie {
-            background-color: $turn-movie-color;
+            background-color: $movie-color;
         }
         &.turn-song {
-            background-color: $turn-song-color;
+            background-color: $song-color;
         }
 
         .turn-row {
@@ -107,37 +95,37 @@ page-play {
     
     .play-footer {
         &.turn-ad .toolbar-background,  &.turn-ad .toolbar-content {
-            background-color: $turn-ad-color;
+            background-color: $ad-color;
         }
         &.turn-cartoon .toolbar-background,  &.turn-cartoon .toolbar-content {
-            background-color: $turn-cartoon-color;
+            background-color: $cartoon-color;
         }
         &.turn-condition .toolbar-background,  &.turn-condition .toolbar-content {
-            background-color: $turn-condition-color;
+            background-color: $condition-color;
         }
         &.turn-for-or-against .toolbar-background, &.turn-for-or-against .toolbar-content {
-            background-color: $turn-for-or-against-color;
+            background-color: $for-or-against-color;
         }
         &.turn-game .toolbar-background, &.turn-game .toolbar-content {
-            background-color: $turn-game-color;
+            background-color: $game-color;
         }
         &.turn-general .toolbar-background, &.turn-general .toolbar-content {
-            background-color: $turn-general-color;
+            background-color: $general-color;
         }
         &.turn-instead .toolbar-background, &.turn-instead .toolbar-content {
-            background-color: $turn-instead-color;
+            background-color: $instead-color;
         }
         &.turn-list .toolbar-background, &.turn-list .toolbar-content {
-            background-color: $turn-list-color;
+            background-color: $list-color;
         }
         &.turn-long-winded .toolbar-background, &.turn-long-winded .toolbar-content {
-            background-color: $turn-long-winded-color;
+            background-color: $long-winded-color;
         }
         &.turn-movie .toolbar-background, &.turn-movie .toolbar-content {
-            background-color: $turn-movie-color;
+            background-color: $movie-color;
         }
         &.turn-song .toolbar-background, &.turn-song .toolbar-content {
-            background-color: $turn-song-color;
+            background-color: $song-color;
         }
     }
 }
