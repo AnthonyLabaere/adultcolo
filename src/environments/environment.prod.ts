@@ -60,9 +60,6 @@ export const environment = {
     // Interval technique de rafraîchissement graphique du minuteur
     TIMER_INTERVAL_IN_MILLI_SECONDS: 10,
 
-    // Types de tour paramétrables
-    PARAMETERIZED_TURN_TYPES: ['AD', 'CARTOON', 'MOVIE', 'SONG'],
-
     // Nom du package Android de l'application
     PACKAGE_NAME: 'hyebalare.adultcolo',
     // Clé ADMOB pour les publicités

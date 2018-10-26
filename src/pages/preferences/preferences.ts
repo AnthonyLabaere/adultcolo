@@ -34,14 +34,4 @@ export class PreferencesPage implements OnInit {
   onCloseClick() {
     this.navCtrl.pop();
   }
-
-  /**
-   * Méthode de validation
-   */
-  onValidateClick() {
-    // TODO : validation
-    console.log(this.preferences);
-
-    // this.navCtrl.pop();
-  }
 }
