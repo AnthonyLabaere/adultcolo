@@ -24,7 +24,7 @@ export class PreferencesPage implements OnInit {
   ngOnInit() {
       // Type de jeux dont le nombre d'apparitions peut être modifié
       this.turnTypeService.getQuestionTurnTypes().forEach(turnType => {
-        this.preferences.push(new Preference(turnType, false));
+        this.preferences.push(new Preference(turnType, this.turnTypeService.getDefaultPreference(turnType)));
       });
   }
 

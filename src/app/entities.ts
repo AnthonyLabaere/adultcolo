@@ -123,12 +123,14 @@ export enum TurnType {
  * Liste différents paramètres d'un type de tour de jeu
  */
 export class TurnTypeParameters {
+    preference: boolean;
     isQuestion: boolean;
     withTitle: boolean;
     withDescription: boolean;
     withTimer: boolean;
 
-    constructor(isQuestion: boolean, withTitle: boolean, withDescription: boolean, withTimer: boolean) {
+    constructor(preference: boolean, isQuestion: boolean, withTitle: boolean, withDescription: boolean, withTimer: boolean) {
+        this.preference = preference;
         this.isQuestion = isQuestion;
         this.withTitle = withTitle;
         this.withDescription = withDescription;
@@ -143,7 +145,7 @@ export class TurnTypeParameters {
      * @return l'objet construit
      */
     public static buildFromArray(array: boolean[]) : TurnTypeParameters {
-        return new TurnTypeParameters(array[0], array[1], array[2], array[3]);
+        return new TurnTypeParameters(array[0], array[1], array[2], array[3], array[4]);
     }
 }
 

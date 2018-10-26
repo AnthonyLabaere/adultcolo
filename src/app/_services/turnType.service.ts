@@ -34,7 +34,18 @@ export class TurnTypeService {
      * 
      * @return la configuration d'un type de tour
      */
-    public getTurnTypeParameters(turnType: TurnType):any {
+    public getDefaultPreference(turnType: TurnType):boolean {
+        return this.turnTypeParameters[turnType].preference;
+    }
+
+    /** 
+     * Récupère la configuration d'un type de tour
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return la configuration d'un type de tour
+     */
+    public getTurnTypeParameters(turnType: TurnType):TurnTypeParameters {
         return this.turnTypeParameters[turnType];
     }
 
