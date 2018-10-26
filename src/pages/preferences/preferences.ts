@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Preference } from '../../app/entities';
+import { Preference, TurnType } from '../../app/entities';
 import { TurnTypeService } from '../../app/_services/turnType.service';
 import { PreferenceService } from './preferences.service';
 
@@ -25,8 +25,34 @@ export class PreferencesPage implements OnInit {
   ngOnInit() {
       // Type de jeux dont le nombre d'apparitions peut être modifié
       this.turnTypeService.getQuestionTurnTypes().forEach(turnType => {
-        this.preferences.push(new Preference(turnType, this.preferenceService.getPreference(turnType)));
+        this.preferenceService.getPreferenceValue(turnType)
+          .then((preferenceValue: boolean) => {
+            this.preferences.push(new Preference(turnType, preferenceValue));
+          });
       });
+  }
+
+  /**
+   * Méthode appelée après un clic sur une préférence
+   */
+  onPreferenceClick(preference: Preference) {
+    preference.value = !preference.value;
+
+    this.onPreferenceChange(preference);
+  }
+
+  /**
+   * Méthode appelée après un clic sur le toogle d'une préférence
+   */
+  onPreferenceToggle(preference: Preference) {
+    this.onPreferenceChange(preference);
+  }
+
+  /**
+   * Méthode appelée après un changement de préférence
+   */
+  onPreferenceChange(preference: Preference) {
+    this.preferenceService.setPreferenceValue(TurnType[preference.code.toUpperCase()], preference.value);
   }
 
   /**

@@ -16,8 +16,8 @@
     <ion-scroll scrollY="true" class="preferences-content-container">
         <ion-list>
             <ion-item *ngFor="let preference of preferences" [ngClass]="preference.code">
-                <ion-label [translate]="'preferences.' + preference.code + '.title'"></ion-label>
-                <ion-toggle [(ngModel)]="preference.value"></ion-toggle>
+                <ion-label [translate]="'preferences.' + preference.code + '.title'" (click)="onPreferenceClick(preference)"></ion-label>
+                <ion-toggle [(ngModel)]="preference.value" (ionChange)="onPreferenceToggle(preference)"></ion-toggle>
             </ion-item>
         </ion-list>
     </ion-scroll>

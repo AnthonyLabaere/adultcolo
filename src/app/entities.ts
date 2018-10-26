@@ -104,6 +104,8 @@ export class Song extends TurnEntry {}
 
 /**
  * Type de tour de jeu
+ * 
+ * Les codes doivent être égals aux noms, à la casse près
  */
 export enum TurnType {
     AD = 'ad',

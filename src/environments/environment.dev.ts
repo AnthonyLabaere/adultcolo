@@ -9,6 +9,8 @@ export const environment = {
     ADULTCOLO_STORAGE_KEY_PREFIX: 'adultcolo-',
     // Préfixe de clé de sauvegarde dans le cache pour un joueur
     PLAYER_STORAGE_KEY_PREFIX: 'adultcolo-player',
+    // Préfixe de clé de sauvegarde dans le cache pour une valeur de préférence
+    PREFERENCE_STORAGE_KEY_PREFIX: 'adultcolo-preference',
 
     // Nombre minimum de joueur à afficher sur la page d'accueil
     MIN_PLAYERS_ON_DISPLAY: 3,
