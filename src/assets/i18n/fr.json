@@ -163,7 +163,8 @@
             }
         }
     },
-    "preference": {
+    "preferences": {
+        "title": "Préférences",
         "ad": {
             "title": "Jeux sur les publicités"
         },
@@ -195,12 +196,6 @@
     "play": {
         "timer": {
             "clickMessage": "Attention chronomètre : cliquez sur l'écran lorsque vous êtes prêts."
-        }
-    },
-    "preferences": {
-        "buttons": {
-            "close": "Fermer",
-            "validate": "Valider"
         }
     }
 }

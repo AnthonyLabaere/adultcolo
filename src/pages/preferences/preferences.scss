@@ -9,9 +9,14 @@ page-preferences {
             .preferences-title-container {
                 color: map-get($colors, light);
                 margin-bottom: 20px;
+
+                .preferences-back {
+                    margin: auto;
+                }
+
                 .preferences-title {
                     font-family: 'Atma-Bold' !important;
-                    font-size: 55px;
+                    font-size: 35px;
                 }
             }
 

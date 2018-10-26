@@ -4,7 +4,7 @@ import { Preference } from '../../app/entities';
 import { TurnTypeService } from '../../app/_services/turnType.service';
 
 /**
- * Modale d'avertissement sur l'alcool
+ * Page des préférences
  */
 @Component({
   selector: 'page-preferences',
