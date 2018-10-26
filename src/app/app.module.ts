@@ -23,6 +23,7 @@ import { LocalizedService } from './_services/localized.service';
 import { PlayerService } from './_services/player.service';
 import { TurnEntryService } from './_services/turnEntry.service';
 import { TurnTypeService } from './_services/turnType.service';
+import { PreferenceService } from '../pages/preferences/preferences.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -73,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LocalizedService,
     PlayService,
     PlayerService,
+    PreferenceService,
     TurnEntryService,
     TurnTypeService
   ]
