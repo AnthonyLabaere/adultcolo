@@ -127,13 +127,17 @@ export enum TurnType {
 export class TurnTypeParameters {
     preference: boolean;
     isQuestion: boolean;
+    hasPlayer: boolean;
+    hasSecondPlayer: boolean;
     withTitle: boolean;
     withDescription: boolean;
     withTimer: boolean;
 
-    constructor(preference: boolean, isQuestion: boolean, withTitle: boolean, withDescription: boolean, withTimer: boolean) {
+    constructor(preference: boolean, isQuestion: boolean, hasPlayer: boolean, hasSecondPlayer: boolean, withTitle: boolean, withDescription: boolean, withTimer: boolean) {
         this.preference = preference;
         this.isQuestion = isQuestion;
+        this.hasPlayer = hasPlayer;
+        this.hasSecondPlayer = hasSecondPlayer;
         this.withTitle = withTitle;
         this.withDescription = withDescription;
         this.withTimer = withTimer;
@@ -147,7 +151,7 @@ export class TurnTypeParameters {
      * @return l'objet construit
      */
     public static buildFromArray(array: boolean[]) : TurnTypeParameters {
-        return new TurnTypeParameters(array[0], array[1], array[2], array[3], array[4]);
+        return new TurnTypeParameters(array[0], array[1], array[2], array[3], array[4], array[5], array[6]);
     }
 }
 
@@ -160,23 +164,36 @@ export class Turn {
     labels: string[];
     descriptions: string[];
     sipNumber: number;
+    hasPlayer: boolean;
+    player: Player;
     playerLabel: string;
+    hasSecondPlayer: boolean;
+    secondPlayer: Player;
     secondPlayerLabel: string;
     withTimer: boolean;
 
-    constructor(type: TurnType, titles:string[], labels: string[], descriptions: string[], sipNumber: number, playerLabel: string, secondPlayerLabel: string, withTimer: boolean) {
+    constructor(type: TurnType, titles:string[], labels: string[], descriptions: string[], sipNumber: number, 
+        hasPlayer: boolean, player: Player, playerLabel: string, 
+        hasSecondPlayer: boolean, secondPlayer: Player, secondPlayerLabel: string, 
+        withTimer: boolean) {
         this.type = type;
         this.titles = titles;
         this.labels = labels;
         this.descriptions = descriptions;
         this.sipNumber = sipNumber;
+        this.hasPlayer = hasPlayer;
+        this.player = player;
         this.playerLabel = playerLabel;
+        this.hasSecondPlayer = hasSecondPlayer;
+        this.secondPlayer = secondPlayer;
         this.secondPlayerLabel = secondPlayerLabel;
         this.withTimer = withTimer;
     }
 
     /**
      * Construction d'un tour contenant tous les libellés
+     * 
+     * TODO : ajouter la description des paramètres
      */
     public static constructFromTurnEntry(turnEntry: TurnEntry, turnType: TurnType, player?: Player, secondPlayer?: Player): Turn {
         const sipNumber = CommonService.getRandomSipNumber(turnEntry.bigSip);
@@ -184,17 +201,38 @@ export class Turn {
         const playerLabel = LocalizedService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = LocalizedService.getPlayerLabel(turnType, secondPlayer);
 
+        let hasPlayer = false;
+        let hasSecondPlayer = false;
+
         let titles: string[];
         if (turnEntry.titles) {
+            hasPlayer = turnEntry.titles.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+            hasSecondPlayer = turnEntry.titles.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
             titles = LocalizedService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
+
+        if (!hasPlayer) {
+            hasPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+        }
+        if (!hasSecondPlayer) {
+            hasSecondPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
+        }
         const labels = LocalizedService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
+        
         let descriptions: string[];
         if (turnEntry.descriptions) {
+            if (!hasPlayer) {
+                hasPlayer = turnEntry.descriptions.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+            }
+            if (!hasSecondPlayer) {
+                hasSecondPlayer = turnEntry.descriptions.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
+            }
+
             descriptions = LocalizedService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
-        return new Turn(turnType, titles, labels, descriptions, sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer);
+        return new Turn(turnType, titles, labels, descriptions, sipNumber, hasPlayer, player, playerLabel, 
+            hasSecondPlayer, secondPlayer, secondPlayerLabel, turnEntry.withTimer);
     }
 
     /**
@@ -206,13 +244,33 @@ export class Turn {
         const playerLabel = LocalizedService.getPlayerLabel(turnType, player);
         const secondPlayerLabel = LocalizedService.getPlayerLabel(turnType, secondPlayer);
 
+        let hasPlayer = false;
+        let hasSecondPlayer = false;
+
         let titles: string[];
         if (turnEntry.titles) {
+            hasPlayer = turnEntry.titles.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+            hasSecondPlayer = turnEntry.titles.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
             titles = LocalizedService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
+
+        if (!hasPlayer) {
+            hasPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+        }
+        if (!hasSecondPlayer) {
+            hasSecondPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
+        }
         const labels = LocalizedService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
+
         let descriptions: string[];
         if (turnEntry.descriptions) {
+            if (!hasPlayer) {
+                hasPlayer = turnEntry.descriptions.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+            }
+            if (!hasSecondPlayer) {
+                hasSecondPlayer = turnEntry.descriptions.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
+            }
+
             descriptions = LocalizedService.replaceLabelsParameters(turnEntry.descriptions, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
@@ -228,7 +286,8 @@ export class Turn {
                 description = descriptions[i];
             }
 
-            turns.push(new Turn(turnType, [title], [labels[i]], [description], sipNumber, playerLabel, secondPlayerLabel, turnEntry.withTimer));
+            turns.push(new Turn(turnType, [title], [labels[i]], [description], sipNumber, hasPlayer, player, playerLabel, 
+                hasSecondPlayer, secondPlayer, secondPlayerLabel, turnEntry.withTimer));
         }
 
         return turns;

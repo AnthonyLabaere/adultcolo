@@ -28,11 +28,33 @@ export class TurnTypeService {
     }
 
     /** 
-     * Récupère la configuration d'un type de tour
+     * Récupère le paramètre de joueur d'un type de tour
      * 
      * @param turnType le type de tour
      * 
-     * @return la configuration d'un type de tour
+     * @return le paramètre de joueur d'un type de tour
+     */
+    public hasPlayer(turnType: TurnType):boolean {
+        return this.turnTypeParameters[turnType].hasPlayer;
+    }
+
+    /** 
+     * Récupère le paramètre de deuxième joueur d'un type de tour
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return le paramètre de deuxième joueur d'un type de tour
+     */
+    public hasSecondPlayer(turnType: TurnType):boolean {
+        return this.turnTypeParameters[turnType].hasSecondPlayer;
+    }
+
+    /** 
+     * Récupère le paramètre de préférence d'un type de tour
+     * 
+     * @param turnType le type de tour
+     * 
+     * @return le paramètre de préférence d'un type de tour
      */
     public getDefaultPreference(turnType: TurnType):boolean {
         return this.turnTypeParameters[turnType].preference;

@@ -40,18 +40,18 @@ export const environment = {
     // Pourcentage max de calcul dans les tours de jeu (0.5 = la moitié des tours) avant lequel tout les tours du type "De longue haleine" doivent avoir commencés
     MAX_PERCENT_TURNS_BEFORE_ANY_LONG_WINDED_TURN:  0.75,
     
-    // Paramètres [preference, isQuestion, withTitle, withDescription, withTimer] des tours de jeu par type
-    AD_PARAMETERS:             [true, true, true, true, true],
-    CARTOON_PARAMETERS:        [true, true, true, true, true],
-    CONDITION_PARAMETERS:      [true, false, false, false, false],
-    FOR_OR_AGAINST_PARAMETERS: [true, false, true, true, false],
-    GAME_PARAMETERS:           [true, false, true, false, false],
-    GENERAL_PARAMETERS:        [true, false, false, false, false],
-    INSTEAD_PARAMETERS:        [true, false, true, true, false],
-    LIST_PARAMETERS:           [true, false, true, true, false],
-    LONG_WINDED_PARAMETERS:    [true, false, false, false, false],
-    MOVIE_PARAMETERS:          [true, true, true, true, true],
-    SONG_PARAMETERS:           [true, true, true, true, true],
+    // Paramètres [preference, isQuestion, hasGlobalPlayer, hasGlobalSecondPlayer, withTitle, withDescription, withTimer] des tours de jeu par type
+    AD_PARAMETERS:             [true, true, true, false, true, true, true],
+    CARTOON_PARAMETERS:        [true, true, true, false, true, true, true],
+    CONDITION_PARAMETERS:      [true, false, false, false, false, false, false],
+    FOR_OR_AGAINST_PARAMETERS: [true, false, false, false, true, true, false],
+    GAME_PARAMETERS:           [true, false, false, false, true, false, false],
+    GENERAL_PARAMETERS:        [true, false, false, false, false, false, false],
+    INSTEAD_PARAMETERS:        [true, false, false, false, true, true, false],
+    LIST_PARAMETERS:           [true, false, false, false, true, true, false],
+    LONG_WINDED_PARAMETERS:    [true, false, false, false, false, false, false],
+    MOVIE_PARAMETERS:          [true, true, true, false, true, true, true],
+    SONG_PARAMETERS:           [true, true, true, false, true, true, true],
     
     // Nombre de synonymes à trouver pour un mot facile
     EASY_SYNONYME_NUMBER: 5,

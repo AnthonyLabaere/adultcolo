@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { TurnType, TurnTypeParameters, ValueWithWeight } from "../entities";
 import { environment as ENV } from '../../environments/environment';
+import { TurnType, TurnTypeParameters, ValueWithWeight } from "../entities";
 import { TurnTypeService } from "./turnType.service";
 
 /**
@@ -78,13 +78,14 @@ export class CommonService {
      * 
      * @return l'élément sélectionné
      */
-    public static getValueFromShuffledArrayWithWeight<T>(arrayWithWeight: ValueWithWeight<T>[]): T {
+    public static getValuesFromShuffledArrayWithWeight<T>(arrayWithWeight: ValueWithWeight<T>[]): T {
         const array: T[] = [];
         arrayWithWeight.forEach((element: ValueWithWeight<T>) => {
             for (let i = 0; i < element.weight; i++) {
                 array.push(element.value);
             }
         });
+
         return _.shuffle(array)[0];
     }
 

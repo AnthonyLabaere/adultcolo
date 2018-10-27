@@ -177,7 +177,7 @@ export class LocalizedService {
                     new ValueWithWeight<string>(LocalizedService.PLAYER_HOUSE_OWNER, 1)
                 ];
 
-                return CommonService.getValueFromShuffledArrayWithWeight(labels);
+                return CommonService.getValuesFromShuffledArrayWithWeight(labels);
             }
         }
 

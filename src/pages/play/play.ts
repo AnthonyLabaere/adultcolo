@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { Insomnia } from '@ionic-native/insomnia';
 import { NavController } from 'ionic-angular';
-import { Timer, Turn, TurnType } from '../../app/entities';
+import { Player, Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { LocalizedService } from '../../app/_services/localized.service';
+import { PlayerService } from '../../app/_services/player.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayService } from './play.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TurnTypeService } from '../../app/_services/turnType.service';
 
 /**
  * Page d'une partie de jeu
@@ -30,8 +33,8 @@ export class PlayPage {
   /** Dans le cas où un timer est nécessaire (exemple : les chansons) */
   public timer: Timer;
 
-  constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, private commonService: CommonService,
-     private playService: PlayService) {
+  constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, 
+      private commonService: CommonService, private turnTypeService: TurnTypeService, private playerService: PlayerService, private playService: PlayService) {
     if (!ENV.DEV) {
       const interstitialConfig: AdMobFreeInterstitialConfig = {
         isTesting: ENV.DEV,
@@ -45,10 +48,11 @@ export class PlayPage {
       this.admobFree.interstitial.prepare();
     }
 
+    // Récupération des tours
     this.playService.getTurns()
       .then((turns: Turn[]) => {
-        console.log(turns);
         this.turns = turns;
+        // Lancement de la partie
         this.startPlay();
       });
   }
@@ -129,9 +133,14 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Méthode appelée après un changement de tour
+   */
   private onTurnChange() {
+    // Le sous-index du tour est remis à 0
     this.currentTurnLabelIndex = 0;
 
+    // Affichage du timer si besoin
     if (this.commonService.showTimer(this.getCurrentTurn().type) || this.getCurrentTurn().withTimer) {
       this.timer = new Timer(this.getCurrentTurn().type);
     }

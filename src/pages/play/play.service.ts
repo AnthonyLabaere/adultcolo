@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Turn, TurnEntry, TurnType } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Turn, TurnEntry, TurnType, Player } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { TurnTypeService } from "../../app/_services/turnType.service";
@@ -23,12 +23,23 @@ export class PlayService {
      * @return une promesse contenant les tours de jeu
      */
     public getTurns(): Promise<Turn[]> {
+        // Initialisation de la map d'apparition des joueurs sur la partie
+        let occurencePlayerMap: {player: Player, occurence: number}[];
+        if (this.playerService.hasEnoughtPlayers()) {
+            occurencePlayerMap = this.playerService.getPlayers().map((player: Player) => {
+            return {
+                player,
+                occurence: 0
+            };
+          });
+        }
+
         // Les tours classiques
         let turns: Turn[] = [];
         // Les tours dîts "De longue haleine" dont les slides sont décalés dans le temps
         let longWindedTurns: Turn[][];
 
-        return this.getQuestionsTurns()
+        return this.getQuestionsTurns(occurencePlayerMap)
             .then((questionTurns: Turn[]) => {
                 turns = turns.concat(questionTurns);
 
@@ -36,44 +47,44 @@ export class PlayService {
             })
             .then((forOrAgainsts: ForOrAgainst[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.FOR_OR_AGAINST, forOrAgainsts, 
-                    _.random(ENV.FOR_OR_AGAINSTS_BY_PLAY[0], ENV.FOR_OR_AGAINSTS_BY_PLAY[1])));
+                    _.random(ENV.FOR_OR_AGAINSTS_BY_PLAY[0], ENV.FOR_OR_AGAINSTS_BY_PLAY[1]), occurencePlayerMap));
 
                 return this.turnEntryService.getTurnEntries(TurnType.GAME);
             })
             .then((games: Game[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.GAME, games,
-                    _.random(ENV.GAMES_BY_PLAY[0], ENV.GAMES_BY_PLAY[1])));
+                    _.random(ENV.GAMES_BY_PLAY[0], ENV.GAMES_BY_PLAY[1]), occurencePlayerMap));
 
                 return this.turnEntryService.getTurnEntries(TurnType.GENERAL);
             })
             .then((generals: General[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.GENERAL, generals,
-                    _.random(ENV.GENERALS_BY_PLAY[0], ENV.GENERALS_BY_PLAY[1])));
+                    _.random(ENV.GENERALS_BY_PLAY[0], ENV.GENERALS_BY_PLAY[1]), occurencePlayerMap));
 
                 return this.turnEntryService.getTurnEntries(TurnType.INSTEAD);
             })
             .then((insteads: Instead[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.INSTEAD, insteads, 
-                    _.random(ENV.INSTEADS_BY_PLAY[0], ENV.INSTEADS_BY_PLAY[1])));
+                    _.random(ENV.INSTEADS_BY_PLAY[0], ENV.INSTEADS_BY_PLAY[1]), occurencePlayerMap));
 
                 return this.turnEntryService.getTurnEntries(TurnType.LIST);
             })
             .then((lists: List[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.LIST, lists, 
-                    _.random(ENV.LISTS_BY_PLAY[0], ENV.LISTS_BY_PLAY[1])));
+                    _.random(ENV.LISTS_BY_PLAY[0], ENV.LISTS_BY_PLAY[1]), occurencePlayerMap));
 
                 return this.turnEntryService.getTurnEntries(TurnType.LONG_WINDED);
             })
             .then((longWindeds: LongWinded[]) => {
                 longWindedTurns = this.getDecoupledTurnsFormTurnEntries(TurnType.LONG_WINDED, longWindeds, 
-                    _.random(ENV.LONG_WINDEDS_BY_PLAY[0], ENV.LONG_WINDEDS_BY_PLAY[1]));
+                    _.random(ENV.LONG_WINDEDS_BY_PLAY[0], ENV.LONG_WINDEDS_BY_PLAY[1]), occurencePlayerMap);
 
                 return this.turnEntryService.getTurnEntries(TurnType.CONDITION);
             })
             .then((conditions: Condition[]) => {
                 // Complétion jusqu'à "TURN_NUMBER_TOTAL" avec des conditions
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CONDITION, conditions, 
-                    Math.max(ENV.TURN_NUMBER_TOTAL - (turns.length + longWindedTurns.length), 0)));
+                    Math.max(ENV.TURN_NUMBER_TOTAL - (turns.length + longWindedTurns.length), 0), occurencePlayerMap));
                 
                 return Promise.resolve(_.shuffle(turns));
             })
@@ -112,7 +123,7 @@ export class PlayService {
      * 
      * @return le tableau des tours de questions
      */
-    private getQuestionsTurns(): Promise<Turn[]> {
+    private getQuestionsTurns(occurencePlayerMap: {player: Player, occurence: number}[]): Promise<Turn[]> {
         // Promesses de récupération des valeurs de préférences sur les types de tour de type questions
         const preferencePromises: Promise<{turnType: TurnType, value: boolean}>[] = this.turnTypeService.getQuestionTurnTypes().map(turnType => {
             return this.preferenceService.getPreferenceValue(turnType)
@@ -148,7 +159,7 @@ export class PlayService {
                 const turnPromises: Promise<Turn[]>[] = turnTypeNumbers.map(turnTypeNumber => {
                     return this.turnEntryService.getTurnEntries(turnTypeNumber.turnType)
                         .then((turnEntries: TurnEntry[]) => {
-                            return Promise.resolve(this.getTurnFormTurnEntries(turnTypeNumber.turnType, turnEntries, turnTypeNumber.value));
+                            return Promise.resolve(this.getTurnFormTurnEntries(turnTypeNumber.turnType, turnEntries, turnTypeNumber.value, occurencePlayerMap));
 
                         });
                 });
@@ -169,14 +180,33 @@ export class PlayService {
      * 
      * @return les tours de jeu
      */
-    private getTurnFormTurnEntries(turnType: TurnType, turnEntries: TurnEntry[], numberToAdd: number): Turn[] {
+    private getTurnFormTurnEntries(turnType: TurnType, turnEntries: TurnEntry[], numberToAdd: number, occurencePlayerMap: {player: Player, occurence: number}[]): Turn[] {
         const turns: Turn[] = [];
 
         _.shuffle(turnEntries).slice(0, numberToAdd).forEach((turnEntry: TurnEntry) => {
             if (this.playerService.hasEnoughtPlayers()) {
-                const players = _.shuffle(this.playerService.getPlayers());
 
-                turns.push(Turn.constructFromTurnEntry(turnEntry, turnType, players[0], players[1]));
+                // Récupération des joueurs
+                const players = this.playerService.getPlayerAndSecondPlayer(occurencePlayerMap);
+
+                // Construction du tour
+                const turn: Turn = Turn.constructFromTurnEntry(turnEntry, turnType, players[0], players[1]);
+
+                // Mise à jour de l'occurence des joueurs concernés
+                if (this.turnTypeService.hasPlayer(turnType) || turn.hasPlayer) {
+                    _.find(occurencePlayerMap, ocm => {
+                        return ocm.player.name === turn.player.name;
+                    }).occurence++;
+                }
+                if (this.turnTypeService.hasSecondPlayer(turnType) || turn.hasSecondPlayer) {
+                    _.find(occurencePlayerMap, ocm => {
+                        return ocm.player.name === turn.secondPlayer.name;
+                    }).occurence++;
+                }
+                console.log(occurencePlayerMap);
+
+                // Ajout du tour
+                turns.push(turn);
             } else if (!turnEntry.mandatoryPlayers) {
                 turns.push(Turn.constructFromTurnEntry(turnEntry, turnType));
             }
@@ -194,7 +224,7 @@ export class PlayService {
      * 
      * @return les tours de jeu découplés
      */
-    private getDecoupledTurnsFormTurnEntries(turnType: TurnType, turnEntries: TurnEntry[], numberToAdd: number): Turn[][] {
+    private getDecoupledTurnsFormTurnEntries(turnType: TurnType, turnEntries: TurnEntry[], numberToAdd: number, occurencePlayerMap: {player: Player, occurence: number}[]): Turn[][] {
         const turns: Turn[][] = [];
 
         _.shuffle(turnEntries).slice(0, numberToAdd).forEach((turnEntry: TurnEntry) => {

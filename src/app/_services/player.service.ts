@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Storage } from '@ionic/storage';
+import * as _ from 'lodash';
 import { environment as ENV } from '../../environments/environment';
 import { Player } from "../entities";
 import { CommonService } from "./common.service";
@@ -21,6 +22,20 @@ export class PlayerService {
      */
     public hasEnoughtPlayers(): boolean {
         return this.getPlayers().length >= ENV.PLAYERS_MIN_NUMBER;
+    }
+
+    /**
+     * Récupère les joueurs en fonction de la précédente fréquence d'apparition
+     * 
+     * @return les joueurs
+     */
+    public getPlayerAndSecondPlayer(occurencePlayerMap: {player: Player, occurence: number}[]): Player[] {
+        const player: Player = _.minBy(occurencePlayerMap, "occurence").player;
+        const secondPlayer: Player = _.minBy(_.filter(occurencePlayerMap, (ocm => {
+            return ocm.player.name !== player.name;
+        }))).player;
+        
+        return [player, secondPlayer];
     }
 
     /**
