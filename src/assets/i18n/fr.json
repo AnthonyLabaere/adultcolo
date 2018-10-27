@@ -119,7 +119,7 @@
         "for-or-against": {
             "0": {
                 "title": "Pour ou contre",
-                "description": "Votez en même temps, les minoritaires boivent {{sipNumberLabel}} gorgée{{sipSuffix}}."
+                "description": "Votez en même temps (pouce en haut ou en bas), les minoritaires boivent {{sipNumberLabel}} gorgée{{sipSuffix}}."
             }
         },
         "game": {
@@ -133,7 +133,7 @@
         "instead": {
             "0": {
                 "title": "Plutôt",
-                "description": "Votez en même temps, les minoritaires boivent {{sipNumberLabel}} gorgée{{sipSuffix}}."
+                "description": "Votez en même temps (pouce en haut ou en bas), les minoritaires boivent {{sipNumberLabel}} gorgée{{sipSuffix}}."
             }
         },
         "list": {
