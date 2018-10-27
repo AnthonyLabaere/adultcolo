@@ -47,6 +47,7 @@ export class PlayPage {
 
     this.playService.getTurns()
       .then((turns: Turn[]) => {
+        console.log(turns);
         this.turns = turns;
         this.startPlay();
       });

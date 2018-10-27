@@ -82,9 +82,10 @@
         "sounds": [
             "mol", "ach"
         ],
-        "synonymes": [
-            "argent", "saoul", "boire", "travailler"
-        ]
+        "synonymes": {
+            "easy": ["argent", "saoul"],
+            "hard": ["boire", "travailler"]
+        }
     },
     "rating": {
         "title": "Coup de pouce",

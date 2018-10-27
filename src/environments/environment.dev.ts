@@ -52,6 +52,11 @@ export const environment = {
     LONG_WINDED_PARAMETERS:    [true, false, false, false, false],
     MOVIE_PARAMETERS:          [true, true, true, true, true],
     SONG_PARAMETERS:           [true, true, true, true, true],
+    
+    // Nombre de synonymes à trouver pour un mot facile
+    EASY_SYNONYME_NUMBER: 5,
+    // Nombre de synonymes à trouver pour un mot difficiles
+    HARD_SYNONYME_NUMBER: 3,
 
     // Temps par défaut du minuteur
     TIMER_DEFAULT_TIME: 10,

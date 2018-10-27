@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as _ from 'lodash';
+import { environment as ENV } from '../../environments/environment';
 import { Player, TurnType, ValueWithWeight } from "../entities";
 import { CommonService } from "./common.service";
 
@@ -20,7 +21,8 @@ export class LocalizedService {
     public static HEADS_OR_TAILS: string[];
     public static SINGERS: string[];
     public static SOUNDS: string[];
-    public static SYNONYMES: string[];
+    public static EASY_SYNONYMES: string[];
+    public static HARD_SYNONYMES: string[];
 
     public static PLAYER_SUFFIX: string;
     public static PLAYER_NONE: string;
@@ -75,6 +77,8 @@ export class LocalizedService {
     public static DATA_RANDOM_HEADS_OR_TAILS_VERBS_KEY_TO_REPLACE = '<<random-heads-or-tails>>';
     public static DATA_RANDOM_SINGER_KEY_TO_REPLACE = '<<random-singer>>';
     public static DATA_RANDOM_SOUND_KEY_TO_REPLACE = '<<random-sound>>';
+
+    public static DATA_SYNONYME_NUMBER_KEY_TO_REPLACE = '<<synonyme-number>>';
     public static DATA_RANDOM_SYNONYME_KEY_TO_REPLACE = '<<random-synonyme>>';
 
     constructor(private translate: TranslateService) {
@@ -104,7 +108,8 @@ export class LocalizedService {
         this.translate.get('common.headsOrTails').subscribe((str: string[]) => {LocalizedService.HEADS_OR_TAILS = str});
         this.translate.get('common.singers').subscribe((str: string[]) => {LocalizedService.SINGERS = str});
         this.translate.get('common.sounds').subscribe((str: string[]) => {LocalizedService.SOUNDS = str});
-        this.translate.get('common.synonymes').subscribe((str: string[]) => {LocalizedService.SYNONYMES = str});
+        this.translate.get('common.synonymes.easy').subscribe((str: string[]) => {LocalizedService.EASY_SYNONYMES = str});
+        this.translate.get('common.synonymes.hard').subscribe((str: string[]) => {LocalizedService.HARD_SYNONYMES = str});
 
         this.translate.get('common.player.suffix').subscribe((str: string) => {LocalizedService.PLAYER_SUFFIX = str;});
         this.translate.get('common.player.none').subscribe((str: string) => {LocalizedService.PLAYER_NONE = str;});
@@ -245,7 +250,10 @@ export class LocalizedService {
         const randomHeadsOrTails = _.shuffle(LocalizedService.HEADS_OR_TAILS)[0];
         const randomSinger = _.shuffle(LocalizedService.SINGERS)[0];
         const randomSound = _.shuffle(LocalizedService.SOUNDS)[0];
-        const randomSynonyme = _.shuffle(LocalizedService.SYNONYMES)[0];
+        
+        const easySynonyme = CommonService.random();
+        const synonymeNumber = easySynonyme ? ENV.EASY_SYNONYME_NUMBER : ENV.HARD_SYNONYME_NUMBER;
+        const randomSynonyme = _.shuffle(easySynonyme ? LocalizedService.EASY_SYNONYMES : LocalizedService.HARD_SYNONYMES)[0];
 
         return labels.map(label => {
             return label
@@ -272,7 +280,8 @@ export class LocalizedService {
             .replace(LocalizedService.DATA_RANDOM_HEADS_OR_TAILS_VERBS_KEY_TO_REPLACE, randomHeadsOrTails)
             .replace(LocalizedService.DATA_RANDOM_SINGER_KEY_TO_REPLACE, randomSinger)
             .replace(LocalizedService.DATA_RANDOM_SOUND_KEY_TO_REPLACE, randomSound)
-            .replace(LocalizedService.DATA_RANDOM_SYNONYME_KEY_TO_REPLACE, randomSynonyme);
+            .replace(LocalizedService.DATA_SYNONYME_NUMBER_KEY_TO_REPLACE, String(synonymeNumber))
+            .replace(LocalizedService.DATA_RANDOM_SYNONYME_KEY_TO_REPLACE, randomSynonyme)
         });
     }
 }
