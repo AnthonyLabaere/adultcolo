@@ -145,7 +145,7 @@
         "movie": {
             "0": {
                 "title": "Film",
-                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver la film correspondant à l'indice."
+                "description": "{{player}} a {{timeInSeconds}} secondes pour trouver le film correspondant à l'indice."
             },
             "1": {
                 "title": "Film",
