@@ -68,7 +68,7 @@ export class PlayService {
                 longWindedTurns = this.getDecoupledTurnsFormTurnEntries(TurnType.LONG_WINDED, longWindeds, 
                     _.random(ENV.LONG_WINDEDS_BY_PLAY[0], ENV.LONG_WINDEDS_BY_PLAY[1]));
 
-                return this.turnEntryService.getTurnEntries(TurnType.MOVIE);
+                return this.turnEntryService.getTurnEntries(TurnType.CONDITION);
             })
             .then((conditions: Condition[]) => {
                 // Complétion jusqu'à "TURN_NUMBER_TOTAL" avec des conditions
