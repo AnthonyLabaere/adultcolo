@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Ad, Cartoon, Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Movie, Song, Turn, TurnEntry, TurnType } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Turn, TurnEntry, TurnType } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
+import { TurnTypeService } from "../../app/_services/turnType.service";
 import { environment as ENV } from '../../environments/environment';
+import { PreferenceService } from "../preferences/preferences.service";
 
 /**
  * Service de construction d'une partie de jeu
@@ -11,7 +13,8 @@ import { environment as ENV } from '../../environments/environment';
 @Injectable()
 export class PlayService {
 
-    constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService) {
+    constructor(private playerService: PlayerService, private turnEntryService: TurnEntryService, private turnTypeService: TurnTypeService, 
+        private preferenceService: PreferenceService) {
     }
 
     /**
@@ -25,18 +28,11 @@ export class PlayService {
         // Les tours dîts "De longue haleine" dont les slides sont décalés dans le temps
         let longWindedTurns: Turn[][];
 
-        return this.turnEntryService.getTurnEntries(TurnType.AD)
-            .then((ads: Ad[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.AD, ads, 
-                    _.random(ENV.ADS_BY_PLAY[0], ENV.ADS_BY_PLAY[1])));
+        return this.getQuestionsTurns()
+            .then((questionTurns: Turn[]) => {
+                turns = turns.concat(questionTurns);
 
-                return this.turnEntryService.getTurnEntries(TurnType.CARTOON);
-            })
-            .then((cartoons: Cartoon[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CARTOON, cartoons, 
-                    _.random(ENV.CARTOONS_BY_PLAY[0], ENV.CARTOONS_BY_PLAY[1])));
-
-                return this.turnEntryService.getTurnEntries(TurnType.FOR_OR_AGAINST);
+                return this.turnEntryService.getTurnEntries(TurnType.FOR_OR_AGAINST)
             })
             .then((forOrAgainsts: ForOrAgainst[]) => {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.FOR_OR_AGAINST, forOrAgainsts, 
@@ -74,18 +70,6 @@ export class PlayService {
 
                 return this.turnEntryService.getTurnEntries(TurnType.MOVIE);
             })
-            .then((movies: Movie[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.MOVIE, movies, 
-                    _.random(ENV.MOVIES_BY_PLAY[0], ENV.MOVIES_BY_PLAY[1])));
-
-                    return this.turnEntryService.getTurnEntries(TurnType.SONG);
-            })
-            .then((songs: Song[]) => {
-                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.SONG, songs, 
-                    _.random(ENV.SONGS_BY_PLAY[0], ENV.SONGS_BY_PLAY[1])));
- 
-                return this.turnEntryService.getTurnEntries(TurnType.CONDITION);
-            })
             .then((conditions: Condition[]) => {
                 // Complétion jusqu'à "TURN_NUMBER_TOTAL" avec des conditions
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CONDITION, conditions, 
@@ -120,6 +104,59 @@ export class PlayService {
                 }
 
                 return Promise.resolve(turns);
+            });
+    }
+
+    /**
+     * Construit le tableau des tours de questions
+     * 
+     * @return le tableau des tours de questions
+     */
+    private getQuestionsTurns(): Promise<Turn[]> {
+        // Promesses de récupération des valeurs de préférences sur les types de tour de type questions
+        const preferencePromises: Promise<{turnType: TurnType, value: boolean}>[] = this.turnTypeService.getQuestionTurnTypes().map(turnType => {
+            return this.preferenceService.getPreferenceValue(turnType)
+                .then((preferenceValue: boolean) => {
+                    return Promise.resolve({
+                        turnType,
+                        value: preferenceValue
+                    });
+                });
+        });
+
+        return Promise.all(preferencePromises)
+            .then((preferences: {turnType: TurnType, value: boolean}[]) => {
+                // Récupération des types de tours de type question sélectionnés dans les préférences
+                const turnTypes: TurnType[] = preferences.filter(preference => preference.value).map((preference) => {
+                    return preference.turnType;
+                });
+                
+                // Détermination du nombre de chaque type de tour
+                const questionTurnsNumber: number = _.random(ENV.QUESTION_TURN_NUMBER_TOTAL_BY_PLAY[0], ENV.QUESTION_TURN_NUMBER_TOTAL_BY_PLAY[1]);
+
+                const turnTypeDefaultNumber:number = Math.floor(questionTurnsNumber / turnTypes.length);
+                const turnTypeNumbers: {turnType: TurnType, value: number}[] = turnTypes.map((turnType: TurnType) => {
+                    return {
+                        turnType,
+                        value: turnTypeDefaultNumber
+                    };
+                });
+                while (_.sumBy(turnTypeNumbers, 'value') < questionTurnsNumber) {
+                    _.shuffle(turnTypeNumbers)[0].value++;
+                }
+
+                const turnPromises: Promise<Turn[]>[] = turnTypeNumbers.map(turnTypeNumber => {
+                    return this.turnEntryService.getTurnEntries(turnTypeNumber.turnType)
+                        .then((turnEntries: TurnEntry[]) => {
+                            return Promise.resolve(this.getTurnFormTurnEntries(turnTypeNumber.turnType, turnEntries, turnTypeNumber.value));
+
+                        });
+                });
+
+                return Promise.all(turnPromises)
+                    .then((turnsArray: Turn[][]) => {
+                        return Promise.resolve(_.shuffle(_.flatten(turnsArray)));
+                    });
             });
     }
 
