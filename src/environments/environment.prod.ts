@@ -24,7 +24,7 @@ export const environment = {
     BIG_SIP_NUMBER: [2, 4],
 
     // Nombre total de tour de jeu (utilisé pour alimenter en "Condition")
-    TURN_NUMBER_TOTAL: 40,
+    TURN_NUMBER_TOTAL: 30,
     // Nombres [min, max] du total de tour de jeu de type question
     QUESTION_TURN_NUMBER_TOTAL_BY_PLAY: [5, 7],
     // Nombres [min, max] de chaque type de tours
