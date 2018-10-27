@@ -6,7 +6,10 @@
   <ion-scroll #playersListContainer scrollY="true" class="players-list-container">
     <ion-list class="players-list">
       <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
-        <ion-input type="text" [(ngModel)]="player.name" placeholder="{{areTranslationsLoaded() ? ('home.player.prefix' | translate) + (i + 1) : ''}}"></ion-input>
+        <ion-input *ngIf="i < players.length - 1" type="text" [(ngModel)]="player.name" 
+          placeholder="{{areTranslationsLoaded() ? ('home.player.prefix' | translate) + (i + 1) : ''}}"></ion-input>
+        <ion-input #lastPlayerName *ngIf="i === players.length - 1" type="text" [(ngModel)]="player.name" 
+          placeholder="{{areTranslationsLoaded() ? ('home.player.prefix' | translate) + (i + 1) : ''}}"></ion-input>
       </ion-item>
     </ion-list>
   

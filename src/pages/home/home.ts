@@ -30,6 +30,9 @@ export class HomePage implements OnInit {
   @ViewChild('playersListContainer')
   playersListContainer: ElementRef;
 
+  @ViewChild('lastPlayerName')
+  lastPlayerName: ElementRef;
+
   /** Position de la rotation du bouton d'ajout d'un joueur */
   public addButtonRotatedPosition: number = 0;
   /** Tableau des états de rotations possibles pour le bouton d'ajout d'un joueur */
@@ -94,6 +97,10 @@ export class HomePage implements OnInit {
     return this.players.length < ENV.PLAYERS_MAX_NUMBER;
   }
 
+  focusInput(input) {
+    input.setFocus();
+  }
+
   /**
    * Ajout d'un joueur
    */
@@ -103,8 +110,13 @@ export class HomePage implements OnInit {
 
       this.players.push(new Player());
 
-      // C'est moche mais permet de faire scroller la liste des joueurs vers le bas
-      (<any> this.playersListContainer)._scrollContent.nativeElement.scrollTop = (<any> this.playersListContainer)._scrollContent.nativeElement.scrollHeight;
+      // Focus sur le dernier input
+      setTimeout(() => {
+        (<any> this.lastPlayerName).setFocus();
+
+        // C'est moche mais permet de faire scroller la liste des joueurs vers le bas
+        (<any> this.playersListContainer)._scrollContent.nativeElement.scrollTop = (<any> this.playersListContainer)._scrollContent.nativeElement.scrollHeight;
+      }, 1);
     }
   }
 
