@@ -20,7 +20,9 @@ page-home {
             white-space: nowrap;
 
             .scroll-content {
-                padding: 0 25px 50px 25px;
+                padding: 0 25px 0 25px;
+                // padding: 0;
+                margin: 0;
 
                 .players-list {
                     ion-item {

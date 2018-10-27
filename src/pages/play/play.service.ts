@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Turn, TurnEntry, TurnType, Player } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Player, Turn, TurnEntry, TurnType } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { TurnTypeService } from "../../app/_services/turnType.service";
@@ -203,7 +203,6 @@ export class PlayService {
                         return ocm.player.name === turn.secondPlayer.name;
                     }).occurence++;
                 }
-                console.log(occurencePlayerMap);
 
                 // Ajout du tour
                 turns.push(turn);

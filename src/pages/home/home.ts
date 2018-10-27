@@ -114,8 +114,8 @@ export class HomePage implements OnInit {
       setTimeout(() => {
         (<any> this.lastPlayerName).setFocus();
 
-        // C'est moche mais permet de faire scroller la liste des joueurs vers le bas
-        (<any> this.playersListContainer)._scrollContent.nativeElement.scrollTop = (<any> this.playersListContainer)._scrollContent.nativeElement.scrollHeight;
+        // C'est très moche mais permet de faire scroller la liste des joueurs vers le bas
+        (<any> this.playersListContainer)._scrollContent.nativeElement.scrollTop = (<any> this.playersListContainer)._scrollContent.nativeElement.scrollHeight + 75;
       }, 1);
     }
   }

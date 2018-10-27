@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { Insomnia } from '@ionic-native/insomnia';
 import { NavController } from 'ionic-angular';
-import { Player, Timer, Turn, TurnType } from '../../app/entities';
+import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { LocalizedService } from '../../app/_services/localized.service';
 import { PlayerService } from '../../app/_services/player.service';
+import { TurnTypeService } from '../../app/_services/turnType.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayService } from './play.service';
-import { TranslateService } from '@ngx-translate/core';
-import { TurnTypeService } from '../../app/_services/turnType.service';
 
 /**
  * Page d'une partie de jeu
