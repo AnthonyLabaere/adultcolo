@@ -13,14 +13,13 @@
       </ion-item>
     </ion-list>
   
-    <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="consent && canAddPlayer()" color="light" clear ion-button large icon-only 
-      (click)="addPlayer()">
+    <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-scroll>
   
-  <div class="play-button-container" *ngIf="consent">
-    <button class="play-button" ion-button large (click)="onPlayClick()" [disabled]="!canLaunchPlay()">
+  <div class="play-button-container">
+    <button class="play-button" ion-button large (click)="onPlayClick()" [disabled]="!canLaunchPlay()" *ngIf="consent">
       <span *ngIf="areTranslationsLoaded()">{{'home.buttons.play' | translate}}</span>
     </button>
   </div>

@@ -16,12 +16,11 @@ page-home {
         }
 
         .players-list-container {
-            height: 60%;
+            height: 55%;
             white-space: nowrap;
 
             .scroll-content {
                 padding: 0 25px 0 25px;
-                // padding: 0;
                 margin: 0;
 
                 .players-list {
@@ -42,8 +41,6 @@ page-home {
         }
 
         .play-button-container {
-            // margin-top: 20px;
-
             .play-button {
                 color: map-get($colors, light);
                 background-color: $button-home-color;
