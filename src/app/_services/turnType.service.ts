@@ -16,6 +16,7 @@ export class TurnTypeService {
             [TurnType.AD]: TurnTypeParameters.buildFromArray(ENV.AD_PARAMETERS),
             [TurnType.CARTOON]: TurnTypeParameters.buildFromArray(ENV.CARTOON_PARAMETERS),
             [TurnType.CONDITION]: TurnTypeParameters.buildFromArray(ENV.CONDITION_PARAMETERS),
+            [TurnType.END]: TurnTypeParameters.buildFromArray(ENV.END_PARAMETERS),
             [TurnType.FOR_OR_AGAINST]: TurnTypeParameters.buildFromArray(ENV.FOR_OR_AGAINST_PARAMETERS),
             [TurnType.GAME]: TurnTypeParameters.buildFromArray(ENV.GAME_PARAMETERS),
             [TurnType.GENERAL]: TurnTypeParameters.buildFromArray(ENV.GENERAL_PARAMETERS),

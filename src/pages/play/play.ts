@@ -5,8 +5,6 @@ import { NavController } from 'ionic-angular';
 import { Timer, Turn, TurnType } from '../../app/entities';
 import { CommonService } from '../../app/_services/common.service';
 import { LocalizedService } from '../../app/_services/localized.service';
-import { PlayerService } from '../../app/_services/player.service';
-import { TurnTypeService } from '../../app/_services/turnType.service';
 import { environment as ENV } from '../../environments/environment';
 import { PlayService } from './play.service';
 
@@ -33,7 +31,7 @@ export class PlayPage {
   public timer: Timer;
 
   constructor(public navCtrl: NavController, private insomnia: Insomnia, private admobFree: AdMobFree, 
-      private commonService: CommonService, private turnTypeService: TurnTypeService, private playerService: PlayerService, private playService: PlayService) {
+      private commonService: CommonService, private playService: PlayService) {
     if (!ENV.DEV) {
       const interstitialConfig: AdMobFreeInterstitialConfig = {
         isTesting: ENV.DEV,

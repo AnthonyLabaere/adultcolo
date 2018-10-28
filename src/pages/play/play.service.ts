@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as _ from 'lodash';
-import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Player, Turn, TurnEntry, TurnType } from "../../app/entities";
+import { Condition, ForOrAgainst, Game, General, Instead, List, LongWinded, Player, Turn, TurnEntry, TurnType, End } from "../../app/entities";
 import { PlayerService } from "../../app/_services/player.service";
 import { TurnEntryService } from "../../app/_services/turnEntry.service";
 import { TurnTypeService } from "../../app/_services/turnType.service";
@@ -113,6 +113,12 @@ export class PlayService {
                     // On avance dans le tableau des tours
                     turnsIndex++;
                 }
+
+                return this.turnEntryService.getTurnEntries(TurnType.END);
+            })
+            .then((ends: End[]) => {
+                // Insertion du tour de fin
+                turns = turns.concat(this.getTurnFormTurnEntries(TurnType.END, ends, 1, occurencePlayerMap));
 
                 return Promise.resolve(turns);
             });

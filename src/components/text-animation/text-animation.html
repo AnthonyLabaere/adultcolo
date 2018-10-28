@@ -1,4 +1,4 @@
-<div class="animate left-right">
+<div class="animate revolve-drop" [ngClass]="{'fast': fast}">
     <span *ngFor="let char of chars">
         <span *ngIf="char !== ' '">{{char}}</span>
         <span *ngIf="char === ' '">&nbsp;</span>

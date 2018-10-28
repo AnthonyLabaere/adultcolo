@@ -59,6 +59,11 @@ export class Cartoon extends TurnEntry {}
 export class Condition extends TurnEntry {}
 
 /**
+ * Donnée retravaillée d'un tour de jeu de type "Fin de partie"
+ */
+export class End extends TurnEntry {}
+
+/**
  * Donnée retravaillée d'un tour de jeu de type "Pour ou contre"
  */
 export class ForOrAgainst extends TurnEntry {}
@@ -111,6 +116,7 @@ export enum TurnType {
     AD = 'ad',
     CARTOON = 'cartoon',
     CONDITION = 'condition',
+    END = 'end',
     FOR_OR_AGAINST = 'for-or-against',
     GAME = 'game',
     GENERAL = 'general',
@@ -333,6 +339,11 @@ export class CartoonData extends TurnEntryData {}
  * Donnée brute d'un tour de jeu de type "Condition" 
  */
 export class ConditionData extends TurnEntryData {}
+
+/**
+ * Donnée brute d'un tour de jeu de type "Fin de partie" 
+ */
+export class EndData extends TurnEntryData {}
 
 /**
  * Donnée brute d'un tour de jeu de type "Pour ou contre" 

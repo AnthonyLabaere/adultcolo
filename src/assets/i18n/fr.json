@@ -116,6 +116,11 @@
             }
         },
         "condition": {},
+        "end": {
+            "0": {
+                "title": "Last round"
+            }
+        },
         "for-or-against": {
             "0": {
                 "title": "Pour ou contre",

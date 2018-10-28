@@ -13,6 +13,9 @@ page-play {
         &.turn-condition {
             background-color: $condition-color;
         }
+        &.turn-end {
+            background-color: $end-color;
+        }
         &.turn-for-or-against {
             background-color: $for-or-against-color;
         }
@@ -102,6 +105,9 @@ page-play {
         }
         &.turn-condition .toolbar-background,  &.turn-condition .toolbar-content {
             background-color: $condition-color;
+        }
+        &.turn-end .toolbar-background, &.turn-end .toolbar-content {
+            background-color: $end-color;
         }
         &.turn-for-or-against .toolbar-background, &.turn-for-or-against .toolbar-content {
             background-color: $for-or-against-color;

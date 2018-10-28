@@ -28,12 +28,12 @@ export const environment = {
     // Nombres [min, max] du total de tour de jeu de type question
     QUESTION_TURN_NUMBER_TOTAL_BY_PLAY: [5, 7],
     // Nombres [min, max] de chaque type de tours
-    FOR_OR_AGAINSTS_BY_PLAY: [1, 2],
-    GAMES_BY_PLAY: [3, 5],
-    GENERALS_BY_PLAY: [2, 3],
-    INSTEADS_BY_PLAY: [1, 2],
-    LISTS_BY_PLAY: [1, 2],
-    LONG_WINDEDS_BY_PLAY: [1, 2],
+    FOR_OR_AGAINSTS_BY_PLAY:            [1, 2],
+    GAMES_BY_PLAY:                      [3, 5],
+    GENERALS_BY_PLAY:                   [2, 3],
+    INSTEADS_BY_PLAY:                   [1, 2],
+    LISTS_BY_PLAY:                      [1, 2],
+    LONG_WINDEDS_BY_PLAY:               [1, 2],
 
     // Nombre de tour minimum avant de pouvoir réafficher le deuxième élément d'un tour du type "De longue haleine"
     MIN_TURNS_AFTER_LONG_WINDED_END:  5,
@@ -44,6 +44,7 @@ export const environment = {
     AD_PARAMETERS:             [true, true, true, false, true, true, true],
     CARTOON_PARAMETERS:        [true, true, true, false, true, true, true],
     CONDITION_PARAMETERS:      [true, false, false, false, false, false, false],
+    END_PARAMETERS:            [false, false, false, false, true, false, false],
     FOR_OR_AGAINST_PARAMETERS: [true, false, false, false, true, true, false],
     GAME_PARAMETERS:           [true, false, false, false, true, false, false],
     GENERAL_PARAMETERS:        [true, false, false, false, false, false, false],
