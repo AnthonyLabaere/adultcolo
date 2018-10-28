@@ -2,7 +2,7 @@ page-play {
 
     .play-content {
         text-align: center;
-        color: white;
+        color: map-get($colors, light);
 
         &.turn-ad {
             background-color: $ad-color;

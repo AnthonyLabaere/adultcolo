@@ -1,0 +1,6 @@
+<div class="animate left-right">
+    <span *ngFor="let char of chars">
+        <span *ngIf="char !== ' '">{{char}}</span>
+        <span *ngIf="char === ' '">&nbsp;</span>
+    </span>
+</div>

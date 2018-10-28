@@ -12,10 +12,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { TextAnimationComponent } from '../components/text-animation/text-animation';
 import { HomePage } from '../pages/home/home';
 import { PlayPage } from '../pages/play/play';
 import { PlayService } from '../pages/play/play.service';
 import { PreferencesPage } from '../pages/preferences/preferences';
+import { PreferenceService } from '../pages/preferences/preferences.service';
 import { WarningPage } from '../pages/warning/warning';
 import { Adultcolo } from './app.component';
 import { CommonService } from './_services/common.service';
@@ -23,7 +25,6 @@ import { LocalizedService } from './_services/localized.service';
 import { PlayerService } from './_services/player.service';
 import { TurnEntryService } from './_services/turnEntry.service';
 import { TurnTypeService } from './_services/turnType.service';
-import { PreferenceService } from '../pages/preferences/preferences.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PlayPage,
     WarningPage,
     PreferencesPage,
-    ProgressBarComponent
+    ProgressBarComponent,
+    TextAnimationComponent
   ],
   imports: [
     BrowserModule,
