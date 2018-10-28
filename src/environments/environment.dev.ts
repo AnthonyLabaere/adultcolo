@@ -24,16 +24,16 @@ export const environment = {
     BIG_SIP_NUMBER: [2, 4],
 
     // Nombre total de tour de jeu (utilisé pour alimenter en "Condition")
-    TURN_NUMBER_TOTAL: 5,
+    TURN_NUMBER_TOTAL: 28,
     // Nombres [min, max] du total de tour de jeu de type question
-    QUESTION_TURN_NUMBER_TOTAL_BY_PLAY: [0, 0],
+    QUESTION_TURN_NUMBER_TOTAL_BY_PLAY: [5, 7],
     // Nombres [min, max] de chaque type de tours
-    FOR_OR_AGAINSTS_BY_PLAY:            [0, 0],
-    GAMES_BY_PLAY:                      [0, 0],
-    GENERALS_BY_PLAY:                   [0, 0],
-    INSTEADS_BY_PLAY:                   [0, 0],
-    LISTS_BY_PLAY:                      [0, 0],
-    LONG_WINDEDS_BY_PLAY:               [0, 0],
+    FOR_OR_AGAINSTS_BY_PLAY:            [1, 2],
+    GAMES_BY_PLAY:                      [3, 5],
+    GENERALS_BY_PLAY:                   [2, 3],
+    INSTEADS_BY_PLAY:                   [1, 2],
+    LISTS_BY_PLAY:                      [1, 2],
+    LONG_WINDEDS_BY_PLAY:               [1, 2],
 
     // Nombre de tour minimum avant de pouvoir réafficher le deuxième élément d'un tour du type "De longue haleine"
     MIN_TURNS_AFTER_LONG_WINDED_END:  5,

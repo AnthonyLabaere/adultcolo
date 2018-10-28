@@ -86,7 +86,9 @@ export class PlayService {
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.CONDITION, conditions, 
                     Math.max(ENV.TURN_NUMBER_TOTAL - (turns.length + longWindedTurns.length), 0), occurencePlayerMap));
                 
-                return Promise.resolve(_.shuffle(turns));
+                turns = _.shuffle(turns);
+
+                return Promise.resolve(turns);
             })
             .then((turns: Turn[]) => {
                 // Insertion des tours de longue haleine dans le tableau des tours
@@ -119,6 +121,8 @@ export class PlayService {
             .then((ends: End[]) => {
                 // Insertion du tour de fin
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.END, ends, 1, occurencePlayerMap));
+
+                console.log(turns);
 
                 return Promise.resolve(turns);
             });

@@ -217,13 +217,16 @@ export class Turn {
             titles = LocalizedService.replaceLabelsParameters(turnEntry.titles, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
 
-        if (!hasPlayer) {
-            hasPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+        let labels: string[];
+        if (turnEntry.labels) {
+            if (!hasPlayer) {
+                hasPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_PLAYER_KEY_TO_REPLACE);
+            }
+            if (!hasSecondPlayer) {
+                hasSecondPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
+            }
+            labels = LocalizedService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         }
-        if (!hasSecondPlayer) {
-            hasSecondPlayer = turnEntry.labels.join("-").includes(LocalizedService.DATA_SECOND_PLAYER_KEY_TO_REPLACE);
-        }
-        const labels = LocalizedService.replaceLabelsParameters(turnEntry.labels, drink, sipNumber, playerLabel, secondPlayerLabel);
         
         let descriptions: string[];
         if (turnEntry.descriptions) {
