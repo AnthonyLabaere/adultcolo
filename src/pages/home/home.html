@@ -3,7 +3,7 @@
     <div class="home-title"><span *ngIf="areTranslationsLoaded()">{{'title' | translate}}</span></div>
   </div>
 
-  <ion-scroll #playersListContainer scrollY="true" class="players-list-container">
+  <ion-scroll #playersListContainer scrollY="true" class="players-list-container" *ngIf="consent">
     <ion-list class="players-list">
       <ion-item *ngFor="let player of players; let i = index" [attr.data-index]="i">
         <ion-input *ngIf="i < players.length - 1" type="text" [(ngModel)]="player.name" 
@@ -13,12 +13,13 @@
       </ion-item>
     </ion-list>
   
-    <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="canAddPlayer()" color="light" clear ion-button large icon-only (click)="addPlayer()">
+    <button [@rotatedState]="rotated[addButtonRotatedPosition]" *ngIf="consent && canAddPlayer()" color="light" clear ion-button large icon-only 
+      (click)="addPlayer()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-scroll>
   
-  <div class="play-button-container">
+  <div class="play-button-container" *ngIf="consent">
     <button class="play-button" ion-button large (click)="onPlayClick()" [disabled]="!canLaunchPlay()">
       <span *ngIf="areTranslationsLoaded()">{{'home.buttons.play' | translate}}</span>
     </button>
@@ -28,7 +29,7 @@
 
 <ion-footer class="home-footer">
   <ion-toolbar>
-      <ion-row>
+      <ion-row *ngIf="consent">
         <ion-col col-4>
           <button color="light" clear ion-button large icon-only (click)="onPreferencesClick()">
             <ion-icon name="settings"></ion-icon>

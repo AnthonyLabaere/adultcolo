@@ -122,8 +122,6 @@ export class PlayService {
                 // Insertion du tour de fin
                 turns = turns.concat(this.getTurnFormTurnEntries(TurnType.END, ends, 1, occurencePlayerMap));
 
-                console.log(turns);
-
                 return Promise.resolve(turns);
             });
     }

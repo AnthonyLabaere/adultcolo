@@ -1,6 +1,6 @@
 import { animate, Component, ElementRef, OnInit, state, style, transition, trigger, ViewChild } from '@angular/core';
 import { AppRate } from '@ionic-native/app-rate';
-import { ModalController, NavController } from 'ionic-angular';
+import { Modal, ModalController, NavController } from 'ionic-angular';
 import { Player } from '../../app/entities';
 import { LocalizedService } from '../../app/_services/localized.service';
 import { PlayerService } from '../../app/_services/player.service';
@@ -33,6 +33,8 @@ export class HomePage implements OnInit {
   @ViewChild('lastPlayerName')
   lastPlayerName: ElementRef;
 
+  public consent: boolean = false;
+
   /** Position de la rotation du bouton d'ajout d'un joueur */
   public addButtonRotatedPosition: number = 0;
   /** Tableau des états de rotations possibles pour le bouton d'ajout d'un joueur */
@@ -51,7 +53,14 @@ export class HomePage implements OnInit {
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private appRate: AppRate, 
                 private localizedService: LocalizedService, private turnEntryService: TurnEntryService, private playerService: PlayerService) {
     // Construction de la page d'avertissement et affichage
-    this.modalCtrl.create(WarningPage).present();
+    const modal: Modal = this.modalCtrl.create(WarningPage);
+
+    modal.onDidDismiss(() => {
+      console.log("???");
+      this.consent = true;
+    });
+
+    modal.present();
   }
   
   /**
