@@ -55,20 +55,17 @@ export class HomePage implements OnInit {
     // Construction de la page d'avertissement et affichage
     const modal: Modal = this.modalCtrl.create(WarningPage);
 
-    modal.onDidDismiss(() => {
-      console.log("???");
-      this.consent = true;
-    });
-
-    modal.present();
+    modal.present()
+      .then(() => {
+        this.consent = true;
+        this.loadStoredPlayers();
+      });
   }
   
   /**
    * Méthode appelée après initialisation du composant
    */
-  ngOnInit() {
-    this.loadStoredPlayers();
-  }
+  ngOnInit() {}
 
   /**
    * Vérifie si les traductions sont chargées
@@ -121,7 +118,7 @@ export class HomePage implements OnInit {
 
       // Focus sur le dernier input
       setTimeout(() => {
-        (<any> this.lastPlayerName).setFocus();
+        // (<any> this.lastPlayerName).setFocus();
 
         // C'est très moche mais permet de faire scroller la liste des joueurs vers le bas
         (<any> this.playersListContainer)._scrollContent.nativeElement.scrollTop = (<any> this.playersListContainer)._scrollContent.nativeElement.scrollHeight + 75;
