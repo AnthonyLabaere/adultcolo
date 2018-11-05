@@ -133,7 +133,7 @@ export class PlayPage {
   /**
    * Méthode appelée après un changement de tour
    */
-  private onTurnChange() {
+  private onTurnChange(): void {
     // Le sous-index du tour est remis à 0
     this.currentTurnLabelIndex = 0;
 
@@ -143,6 +143,13 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Indique si un titre global doit être affiché pour un type de tour donné
+   * 
+   * @param turnType le type de tour
+   * 
+   * @return un booléen indiquant si un titre global doit être affiché pour le type de tour
+   */
   public showGlobalTitle(turnType: TurnType): boolean {
     if (turnType !== undefined && turnType !== null) {
       return this.commonService.showTitle(turnType);
@@ -151,6 +158,11 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Indique si un titre spécifique doit être affiché
+   * 
+   * @return un booléen indiquant si un titre spécifique doit être affiché
+   */
   public showSpecificTitle(): boolean {
     if (this.getCurrentTurn() !== undefined 
           && this.getCurrentTurn().titles !== undefined 
@@ -161,6 +173,13 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Indique si une description globale doit être affichée pour un type de tour donné
+   * 
+   * @param turnType le type de tour
+   * 
+   * @return un booléen indiquant si une description globale doit être affichée pour le type de tour
+   */
   public showGlobalDescription(turnType: TurnType): boolean {
     if (turnType !== undefined && turnType !== null) {
       return this.commonService.showDescription(turnType);
@@ -169,6 +188,11 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Indique si une description spécifique doit être affiché
+   * 
+   * @return un booléen indiquant si une description spécifique doit être affichée
+   */
   public showSpecificDescription(): boolean {
     if (this.getCurrentTurn() !== undefined 
           && this.getCurrentTurn().descriptions !== undefined 
@@ -179,6 +203,11 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Libellé du nombre de gorgées
+   * 
+   * @return le libellé du nombre de gorgées
+   */
   public getSipNumberLabel(): string {
     if (this.getCurrentTurn()) {
       return LocalizedService.getSipNumberLabel(this.getCurrentTurn().sipNumber);
@@ -187,6 +216,11 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Suffixe du nombre de gorgées
+   * 
+   * @return le suffixe du nombre de gorgées
+   */
   public getSipSuffix(): string {
     if (this.getCurrentTurn()) {
       return LocalizedService.getSipSuffix(this.getCurrentTurn().sipNumber);
@@ -195,6 +229,11 @@ export class PlayPage {
     }
   }
 
+  /**
+   * Pronom du nombre de gorgées
+   * 
+   * @return le pronom du nombre de gorgées
+   */
   public getSipPronoun(): string {
     if (this.getCurrentTurn()) {
       return LocalizedService.getSipPronoun(this.getCurrentTurn().sipNumber);
